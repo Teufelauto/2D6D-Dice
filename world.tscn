@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://dx5jaq5nccohx"]
+[gd_scene load_steps=18 format=3 uid="uid://dx5jaq5nccohx"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_8c8ky"]
 [ext_resource type="PackedScene" uid="uid://dwlkevdio50dl" path="res://Dice Models/Door Pics/die_door_pics.tscn" id="2_doy3w"]
+[ext_resource type="Script" path="res://Dice Models/xy_room_dice.gd" id="2_hv46p"]
 [ext_resource type="PackedScene" uid="uid://mnm1600ha20s" path="res://Dice Models/Door Locked/die_locked.tscn" id="4_wvsjv"]
 [ext_resource type="PackedScene" uid="uid://b5m3t0qb8cysk" path="res://Dice Models/Left Right Center Die/die_lcr.tscn" id="4_yene3"]
 [ext_resource type="Script" path="res://Dice Models/Die Roll Reference.gd" id="5_be0xo"]
@@ -166,6 +167,7 @@ visible = false
 shape = SubResource("BoxShape3D_a2wnj")
 
 [node name="RoomDimensionDice" type="Node3D" parent="DiceTray"]
+script = ExtResource("2_hv46p")
 
 [node name="DXDim" parent="DiceTray/RoomDimensionDice" instance=ExtResource("5_rrt17")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.16644, 6.7, 4.23277)
@@ -211,4 +213,10 @@ layout_mode = 2
 visibility_layer = 16
 layout_mode = 2
 
+[connection signal="roll_xy_dice" from="DiceTray/RoomDimensionDice" to="DiceTray/RoomDimensionDice/DXDim" method="_on_room_dimension_dice_roll_xy_dice"]
+[connection signal="roll_xy_dice" from="DiceTray/RoomDimensionDice" to="DiceTray/RoomDimensionDice/DYDim" method="_on_room_dimension_dice_roll_xy_dice"]
+[connection signal="roll_xy_dice" from="DiceTray/RoomDimensionDice" to="DiceTray/RoomDimensionDice/Die Door Pics" method="_on_room_dimension_dice_roll_xy_dice"]
+[connection signal="input_event" from="DiceTray/RoomDimensionDice/DXDim" to="DiceTray/RoomDimensionDice" method="_on_dx_dim_input_event"]
+[connection signal="input_event" from="DiceTray/RoomDimensionDice/DYDim" to="DiceTray/RoomDimensionDice" method="_on_dy_dim_input_event"]
+[connection signal="input_event" from="DiceTray/RoomDimensionDice/Die Door Pics" to="DiceTray/RoomDimensionDice" method="_on_die_door_pics_input_event"]
 [connection signal="sleeping_state_changed" from="DiceTray/RoomDimensionDice/Die Door Pics" to="DiceTray/RoomDimensionDice/Die Door Pics" method="_on_sleeping_state_changed"]

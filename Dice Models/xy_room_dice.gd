@@ -65,13 +65,13 @@ func _determine_doubles():
 
 
 
+func _on_dx_dim_input_event(_camera, event, _position, _normal, _shape_idx):
+	roll_xy_dice.emit(event)
 
 
+func _on_dy_dim_input_event(_camera, event, _position, _normal, _shape_idx):
+	roll_xy_dice.emit(event)
 
 
-
-
-
-
-
-
+func _on_die_door_pics_input_event(_camera, event, _position, _normal, _shape_idx):
+	roll_xy_dice.emit(event)

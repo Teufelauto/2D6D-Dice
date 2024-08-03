@@ -19,19 +19,13 @@ signal roll_finished(value)
 func _ready():
 	start_pos = global_position
 
-func _input(event):
-	if event.is_action_pressed("ui_accept") && !is_rolling:
+
+func _on_room_dimension_dice_roll_xy_dice(event):
+	if event.is_pressed() && !is_rolling:
 		_roll()
-#
-##func _on_xy_room_dice_roll_xy_dice():
-	##if !is_rolling:
-		##$CollisionShape3D.disabled = false
-		##_roll()
 
 
-
-
-func	_roll():
+func _roll():
 	# Reset State
 	sleeping = false
 	freeze = false
@@ -42,7 +36,6 @@ func	_roll():
 	
 	# Clear Roll Results
 	roll_started.emit()
-	
 	
 	# Random Rotation
 	transform.basis = Basis(Vector3.RIGHT, randf_range(0, 2* PI)) * transform.basis
@@ -56,6 +49,15 @@ func	_roll():
 	is_rolling = true
 
 
+func _return_die():
+	transform.origin = start_pos
+	linear_velocity = Vector3.ZERO
+	angular_velocity = Vector3.ZERO
+	freeze = true
+	sleeping = true
+	$CollisionShape3D.disabled = true
+
+
 func _on_sleeping_state_changed():
 	if sleeping:
 		var landed_on_side = false
@@ -67,5 +69,7 @@ func _on_sleeping_state_changed():
 		
 		if !landed_on_side:
 			_roll()
+
+
 
 
