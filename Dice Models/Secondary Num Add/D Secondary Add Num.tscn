@@ -7,16 +7,17 @@
 [ext_resource type="PackedScene" uid="uid://bvrmvpq4ij1s0" path="res://Dice Models/Secondary Num Add/Die Numbered Secondary Orange.glb" id="4_so6o7"]
 
 [node name="DSecondaryAddNum" type="RigidBody3D"]
-collision_layer = 2
-collision_mask = 3
+collision_layer = 4
+collision_mask = 31
 mass = 4.0
 physics_material_override = ExtResource("1_i2o7s")
 gravity_scale = 8.0
 freeze = true
 script = ExtResource("1_4opgp")
 
+[node name="Die Numbered Secondary Orange" parent="." instance=ExtResource("4_so6o7")]
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-visible = false
 shape = ExtResource("3_8j2co")
 disabled = true
 
@@ -57,7 +58,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 target_position = Vector3(0, 0, 0.1)
 hit_from_inside = true
 opposite_side = 1
-
-[node name="Die Numbered Secondary Orange" parent="." instance=ExtResource("4_so6o7")]
 
 [connection signal="sleeping_state_changed" from="." to="." method="_on_sleeping_state_changed"]

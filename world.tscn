@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://dx5jaq5nccohx"]
+[gd_scene load_steps=17 format=3 uid="uid://dx5jaq5nccohx"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_8c8ky"]
 [ext_resource type="PackedScene" uid="uid://dwlkevdio50dl" path="res://Dice Models/Door Pics/die_door_pics.tscn" id="2_doy3w"]
 [ext_resource type="PackedScene" uid="uid://mnm1600ha20s" path="res://Dice Models/Door Locked/die_locked.tscn" id="4_wvsjv"]
 [ext_resource type="PackedScene" uid="uid://b5m3t0qb8cysk" path="res://Dice Models/Left Right Center Die/die_lcr.tscn" id="4_yene3"]
+[ext_resource type="Script" path="res://Dice Models/Die Roll Reference.gd" id="5_be0xo"]
 [ext_resource type="PackedScene" uid="uid://c1sbbpswt68eq" path="res://Dice Models/X Dim Die/D X Dim.tscn" id="5_rrt17"]
 [ext_resource type="PackedScene" uid="uid://ua53ly3yv0sv" path="res://Dice Models/Y Dim Die/D Y Dim.tscn" id="6_pkkkg"]
 [ext_resource type="PackedScene" uid="uid://xh1dxg5lm7mp" path="res://Dice Models/Primary Num Add/D Primary Add Num.tscn" id="7_b7ax5"]
@@ -84,7 +85,7 @@ transform = Transform3D(0.970577, -0.0601344, 0.23316, -0.19156, 0.393853, 0.898
 light_energy = 11.44
 light_indirect_energy = 5.0
 spot_range = 55.6525
-spot_attenuation = 0.840896
+spot_attenuation = 0.683019
 spot_angle = 34.0316
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="Cam n Lights"]
@@ -100,7 +101,7 @@ spot_angle_attenuation = 0.87055
 [node name="TrayModel" type="Node3D" parent="DiceTray"]
 
 [node name="TableBackstop" type="MeshInstance3D" parent="DiceTray/TrayModel"]
-transform = Transform3D(20, 0, 0, 0, 8.48316, 0.52949, 0, -5.2949, 0.848316, 0, 0.384173, -5.73175)
+transform = Transform3D(20, 0, 0, 0, 8.48316, 0.52949, 0, -5.2949, 0.848316, 0, 0.384173, -11.6613)
 mesh = SubResource("BoxMesh_dtie3")
 skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_u08sl")
@@ -113,7 +114,7 @@ visible = false
 shape = SubResource("BoxShape3D_a2wnj")
 
 [node name="TableRight" type="MeshInstance3D" parent="DiceTray/TrayModel"]
-transform = Transform3D(0.804044, 5.9457, 0, -0.59457, 8.04044, 0, 0, 0, 20, 4.05623, 0.447713, -0.76)
+transform = Transform3D(0.804044, 5.9457, 0, -0.59457, 8.04044, 0, 0, 0, 20, 4.05623, 0.447713, -3.80624)
 mesh = SubResource("BoxMesh_dtie3")
 skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_u08sl")
@@ -126,7 +127,7 @@ visible = false
 shape = SubResource("BoxShape3D_a2wnj")
 
 [node name="TableLeft" type="MeshInstance3D" parent="DiceTray/TrayModel"]
-transform = Transform3D(0.848011, -5.29978, 0, 0.529978, 8.48011, 0, 0, 0, 20, -4.43083, 0.559001, 0)
+transform = Transform3D(0.848011, -5.29978, 0, 0.529978, 8.48011, 0, 0, 0, 20, -4.43083, 0.559001, -3.45424)
 mesh = SubResource("BoxMesh_dtie3")
 skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_u08sl")
@@ -139,7 +140,7 @@ visible = false
 shape = SubResource("BoxShape3D_a2wnj")
 
 [node name="TableFront" type="MeshInstance3D" parent="DiceTray/TrayModel"]
-transform = Transform3D(25, 0, 0, 0, 7.74094, -0.63307, 0, 6.3307, 0.774094, 0, 3.31349, 7.30286)
+transform = Transform3D(25, 0, 0, 0, 7.5, -0.866025, 0, 12.9904, 0.5, 0, 2.99028, 3.39619)
 mesh = SubResource("BoxMesh_dtie3")
 skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_u08sl")
@@ -164,17 +165,38 @@ physics_material_override = SubResource("PhysicsMaterial_2bp57")
 visible = false
 shape = SubResource("BoxShape3D_a2wnj")
 
-[node name="Die Door Pics" parent="DiceTray" instance=ExtResource("2_doy3w")]
+[node name="RoomDimensionDice" type="Node3D" parent="DiceTray"]
+
+[node name="DXDim" parent="DiceTray/RoomDimensionDice" instance=ExtResource("5_rrt17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.16644, 6.7, 4.23277)
+collision_mask = 31
+
+[node name="DYDim" parent="DiceTray/RoomDimensionDice" instance=ExtResource("6_pkkkg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.7, 4.226)
+collision_mask = 31
+
+[node name="Die Door Pics" parent="DiceTray/RoomDimensionDice" instance=ExtResource("2_doy3w")]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 1.17857, 6.7, 4.23638)
+collision_layer = 2
+collision_mask = 31
+script = ExtResource("5_be0xo")
+
+[node name="DPrimaryAddNum" parent="DiceTray" instance=ExtResource("7_b7ax5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.622042, 6.7, 5.34974)
+
+[node name="DSecondaryAddNum" parent="DiceTray" instance=ExtResource("8_ox0l8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.61813, 6.7, 5.40759)
 
 [node name="Die LCR" parent="DiceTray" instance=ExtResource("4_yene3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.629964, 6.7, 6.47695)
 collision_layer = 8
-collision_mask = 15
+collision_mask = 31
 freeze = true
 
 [node name="Die Locked" parent="DiceTray" instance=ExtResource("4_wvsjv")]
 transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 0.608504, 6.7, 6.45848)
+collision_layer = 16
+collision_mask = 31
 
 [node name="RoomButtonContainer" type="GridContainer" parent="DiceTray"]
 visibility_layer = 4
@@ -189,14 +211,4 @@ layout_mode = 2
 visibility_layer = 16
 layout_mode = 2
 
-[node name="DXDim" parent="." instance=ExtResource("5_rrt17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.16644, 6.7, 4.23277)
-
-[node name="DYDim" parent="." instance=ExtResource("6_pkkkg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.7, 4.226)
-
-[node name="DPrimaryAddNum" parent="." instance=ExtResource("7_b7ax5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.622042, 6.7, 5.34974)
-
-[node name="DSecondaryAddNum" parent="." instance=ExtResource("8_ox0l8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.61813, 6.7, 5.40759)
+[connection signal="sleeping_state_changed" from="DiceTray/RoomDimensionDice/Die Door Pics" to="DiceTray/RoomDimensionDice/Die Door Pics" method="_on_sleeping_state_changed"]
