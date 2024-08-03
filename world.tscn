@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dx5jaq5nccohx"]
+[gd_scene load_steps=20 format=3 uid="uid://dx5jaq5nccohx"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_8c8ky"]
 [ext_resource type="PackedScene" uid="uid://dwlkevdio50dl" path="res://Dice Models/Door Pics/die_door_pics.tscn" id="2_doy3w"]
@@ -8,8 +8,10 @@
 [ext_resource type="Script" path="res://Dice Models/Die Roll Reference.gd" id="5_be0xo"]
 [ext_resource type="PackedScene" uid="uid://c1sbbpswt68eq" path="res://Dice Models/X Dim Die/D X Dim.tscn" id="5_rrt17"]
 [ext_resource type="PackedScene" uid="uid://ua53ly3yv0sv" path="res://Dice Models/Y Dim Die/D Y Dim.tscn" id="6_pkkkg"]
-[ext_resource type="PackedScene" uid="uid://xh1dxg5lm7mp" path="res://Dice Models/Primary Num Add/D Primary Add Num.tscn" id="7_b7ax5"]
-[ext_resource type="PackedScene" uid="uid://4jtmcfbcxwts" path="res://Dice Models/Secondary Num Add/D Secondary Add Num.tscn" id="8_ox0l8"]
+[ext_resource type="PackedScene" uid="uid://4jtmcfbcxwts" path="res://Dice Models/Secondary Num Add/D Secondary Add Num.tscn" id="9_7pahk"]
+[ext_resource type="PackedScene" uid="uid://xh1dxg5lm7mp" path="res://Dice Models/Primary Num Add/D Primary Add Num.tscn" id="10_whr8r"]
+[ext_resource type="PackedScene" uid="uid://crf5mdkv3587n" path="res://Dice Models/Primary Num/die_numbered_primary.tscn" id="11_xvj32"]
+[ext_resource type="PackedScene" uid="uid://osco2cs718d7" path="res://Dice Models/Secondary Num/die_numbered_secondary.tscn" id="12_lylh5"]
 
 [sub_resource type="Environment" id="Environment_ospvs"]
 
@@ -74,10 +76,10 @@ theme_override_font_sizes/font_size = 60
 [node name="Cam n Lights" type="Node" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="Cam n Lights"]
-transform = Transform3D(1, 0, 0, 0, 0.680657, 0.732602, 0, -0.732602, 0.680657, 0, 20.8312, 15.4076)
+transform = Transform3D(1, 0, 0, 0, 0.329246, 0.944244, 0, -0.944244, 0.329246, 0, 39.4538, 15.6398)
 environment = SubResource("Environment_ospvs")
 attributes = SubResource("CameraAttributesPractical_bmajt")
-fov = 29.1
+fov = 35.7681
 near = 0.094
 far = 4008.3
 
@@ -166,57 +168,77 @@ physics_material_override = SubResource("PhysicsMaterial_2bp57")
 visible = false
 shape = SubResource("BoxShape3D_a2wnj")
 
-[node name="RoomDimensionDice" type="Node3D" parent="DiceTray"]
+[node name="RoomSizeDice" type="Node3D" parent="DiceTray"]
 script = ExtResource("2_hv46p")
 
-[node name="DXDim" parent="DiceTray/RoomDimensionDice" instance=ExtResource("5_rrt17")]
+[node name="DXDim" parent="DiceTray/RoomSizeDice" instance=ExtResource("5_rrt17")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.16644, 6.7, 4.23277)
-collision_mask = 31
+collision_mask = 127
 
-[node name="DYDim" parent="DiceTray/RoomDimensionDice" instance=ExtResource("6_pkkkg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.7, 4.226)
-collision_mask = 31
+[node name="DYDim" parent="DiceTray/RoomSizeDice" instance=ExtResource("6_pkkkg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17562, 6.7, 5.42878)
+collision_mask = 127
 
-[node name="Die Door Pics" parent="DiceTray/RoomDimensionDice" instance=ExtResource("2_doy3w")]
-transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 1.17857, 6.7, 4.23638)
+[node name="Die Door Pics" parent="DiceTray/RoomSizeDice" instance=ExtResource("2_doy3w")]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -1.17752, 6.7, 6.43633)
 collision_layer = 2
-collision_mask = 31
+collision_mask = 127
 script = ExtResource("5_be0xo")
 
-[node name="DPrimaryAddNum" parent="DiceTray" instance=ExtResource("7_b7ax5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.622042, 6.7, 5.34974)
-
-[node name="DSecondaryAddNum" parent="DiceTray" instance=ExtResource("8_ox0l8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.61813, 6.7, 5.40759)
+[node name="RoomSizeAddDice" type="Node3D" parent="DiceTray"]
 
 [node name="Die LCR" parent="DiceTray" instance=ExtResource("4_yene3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.629964, 6.7, 6.47695)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.052453, 6.7, 6.47695)
 collision_layer = 8
-collision_mask = 31
+collision_mask = 127
 freeze = true
 
 [node name="Die Locked" parent="DiceTray" instance=ExtResource("4_wvsjv")]
-transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 0.608504, 6.7, 6.45848)
+transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 1.11512, 6.7, 6.45848)
 collision_layer = 16
-collision_mask = 31
+collision_mask = 127
 
 [node name="RoomButtonContainer" type="GridContainer" parent="DiceTray"]
 visibility_layer = 4
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
 
-[node name="XYButton" type="Button" parent="DiceTray/RoomButtonContainer"]
+[node name="XYPickUpButton" type="Button" parent="DiceTray/RoomButtonContainer"]
 visibility_layer = 8
 layout_mode = 2
 
-[node name="XYDoublesButton" type="Button" parent="DiceTray/RoomButtonContainer"]
+[node name="XYAddPickUpButton" type="Button" parent="DiceTray/RoomButtonContainer"]
 visibility_layer = 16
 layout_mode = 2
 
-[connection signal="roll_xy_dice" from="DiceTray/RoomDimensionDice" to="DiceTray/RoomDimensionDice/DXDim" method="_on_room_dimension_dice_roll_xy_dice"]
-[connection signal="roll_xy_dice" from="DiceTray/RoomDimensionDice" to="DiceTray/RoomDimensionDice/DYDim" method="_on_room_dimension_dice_roll_xy_dice"]
-[connection signal="roll_xy_dice" from="DiceTray/RoomDimensionDice" to="DiceTray/RoomDimensionDice/Die Door Pics" method="_on_room_dimension_dice_roll_xy_dice"]
-[connection signal="input_event" from="DiceTray/RoomDimensionDice/DXDim" to="DiceTray/RoomDimensionDice" method="_on_dx_dim_input_event"]
-[connection signal="input_event" from="DiceTray/RoomDimensionDice/DYDim" to="DiceTray/RoomDimensionDice" method="_on_dy_dim_input_event"]
-[connection signal="input_event" from="DiceTray/RoomDimensionDice/Die Door Pics" to="DiceTray/RoomDimensionDice" method="_on_die_door_pics_input_event"]
-[connection signal="sleeping_state_changed" from="DiceTray/RoomDimensionDice/Die Door Pics" to="DiceTray/RoomDimensionDice/Die Door Pics" method="_on_sleeping_state_changed"]
+[node name="DSecondaryAddNum" parent="." instance=ExtResource("9_7pahk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.130424, 6.66527, 5.47761)
+collision_mask = 127
+
+[node name="DPrimaryAddNum" parent="." instance=ExtResource("10_whr8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.121589, 6.58708, 4.157)
+collision_mask = 127
+
+[node name="Die Numbered Primary" parent="." instance=ExtResource("11_xvj32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09545, 6.54232, 4.19431)
+collision_layer = 32
+collision_mask = 127
+
+[node name="Die Numbered Secondary" parent="." instance=ExtResource("12_lylh5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.08483, 6.57364, 5.4103)
+collision_layer = 64
+collision_mask = 127
+
+[connection signal="roll_xy_dice" from="DiceTray/RoomSizeDice" to="DiceTray/RoomSizeDice/DXDim" method="_on_room_dimension_dice_roll_xy_dice"]
+[connection signal="roll_xy_dice" from="DiceTray/RoomSizeDice" to="DiceTray/RoomSizeDice/DYDim" method="_on_room_dimension_dice_roll_xy_dice"]
+[connection signal="roll_xy_dice" from="DiceTray/RoomSizeDice" to="DiceTray/RoomSizeDice/Die Door Pics" method="_on_room_dimension_dice_roll_xy_dice"]
+[connection signal="input_event" from="DiceTray/RoomSizeDice/DXDim" to="DiceTray/RoomSizeDice" method="_on_dx_dim_input_event"]
+[connection signal="input_event" from="DiceTray/RoomSizeDice/DYDim" to="DiceTray/RoomSizeDice" method="_on_dy_dim_input_event"]
+[connection signal="input_event" from="DiceTray/RoomSizeDice/Die Door Pics" to="DiceTray/RoomSizeDice" method="_on_die_door_pics_input_event"]
+[connection signal="sleeping_state_changed" from="DiceTray/RoomSizeDice/Die Door Pics" to="DiceTray/RoomSizeDice/Die Door Pics" method="_on_sleeping_state_changed"]

@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://ua53ly3yv0sv"]
 
-[ext_resource type="PackedScene" uid="uid://dv8073uwgpw30" path="res://Dice Models/Y Dim Die/Die Y Dimension.glb" id="1_jyqyf"]
 [ext_resource type="Script" path="res://Dice Models/Die Roll Reference.gd" id="1_l357j"]
 [ext_resource type="PhysicsMaterial" uid="uid://d1euamslrd3qy" path="res://Dice Models/Die Phys Material.tres" id="1_o1nm7"]
 [ext_resource type="Shape3D" uid="uid://cfyl03tbplsu" path="res://Dice Models/Rounded_Die_Collision_Geometry.tres" id="3_5puoa"]
+[ext_resource type="PackedScene" uid="uid://cwa4jqd6wnntm" path="res://Dice Models/Y Dim Die/Die Y Dimension Red.glb" id="3_spbi2"]
 [ext_resource type="PackedScene" uid="uid://cn2gw4ss76tcu" path="res://Dice Models/Six Sided RayCast.tscn" id="4_gyqed"]
 
 [node name="DYDim" type="RigidBody3D"]
@@ -15,7 +15,7 @@ gravity_scale = 8.0
 freeze = true
 script = ExtResource("1_l357j")
 
-[node name="Die Y Dimension" parent="." instance=ExtResource("1_jyqyf")]
+[node name="Die Y Dimension Red" parent="." instance=ExtResource("3_spbi2")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 visible = false

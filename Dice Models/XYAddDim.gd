@@ -1,5 +1,5 @@
 extends Node3D
-
+class_name RoomSizeAdd
 
 @onready var x_result_add_label = $/root/world/CanvasLayer/XResultAddLabel
 @onready var y_result_add_label = $/root/world/CanvasLayer/YResultAddLabel

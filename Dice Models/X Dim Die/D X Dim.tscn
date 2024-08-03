@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Dice Models/Die Roll Reference.gd" id="1_aasm6"]
 [ext_resource type="PhysicsMaterial" uid="uid://d1euamslrd3qy" path="res://Dice Models/Die Phys Material.tres" id="1_jowh7"]
-[ext_resource type="PackedScene" uid="uid://derc6do03a7xi" path="res://Dice Models/X Dim Die/Die X Dimension.glb" id="2_s1v06"]
+[ext_resource type="PackedScene" uid="uid://jtyt4i8cr02h" path="res://Dice Models/X Dim Die/Die X Dimension Blue.glb" id="3_g1gr7"]
 [ext_resource type="Shape3D" uid="uid://cfyl03tbplsu" path="res://Dice Models/Rounded_Die_Collision_Geometry.tres" id="3_u3let"]
 [ext_resource type="PackedScene" uid="uid://cn2gw4ss76tcu" path="res://Dice Models/Six Sided RayCast.tscn" id="4_3dskr"]
 
@@ -15,7 +15,7 @@ gravity_scale = 8.0
 freeze = true
 script = ExtResource("1_aasm6")
 
-[node name="Die X Dimension" parent="." instance=ExtResource("2_s1v06")]
+[node name="Die X Dimension Blue" parent="." instance=ExtResource("3_g1gr7")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 visible = false

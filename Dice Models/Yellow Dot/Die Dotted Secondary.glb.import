@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c15mxco0kjv2t"
-path="res://.godot/imported/Die Dotted Primary.glb-7960cc0b55eb001aa49754ec0072cbee.scn"
+uid="uid://dfy85woxh3b1l"
+path="res://.godot/imported/Die Dotted Secondary.glb-fe94c639136c08aeb8d6b55d3064b925.scn"
 
 [deps]
 
-source_file="res://Dice Models/Primary Dot/Die Dotted Primary.glb"
-dest_files=["res://.godot/imported/Die Dotted Primary.glb-7960cc0b55eb001aa49754ec0072cbee.scn"]
+source_file="res://Dice Models/Yellow Dot/Die Dotted Secondary.glb"
+dest_files=["res://.godot/imported/Die Dotted Secondary.glb-fe94c639136c08aeb8d6b55d3064b925.scn"]
 
 [params]
 
@@ -24,7 +24,7 @@ meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
 skins/use_named_skins=true
-animation/import=false
+animation/import=true
 animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dfy85woxh3b1l"
-path="res://.godot/imported/Die Dotted Secondary.glb-b8478e92984c17fed71117ec5c089c18.scn"
+uid="uid://jtyt4i8cr02h"
+path="res://.godot/imported/Die X Dimension Blue.glb-06367226d9a6503afbbed2d7d2531861.scn"
 
 [deps]
 
-source_file="res://Dice Models/Secondary Dot/Die Dotted Secondary.glb"
-dest_files=["res://.godot/imported/Die Dotted Secondary.glb-b8478e92984c17fed71117ec5c089c18.scn"]
+source_file="res://Dice Models/X Dim Die/Die X Dimension Blue.glb"
+dest_files=["res://.godot/imported/Die X Dimension Blue.glb-06367226d9a6503afbbed2d7d2531861.scn"]
 
 [params]
 
