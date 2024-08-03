@@ -1,0 +1,51 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="2D6 Dice"
+run/main_scene="res://world.tscn"
+config/features=PackedStringArray("4.2", "Mobile")
+run/max_fps=60
+boot_splash/image="res://2D6_Dungeon_Compatible_Logo.png"
+config/icon="res://icon.svg"
+boot_splash/minimum_display_time=1000
+
+[display]
+
+window/size/viewport_width=506
+window/size/viewport_height=900
+window/handheld/orientation=1
+window/ios/allow_high_refresh_rate=false
+window/ios/hide_status_bar=false
+
+[layer_names]
+
+2d_render/layer_1="RoomXYResults"
+2d_render/layer_2="RoomAddResults"
+2d_render/layer_3="RoomRollContainer"
+2d_render/layer_4="RoomXYButton"
+2d_render/layer_5="RoomXYDoubleButton"
+2d_render/layer_6="RoomExitDirectionButton"
+3d_physics/layer_1="Dice Tray"
+3d_physics/layer_2="X Y and Exit Qty Dice"
+3d_physics/layer_3="X Y Doubles Dice"
+3d_physics/layer_4="Exit Direction Die"
+3d_physics/layer_5="Door Lock Condition Die"
+
+[physics]
+
+3d/physics_engine="Rapier3D"
+3d/time_before_sleep=0.1
+
+[rendering]
+
+renderer/rendering_method="mobile"
+anti_aliasing/quality/msaa_3d=1

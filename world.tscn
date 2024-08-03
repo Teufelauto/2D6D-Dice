@@ -1,0 +1,202 @@
+[gd_scene load_steps=16 format=3 uid="uid://dx5jaq5nccohx"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_8c8ky"]
+[ext_resource type="PackedScene" uid="uid://dwlkevdio50dl" path="res://Dice Models/Door Pics/die_door_pics.tscn" id="2_doy3w"]
+[ext_resource type="PackedScene" uid="uid://mnm1600ha20s" path="res://Dice Models/Door Locked/die_locked.tscn" id="4_wvsjv"]
+[ext_resource type="PackedScene" uid="uid://b5m3t0qb8cysk" path="res://Dice Models/Left Right Center Die/die_lcr.tscn" id="4_yene3"]
+[ext_resource type="PackedScene" uid="uid://c1sbbpswt68eq" path="res://Dice Models/X Dim Die/D X Dim.tscn" id="5_rrt17"]
+[ext_resource type="PackedScene" uid="uid://ua53ly3yv0sv" path="res://Dice Models/Y Dim Die/D Y Dim.tscn" id="6_pkkkg"]
+[ext_resource type="PackedScene" uid="uid://xh1dxg5lm7mp" path="res://Dice Models/Primary Num Add/D Primary Add Num.tscn" id="7_b7ax5"]
+[ext_resource type="PackedScene" uid="uid://4jtmcfbcxwts" path="res://Dice Models/Secondary Num Add/D Secondary Add Num.tscn" id="8_ox0l8"]
+
+[sub_resource type="Environment" id="Environment_ospvs"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bmajt"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_dtie3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u08sl"]
+albedo_color = Color(0.628852, 0.0198293, 0, 1)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4piwt"]
+friction = 0.24
+bounce = 0.44
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a2wnj"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2bp57"]
+friction = 0.25
+bounce = 0.1
+
+[node name="world" type="Node3D"]
+script = ExtResource("1_8c8ky")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+follow_viewport_enabled = true
+
+[node name="CenterLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 60
+
+[node name="XResultLabel" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 60
+
+[node name="XResultAddLabel" type="Label" parent="CanvasLayer"]
+offset_left = 180.0
+offset_right = 220.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 60
+
+[node name="YResultLabel" type="Label" parent="CanvasLayer"]
+offset_top = 60.0
+offset_right = 40.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 60
+
+[node name="YResultAddLabel" type="Label" parent="CanvasLayer"]
+offset_left = 180.0
+offset_top = 60.0
+offset_right = 220.0
+offset_bottom = 143.0
+theme_override_font_sizes/font_size = 60
+
+[node name="Cam n Lights" type="Node" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Cam n Lights"]
+transform = Transform3D(1, 0, 0, 0, 0.680657, 0.732602, 0, -0.732602, 0.680657, 0, 20.8312, 15.4076)
+environment = SubResource("Environment_ospvs")
+attributes = SubResource("CameraAttributesPractical_bmajt")
+fov = 29.1
+near = 0.094
+far = 4008.3
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Cam n Lights"]
+transform = Transform3D(0.970577, -0.0601344, 0.23316, -0.19156, 0.393853, 0.898991, -0.145891, -0.917204, 0.370746, 11.2829, 32.8321, 9.90357)
+light_energy = 11.44
+light_indirect_energy = 5.0
+spot_range = 55.6525
+spot_attenuation = 0.840896
+spot_angle = 34.0316
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Cam n Lights"]
+transform = Transform3D(-0.61177, 0.56018, -0.558512, -0.263863, 0.521102, 0.811683, 0.74573, 0.643934, -0.170984, -10.8563, 13.3595, -0.213244)
+light_energy = 12.444
+light_indirect_energy = 5.111
+spot_range = 72.7776
+spot_angle = 57.98
+spot_angle_attenuation = 0.87055
+
+[node name="DiceTray" type="Node3D" parent="."]
+
+[node name="TrayModel" type="Node3D" parent="DiceTray"]
+
+[node name="TableBackstop" type="MeshInstance3D" parent="DiceTray/TrayModel"]
+transform = Transform3D(20, 0, 0, 0, 8.48316, 0.52949, 0, -5.2949, 0.848316, 0, 0.384173, -5.73175)
+mesh = SubResource("BoxMesh_dtie3")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_u08sl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="DiceTray/TrayModel/TableBackstop"]
+physics_material_override = SubResource("PhysicsMaterial_4piwt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DiceTray/TrayModel/TableBackstop/StaticBody3D"]
+visible = false
+shape = SubResource("BoxShape3D_a2wnj")
+
+[node name="TableRight" type="MeshInstance3D" parent="DiceTray/TrayModel"]
+transform = Transform3D(0.804044, 5.9457, 0, -0.59457, 8.04044, 0, 0, 0, 20, 4.05623, 0.447713, -0.76)
+mesh = SubResource("BoxMesh_dtie3")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_u08sl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="DiceTray/TrayModel/TableRight"]
+physics_material_override = SubResource("PhysicsMaterial_4piwt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DiceTray/TrayModel/TableRight/StaticBody3D"]
+visible = false
+shape = SubResource("BoxShape3D_a2wnj")
+
+[node name="TableLeft" type="MeshInstance3D" parent="DiceTray/TrayModel"]
+transform = Transform3D(0.848011, -5.29978, 0, 0.529978, 8.48011, 0, 0, 0, 20, -4.43083, 0.559001, 0)
+mesh = SubResource("BoxMesh_dtie3")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_u08sl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="DiceTray/TrayModel/TableLeft"]
+physics_material_override = SubResource("PhysicsMaterial_4piwt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DiceTray/TrayModel/TableLeft/StaticBody3D"]
+visible = false
+shape = SubResource("BoxShape3D_a2wnj")
+
+[node name="TableFront" type="MeshInstance3D" parent="DiceTray/TrayModel"]
+transform = Transform3D(25, 0, 0, 0, 7.74094, -0.63307, 0, 6.3307, 0.774094, 0, 3.31349, 7.30286)
+mesh = SubResource("BoxMesh_dtie3")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_u08sl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="DiceTray/TrayModel/TableFront"]
+physics_material_override = SubResource("PhysicsMaterial_4piwt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DiceTray/TrayModel/TableFront/StaticBody3D"]
+visible = false
+shape = SubResource("BoxShape3D_a2wnj")
+
+[node name="DiceTrayBottom" type="MeshInstance3D" parent="DiceTray/TrayModel"]
+transform = Transform3D(75, 0, 0, 0, 2, 0, 0, 0, 50, 0, -1, 0)
+mesh = SubResource("BoxMesh_dtie3")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_u08sl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="DiceTray/TrayModel/DiceTrayBottom"]
+physics_material_override = SubResource("PhysicsMaterial_2bp57")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DiceTray/TrayModel/DiceTrayBottom/StaticBody3D"]
+visible = false
+shape = SubResource("BoxShape3D_a2wnj")
+
+[node name="Die Door Pics" parent="DiceTray" instance=ExtResource("2_doy3w")]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 1.17857, 6.7, 4.23638)
+
+[node name="Die LCR" parent="DiceTray" instance=ExtResource("4_yene3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.629964, 6.7, 6.47695)
+collision_layer = 8
+collision_mask = 15
+freeze = true
+
+[node name="Die Locked" parent="DiceTray" instance=ExtResource("4_wvsjv")]
+transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 0.608504, 6.7, 6.45848)
+
+[node name="RoomButtonContainer" type="GridContainer" parent="DiceTray"]
+visibility_layer = 4
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="XYButton" type="Button" parent="DiceTray/RoomButtonContainer"]
+visibility_layer = 8
+layout_mode = 2
+
+[node name="XYDoublesButton" type="Button" parent="DiceTray/RoomButtonContainer"]
+visibility_layer = 16
+layout_mode = 2
+
+[node name="DXDim" parent="." instance=ExtResource("5_rrt17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.16644, 6.7, 4.23277)
+
+[node name="DYDim" parent="." instance=ExtResource("6_pkkkg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.7, 4.226)
+
+[node name="DPrimaryAddNum" parent="." instance=ExtResource("7_b7ax5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.622042, 6.7, 5.34974)
+
+[node name="DSecondaryAddNum" parent="." instance=ExtResource("8_ox0l8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.61813, 6.7, 5.40759)

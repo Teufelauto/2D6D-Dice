@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cn2gw4ss76tcu"]
+
+[ext_resource type="Script" path="res://Dice Models/Die Roll Reference_Raycast.gd" id="1_nv8rk"]
+
+[node name="SixSidedRayCast" type="RayCast3D"]
+script = ExtResource("1_nv8rk")

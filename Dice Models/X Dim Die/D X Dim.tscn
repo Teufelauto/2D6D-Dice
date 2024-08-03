@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1sbbpswt68eq"]
+
+[ext_resource type="Script" path="res://Dice Models/Die Roll Reference.gd" id="1_aasm6"]
+[ext_resource type="PhysicsMaterial" uid="uid://d1euamslrd3qy" path="res://Dice Models/Die Phys Material.tres" id="1_jowh7"]
+[ext_resource type="PackedScene" uid="uid://derc6do03a7xi" path="res://Dice Models/X Dim Die/Die X Dimension.glb" id="2_s1v06"]
+[ext_resource type="Shape3D" uid="uid://cfyl03tbplsu" path="res://Dice Models/Rounded_Die_Collision_Geometry.tres" id="3_u3let"]
+[ext_resource type="PackedScene" uid="uid://cn2gw4ss76tcu" path="res://Dice Models/Six Sided RayCast.tscn" id="4_3dskr"]
+
+[node name="DXDim" type="RigidBody3D"]
+collision_layer = 2
+collision_mask = 3
+mass = 4.0
+physics_material_override = ExtResource("1_jowh7")
+gravity_scale = 8.0
+freeze = true
+script = ExtResource("1_aasm6")
+
+[node name="Die X Dimension" parent="." instance=ExtResource("2_s1v06")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+visible = false
+shape = ExtResource("3_u3let")
+
+[node name="Raycasts" type="Node3D" parent="."]
+
+[node name="SixSidedRayCast1" parent="Raycasts" instance=ExtResource("4_3dskr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+target_position = Vector3(0, 0, -0.1)
+hit_from_inside = true
+opposite_side = 6
+
+[node name="SixSidedRayCast2" parent="Raycasts" instance=ExtResource("4_3dskr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+target_position = Vector3(0, 0.1, 0)
+hit_from_inside = true
+opposite_side = 5
+
+[node name="SixSidedRayCast3" parent="Raycasts" instance=ExtResource("4_3dskr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+target_position = Vector3(-0.1, 0, 0)
+hit_from_inside = true
+opposite_side = 4
+
+[node name="SixSidedRayCast4" parent="Raycasts" instance=ExtResource("4_3dskr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+target_position = Vector3(0.1, 0, 0)
+hit_from_inside = true
+opposite_side = 3
+
+[node name="SixSidedRayCast5" parent="Raycasts" instance=ExtResource("4_3dskr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+target_position = Vector3(0, -0.1, 0)
+hit_from_inside = true
+opposite_side = 2
+
+[node name="SixSidedRayCast6" parent="Raycasts" instance=ExtResource("4_3dskr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+target_position = Vector3(0, 0, 0.1)
+hit_from_inside = true
+opposite_side = 1
+
+[connection signal="sleeping_state_changed" from="." to="." method="_on_sleeping_state_changed"]

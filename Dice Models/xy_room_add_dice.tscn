@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmw4tc77igm2h"]
+
+[ext_resource type="Script" path="res://Dice Models/XYAddDim.gd" id="1_bd8wp"]
+[ext_resource type="PackedScene" uid="uid://xh1dxg5lm7mp" path="res://Dice Models/Primary Num Add/D Primary Add Num.tscn" id="2_0ligj"]
+[ext_resource type="PackedScene" uid="uid://4jtmcfbcxwts" path="res://Dice Models/Secondary Num Add/D Secondary Add Num.tscn" id="3_uaxo5"]
+
+[node name="XYAddDim" type="Node3D"]
+script = ExtResource("1_bd8wp")
+
+[node name="DPrimaryAddNum" parent="." instance=ExtResource("2_0ligj")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.55, 0, 0)
+
+[node name="DSecondaryAddNum" parent="." instance=ExtResource("3_uaxo5")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.55, 0, 0)
+
+[connection signal="roll_xy_add_dim" from="." to="DPrimaryAddNum" method="_on_xy_add_dim_roll_xy_add_dim"]
+[connection signal="roll_xy_add_dim" from="." to="DSecondaryAddNum" method="_on_xy_add_dim_roll_xy_add_dim"]
+[connection signal="roll_finished" from="DPrimaryAddNum" to="." method="_on_d_primary_add_num_roll_finished"]
+[connection signal="roll_started" from="DPrimaryAddNum" to="." method="_on_d_primary_add_num_roll_started"]
+[connection signal="roll_finished" from="DSecondaryAddNum" to="." method="_on_d_secondary_add_num_roll_finished"]

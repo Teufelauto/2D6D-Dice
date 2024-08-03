@@ -1,0 +1,149 @@
+[gd_scene load_steps=11 format=3 uid="uid://dx5jaq5nccohx"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_8c8ky"]
+[ext_resource type="PackedScene" uid="uid://c1sbbpswt68eq" path="res://Dice Models/X Dim Die/D X Dim.tscn" id="3_17aoa"]
+[ext_resource type="PackedScene" uid="uid://cyjjgafujtvao" path="res://Dice Models/Primary Dot/D Primary Dot.tscn" id="3_xindl"]
+
+[sub_resource type="Environment" id="Environment_ospvs"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bmajt"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_dtie3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u08sl"]
+albedo_color = Color(0.628852, 0.0198293, 0, 1)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4piwt"]
+friction = 0.34
+bounce = 0.25
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a2wnj"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xgvfi"]
+
+[node name="world" type="Node3D"]
+script = ExtResource("1_8c8ky")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+follow_viewport_enabled = true
+
+[node name="ResultLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 60
+
+[node name="XResultLabel" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 60
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.292856, 0.956157, 0, -0.956157, 0.292856, 0, 11.5475, 1.72366)
+environment = SubResource("Environment_ospvs")
+attributes = SubResource("CameraAttributesPractical_bmajt")
+fov = 48.4
+near = 0.094
+far = 4008.3
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.887927, 0.043851, 0.45789, -0.436237, 0.395997, 0.808013, -0.145891, -0.917204, 0.370745, 11.2829, 17.8321, 9.90357)
+light_energy = 6.96
+light_indirect_energy = 16.0
+spot_range = 55.6525
+spot_attenuation = 0.840896
+spot_angle = 34.0316
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.61177, 0.56018, -0.558511, -0.263863, 0.521102, 0.811683, 0.74573, 0.643934, -0.170984, -10.8563, 13.3595, -0.213244)
+light_energy = 12.444
+light_indirect_energy = 5.111
+spot_range = 72.7776
+spot_angle = 57.98
+spot_angle_attenuation = 0.87055
+
+[node name="RollMat" type="Node3D" parent="."]
+
+[node name="TableTop" type="MeshInstance3D" parent="RollMat"]
+transform = Transform3D(75, 0, 0, 0, 1, 0, 0, 0, 50, 0, -1, 0)
+mesh = SubResource("BoxMesh_dtie3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_u08sl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="RollMat/TableTop"]
+physics_material_override = SubResource("PhysicsMaterial_4piwt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RollMat/TableTop/StaticBody3D"]
+visible = false
+shape = SubResource("BoxShape3D_a2wnj")
+
+[node name="TableRight" type="MeshInstance3D" parent="RollMat"]
+transform = Transform3D(1, 0, 0, 0, 10, 0, 0, 0, 20, 5.39421, -1.75273, -0.76)
+mesh = SubResource("BoxMesh_dtie3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_u08sl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="RollMat/TableRight"]
+physics_material_override = SubResource("PhysicsMaterial_4piwt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RollMat/TableRight/StaticBody3D"]
+visible = false
+shape = SubResource("BoxShape3D_a2wnj")
+
+[node name="TableBackstop" type="MeshInstance3D" parent="RollMat"]
+transform = Transform3D(20, 0, 0, 0, 10, 0, 0, 0, 1, 0, -1.82562, -8.50191)
+mesh = SubResource("BoxMesh_dtie3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_u08sl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="RollMat/TableBackstop"]
+physics_material_override = SubResource("PhysicsMaterial_4piwt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RollMat/TableBackstop/StaticBody3D"]
+visible = false
+shape = SubResource("BoxShape3D_a2wnj")
+
+[node name="TableLeft" type="MeshInstance3D" parent="RollMat"]
+transform = Transform3D(1, 0, 0, 0, 10, 0, 0, 0, 20, -6.925, -1.9903, 0)
+mesh = SubResource("BoxMesh_dtie3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_u08sl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="RollMat/TableLeft"]
+physics_material_override = SubResource("PhysicsMaterial_4piwt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RollMat/TableLeft/StaticBody3D"]
+visible = false
+shape = SubResource("BoxShape3D_a2wnj")
+
+[node name="TableFront" type="MeshInstance3D" parent="RollMat"]
+transform = Transform3D(25, 0, 0, 0, 10, 0, 0, 0, 1, 0, 3.685, 1.84738)
+visible = false
+mesh = SubResource("BoxMesh_dtie3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_u08sl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="RollMat/TableFront"]
+physics_material_override = SubResource("PhysicsMaterial_4piwt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RollMat/TableFront/StaticBody3D"]
+visible = false
+shape = SubResource("BoxShape3D_a2wnj")
+
+[node name="Dice" type="Node3D" parent="."]
+
+[node name="Reference" parent="Dice" instance=ExtResource("3_xindl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.844444, 5.10881, -0.898144)
+physics_material_override = SubResource("PhysicsMaterial_xgvfi")
+gravity_scale = 10.0
+
+[node name="DXDim" parent="Dice" instance=ExtResource("3_17aoa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02271, 4.79465, -0.603392)
+
+[connection signal="roll_finished" from="Dice/Reference" to="." method="_on_d_primary_dot_roll_finished"]
+[connection signal="roll_finished" from="Dice/DXDim" to="." method="_on_dx_dim_roll_finished"]
