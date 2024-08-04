@@ -73,21 +73,22 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_7yfxc")
 
 [node name="Die Numbered Secondary" type="RigidBody3D"]
-mass = 4.0
+mass = 5.0
 physics_material_override = ExtResource("1_fh5eb")
-gravity_scale = 8.0
+gravity_scale = 5.0
 freeze = true
 
 [node name="Die_Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 mesh = SubResource("ArrayMesh_iem44")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-visible = false
 shape = ExtResource("1_6l7kh")
 disabled = true
 
 [node name="Raycasts" type="Node3D" parent="."]
+transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 
 [node name="SixSidedRayCast1" parent="Raycasts" instance=ExtResource("2_qlbum")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)

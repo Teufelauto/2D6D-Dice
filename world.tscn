@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dx5jaq5nccohx"]
+[gd_scene load_steps=22 format=3 uid="uid://dx5jaq5nccohx"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_8c8ky"]
 [ext_resource type="PackedScene" uid="uid://dwlkevdio50dl" path="res://Dice Models/Door Pics/die_door_pics.tscn" id="2_doy3w"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://xh1dxg5lm7mp" path="res://Dice Models/Primary Num Add/D Primary Add Num.tscn" id="10_whr8r"]
 [ext_resource type="PackedScene" uid="uid://crf5mdkv3587n" path="res://Dice Models/Primary Num/die_numbered_primary.tscn" id="11_xvj32"]
 [ext_resource type="PackedScene" uid="uid://osco2cs718d7" path="res://Dice Models/Secondary Num/die_numbered_secondary.tscn" id="12_lylh5"]
+[ext_resource type="PackedScene" uid="uid://bi35saefl3rd4" path="res://Dice Models/Three Sided/die_d_3.tscn" id="13_sq0i1"]
 
 [sub_resource type="Environment" id="Environment_ospvs"]
 
@@ -20,13 +21,17 @@
 [sub_resource type="BoxMesh" id="BoxMesh_dtie3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u08sl"]
-albedo_color = Color(0.628852, 0.0198293, 0, 1)
+albedo_color = Color(0.0411541, 0.0468549, 0.312773, 1)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4piwt"]
-friction = 0.24
+friction = 0.3
 bounce = 0.44
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a2wnj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xr2f7"]
+albedo_color = Color(0.188235, 0.188235, 0.498039, 1)
+roughness = 0.81
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2bp57"]
 friction = 0.25
@@ -76,35 +81,32 @@ theme_override_font_sizes/font_size = 60
 [node name="Cam n Lights" type="Node" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="Cam n Lights"]
-transform = Transform3D(1, 0, 0, 0, 0.329246, 0.944244, 0, -0.944244, 0.329246, 0, 39.4538, 15.6398)
+transform = Transform3D(1, 0, 0, 0, 0.42382, 0.905746, 0, -0.905746, 0.42382, 0, 5.06183, 1.86787)
 environment = SubResource("Environment_ospvs")
 attributes = SubResource("CameraAttributesPractical_bmajt")
-fov = 35.7681
-near = 0.094
-far = 4008.3
+fov = 20.0
+near = 3.0
+far = 50.0
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Cam n Lights"]
-transform = Transform3D(0.970577, -0.0601344, 0.23316, -0.19156, 0.393853, 0.898991, -0.145891, -0.917204, 0.370746, 11.2829, 32.8321, 9.90357)
-light_energy = 11.44
-light_indirect_energy = 5.0
-spot_range = 55.6525
-spot_attenuation = 0.683019
-spot_angle = 34.0316
+transform = Transform3D(1, 0, 0, 0, 0.414121, 0.910222, 0, -0.910222, 0.414121, 0.256, 5.71334, 2.61793)
+spot_range = 29.425
+spot_attenuation = 0.203064
+spot_angle_attenuation = 0.176777
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="Cam n Lights"]
-transform = Transform3D(-0.61177, 0.56018, -0.558512, -0.263863, 0.521102, 0.811683, 0.74573, 0.643934, -0.170984, -10.8563, 13.3595, -0.213244)
-light_energy = 12.444
-light_indirect_energy = 5.111
-spot_range = 72.7776
-spot_angle = 57.98
-spot_angle_attenuation = 0.87055
+transform = Transform3D(-0.21736, 0.526478, -0.821934, 7.45058e-09, 0.842067, 0.539373, 0.976092, 0.117238, -0.183032, -3.32477, 2.0804, -0.72213)
+spot_range = 7.11
+spot_attenuation = 0.0717937
+spot_angle = 29.1231
+spot_angle_attenuation = 0.120742
 
 [node name="DiceTray" type="Node3D" parent="."]
 
 [node name="TrayModel" type="Node3D" parent="DiceTray"]
 
 [node name="TableBackstop" type="MeshInstance3D" parent="DiceTray/TrayModel"]
-transform = Transform3D(20, 0, 0, 0, 8.48316, 0.52949, 0, -5.2949, 0.848316, 0, 0.384173, -11.6613)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 0.001, -0.00907886, 0.495513, -1.44862)
 mesh = SubResource("BoxMesh_dtie3")
 skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_u08sl")
@@ -117,7 +119,7 @@ visible = false
 shape = SubResource("BoxShape3D_a2wnj")
 
 [node name="TableRight" type="MeshInstance3D" parent="DiceTray/TrayModel"]
-transform = Transform3D(0.804044, 5.9457, 0, -0.59457, 8.04044, 0, 0, 0, 20, 4.05623, 0.447713, -3.80624)
+transform = Transform3D(0.001, 0, 0, 0, 1, 0, 0, 0, 3, 0.473461, 0.496143, -0.0349791)
 mesh = SubResource("BoxMesh_dtie3")
 skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_u08sl")
@@ -130,7 +132,7 @@ visible = false
 shape = SubResource("BoxShape3D_a2wnj")
 
 [node name="TableLeft" type="MeshInstance3D" parent="DiceTray/TrayModel"]
-transform = Transform3D(0.848011, -5.29978, 0, 0.529978, 8.48011, 0, 0, 0, 20, -4.43083, 0.559001, -3.45424)
+transform = Transform3D(0.001, 0, 0, 0, 1, 0, 0, 0, 3, -0.508575, 0.4, -0.0343166)
 mesh = SubResource("BoxMesh_dtie3")
 skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_u08sl")
@@ -143,10 +145,11 @@ visible = false
 shape = SubResource("BoxShape3D_a2wnj")
 
 [node name="TableFront" type="MeshInstance3D" parent="DiceTray/TrayModel"]
-transform = Transform3D(25, 0, 0, 0, 7.5, -0.866025, 0, 12.9904, 0.5, 0, 2.99028, 3.39619)
+transform = Transform3D(2, 0, 0, 0, 0.698094, -0.0468553, 0, 1.87421, 0.0174524, -0.00492978, 0.368759, 0.660976)
+layers = 0
 mesh = SubResource("BoxMesh_dtie3")
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_u08sl")
+surface_material_override/0 = SubResource("StandardMaterial3D_xr2f7")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="DiceTray/TrayModel/TableFront"]
 physics_material_override = SubResource("PhysicsMaterial_4piwt")
@@ -156,7 +159,7 @@ visible = false
 shape = SubResource("BoxShape3D_a2wnj")
 
 [node name="DiceTrayBottom" type="MeshInstance3D" parent="DiceTray/TrayModel"]
-transform = Transform3D(75, 0, 0, 0, 2, 0, 0, 0, 50, 0, -1, 0)
+transform = Transform3D(20, 0, 0, 0, 0.01, 0, 0, 0, 10, 0, -0.005, 0)
 mesh = SubResource("BoxMesh_dtie3")
 skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_u08sl")
@@ -172,31 +175,62 @@ shape = SubResource("BoxShape3D_a2wnj")
 script = ExtResource("2_hv46p")
 
 [node name="DXDim" parent="DiceTray/RoomSizeDice" instance=ExtResource("5_rrt17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.16644, 6.7, 4.23277)
-collision_mask = 127
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.8, 0.2)
+gravity_scale = 2.0
 
 [node name="DYDim" parent="DiceTray/RoomSizeDice" instance=ExtResource("6_pkkkg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17562, 6.7, 5.42878)
-collision_mask = 127
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.8, 0.4)
+mass = 5.0
+gravity_scale = 2.0
 
 [node name="Die Door Pics" parent="DiceTray/RoomSizeDice" instance=ExtResource("2_doy3w")]
-transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -1.17752, 6.7, 6.43633)
-collision_layer = 2
-collision_mask = 127
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -0.3, 0.8, 0.6)
+gravity_scale = 2.0
 script = ExtResource("5_be0xo")
 
 [node name="RoomSizeAddDice" type="Node3D" parent="DiceTray"]
 
+[node name="DPrimaryAddNum" parent="DiceTray/RoomSizeAddDice" instance=ExtResource("10_whr8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0.2)
+collision_mask = 255
+gravity_scale = 2.0
+
+[node name="DSecondaryAddNum" parent="DiceTray/RoomSizeAddDice" instance=ExtResource("9_7pahk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0.4)
+collision_mask = 255
+gravity_scale = 2.0
+
 [node name="Die LCR" parent="DiceTray" instance=ExtResource("4_yene3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.052453, 6.7, 6.47695)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.8, 0.6)
 collision_layer = 8
-collision_mask = 127
+collision_mask = 255
+gravity_scale = 2.0
 freeze = true
 
 [node name="Die Locked" parent="DiceTray" instance=ExtResource("4_wvsjv")]
-transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 1.11512, 6.7, 6.45848)
+transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 0.1, 0.8, 0.6)
 collision_layer = 16
-collision_mask = 127
+collision_mask = 255
+gravity_scale = 2.0
+
+[node name="Die Numbered Primary" parent="DiceTray" instance=ExtResource("11_xvj32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.8, 0.2)
+collision_layer = 32
+collision_mask = 255
+gravity_scale = 2.0
+
+[node name="Die Numbered Secondary" parent="DiceTray" instance=ExtResource("12_lylh5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.8, 0.4)
+collision_layer = 64
+collision_mask = 255
+gravity_scale = 2.0
+
+[node name="Die D3" parent="DiceTray" instance=ExtResource("13_sq0i1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.8, 0.6)
+collision_layer = 128
+collision_mask = 255
+gravity_scale = 2.0
+freeze = true
 
 [node name="RoomButtonContainer" type="GridContainer" parent="DiceTray"]
 visibility_layer = 4
@@ -216,24 +250,6 @@ layout_mode = 2
 [node name="XYAddPickUpButton" type="Button" parent="DiceTray/RoomButtonContainer"]
 visibility_layer = 16
 layout_mode = 2
-
-[node name="DSecondaryAddNum" parent="." instance=ExtResource("9_7pahk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.130424, 6.66527, 5.47761)
-collision_mask = 127
-
-[node name="DPrimaryAddNum" parent="." instance=ExtResource("10_whr8r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.121589, 6.58708, 4.157)
-collision_mask = 127
-
-[node name="Die Numbered Primary" parent="." instance=ExtResource("11_xvj32")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09545, 6.54232, 4.19431)
-collision_layer = 32
-collision_mask = 127
-
-[node name="Die Numbered Secondary" parent="." instance=ExtResource("12_lylh5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.08483, 6.57364, 5.4103)
-collision_layer = 64
-collision_mask = 127
 
 [connection signal="roll_xy_dice" from="DiceTray/RoomSizeDice" to="DiceTray/RoomSizeDice/DXDim" method="_on_room_dimension_dice_roll_xy_dice"]
 [connection signal="roll_xy_dice" from="DiceTray/RoomSizeDice" to="DiceTray/RoomSizeDice/DYDim" method="_on_room_dimension_dice_roll_xy_dice"]

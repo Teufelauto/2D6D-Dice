@@ -73,12 +73,15 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_lpgc8")
 
 [node name="Die Door Pics" type="RigidBody3D"]
-mass = 4.0
+collision_layer = 2
+collision_mask = 255
+mass = 5.0
 physics_material_override = ExtResource("1_khf0n")
-gravity_scale = 8.0
+gravity_scale = 10.0
 freeze = true
 
 [node name="Die_Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 mesh = SubResource("ArrayMesh_pjfx0")
 skeleton = NodePath("")
 
@@ -86,6 +89,7 @@ skeleton = NodePath("")
 shape = ExtResource("1_cs02s")
 
 [node name="Raycasts" type="Node3D" parent="."]
+transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 
 [node name="SixSidedRayCast1" parent="Raycasts" instance=ExtResource("2_iy53e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)

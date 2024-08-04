@@ -9,19 +9,21 @@
 [node name="DPrimaryAddNum" type="RigidBody3D"]
 collision_layer = 4
 collision_mask = 31
-mass = 4.0
+mass = 5.0
 physics_material_override = ExtResource("1_l1xpq")
-gravity_scale = 8.0
+gravity_scale = 5.0
 freeze = true
 script = ExtResource("1_vwyma")
 
 [node name="Die Numbered Primary Cyan" parent="." instance=ExtResource("2_jkegy")]
+transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = ExtResource("3_gw0v0")
 disabled = true
 
 [node name="Raycasts" type="Node3D" parent="."]
+transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 
 [node name="SixSidedRayCast1" parent="Raycasts" instance=ExtResource("4_248m1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)

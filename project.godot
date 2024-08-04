@@ -15,7 +15,7 @@ config/tags=PackedStringArray("3d", "dice", "mobile", "rpg")
 run/main_scene="res://world.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 run/max_fps=60
-boot_splash/bg_color=Color(0.268746, 0.0405668, 0.0829637, 1)
+boot_splash/bg_color=Color(0.0719479, 0.0614438, 0.066385, 1)
 boot_splash/image="res://2D6_Dungeon_Compatible_Logo.png"
 config/icon="res://icon.svg"
 boot_splash/minimum_display_time=1000
@@ -43,6 +43,7 @@ window/ios/hide_status_bar=false
 3d_physics/layer_5="Door Lock Condition Die"
 3d_physics/layer_6="Primary Die"
 3d_physics/layer_7="Secondary Die"
+3d_physics/layer_8="D3 Die"
 
 [physics]
 
