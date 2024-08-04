@@ -1,6 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://dx5jaq5nccohx"]
+[gd_scene load_steps=23 format=3 uid="uid://dx5jaq5nccohx"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_8c8ky"]
+[ext_resource type="Script" path="res://DiceTray.gd" id="2_ba4jq"]
 [ext_resource type="PackedScene" uid="uid://dwlkevdio50dl" path="res://Dice Models/Door Pics/die_door_pics.tscn" id="2_doy3w"]
 [ext_resource type="Script" path="res://Dice Models/xy_room_dice.gd" id="2_hv46p"]
 [ext_resource type="PackedScene" uid="uid://mnm1600ha20s" path="res://Dice Models/Door Locked/die_locked.tscn" id="4_wvsjv"]
@@ -21,7 +22,7 @@
 [sub_resource type="BoxMesh" id="BoxMesh_dtie3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u08sl"]
-albedo_color = Color(0.0411541, 0.0468549, 0.312773, 1)
+albedo_color = Color(0.223078, 0.279609, 0.916116, 1)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4piwt"]
 friction = 0.3
@@ -90,23 +91,29 @@ far = 50.0
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Cam n Lights"]
 transform = Transform3D(1, 0, 0, 0, 0.414121, 0.910222, 0, -0.910222, 0.414121, 0.256, 5.71334, 2.61793)
+light_energy = 1.896
 spot_range = 29.425
 spot_attenuation = 0.203064
 spot_angle_attenuation = 0.176777
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="Cam n Lights"]
-transform = Transform3D(-0.21736, 0.526478, -0.821934, 7.45058e-09, 0.842067, 0.539373, 0.976092, 0.117238, -0.183032, -3.32477, 2.0804, -0.72213)
-spot_range = 7.11
-spot_attenuation = 0.0717937
+transform = Transform3D(-0.215252, 0.638348, -0.739039, 0.0301943, 0.760767, 0.648322, 0.976092, 0.117238, -0.183032, -3.32477, 3.50071, -0.72213)
+light_energy = 0.232
+spot_range = 9.917
+spot_attenuation = 0.450625
 spot_angle = 29.1231
-spot_angle_attenuation = 0.120742
+spot_angle_attenuation = 0.25
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Cam n Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13718, 4.67024, -1.29338)
 
 [node name="DiceTray" type="Node3D" parent="."]
+script = ExtResource("2_ba4jq")
 
 [node name="TrayModel" type="Node3D" parent="DiceTray"]
 
 [node name="TableBackstop" type="MeshInstance3D" parent="DiceTray/TrayModel"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 0.001, -0.00907886, 0.495513, -1.24492)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 0.001, -0.00907886, 0.464872, -1.24492)
 mesh = SubResource("BoxMesh_dtie3")
 skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_u08sl")
@@ -354,3 +361,6 @@ All Dice"
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DYDim" to="DiceTray/RoomSizeDice" method="_on_dy_dim_input_event"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/Die Door Pics" to="DiceTray/RoomSizeDice" method="_on_die_door_pics_input_event"]
 [connection signal="sleeping_state_changed" from="DiceTray/RoomSizeDice/Die Door Pics" to="DiceTray/RoomSizeDice/Die Door Pics" method="_on_sleeping_state_changed"]
+[connection signal="pressed" from="DiceTray/PickUpAllDiceButton" to="DiceTray/RoomSizeDice/DXDim" method="_on_pick_up_all_dice_button_pressed"]
+[connection signal="pressed" from="DiceTray/PickUpAllDiceButton" to="DiceTray/RoomSizeDice/DYDim" method="_on_pick_up_all_dice_button_pressed"]
+[connection signal="pressed" from="DiceTray/PickUpAllDiceButton" to="DiceTray/RoomSizeDice/Die Door Pics" method="_on_pick_up_all_dice_button_pressed"]

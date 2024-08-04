@@ -20,10 +20,6 @@ func _ready():
 	start_pos = global_position
 
 
-func _on_room_dimension_dice_roll_xy_dice(event):
-	if event.is_pressed() && !is_rolling:
-		_roll()
-
 
 func _roll():
 	# Reset State
@@ -49,14 +45,6 @@ func _roll():
 	is_rolling = true
 
 
-func _return_die():
-	transform.origin = start_pos
-	linear_velocity = Vector3.ZERO
-	angular_velocity = Vector3.ZERO
-	freeze = true
-	sleeping = true
-	$CollisionShape3D.disabled = true
-
 
 func _on_sleeping_state_changed():
 	if sleeping:
@@ -71,5 +59,22 @@ func _on_sleeping_state_changed():
 			_roll()
 
 
+# Put the dice back in the home position.
+func _return_die():
+	transform.origin = start_pos
+	linear_velocity = Vector3.ZERO
+	angular_velocity = Vector3.ZERO
+	freeze = true
+	sleeping = true
+	$CollisionShape3D.disabled = true
 
 
+func _on_room_dimension_dice_roll_xy_dice(event):
+	if event.is_pressed() && !is_rolling:
+		_roll()
+
+
+
+func _on_pick_up_all_dice_button_pressed():
+	if !is_rolling:
+		_return_die()
