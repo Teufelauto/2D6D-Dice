@@ -81,7 +81,7 @@ theme_override_font_sizes/font_size = 60
 [node name="Cam n Lights" type="Node" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="Cam n Lights"]
-transform = Transform3D(1, 0, 0, 0, 0.42382, 0.905746, 0, -0.905746, 0.42382, 0, 5.06183, 1.86787)
+transform = Transform3D(1, 0, 0, 0, 0.42382, 0.905746, 0, -0.905746, 0.42382, 0, 5.06183, 1.9732)
 environment = SubResource("Environment_ospvs")
 attributes = SubResource("CameraAttributesPractical_bmajt")
 fov = 20.0
@@ -106,7 +106,7 @@ spot_angle_attenuation = 0.120742
 [node name="TrayModel" type="Node3D" parent="DiceTray"]
 
 [node name="TableBackstop" type="MeshInstance3D" parent="DiceTray/TrayModel"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 0.001, -0.00907886, 0.495513, -1.44862)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 0.001, -0.00907886, 0.495513, -1.24492)
 mesh = SubResource("BoxMesh_dtie3")
 skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_u08sl")
@@ -145,7 +145,7 @@ visible = false
 shape = SubResource("BoxShape3D_a2wnj")
 
 [node name="TableFront" type="MeshInstance3D" parent="DiceTray/TrayModel"]
-transform = Transform3D(2, 0, 0, 0, 0.698094, -0.0468553, 0, 1.87421, 0.0174524, -0.00492978, 0.368759, 0.660976)
+transform = Transform3D(2, 0, 0, 0, 0.698094, -0.0937105, 0, 1.87421, 0.0349047, -0.00492978, 0.368759, 0.660976)
 layers = 0
 mesh = SubResource("BoxMesh_dtie3")
 skeleton = NodePath("../../..")
@@ -188,6 +188,25 @@ transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -0.3, 
 gravity_scale = 2.0
 script = ExtResource("5_be0xo")
 
+[node name="XYPickUpButton" type="Button" parent="DiceTray/RoomSizeDice"]
+visible = false
+light_mask = 8
+visibility_layer = 8
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 94.0
+offset_top = 513.0
+offset_right = -318.0
+offset_bottom = -187.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Pick Up
+Room
+Dice"
+
 [node name="RoomSizeAddDice" type="Node3D" parent="DiceTray"]
 
 [node name="DPrimaryAddNum" parent="DiceTray/RoomSizeAddDice" instance=ExtResource("10_whr8r")]
@@ -200,56 +219,133 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0.4)
 collision_mask = 255
 gravity_scale = 2.0
 
-[node name="Die LCR" parent="DiceTray" instance=ExtResource("4_yene3")]
+[node name="XYAddPickUpButton" type="Button" parent="DiceTray/RoomSizeAddDice"]
+visible = false
+visibility_layer = 16
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 206.0
+offset_top = 513.0
+offset_right = -206.0
+offset_bottom = -187.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Pick Up
+Doubles
+Dice"
+
+[node name="RoomExitDirectionDie" type="Node3D" parent="DiceTray"]
+
+[node name="Die LCR" parent="DiceTray/RoomExitDirectionDie" instance=ExtResource("4_yene3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.8, 0.6)
 collision_layer = 8
 collision_mask = 255
 gravity_scale = 2.0
 freeze = true
 
-[node name="Die Locked" parent="DiceTray" instance=ExtResource("4_wvsjv")]
+[node name="LCRPickUpButton" type="Button" parent="DiceTray/RoomExitDirectionDie"]
+visible = false
+visibility_layer = 16
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 148.0
+offset_top = 724.0
+offset_right = -264.0
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Pick Up
+Exit
+Direction
+ Die"
+
+[node name="ExitLockCheckDie" type="Node3D" parent="DiceTray"]
+
+[node name="Die Locked" parent="DiceTray/ExitLockCheckDie" instance=ExtResource("4_wvsjv")]
 transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 0.1, 0.8, 0.6)
 collision_layer = 16
 collision_mask = 255
 gravity_scale = 2.0
 
-[node name="Die Numbered Primary" parent="DiceTray" instance=ExtResource("11_xvj32")]
+[node name="ExitLockPickUpButton" type="Button" parent="DiceTray/ExitLockCheckDie"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 263.0
+offset_top = 724.0
+offset_right = -148.0
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Pick Up
+Lock Check
+Die"
+
+[node name="PrimarySecondaryDice" type="Node3D" parent="DiceTray"]
+
+[node name="Die Numbered Primary" parent="DiceTray/PrimarySecondaryDice" instance=ExtResource("11_xvj32")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.8, 0.2)
 collision_layer = 32
 collision_mask = 255
 gravity_scale = 2.0
 
-[node name="Die Numbered Secondary" parent="DiceTray" instance=ExtResource("12_lylh5")]
+[node name="Die Numbered Secondary" parent="DiceTray/PrimarySecondaryDice" instance=ExtResource("12_lylh5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.8, 0.4)
 collision_layer = 64
 collision_mask = 255
 gravity_scale = 2.0
 
-[node name="Die D3" parent="DiceTray" instance=ExtResource("13_sq0i1")]
+[node name="PrimeAndSecondPickUpButton" type="Button" parent="DiceTray/PrimarySecondaryDice"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 318.0
+offset_top = 513.0
+offset_right = -94.0
+offset_bottom = -187.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Pick Up
+Primary /
+Secondary"
+
+[node name="D3Die" type="Node3D" parent="DiceTray"]
+
+[node name="Die D3" parent="DiceTray/D3Die" instance=ExtResource("13_sq0i1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.8, 0.6)
 collision_layer = 128
 collision_mask = 255
 gravity_scale = 2.0
 freeze = true
 
-[node name="RoomButtonContainer" type="GridContainer" parent="DiceTray"]
-visibility_layer = 4
+[node name="D3PickUpButton" type="Button" parent="DiceTray/D3Die"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 377.0
+offset_top = 724.0
+offset_right = -35.0
+offset_bottom = -76.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-columns = 3
+text = "Pick Up
+D3"
 
-[node name="XYPickUpButton" type="Button" parent="DiceTray/RoomButtonContainer"]
-visibility_layer = 8
-layout_mode = 2
-
-[node name="XYAddPickUpButton" type="Button" parent="DiceTray/RoomButtonContainer"]
-visibility_layer = 16
-layout_mode = 2
+[node name="PickUpAllDiceButton" type="Button" parent="DiceTray"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -54.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Pick Up
+All Dice"
 
 [connection signal="roll_xy_dice" from="DiceTray/RoomSizeDice" to="DiceTray/RoomSizeDice/DXDim" method="_on_room_dimension_dice_roll_xy_dice"]
 [connection signal="roll_xy_dice" from="DiceTray/RoomSizeDice" to="DiceTray/RoomSizeDice/DYDim" method="_on_room_dimension_dice_roll_xy_dice"]
