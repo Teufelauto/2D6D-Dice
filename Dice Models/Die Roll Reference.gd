@@ -18,7 +18,7 @@ signal roll_finished(value)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	start_pos = global_position
-	$CollisionShape3D.disabled = true
+	
 
 
 func _roll():
@@ -28,7 +28,8 @@ func _roll():
 	transform.origin = start_pos
 	linear_velocity = Vector3.ZERO
 	angular_velocity = Vector3.ZERO
-	$CollisionShape3D.disabled = false
+	#$CollisionShape3D.disabled = false
+	self.set_collision_layer_value ( 2, true)
 	
 	# Clear Roll Results
 	roll_started.emit()
@@ -61,7 +62,7 @@ func _on_sleeping_state_changed():
 
 # Put the dice back in the home position.
 func _return_die():
-	$CollisionShape3D.disabled = true
+	self.set_collision_layer_value ( 2, false)
 	linear_velocity = Vector3.ZERO
 	angular_velocity = Vector3.ZERO
 	transform.origin = start_pos
