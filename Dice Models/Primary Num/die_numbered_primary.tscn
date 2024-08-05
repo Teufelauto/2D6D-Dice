@@ -84,8 +84,8 @@ mesh = SubResource("ArrayMesh_mcd7l")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+visible = false
 shape = ExtResource("1_rtrdn")
-disabled = true
 
 [node name="Raycasts" type="Node3D" parent="."]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)

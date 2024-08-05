@@ -1,9 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://dx5jaq5nccohx"]
+[gd_scene load_steps=21 format=3 uid="uid://dx5jaq5nccohx"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_8c8ky"]
-[ext_resource type="Script" path="res://DiceTray.gd" id="2_ba4jq"]
 [ext_resource type="PackedScene" uid="uid://dwlkevdio50dl" path="res://Dice Models/Door Pics/die_door_pics.tscn" id="2_doy3w"]
-[ext_resource type="Script" path="res://Dice Models/xy_room_dice.gd" id="2_hv46p"]
 [ext_resource type="PackedScene" uid="uid://mnm1600ha20s" path="res://Dice Models/Door Locked/die_locked.tscn" id="4_wvsjv"]
 [ext_resource type="PackedScene" uid="uid://b5m3t0qb8cysk" path="res://Dice Models/Left Right Center Die/die_lcr.tscn" id="4_yene3"]
 [ext_resource type="Script" path="res://Dice Models/Die Roll Reference.gd" id="5_be0xo"]
@@ -108,7 +106,6 @@ spot_angle_attenuation = 0.25
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13718, 4.67024, -1.29338)
 
 [node name="DiceTray" type="Node3D" parent="."]
-script = ExtResource("2_ba4jq")
 
 [node name="TrayModel" type="Node3D" parent="DiceTray"]
 
@@ -179,7 +176,6 @@ visible = false
 shape = SubResource("BoxShape3D_a2wnj")
 
 [node name="RoomSizeDice" type="Node3D" parent="DiceTray"]
-script = ExtResource("2_hv46p")
 
 [node name="DXDim" parent="DiceTray/RoomSizeDice" instance=ExtResource("5_rrt17")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.8, 0.2)
@@ -248,12 +244,11 @@ Dice"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.8, 0.6)
 collision_layer = 8
 collision_mask = 255
-gravity_scale = 2.0
-freeze = true
+script = ExtResource("5_be0xo")
 
 [node name="LCRPickUpButton" type="Button" parent="DiceTray/RoomExitDirectionDie"]
 visible = false
-visibility_layer = 16
+visibility_layer = 32
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -275,9 +270,11 @@ transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.3
 collision_layer = 16
 collision_mask = 255
 gravity_scale = 2.0
+script = ExtResource("5_be0xo")
 
 [node name="ExitLockPickUpButton" type="Button" parent="DiceTray/ExitLockCheckDie"]
 visible = false
+visibility_layer = 64
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -291,21 +288,16 @@ text = "Pick Up
 Lock Check
 Die"
 
-[node name="PrimarySecondaryDice" type="Node3D" parent="DiceTray"]
+[node name="Primary Die" type="Node3D" parent="DiceTray"]
 
-[node name="Die Numbered Primary" parent="DiceTray/PrimarySecondaryDice" instance=ExtResource("11_xvj32")]
+[node name="Die Numbered Primary" parent="DiceTray/Primary Die" instance=ExtResource("11_xvj32")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.8, 0.2)
 collision_layer = 32
 collision_mask = 255
 gravity_scale = 2.0
+script = ExtResource("5_be0xo")
 
-[node name="Die Numbered Secondary" parent="DiceTray/PrimarySecondaryDice" instance=ExtResource("12_lylh5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.8, 0.4)
-collision_layer = 64
-collision_mask = 255
-gravity_scale = 2.0
-
-[node name="PrimeAndSecondPickUpButton" type="Button" parent="DiceTray/PrimarySecondaryDice"]
+[node name="PrimePickUpButton" type="Button" parent="DiceTray/Primary Die"]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -313,12 +305,36 @@ anchor_bottom = 1.0
 offset_left = 318.0
 offset_top = 513.0
 offset_right = -94.0
-offset_bottom = -187.0
+offset_bottom = -293.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Pick Up
-Primary /
-Secondary"
+Primary
+Die"
+
+[node name="Secondary Die" type="Node3D" parent="DiceTray"]
+
+[node name="Die Numbered Secondary" parent="DiceTray/Secondary Die" instance=ExtResource("12_lylh5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.8, 0.4)
+collision_layer = 64
+collision_mask = 255
+gravity_scale = 2.0
+script = ExtResource("5_be0xo")
+
+[node name="PrimePickUpButton2" type="Button" parent="DiceTray/Secondary Die"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 318.0
+offset_top = 613.0
+offset_right = -94.0
+offset_bottom = -193.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Pick Up
+Secondary
+Die"
 
 [node name="D3Die" type="Node3D" parent="DiceTray"]
 
@@ -328,6 +344,7 @@ collision_layer = 128
 collision_mask = 255
 gravity_scale = 2.0
 freeze = true
+script = ExtResource("5_be0xo")
 
 [node name="D3PickUpButton" type="Button" parent="DiceTray/D3Die"]
 visible = false
@@ -348,19 +365,43 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -54.0
+offset_top = -64.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Pick Up
 All Dice"
 
-[connection signal="roll_xy_dice" from="DiceTray/RoomSizeDice" to="DiceTray/RoomSizeDice/DXDim" method="_on_room_dimension_dice_roll_xy_dice"]
-[connection signal="roll_xy_dice" from="DiceTray/RoomSizeDice" to="DiceTray/RoomSizeDice/DYDim" method="_on_room_dimension_dice_roll_xy_dice"]
-[connection signal="roll_xy_dice" from="DiceTray/RoomSizeDice" to="DiceTray/RoomSizeDice/Die Door Pics" method="_on_room_dimension_dice_roll_xy_dice"]
-[connection signal="input_event" from="DiceTray/RoomSizeDice/DXDim" to="DiceTray/RoomSizeDice" method="_on_dx_dim_input_event"]
-[connection signal="input_event" from="DiceTray/RoomSizeDice/DYDim" to="DiceTray/RoomSizeDice" method="_on_dy_dim_input_event"]
-[connection signal="input_event" from="DiceTray/RoomSizeDice/Die Door Pics" to="DiceTray/RoomSizeDice" method="_on_die_door_pics_input_event"]
+[connection signal="input_event" from="DiceTray/RoomSizeDice/DXDim" to="DiceTray/RoomSizeDice/DXDim" method="_on_dx_dim_input_event"]
+[connection signal="input_event" from="DiceTray/RoomSizeDice/DXDim" to="DiceTray/RoomSizeDice/DYDim" method="_on_dx_dim_input_event"]
+[connection signal="input_event" from="DiceTray/RoomSizeDice/DXDim" to="DiceTray/RoomSizeDice/Die Door Pics" method="_on_dx_dim_input_event"]
+[connection signal="input_event" from="DiceTray/RoomSizeDice/DYDim" to="DiceTray/RoomSizeDice/DXDim" method="_on_dy_dim_input_event"]
+[connection signal="input_event" from="DiceTray/RoomSizeDice/DYDim" to="DiceTray/RoomSizeDice/DYDim" method="_on_dy_dim_input_event"]
+[connection signal="input_event" from="DiceTray/RoomSizeDice/DYDim" to="DiceTray/RoomSizeDice/Die Door Pics" method="_on_dy_dim_input_event"]
+[connection signal="input_event" from="DiceTray/RoomSizeDice/Die Door Pics" to="DiceTray/RoomSizeDice/DXDim" method="_on_die_door_pics_input_event"]
+[connection signal="input_event" from="DiceTray/RoomSizeDice/Die Door Pics" to="DiceTray/RoomSizeDice/DYDim" method="_on_die_door_pics_input_event"]
+[connection signal="input_event" from="DiceTray/RoomSizeDice/Die Door Pics" to="DiceTray/RoomSizeDice/Die Door Pics" method="_on_input_event"]
 [connection signal="sleeping_state_changed" from="DiceTray/RoomSizeDice/Die Door Pics" to="DiceTray/RoomSizeDice/Die Door Pics" method="_on_sleeping_state_changed"]
+[connection signal="input_event" from="DiceTray/RoomSizeAddDice/DPrimaryAddNum" to="DiceTray/RoomSizeAddDice/DPrimaryAddNum" method="_on_input_event"]
+[connection signal="input_event" from="DiceTray/RoomSizeAddDice/DPrimaryAddNum" to="DiceTray/RoomSizeAddDice/DSecondaryAddNum" method="_on_d_primary_add_num_input_event"]
+[connection signal="input_event" from="DiceTray/RoomSizeAddDice/DSecondaryAddNum" to="DiceTray/RoomSizeAddDice/DPrimaryAddNum" method="_on_d_secondary_add_num_input_event"]
+[connection signal="input_event" from="DiceTray/RoomSizeAddDice/DSecondaryAddNum" to="DiceTray/RoomSizeAddDice/DSecondaryAddNum" method="_on_input_event"]
+[connection signal="input_event" from="DiceTray/RoomExitDirectionDie/Die LCR" to="DiceTray/RoomExitDirectionDie/Die LCR" method="_on_input_event"]
+[connection signal="sleeping_state_changed" from="DiceTray/RoomExitDirectionDie/Die LCR" to="DiceTray/RoomExitDirectionDie/Die LCR" method="_on_sleeping_state_changed"]
+[connection signal="input_event" from="DiceTray/ExitLockCheckDie/Die Locked" to="DiceTray/ExitLockCheckDie/Die Locked" method="_on_input_event"]
+[connection signal="sleeping_state_changed" from="DiceTray/ExitLockCheckDie/Die Locked" to="DiceTray/ExitLockCheckDie/Die Locked" method="_on_sleeping_state_changed"]
+[connection signal="input_event" from="DiceTray/Primary Die/Die Numbered Primary" to="DiceTray/Primary Die/Die Numbered Primary" method="_on_input_event"]
+[connection signal="sleeping_state_changed" from="DiceTray/Primary Die/Die Numbered Primary" to="DiceTray/Primary Die/Die Numbered Primary" method="_on_sleeping_state_changed"]
+[connection signal="input_event" from="DiceTray/Secondary Die/Die Numbered Secondary" to="DiceTray/Secondary Die/Die Numbered Secondary" method="_on_input_event"]
+[connection signal="sleeping_state_changed" from="DiceTray/Secondary Die/Die Numbered Secondary" to="DiceTray/Secondary Die/Die Numbered Secondary" method="_on_sleeping_state_changed"]
+[connection signal="input_event" from="DiceTray/D3Die/Die D3" to="DiceTray/D3Die/Die D3" method="_on_input_event"]
+[connection signal="sleeping_state_changed" from="DiceTray/D3Die/Die D3" to="DiceTray/D3Die/Die D3" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/PickUpAllDiceButton" to="DiceTray/RoomSizeDice/DXDim" method="_on_pick_up_all_dice_button_pressed"]
 [connection signal="pressed" from="DiceTray/PickUpAllDiceButton" to="DiceTray/RoomSizeDice/DYDim" method="_on_pick_up_all_dice_button_pressed"]
 [connection signal="pressed" from="DiceTray/PickUpAllDiceButton" to="DiceTray/RoomSizeDice/Die Door Pics" method="_on_pick_up_all_dice_button_pressed"]
+[connection signal="pressed" from="DiceTray/PickUpAllDiceButton" to="DiceTray/RoomSizeAddDice/DPrimaryAddNum" method="_on_pick_up_all_dice_button_pressed"]
+[connection signal="pressed" from="DiceTray/PickUpAllDiceButton" to="DiceTray/RoomSizeAddDice/DSecondaryAddNum" method="_on_pick_up_all_dice_button_pressed"]
+[connection signal="pressed" from="DiceTray/PickUpAllDiceButton" to="DiceTray/RoomExitDirectionDie/Die LCR" method="_on_pick_up_all_dice_button_pressed"]
+[connection signal="pressed" from="DiceTray/PickUpAllDiceButton" to="DiceTray/ExitLockCheckDie/Die Locked" method="_on_pick_up_all_dice_button_pressed"]
+[connection signal="pressed" from="DiceTray/PickUpAllDiceButton" to="DiceTray/Primary Die/Die Numbered Primary" method="_on_pick_up_all_dice_button_pressed"]
+[connection signal="pressed" from="DiceTray/PickUpAllDiceButton" to="DiceTray/Secondary Die/Die Numbered Secondary" method="_on_pick_up_all_dice_button_pressed"]
+[connection signal="pressed" from="DiceTray/PickUpAllDiceButton" to="DiceTray/D3Die/Die D3" method="_on_pick_up_all_dice_button_pressed"]
