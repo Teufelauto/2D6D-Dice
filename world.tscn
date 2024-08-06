@@ -34,8 +34,8 @@ albedo_color = Color(0.188235, 0.188235, 0.498039, 1)
 roughness = 0.81
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2bp57"]
-friction = 0.25
-bounce = 0.1
+friction = 0.3
+bounce = 0.15
 
 [node name="world" type="Node3D"]
 script = ExtResource("1_8c8ky")
@@ -181,19 +181,22 @@ shape = SubResource("BoxShape3D_a2wnj")
 
 [node name="DXDim" parent="DiceTray/RoomSizeDice" instance=ExtResource("5_rrt17")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.8, 0.2)
+collision_layer = 0
 gravity_scale = 2.0
 
 [node name="DYDim" parent="DiceTray/RoomSizeDice" instance=ExtResource("6_pkkkg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.8, 0.4)
+collision_layer = 0
 mass = 5.0
 gravity_scale = 2.0
 
 [node name="DieDoorPics" parent="DiceTray/RoomSizeDice" instance=ExtResource("2_doy3w")]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -0.3, 0.8, 0.6)
+collision_layer = 0
 gravity_scale = 2.0
 script = ExtResource("5_be0xo")
 
-[node name="XYPickUpButton" type="Button" parent="DiceTray/RoomSizeDice"]
+[node name="XYThrowButton" type="Button" parent="DiceTray/RoomSizeDice"]
 visible = false
 light_mask = 8
 visibility_layer = 8
@@ -208,7 +211,28 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-text = "Pick Up
+mouse_default_cursor_shape = 2
+text = "Throw
+Room
+Dice"
+
+[node name="XYThrowButton2" type="Button" parent="DiceTray/RoomSizeDice"]
+visible = false
+light_mask = 8
+visibility_layer = 8
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 35.0
+offset_top = 724.0
+offset_right = -377.0
+offset_bottom = -82.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+text = "Throw
 Room
 Dice"
 
@@ -216,18 +240,19 @@ Dice"
 
 [node name="DPrimaryAddNum" parent="DiceTray/DoublesDice" instance=ExtResource("10_whr8r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0.2)
-collision_layer = 2
+collision_layer = 0
 collision_mask = 255
 gravity_scale = 2.0
 
 [node name="DSecondaryAddNum" parent="DiceTray/DoublesDice" instance=ExtResource("9_7pahk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0.4)
-collision_layer = 2
+collision_layer = 0
 collision_mask = 255
 gravity_scale = 2.0
 
-[node name="XYAddPickUpButton" type="Button" parent="DiceTray/DoublesDice"]
+[node name="DoubleThrowButton" type="Button" parent="DiceTray/DoublesDice"]
 visible = false
+light_mask = 16
 visibility_layer = 16
 anchors_preset = 15
 anchor_right = 1.0
@@ -238,7 +263,7 @@ offset_right = -206.0
 offset_bottom = -187.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Pick Up
+text = "Throw
 Doubles
 Dice"
 
@@ -246,11 +271,11 @@ Dice"
 
 [node name="DieLCR" parent="DiceTray/RoomExitDirectionDie" instance=ExtResource("4_yene3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.8, 0.6)
-collision_layer = 2
+collision_layer = 0
 collision_mask = 255
 script = ExtResource("5_be0xo")
 
-[node name="LCRPickUpButton" type="Button" parent="DiceTray/RoomExitDirectionDie"]
+[node name="LCRThrowButton" type="Button" parent="DiceTray/RoomExitDirectionDie"]
 visible = false
 visibility_layer = 32
 anchors_preset = 15
@@ -262,7 +287,7 @@ offset_right = -264.0
 offset_bottom = -76.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Pick Up
+text = "Throw
 Exit
 Direction
  Die"
@@ -271,12 +296,12 @@ Direction
 
 [node name="DieLocked" parent="DiceTray/ExitLockCheckDie" instance=ExtResource("4_wvsjv")]
 transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 0.1, 0.8, 0.6)
-collision_layer = 2
+collision_layer = 0
 collision_mask = 255
 gravity_scale = 2.0
 script = ExtResource("5_be0xo")
 
-[node name="ExitLockPickUpButton" type="Button" parent="DiceTray/ExitLockCheckDie"]
+[node name="ExitLockThrowButton" type="Button" parent="DiceTray/ExitLockCheckDie"]
 visible = false
 visibility_layer = 64
 anchors_preset = 15
@@ -288,7 +313,7 @@ offset_right = -148.0
 offset_bottom = -76.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Pick Up
+text = "Throw
 Lock Check
 Die"
 
@@ -296,12 +321,12 @@ Die"
 
 [node name="DieNumberedPrimary" parent="DiceTray/PrimaryDie" instance=ExtResource("11_xvj32")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.8, 0.2)
-collision_layer = 2
+collision_layer = 0
 collision_mask = 255
 gravity_scale = 2.0
 script = ExtResource("5_be0xo")
 
-[node name="PrimePickUpButton" type="Button" parent="DiceTray/PrimaryDie"]
+[node name="PrimeThrowButton" type="Button" parent="DiceTray/PrimaryDie"]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -312,7 +337,7 @@ offset_right = -94.0
 offset_bottom = -293.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Pick Up
+text = "Throw
 Primary
 Die"
 
@@ -320,12 +345,12 @@ Die"
 
 [node name="DieNumberedSecondary" parent="DiceTray/SecondaryDie" instance=ExtResource("12_lylh5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.8, 0.4)
-collision_layer = 2
+collision_layer = 0
 collision_mask = 255
 gravity_scale = 2.0
 script = ExtResource("5_be0xo")
 
-[node name="PrimePickUpButton2" type="Button" parent="DiceTray/SecondaryDie"]
+[node name="SecondaryThrowButton" type="Button" parent="DiceTray/SecondaryDie"]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -336,7 +361,7 @@ offset_right = -94.0
 offset_bottom = -193.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Pick Up
+text = "Throw
 Secondary
 Die"
 
@@ -344,13 +369,13 @@ Die"
 
 [node name="DieD3" parent="DiceTray/D3Die" instance=ExtResource("13_sq0i1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.8, 0.6)
-collision_layer = 2
+collision_layer = 0
 collision_mask = 255
 gravity_scale = 2.0
 freeze = true
 script = ExtResource("5_be0xo")
 
-[node name="D3PickUpButton" type="Button" parent="DiceTray/D3Die"]
+[node name="D3ThrowButton" type="Button" parent="DiceTray/D3Die"]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -361,7 +386,7 @@ offset_right = -35.0
 offset_bottom = -76.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Pick Up
+text = "Throw
 D3"
 
 [node name="PickUpAllDiceButton" type="Button" parent="DiceTray"]
@@ -385,20 +410,33 @@ All Dice"
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDoorPics" to="DiceTray/RoomSizeDice/DYDim" method="_on_die_door_pics_input_event"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDoorPics" to="DiceTray/RoomSizeDice/DieDoorPics" method="_on_input_event"]
 [connection signal="sleeping_state_changed" from="DiceTray/RoomSizeDice/DieDoorPics" to="DiceTray/RoomSizeDice/DieDoorPics" method="_on_sleeping_state_changed"]
+[connection signal="pressed" from="DiceTray/RoomSizeDice/XYThrowButton" to="DiceTray/RoomSizeDice/DXDim" method="_on_xy_throw_button_pressed"]
+[connection signal="pressed" from="DiceTray/RoomSizeDice/XYThrowButton" to="DiceTray/RoomSizeDice/DYDim" method="_on_xy_throw_button_pressed"]
+[connection signal="pressed" from="DiceTray/RoomSizeDice/XYThrowButton" to="DiceTray/RoomSizeDice/DieDoorPics" method="_on_xy_throw_button_pressed"]
+[connection signal="pressed" from="DiceTray/RoomSizeDice/XYThrowButton2" to="DiceTray/RoomSizeDice/DXDim" method="_on_xy_throw_button_pressed"]
+[connection signal="pressed" from="DiceTray/RoomSizeDice/XYThrowButton2" to="DiceTray/RoomSizeDice/DYDim" method="_on_xy_throw_button_pressed"]
+[connection signal="pressed" from="DiceTray/RoomSizeDice/XYThrowButton2" to="DiceTray/RoomSizeDice/DieDoorPics" method="_on_xy_throw_button_pressed"]
 [connection signal="input_event" from="DiceTray/DoublesDice/DPrimaryAddNum" to="DiceTray/DoublesDice/DPrimaryAddNum" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/DoublesDice/DPrimaryAddNum" to="DiceTray/DoublesDice/DSecondaryAddNum" method="_on_d_primary_add_num_input_event"]
 [connection signal="input_event" from="DiceTray/DoublesDice/DSecondaryAddNum" to="DiceTray/DoublesDice/DPrimaryAddNum" method="_on_d_secondary_add_num_input_event"]
 [connection signal="input_event" from="DiceTray/DoublesDice/DSecondaryAddNum" to="DiceTray/DoublesDice/DSecondaryAddNum" method="_on_input_event"]
+[connection signal="pressed" from="DiceTray/DoublesDice/DoubleThrowButton" to="DiceTray/DoublesDice/DPrimaryAddNum" method="_on_double_throw_button_pressed"]
+[connection signal="pressed" from="DiceTray/DoublesDice/DoubleThrowButton" to="DiceTray/DoublesDice/DSecondaryAddNum" method="_on_double_throw_button_pressed"]
 [connection signal="input_event" from="DiceTray/RoomExitDirectionDie/DieLCR" to="DiceTray/RoomExitDirectionDie/DieLCR" method="_on_input_event"]
 [connection signal="sleeping_state_changed" from="DiceTray/RoomExitDirectionDie/DieLCR" to="DiceTray/RoomExitDirectionDie/DieLCR" method="_on_sleeping_state_changed"]
+[connection signal="pressed" from="DiceTray/RoomExitDirectionDie/LCRThrowButton" to="DiceTray/RoomExitDirectionDie/DieLCR" method="_on_lcr_throw_button_pressed"]
 [connection signal="input_event" from="DiceTray/ExitLockCheckDie/DieLocked" to="DiceTray/ExitLockCheckDie/DieLocked" method="_on_input_event"]
 [connection signal="sleeping_state_changed" from="DiceTray/ExitLockCheckDie/DieLocked" to="DiceTray/ExitLockCheckDie/DieLocked" method="_on_sleeping_state_changed"]
+[connection signal="pressed" from="DiceTray/ExitLockCheckDie/ExitLockThrowButton" to="DiceTray/ExitLockCheckDie/DieLocked" method="_on_exit_lock_throw_button_pressed"]
 [connection signal="input_event" from="DiceTray/PrimaryDie/DieNumberedPrimary" to="DiceTray/PrimaryDie/DieNumberedPrimary" method="_on_input_event"]
 [connection signal="sleeping_state_changed" from="DiceTray/PrimaryDie/DieNumberedPrimary" to="DiceTray/PrimaryDie/DieNumberedPrimary" method="_on_sleeping_state_changed"]
+[connection signal="pressed" from="DiceTray/PrimaryDie/PrimeThrowButton" to="DiceTray/PrimaryDie/DieNumberedPrimary" method="_on_prime_throw_button_pressed"]
 [connection signal="input_event" from="DiceTray/SecondaryDie/DieNumberedSecondary" to="DiceTray/SecondaryDie/DieNumberedSecondary" method="_on_input_event"]
 [connection signal="sleeping_state_changed" from="DiceTray/SecondaryDie/DieNumberedSecondary" to="DiceTray/SecondaryDie/DieNumberedSecondary" method="_on_sleeping_state_changed"]
+[connection signal="pressed" from="DiceTray/SecondaryDie/SecondaryThrowButton" to="DiceTray/SecondaryDie/DieNumberedSecondary" method="_on_secondary_throw_button_pressed"]
 [connection signal="input_event" from="DiceTray/D3Die/DieD3" to="DiceTray/D3Die/DieD3" method="_on_input_event"]
 [connection signal="sleeping_state_changed" from="DiceTray/D3Die/DieD3" to="DiceTray/D3Die/DieD3" method="_on_sleeping_state_changed"]
+[connection signal="pressed" from="DiceTray/D3Die/D3ThrowButton" to="DiceTray/D3Die/DieD3" method="_on_d_3_throw_button_pressed"]
 [connection signal="pressed" from="DiceTray/PickUpAllDiceButton" to="DiceTray/RoomSizeDice/DXDim" method="_on_pick_up_all_dice_button_pressed"]
 [connection signal="pressed" from="DiceTray/PickUpAllDiceButton" to="DiceTray/RoomSizeDice/DYDim" method="_on_pick_up_all_dice_button_pressed"]
 [connection signal="pressed" from="DiceTray/PickUpAllDiceButton" to="DiceTray/RoomSizeDice/DieDoorPics" method="_on_pick_up_all_dice_button_pressed"]

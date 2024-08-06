@@ -12,6 +12,20 @@ extends Node3D
 @onready var die_secondary = $SecondaryDie/DieNumberedSecondary
 @onready var die_d3 = $D3Die/DieD3
 
+@onready var button_throw_xy = $RoomSizeDice/XYThrowButton
+@onready var button_throw_xy2 = $RoomSizeDice/XYThrowButton2
+@onready var button_throw_doubles = $DoublesDice/DoubleThrowButton
+@onready var button_throw_exit_direction = $RoomExitDirectionDie/LCRThrowButton
+@onready var button_throw_lock_check = $ExitLockCheckDie/ExitLockThrowButton
+@onready var button_throw_primary = $PrimaryDie/PrimeThrowButton
+@onready var button_throw_secondary = $SecondaryDie/SecondaryThrowButton
+@onready var button_throw_d3 = $D3Die/D3ThrowButton
+
+
+
+
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,8 +41,15 @@ func _ready():
 	die_primary.set_collision_layer_value ( 2, false)
 	die_secondary.set_collision_layer_value ( 2, false)
 	die_d3.set_collision_layer_value ( 2, false)
-	
-	
 
 
+	button_throw_xy.visible = true
+	button_throw_xy2.visible = true
+	button_throw_doubles.visible = true
+	button_throw_exit_direction.visible = true
+	button_throw_lock_check.visible = true
+	button_throw_primary.visible = true
+	button_throw_secondary.visible = true
+	button_throw_d3.visible = true
+	
 
