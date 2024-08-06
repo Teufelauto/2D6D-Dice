@@ -52,6 +52,7 @@ window/ios/hide_status_bar=false
 [physics]
 
 3d/physics_engine="Rapier3D"
+3d/default_gravity=5.0
 3d/time_before_sleep=0.1
 3d/layer_7="Secondary Die"
 

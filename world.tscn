@@ -181,18 +181,17 @@ shape = SubResource("BoxShape3D_a2wnj")
 
 [node name="DXDim" parent="DiceTray/RoomSizeDice" instance=ExtResource("5_rrt17")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.8, 0.2)
-collision_layer = 0
+mass = 10.0
 gravity_scale = 2.0
 
 [node name="DYDim" parent="DiceTray/RoomSizeDice" instance=ExtResource("6_pkkkg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.8, 0.4)
-collision_layer = 0
-mass = 5.0
+mass = 10.0
 gravity_scale = 2.0
 
 [node name="DieDoorPics" parent="DiceTray/RoomSizeDice" instance=ExtResource("2_doy3w")]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -0.3, 0.8, 0.6)
-collision_layer = 0
+mass = 10.0
 gravity_scale = 2.0
 script = ExtResource("5_be0xo")
 
@@ -212,9 +211,7 @@ grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_default_cursor_shape = 2
-text = "Throw
-Room
-Dice"
+flat = true
 
 [node name="XYThrowButton2" type="Button" parent="DiceTray/RoomSizeDice"]
 visible = false
@@ -232,22 +229,22 @@ grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_default_cursor_shape = 2
-text = "Throw
-Room
-Dice"
+flat = true
 
 [node name="DoublesDice" type="Node3D" parent="DiceTray"]
 
 [node name="DPrimaryAddNum" parent="DiceTray/DoublesDice" instance=ExtResource("10_whr8r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0.2)
-collision_layer = 0
+collision_layer = 2
 collision_mask = 255
+mass = 10.0
 gravity_scale = 2.0
 
 [node name="DSecondaryAddNum" parent="DiceTray/DoublesDice" instance=ExtResource("9_7pahk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0.4)
-collision_layer = 0
+collision_layer = 2
 collision_mask = 255
+mass = 10.0
 gravity_scale = 2.0
 
 [node name="DoubleThrowButton" type="Button" parent="DiceTray/DoublesDice"]
@@ -263,16 +260,16 @@ offset_right = -206.0
 offset_bottom = -187.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Throw
-Doubles
-Dice"
+mouse_default_cursor_shape = 2
+flat = true
 
 [node name="RoomExitDirectionDie" type="Node3D" parent="DiceTray"]
 
 [node name="DieLCR" parent="DiceTray/RoomExitDirectionDie" instance=ExtResource("4_yene3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.8, 0.6)
-collision_layer = 0
+collision_layer = 2
 collision_mask = 255
+mass = 10.0
 script = ExtResource("5_be0xo")
 
 [node name="LCRThrowButton" type="Button" parent="DiceTray/RoomExitDirectionDie"]
@@ -287,17 +284,16 @@ offset_right = -264.0
 offset_bottom = -76.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Throw
-Exit
-Direction
- Die"
+mouse_default_cursor_shape = 2
+flat = true
 
 [node name="ExitLockCheckDie" type="Node3D" parent="DiceTray"]
 
 [node name="DieLocked" parent="DiceTray/ExitLockCheckDie" instance=ExtResource("4_wvsjv")]
 transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 0.1, 0.8, 0.6)
-collision_layer = 0
+collision_layer = 2
 collision_mask = 255
+mass = 10.0
 gravity_scale = 2.0
 script = ExtResource("5_be0xo")
 
@@ -313,16 +309,16 @@ offset_right = -148.0
 offset_bottom = -76.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Throw
-Lock Check
-Die"
+mouse_default_cursor_shape = 2
+flat = true
 
 [node name="PrimaryDie" type="Node3D" parent="DiceTray"]
 
 [node name="DieNumberedPrimary" parent="DiceTray/PrimaryDie" instance=ExtResource("11_xvj32")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.8, 0.2)
-collision_layer = 0
+collision_layer = 2
 collision_mask = 255
+mass = 10.0
 gravity_scale = 2.0
 script = ExtResource("5_be0xo")
 
@@ -337,16 +333,16 @@ offset_right = -94.0
 offset_bottom = -293.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Throw
-Primary
-Die"
+mouse_default_cursor_shape = 2
+flat = true
 
 [node name="SecondaryDie" type="Node3D" parent="DiceTray"]
 
 [node name="DieNumberedSecondary" parent="DiceTray/SecondaryDie" instance=ExtResource("12_lylh5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.8, 0.4)
-collision_layer = 0
+collision_layer = 2
 collision_mask = 255
+mass = 10.0
 gravity_scale = 2.0
 script = ExtResource("5_be0xo")
 
@@ -361,16 +357,16 @@ offset_right = -94.0
 offset_bottom = -193.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Throw
-Secondary
-Die"
+mouse_default_cursor_shape = 2
+flat = true
 
 [node name="D3Die" type="Node3D" parent="DiceTray"]
 
 [node name="DieD3" parent="DiceTray/D3Die" instance=ExtResource("13_sq0i1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.8, 0.6)
-collision_layer = 0
+collision_layer = 2
 collision_mask = 255
+mass = 10.0
 gravity_scale = 2.0
 freeze = true
 script = ExtResource("5_be0xo")
@@ -386,8 +382,8 @@ offset_right = -35.0
 offset_bottom = -76.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Throw
-D3"
+mouse_default_cursor_shape = 2
+flat = true
 
 [node name="PickUpAllDiceButton" type="Button" parent="DiceTray"]
 anchors_preset = 12
