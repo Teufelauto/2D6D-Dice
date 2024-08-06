@@ -34,8 +34,9 @@ albedo_color = Color(0.188235, 0.188235, 0.498039, 1)
 roughness = 0.81
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2bp57"]
-friction = 0.3
-bounce = 0.15
+friction = 0.32
+rough = true
+bounce = 0.12
 
 [node name="world" type="Node3D"]
 script = ExtResource("1_8c8ky")
@@ -181,16 +182,22 @@ shape = SubResource("BoxShape3D_a2wnj")
 
 [node name="DXDim" parent="DiceTray/RoomSizeDice" instance=ExtResource("5_rrt17")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.8, 0.2)
+collision_layer = 4
+collision_mask = 3
 mass = 10.0
 gravity_scale = 2.0
 
 [node name="DYDim" parent="DiceTray/RoomSizeDice" instance=ExtResource("6_pkkkg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.8, 0.4)
+collision_layer = 4
+collision_mask = 3
 mass = 10.0
 gravity_scale = 2.0
 
 [node name="DieDoorPics" parent="DiceTray/RoomSizeDice" instance=ExtResource("2_doy3w")]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -0.3, 0.8, 0.6)
+collision_layer = 4
+collision_mask = 3
 mass = 10.0
 gravity_scale = 2.0
 script = ExtResource("5_be0xo")
@@ -235,15 +242,13 @@ flat = true
 
 [node name="DPrimaryAddNum" parent="DiceTray/DoublesDice" instance=ExtResource("10_whr8r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0.2)
-collision_layer = 2
-collision_mask = 255
+collision_mask = 3
 mass = 10.0
 gravity_scale = 2.0
 
 [node name="DSecondaryAddNum" parent="DiceTray/DoublesDice" instance=ExtResource("9_7pahk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0.4)
-collision_layer = 2
-collision_mask = 255
+collision_mask = 3
 mass = 10.0
 gravity_scale = 2.0
 
@@ -267,8 +272,8 @@ flat = true
 
 [node name="DieLCR" parent="DiceTray/RoomExitDirectionDie" instance=ExtResource("4_yene3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.8, 0.6)
-collision_layer = 2
-collision_mask = 255
+collision_layer = 4
+collision_mask = 3
 mass = 10.0
 script = ExtResource("5_be0xo")
 
@@ -291,8 +296,8 @@ flat = true
 
 [node name="DieLocked" parent="DiceTray/ExitLockCheckDie" instance=ExtResource("4_wvsjv")]
 transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 0.1, 0.8, 0.6)
-collision_layer = 2
-collision_mask = 255
+collision_layer = 4
+collision_mask = 3
 mass = 10.0
 gravity_scale = 2.0
 script = ExtResource("5_be0xo")
@@ -316,8 +321,8 @@ flat = true
 
 [node name="DieNumberedPrimary" parent="DiceTray/PrimaryDie" instance=ExtResource("11_xvj32")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.8, 0.2)
-collision_layer = 2
-collision_mask = 255
+collision_layer = 4
+collision_mask = 3
 mass = 10.0
 gravity_scale = 2.0
 script = ExtResource("5_be0xo")
@@ -340,8 +345,8 @@ flat = true
 
 [node name="DieNumberedSecondary" parent="DiceTray/SecondaryDie" instance=ExtResource("12_lylh5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.8, 0.4)
-collision_layer = 2
-collision_mask = 255
+collision_layer = 4
+collision_mask = 3
 mass = 10.0
 gravity_scale = 2.0
 script = ExtResource("5_be0xo")
@@ -364,8 +369,8 @@ flat = true
 
 [node name="DieD3" parent="DiceTray/D3Die" instance=ExtResource("13_sq0i1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.8, 0.6)
-collision_layer = 2
-collision_mask = 255
+collision_layer = 4
+collision_mask = 3
 mass = 10.0
 gravity_scale = 2.0
 freeze = true

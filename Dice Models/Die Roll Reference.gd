@@ -18,8 +18,8 @@ extends RigidBody3D
 
 
 var start_pos
-var roll_strength = 30    
-var spin_strength = 1.0   
+var roll_strength = 35    
+var spin_strength = 0.9   
 var is_rolling = false
 
 
@@ -40,8 +40,10 @@ func _roll():
 	transform.origin = start_pos
 	linear_velocity = Vector3.ZERO
 	angular_velocity = Vector3.ZERO
-	$CollisionShape3D.disabled = false
-	#self.set_collision_layer_value ( 2, true)
+	#$CollisionShape3D.disabled = false
+	
+	self.set_collision_layer_value ( 2, true)
+	self.set_collision_mask_value(2,true)
 	
 	# Clear Roll Results
 	roll_started.emit()
@@ -75,8 +77,9 @@ func _on_sleeping_state_changed():
 # Put the dice back in the home position.
 func _return_die():
 	# Return the dice to home
-	$CollisionShape3D.disabled = true
-	#self.set_collision_layer_value ( 2, false)
+	#$CollisionShape3D.disabled = true
+	self.set_collision_layer_value ( 2, false)
+	self.set_collision_mask_value(2,false)
 	linear_velocity = Vector3.ZERO
 	angular_velocity = Vector3.ZERO
 	transform.origin = start_pos

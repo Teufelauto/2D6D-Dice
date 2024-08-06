@@ -10,7 +10,9 @@ config_version=5
 
 [application]
 
-config/name="2D6 Dice"
+config/name="2D6D Dice"
+config/description="A Digital Dice app for the Solo Player Dungeon Crawler \"2D6 Dungeon\" by Toby Lancaster.  This app was created by Jamie Halford, and is not an official product of DR Games or Toby Lancaster. More information on 2D6 Dungeon, including how to get it, may be found at www.drgames.co.uk"
+config/version="0.8.0"
 config/tags=PackedStringArray("3d", "dice", "mobile", "rpg")
 run/main_scene="res://world.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
@@ -41,20 +43,14 @@ window/ios/hide_status_bar=false
 2d_render/layer_9="Secondary Die Button"
 2d_render/layer_10="D3 Button"
 3d_physics/layer_1="Dice Tray"
-3d_physics/layer_2="X Y and Exit Qty Dice"
-3d_physics/layer_3="X Y Doubles Dice"
-3d_physics/layer_4="Exit Direction Die"
-3d_physics/layer_5="Door Lock Condition Die"
-3d_physics/layer_6="Primary Die"
-3d_physics/layer_7="Secondary Die"
-3d_physics/layer_8="D3 Die"
+3d_physics/layer_2="Active Dice"
+3d_physics/layer_3="Inactive Dice"
 
 [physics]
 
 3d/physics_engine="Rapier3D"
-3d/default_gravity=5.0
+3d/default_gravity=6.0
 3d/time_before_sleep=0.1
-3d/layer_7="Secondary Die"
 
 [rendering]
 
