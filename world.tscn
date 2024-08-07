@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dwlkevdio50dl" path="res://Dice Models/Door Pics/die_door_pics.tscn" id="2_doy3w"]
 [ext_resource type="PackedScene" uid="uid://mnm1600ha20s" path="res://Dice Models/Door Locked/die_locked.tscn" id="4_wvsjv"]
 [ext_resource type="PackedScene" uid="uid://b5m3t0qb8cysk" path="res://Dice Models/Left Right Center Die/die_lcr.tscn" id="4_yene3"]
-[ext_resource type="Script" path="res://Dice Models/Die Roll Reference.gd" id="5_be0xo"]
+[ext_resource type="Script" path="res://Dice Models/Die.gd" id="5_be0xo"]
 [ext_resource type="PackedScene" uid="uid://c1sbbpswt68eq" path="res://Dice Models/X Dim Die/D X Dim.tscn" id="5_rrt17"]
 [ext_resource type="PackedScene" uid="uid://ua53ly3yv0sv" path="res://Dice Models/Y Dim Die/D Y Dim.tscn" id="6_pkkkg"]
 [ext_resource type="PackedScene" uid="uid://4jtmcfbcxwts" path="res://Dice Models/Secondary Num Add/D Secondary Add Num.tscn" id="9_7pahk"]
@@ -50,15 +50,16 @@ unique_name_in_owner = true
 layer = 2
 follow_viewport_enabled = true
 
-[node name="CenterLabel" type="Label" parent="DiceTray/DiceCanvas"]
+[node name="CenterResultLabel" type="Label" parent="DiceTray/DiceCanvas"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
+offset_left = -0.5
+offset_right = 0.5
+offset_bottom = 69.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 50
+horizontal_alignment = 1
 
 [node name="XResultLabel" type="Label" parent="DiceTray/DiceCanvas"]
 anchors_preset = 15
@@ -66,7 +67,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 32.0
 offset_top = 515.0
-offset_right = -434.0
+offset_right = -203.0
 offset_bottom = -302.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -78,7 +79,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 32.0
 offset_top = 609.0
-offset_right = -434.0
+offset_right = -212.0
 offset_bottom = -208.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -425,14 +426,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13718, 4.67024, -1.29338)
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDXDim" to="DiceTray/RoomSizeDice/DieDXDim" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDXDim" to="DiceTray/RoomSizeDice/DieDYDim" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDXDim" to="DiceTray/RoomSizeDice/DieDoorPics" method="_on_input_event"]
+[connection signal="roll_finished" from="DiceTray/RoomSizeDice/DieDXDim" to="DiceTray" method="_on_die_dx_dim_roll_finished"]
 [connection signal="roll_started" from="DiceTray/RoomSizeDice/DieDXDim" to="DiceTray" method="_on_room_dimension_roll_started"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDYDim" to="DiceTray/RoomSizeDice/DieDXDim" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDYDim" to="DiceTray/RoomSizeDice/DieDYDim" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDYDim" to="DiceTray/RoomSizeDice/DieDoorPics" method="_on_input_event"]
+[connection signal="roll_finished" from="DiceTray/RoomSizeDice/DieDYDim" to="DiceTray" method="_on_die_dy_dim_roll_finished"]
 [connection signal="roll_started" from="DiceTray/RoomSizeDice/DieDYDim" to="DiceTray" method="_on_room_dimension_roll_started"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDoorPics" to="DiceTray/RoomSizeDice/DieDXDim" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDoorPics" to="DiceTray/RoomSizeDice/DieDYDim" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDoorPics" to="DiceTray/RoomSizeDice/DieDoorPics" method="_on_input_event"]
+[connection signal="roll_finished" from="DiceTray/RoomSizeDice/DieDoorPics" to="DiceTray" method="_on_die_door_pics_roll_finished"]
 [connection signal="roll_started" from="DiceTray/RoomSizeDice/DieDoorPics" to="DiceTray" method="_on_room_dimension_roll_started"]
 [connection signal="sleeping_state_changed" from="DiceTray/RoomSizeDice/DieDoorPics" to="DiceTray/RoomSizeDice/DieDoorPics" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/RoomSizeDice/XYThrowButton" to="DiceTray/RoomSizeDice/DieDXDim" method="_on_xy_throw_button_pressed"]
@@ -443,23 +447,37 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13718, 4.67024, -1.29338)
 [connection signal="pressed" from="DiceTray/RoomSizeDice/XYThrowButton2" to="DiceTray/RoomSizeDice/DieDoorPics" method="_on_xy_throw_button_pressed"]
 [connection signal="input_event" from="DiceTray/DoublesDice/DieDoublePrimary" to="DiceTray/DoublesDice/DieDoublePrimary" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/DoublesDice/DieDoublePrimary" to="DiceTray/DoublesDice/DieDoubleSecondary" method="_on_input_event"]
+[connection signal="roll_finished" from="DiceTray/DoublesDice/DieDoublePrimary" to="DiceTray" method="_on_die_double_primary_roll_finished"]
+[connection signal="roll_started" from="DiceTray/DoublesDice/DieDoublePrimary" to="DiceTray" method="_on_die_double_roll_started"]
 [connection signal="input_event" from="DiceTray/DoublesDice/DieDoubleSecondary" to="DiceTray/DoublesDice/DieDoublePrimary" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/DoublesDice/DieDoubleSecondary" to="DiceTray/DoublesDice/DieDoubleSecondary" method="_on_input_event"]
+[connection signal="roll_finished" from="DiceTray/DoublesDice/DieDoubleSecondary" to="DiceTray" method="_on_die_double_secondary_roll_finished"]
+[connection signal="roll_started" from="DiceTray/DoublesDice/DieDoubleSecondary" to="DiceTray" method="_on_die_double_roll_started"]
 [connection signal="pressed" from="DiceTray/DoublesDice/DoubleThrowButton" to="DiceTray/DoublesDice/DieDoublePrimary" method="_on_double_throw_button_pressed"]
 [connection signal="pressed" from="DiceTray/DoublesDice/DoubleThrowButton" to="DiceTray/DoublesDice/DieDoubleSecondary" method="_on_double_throw_button_pressed"]
 [connection signal="input_event" from="DiceTray/RoomExitDirectionDie/DieLCR" to="DiceTray/RoomExitDirectionDie/DieLCR" method="_on_input_event"]
+[connection signal="roll_finished" from="DiceTray/RoomExitDirectionDie/DieLCR" to="DiceTray" method="_on_die_lcr_roll_finished"]
+[connection signal="roll_started" from="DiceTray/RoomExitDirectionDie/DieLCR" to="DiceTray" method="_on_die_lcr_roll_started"]
 [connection signal="sleeping_state_changed" from="DiceTray/RoomExitDirectionDie/DieLCR" to="DiceTray/RoomExitDirectionDie/DieLCR" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/RoomExitDirectionDie/LCRThrowButton" to="DiceTray/RoomExitDirectionDie/DieLCR" method="_on_lcr_throw_button_pressed"]
 [connection signal="input_event" from="DiceTray/ExitLockCheckDie/DieLocked" to="DiceTray/ExitLockCheckDie/DieLocked" method="_on_input_event"]
+[connection signal="roll_finished" from="DiceTray/ExitLockCheckDie/DieLocked" to="DiceTray" method="_on_die_locked_roll_finished"]
+[connection signal="roll_started" from="DiceTray/ExitLockCheckDie/DieLocked" to="DiceTray" method="_on_die_locked_roll_started"]
 [connection signal="sleeping_state_changed" from="DiceTray/ExitLockCheckDie/DieLocked" to="DiceTray/ExitLockCheckDie/DieLocked" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/ExitLockCheckDie/ExitLockThrowButton" to="DiceTray/ExitLockCheckDie/DieLocked" method="_on_exit_lock_throw_button_pressed"]
 [connection signal="input_event" from="DiceTray/PrimaryDie/DiePrimaryNumbered" to="DiceTray/PrimaryDie/DiePrimaryNumbered" method="_on_input_event"]
+[connection signal="roll_finished" from="DiceTray/PrimaryDie/DiePrimaryNumbered" to="DiceTray" method="_on_die_primary_numbered_roll_finished"]
+[connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryNumbered" to="DiceTray" method="_on_die_primary_numbered_roll_started"]
 [connection signal="sleeping_state_changed" from="DiceTray/PrimaryDie/DiePrimaryNumbered" to="DiceTray/PrimaryDie/DiePrimaryNumbered" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/PrimaryDie/PrimeThrowButton" to="DiceTray/PrimaryDie/DiePrimaryNumbered" method="_on_prime_throw_button_pressed"]
 [connection signal="input_event" from="DiceTray/SecondaryDie/DieSecondaryNumbered" to="DiceTray/SecondaryDie/DieSecondaryNumbered" method="_on_input_event"]
+[connection signal="roll_finished" from="DiceTray/SecondaryDie/DieSecondaryNumbered" to="DiceTray" method="_on_die_secondary_numbered_roll_finished"]
+[connection signal="roll_started" from="DiceTray/SecondaryDie/DieSecondaryNumbered" to="DiceTray" method="_on_die_secondary_numbered_roll_started"]
 [connection signal="sleeping_state_changed" from="DiceTray/SecondaryDie/DieSecondaryNumbered" to="DiceTray/SecondaryDie/DieSecondaryNumbered" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/SecondaryDie/SecondaryThrowButton" to="DiceTray/SecondaryDie/DieSecondaryNumbered" method="_on_secondary_throw_button_pressed"]
 [connection signal="input_event" from="DiceTray/D3Die/DieD3" to="DiceTray/D3Die/DieD3" method="_on_input_event"]
+[connection signal="roll_finished" from="DiceTray/D3Die/DieD3" to="DiceTray" method="_on_die_d_3_roll_finished"]
+[connection signal="roll_started" from="DiceTray/D3Die/DieD3" to="DiceTray" method="_on_die_d_3_roll_started"]
 [connection signal="sleeping_state_changed" from="DiceTray/D3Die/DieD3" to="DiceTray/D3Die/DieD3" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/D3Die/D3ThrowButton" to="DiceTray/D3Die/DieD3" method="_on_d_3_throw_button_pressed"]
 [connection signal="pressed" from="DiceTray/PickUpAllDiceButton" to="DiceTray/RoomSizeDice/DieDXDim" method="_on_pick_up_all_dice_button_pressed"]

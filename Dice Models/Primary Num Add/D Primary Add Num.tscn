@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://xh1dxg5lm7mp"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://d1euamslrd3qy" path="res://Dice Models/Die Phys Material.tres" id="1_l1xpq"]
-[ext_resource type="Script" path="res://Dice Models/Die Roll Reference.gd" id="1_vwyma"]
+[ext_resource type="Script" path="res://Dice Models/Die.gd" id="1_vwyma"]
 [ext_resource type="PackedScene" uid="uid://d31jyb02k7toh" path="res://Dice Models/Primary Num Add/Die Numbered Primary Cyan.glb" id="2_jkegy"]
 [ext_resource type="Shape3D" uid="uid://cfyl03tbplsu" path="res://Dice Models/Rounded_Die_Collision_Geometry.tres" id="3_gw0v0"]
 [ext_resource type="PackedScene" uid="uid://cn2gw4ss76tcu" path="res://Dice Models/Six Sided RayCast.tscn" id="4_248m1"]

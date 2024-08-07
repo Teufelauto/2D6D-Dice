@@ -24,8 +24,8 @@ var spin_strength = 0.9   # ---------- Spin It ------------------------
 var is_rolling = false
 
 # For displaying roll results
-signal roll_started()
-signal roll_finished(int)
+signal roll_started() # Also used to clear results when picking up dice
+signal roll_finished(die_value) # Output the die result to another script
 
 
 # Called when the node enters the scene tree for the first time.
@@ -76,7 +76,6 @@ func _on_sleeping_state_changed():
 # Put the dice back in the home position.
 func _return_die():
 	# Return the dice to home
-	#$CollisionShape3D.disabled = true
 	self.set_collision_layer_value ( 2, false)
 	self.set_collision_mask_value(2,false)
 	linear_velocity = Vector3.ZERO
@@ -84,6 +83,9 @@ func _return_die():
 	transform.origin = start_pos
 	freeze = true
 	sleeping = true
+	
+	# Clear Roll Results
+	roll_started.emit()
 	
 	# Turn on the Roll Buttons again
 	button_throw_xy.visible = true
@@ -104,13 +106,13 @@ func _on_pick_up_all_dice_button_pressed():
 	#_return_die()
 
 
-# --------------------------- ReROLL DICE --------------------------------------
+# ----------------- ReROLL Previously thrown DICE ------------------------------
 func _on_input_event(_camera, event, _position, _normal, _shape_idx):
 	if event.is_pressed() && !is_rolling:
 		_roll()
 
 
-#---------------------------- ROLL DICE ----------------------------------------
+#---------------------------- ROLL DICE FROM HOME ------------------------------
 func _on_xy_throw_button_pressed():
 	if !is_rolling:
 		button_throw_xy.visible = false
