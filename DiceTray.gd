@@ -1,26 +1,5 @@
+class_name DiceTray
 extends Node3D
-
-@onready var die_dx = $RoomSizeDice/DXDim
-@onready var die_dy = $RoomSizeDice/DYDim
-@onready var die_num_exits = $RoomSizeDice/DieDoorPics
-@onready var die_double_primary =   $DoublesDice/DPrimaryAddNum
-@onready var die_double_secondary = $DoublesDice/DSecondaryAddNum
-@onready var die_exit_direction = $RoomExitDirectionDie/DieLCR
-@onready var die_exit_lock_check = $ExitLockCheckDie/DieLocked
-@onready var die_primary = $PrimaryDie/DieNumberedPrimary
-@onready var die_secondary = $SecondaryDie/DieNumberedSecondary
-@onready var die_d3 = $D3Die/DieD3
-
-#@onready var die_dx = $RoomSizeDice/DXDim/CollisionShape3D
-#@onready var die_dy = $RoomSizeDice/DYDim/CollisionShape3D
-#@onready var die_num_exits = $RoomSizeDice/DieDoorPics/CollisionShape3D
-#@onready var die_double_primary =   $DoublesDice/DPrimaryAddNum/CollisionShape3D
-#@onready var die_double_secondary = $DoublesDice/DSecondaryAddNum/CollisionShape3D
-#@onready var die_exit_direction = $RoomExitDirectionDie/DieLCR/CollisionShape3D
-#@onready var die_exit_lock_check = $ExitLockCheckDie/DieLocked/CollisionShape3D
-#@onready var die_primary = $PrimaryDie/DieNumberedPrimary/CollisionShape3D
-#@onready var die_secondary = $SecondaryDie/DieNumberedSecondary/CollisionShape3D
-#@onready var die_d3 = $D3Die/DieD3/CollisionShape3D
 
 
 @onready var button_throw_xy = $RoomSizeDice/XYThrowButton
@@ -32,62 +11,37 @@ extends Node3D
 @onready var button_throw_secondary = $SecondaryDie/SecondaryThrowButton
 @onready var button_throw_d3 = $D3Die/D3ThrowButton
 
+@onready var x_result_label = %DiceCanvas/XResultLabel
+@onready var y_result_label = %DiceCanvas/YResultLabel
+@onready var x_result_add_label = %DiceCanvas/XResultAddLabel
+@onready var y_result_add_label = %DiceCanvas/YResultAddLabel
 
+static var room_size_x_roll_int : int = 0
+static var room_size_y_roll_int : int = 0
+static var room_size_x_add_int : int = 0
+static var room_size_y_add_int : int = 0
+static var room_size_x_int : int = 0
+static var room_size_y_int : int = 0
+static var doubles_primary_int : int = 0
+static var doubles_secondary_int : int = 0
+static var room_number_of_exits_int : int = 0
+static var room_exit_direction_int : int = 0
+static var door_lock_status_int : int = 0
+static var primary_die_int : int = 0
+static var secondary_die_int : int = 0
+static var d3_die_int : int = 0
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
-	# For all Rigidbody3D in DiceTray, set collision to false
-	#die_dx.set_collision_layer_value ( 3, true)
-	#die_dy.set_collision_layer_value (3, true)
-	#die_num_exits.set_collision_layer_value ( 3, true)
-	#die_double_primary.set_collision_layer_value (3, true)
-	#die_double_secondary.set_collision_layer_value (3, true)
-	#die_exit_direction.set_collision_layer_value ( 3, true)
-	#die_exit_lock_check.set_collision_layer_value ( 3, true)
-	#die_primary.set_collision_layer_value ( 3, true)
-	#die_secondary.set_collision_layer_value ( 3, true)
-	#die_d3.set_collision_layer_value ( 3, true)
-	
-	die_dx.set_collision_layer_value ( 2, false)
-	die_dy.set_collision_layer_value (2, false)
-	die_num_exits.set_collision_layer_value (2, false)
-	die_double_primary.set_collision_layer_value (2, false)
-	die_double_secondary.set_collision_layer_value (2, false)
-	die_exit_direction.set_collision_layer_value ( 2, false)
-	die_exit_lock_check.set_collision_layer_value ( 2, false)
-	die_primary.set_collision_layer_value ( 2, false)
-	die_secondary.set_collision_layer_value ( 2, false)
-	die_d3.set_collision_layer_value ( 2, false)
-	
-	die_dx.set_collision_mask_value(2,false)
-	die_dy.set_collision_mask_value(2,false)
-	die_num_exits.set_collision_mask_value(2,false)
-	die_double_primary.set_collision_mask_value(2,false)
-	die_double_secondary.set_collision_mask_value(2,false)
-	die_exit_direction.set_collision_mask_value(2,false)
-	die_exit_lock_check.set_collision_mask_value(2,false)
-	die_primary.set_collision_mask_value(2,false)
-	die_secondary.set_collision_mask_value(2,false)
-	die_d3.set_collision_mask_value(2,false)
+	# For all Rigidbody3D in DiceTray, set collision to false so you can roll 
+	# through docked dice
+	for RigidBody3d in get_tree().get_nodes_in_group("Dice") :
+		RigidBody3d.set_collision_layer_value ( 2, false)
+		RigidBody3d.set_collision_mask_value ( 2, false)
 	
 	
-	
-	#die_dx.disabled = true
-	#die_dy.disabled = true
-	#die_num_exits.disabled = true
-	#die_double_primary.disabled = true
-	#die_double_secondary.disabled = true
-	#die_exit_direction.disabled = true
-	#die_exit_lock_check.disabled = true
-	#die_primary.disabled = true
-	#die_secondary.disabled = true
-	#die_d3.disabled = true
-	
-	
-
-
 # Ensure throw buttons can be clicked
 	button_throw_xy.visible = true
 	button_throw_xy2.visible = true
@@ -98,4 +52,16 @@ func _ready():
 	button_throw_secondary.visible = true
 	button_throw_d3.visible = true
 	
+
+func _on_room_dimension_roll_started():
+	x_result_label.text = ""
+	y_result_label.text = ""
+	x_result_add_label.text = ""
+	y_result_add_label.text = ""
+	room_size_x_roll_int = 0
+	room_size_y_roll_int = 0
+	room_size_x_add_int = 0
+	room_size_y_add_int = 0
+	room_size_x_int = 0
+	room_size_y_int = 0
 
