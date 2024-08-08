@@ -124,24 +124,24 @@ script = ExtResource("3_1vut0")
 [node name="DieDXDim" parent="DiceTray/RoomSizeDice" groups=["RoomSizeDice"] instance=ExtResource("5_rrt17")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.8, 0.2)
-collision_layer = 4
-collision_mask = 3
+collision_layer = 0
+collision_mask = 7
 mass = 10.0
 gravity_scale = 2.0
 
 [node name="DieDYDim" parent="DiceTray/RoomSizeDice" groups=["Dice", "RoomSizeDice"] instance=ExtResource("6_pkkkg")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.8, 0.4)
-collision_layer = 4
-collision_mask = 3
+collision_layer = 0
+collision_mask = 7
 mass = 10.0
 gravity_scale = 2.0
 
 [node name="DieDoorPics" parent="DiceTray/RoomSizeDice" groups=["Dice", "RoomSizeDice"] instance=ExtResource("2_doy3w")]
 unique_name_in_owner = true
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -0.3, 0.8, 0.6)
-collision_layer = 4
-collision_mask = 3
+collision_layer = 0
+collision_mask = 7
 mass = 10.0
 gravity_scale = 2.0
 script = ExtResource("5_be0xo")
@@ -183,14 +183,16 @@ mouse_default_cursor_shape = 2
 [node name="DieDoublePrimary" parent="DiceTray/DoublesDice" groups=["Dice", "DoubleDice"] instance=ExtResource("10_whr8r")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0.2)
-collision_mask = 3
+collision_layer = 0
+collision_mask = 7
 mass = 10.0
 gravity_scale = 2.0
 
 [node name="DieDoubleSecondary" parent="DiceTray/DoublesDice" groups=["Dice", "DoubleDice"] instance=ExtResource("9_7pahk")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0.4)
-collision_mask = 3
+collision_layer = 0
+collision_mask = 7
 mass = 10.0
 gravity_scale = 2.0
 
@@ -213,8 +215,8 @@ mouse_default_cursor_shape = 2
 [node name="DieLCR" parent="DiceTray/RoomExitDirectionDie" groups=["Dice"] instance=ExtResource("4_yene3")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.8, 0.6)
-collision_layer = 4
-collision_mask = 3
+collision_layer = 0
+collision_mask = 7
 mass = 10.0
 script = ExtResource("5_be0xo")
 
@@ -236,8 +238,8 @@ mouse_default_cursor_shape = 2
 [node name="DieLocked" parent="DiceTray/ExitLockCheckDie" groups=["Dice"] instance=ExtResource("4_wvsjv")]
 unique_name_in_owner = true
 transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 0.1, 0.8, 0.6)
-collision_layer = 4
-collision_mask = 3
+collision_layer = 0
+collision_mask = 7
 mass = 10.0
 gravity_scale = 2.0
 script = ExtResource("5_be0xo")
@@ -260,8 +262,8 @@ mouse_default_cursor_shape = 2
 [node name="DiePrimaryNumbered" parent="DiceTray/PrimaryDie" groups=["Dice"] instance=ExtResource("11_xvj32")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.8, 0.2)
-collision_layer = 4
-collision_mask = 3
+collision_layer = 0
+collision_mask = 7
 mass = 10.0
 gravity_scale = 2.0
 script = ExtResource("5_be0xo")
@@ -283,8 +285,8 @@ mouse_default_cursor_shape = 2
 [node name="DieSecondaryNumbered" parent="DiceTray/SecondaryDie" groups=["Dice"] instance=ExtResource("12_lylh5")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.8, 0.4)
-collision_layer = 4
-collision_mask = 3
+collision_layer = 0
+collision_mask = 7
 mass = 10.0
 gravity_scale = 2.0
 script = ExtResource("5_be0xo")
@@ -306,8 +308,8 @@ mouse_default_cursor_shape = 2
 [node name="DieD3" parent="DiceTray/D3Die" groups=["Dice"] instance=ExtResource("13_sq0i1")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.8, 0.6)
-collision_layer = 4
-collision_mask = 3
+collision_layer = 0
+collision_mask = 7
 mass = 10.0
 gravity_scale = 2.0
 freeze = true
@@ -334,6 +336,7 @@ skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_u08sl")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="DiceTray/TrayModel/TableBackstop"]
+collision_mask = 4
 physics_material_override = SubResource("PhysicsMaterial_4piwt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DiceTray/TrayModel/TableBackstop/StaticBody3D"]
@@ -347,6 +350,7 @@ skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_u08sl")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="DiceTray/TrayModel/TableRight"]
+collision_mask = 4
 physics_material_override = SubResource("PhysicsMaterial_4piwt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DiceTray/TrayModel/TableRight/StaticBody3D"]
@@ -360,6 +364,7 @@ skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_u08sl")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="DiceTray/TrayModel/TableLeft"]
+collision_layer = 4
 physics_material_override = SubResource("PhysicsMaterial_4piwt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DiceTray/TrayModel/TableLeft/StaticBody3D"]
@@ -374,6 +379,7 @@ skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_xr2f7")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="DiceTray/TrayModel/TableFront"]
+collision_mask = 4
 physics_material_override = SubResource("PhysicsMaterial_4piwt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DiceTray/TrayModel/TableFront/StaticBody3D"]

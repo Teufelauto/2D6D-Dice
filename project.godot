@@ -45,7 +45,7 @@ window/ios/hide_status_bar=false
 2d_render/layer_10="D3 Button"
 3d_physics/layer_1="Dice Tray"
 3d_physics/layer_2="Active Dice"
-3d_physics/layer_3="Inactive Dice"
+3d_physics/layer_3="Dice Tray Sides"
 
 [physics]
 
