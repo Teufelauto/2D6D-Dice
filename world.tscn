@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://dx5jaq5nccohx"]
+[gd_scene load_steps=23 format=3 uid="uid://dx5jaq5nccohx"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_8c8ky"]
 [ext_resource type="Script" path="res://DiceTray.gd" id="2_bf81o"]
 [ext_resource type="PackedScene" uid="uid://dwlkevdio50dl" path="res://Dice Models/Door Pics/die_door_pics.tscn" id="2_doy3w"]
+[ext_resource type="Script" path="res://RoomRectangleLine2D.gd" id="3_1vut0"]
 [ext_resource type="PackedScene" uid="uid://mnm1600ha20s" path="res://Dice Models/Door Locked/die_locked.tscn" id="4_wvsjv"]
 [ext_resource type="PackedScene" uid="uid://b5m3t0qb8cysk" path="res://Dice Models/Left Right Center Die/die_lcr.tscn" id="4_yene3"]
 [ext_resource type="Script" path="res://Dice Models/Die.gd" id="5_be0xo"]
@@ -65,10 +66,10 @@ horizontal_alignment = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 32.0
-offset_top = 515.0
-offset_right = -203.0
-offset_bottom = -302.0
+offset_left = 74.0
+offset_top = 700.0
+offset_right = -355.0
+offset_bottom = -115.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 60
@@ -77,37 +78,46 @@ theme_override_font_sizes/font_size = 60
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 32.0
-offset_top = 609.0
-offset_right = -212.0
-offset_bottom = -208.0
+offset_left = 6.0
+offset_top = 645.0
+offset_right = -434.0
+offset_bottom = -168.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="PrimaryLabel" type="Label" parent="DiceTray/DiceCanvas"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_top = 19.0
+offset_right = -438.0
+offset_bottom = -798.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 60
 
-[node name="XResultAddLabel" type="Label" parent="DiceTray/DiceCanvas"]
+[node name="SecondaryLabel" type="Label" parent="DiceTray/DiceCanvas"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 178.0
-offset_top = 523.0
-offset_right = -288.0
-offset_bottom = -294.0
+offset_left = 223.0
+offset_top = 26.0
+offset_right = -243.0
+offset_bottom = -791.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 60
 
-[node name="YResultAddLabel" type="Label" parent="DiceTray/DiceCanvas"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 180.0
-offset_top = 613.0
-offset_right = -286.0
-offset_bottom = -204.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 60
+[node name="RoomRectangleLine2D" type="Line2D" parent="DiceTray/DiceCanvas"]
+position = Vector2(80, 492)
+points = PackedVector2Array(0, 220, 220, 220, 220, 0, 0, 0)
+closed = true
+width = 5.0
+script = ExtResource("3_1vut0")
 
 [node name="RoomSizeDice" type="Node3D" parent="DiceTray"]
 
@@ -423,6 +433,8 @@ spot_angle_attenuation = 0.25
 [node name="OmniLight3D" type="OmniLight3D" parent="Cam n Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13718, 4.67024, -1.29338)
 
+[connection signal="clear_room_rectangle" from="DiceTray" to="DiceTray/DiceCanvas/RoomRectangleLine2D" method="_on_dice_tray_clear_room_rectangle"]
+[connection signal="resize_room_rectangle" from="DiceTray" to="DiceTray/DiceCanvas/RoomRectangleLine2D" method="resize_room_rectangle"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDXDim" to="DiceTray/RoomSizeDice/DieDXDim" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDXDim" to="DiceTray/RoomSizeDice/DieDYDim" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDXDim" to="DiceTray/RoomSizeDice/DieDoorPics" method="_on_input_event"]
