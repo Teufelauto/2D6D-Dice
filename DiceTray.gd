@@ -16,6 +16,7 @@ extends Node3D
 @onready var y_result_label = %DiceCanvas/YResultLabel
 @onready var primary_label = %DiceCanvas/PrimaryLabel
 @onready var secondary_label = %DiceCanvas/SecondaryLabel
+@onready var exit_number_label = $DiceCanvas/ExitNumberLabel
 
 static var room_size_x_roll_int : int = 0
 static var room_size_y_roll_int : int = 0
@@ -71,6 +72,7 @@ func _on_room_dimension_roll_started():
 	y_result_label.text = ""
 	primary_label.text = ""
 	secondary_label.text = ""
+	exit_number_label.text = ""
 	room_size_x_roll_int = 0
 	room_size_y_roll_int = 0
 	room_size_x_add_int = 0
@@ -130,8 +132,8 @@ func _determine_room_doubles():
 		resize_room_rectangle.emit(room_size_x_roll_int,room_size_y_roll_int)
 	
 func _room_doubles_done():
-	room_size_rolled_doubles_bool = false
 	center_result_label.text = ""
+	room_size_rolled_doubles_bool = false
 	room_size_x_int = room_size_x_roll_int + room_size_x_add_int
 	room_size_y_int = room_size_y_roll_int + room_size_y_add_int
 	x_result_label.text = str(room_size_x_int)
@@ -179,6 +181,10 @@ func _on_die_double_secondary_roll_finished(die_value):
 
 func _on_die_door_pics_roll_finished(die_value):
 	room_number_of_exits_int = die_value
+	if room_number_of_exits_int == 1:
+		exit_number_label.text = str(room_number_of_exits_int) + " Exit"
+	else: 
+		exit_number_label.text = str(room_number_of_exits_int) + " Exits"
 	
 	
 func _on_die_lcr_roll_finished(die_value):

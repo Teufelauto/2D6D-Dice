@@ -86,10 +86,12 @@ mesh = SubResource("ArrayMesh_pjfx0")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+visible = false
 shape = ExtResource("1_cs02s")
 
 [node name="Raycasts" type="Node3D" parent="."]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
+visible = false
 
 [node name="SixSidedRayCast1" parent="Raycasts" instance=ExtResource("2_iy53e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
