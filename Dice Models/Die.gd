@@ -18,9 +18,10 @@ extends RigidBody3D
 
 
 
+
+@export var roll_strength = 35    # -------- Toss Strength ------------------
+@export var spin_strength = 1.0   # ---------- Spin It ------------------------
 var start_pos
-var roll_strength = 35    # -------- Toss Strength ------------------
-var spin_strength = 0.9   # ---------- Spin It ------------------------
 var is_rolling = false
 
 # For displaying roll results
@@ -52,8 +53,13 @@ func _roll():
 	transform.basis = Basis(Vector3.UP, randf_range(0, 2* PI)) * transform.basis
 	transform.basis = Basis(Vector3.FORWARD, randf_range(0, 2* PI)) * transform.basis
 	
+	
+	#transform.basis = Basis(Vector3.RIGHT, randf_range(0, 2* PI)) * transform.basis
+	#transform.basis = Basis(Vector3.UP, randf_range(0, 2* PI)) * transform.basis
+	#transform.basis = Basis(Vector3.FORWARD, randf_range(0, 2* PI)) * transform.basis
+	
 	# Random Throw Impulse  --- Change vector for direction
-	var throw_vector = Vector3(randf_range(-.2, .2), 0, randf_range(-1, -.8)).normalized()
+	var throw_vector = Vector3(randf_range(-.4, .4), 0, randf_range(-1, -.8)).normalized()
 	angular_velocity = throw_vector * roll_strength * spin_strength
 	apply_central_impulse(throw_vector * roll_strength)
 	is_rolling = true

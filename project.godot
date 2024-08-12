@@ -46,11 +46,12 @@ window/ios/hide_status_bar=false
 3d_physics/layer_1="Dice Tray"
 3d_physics/layer_2="Active Dice"
 3d_physics/layer_3="Dice Tray Sides"
+3d_physics/layer_9="Tray Bottom for Raycast"
 
 [physics]
 
 3d/physics_engine="Rapier3D"
-3d/default_gravity=6.0
+3d/default_gravity=8.0
 3d/time_before_sleep=0.1
 
 [rendering]

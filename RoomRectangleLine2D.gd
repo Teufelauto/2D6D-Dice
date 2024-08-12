@@ -2,8 +2,8 @@ class_name RoomRectangleDrawing
 extends Line2D
 
 
-var rectangle_size_factor : int = 20 # pixels wide that one rolled on die will be
-var rectangle_max_size : int = rectangle_size_factor * 11 # max size of room in pixels (5,5 then 6,6 is max sized room that can be rolled)
+@export var rectangle_size_factor : int = 20 # pixels wide that one rolled on die will be
+@export var rectangle_max_size : int = rectangle_size_factor * 11 # max size of room in pixels (5,5 then 6,6 is max sized room that can be rolled)
 
 
 # resize the drawing for the room dice dimensioned rectangle

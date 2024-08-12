@@ -25,37 +25,43 @@ transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 
 [node name="SixSidedRayCast1" parent="Raycasts" instance=ExtResource("4_gyqed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
-target_position = Vector3(0, 0, -0.1)
+target_position = Vector3(0, 0, -0.05)
+collision_mask = 256
 hit_from_inside = true
 opposite_side = 6
 
 [node name="SixSidedRayCast2" parent="Raycasts" instance=ExtResource("4_gyqed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-target_position = Vector3(0, 0.1, 0)
+target_position = Vector3(0, 0.05, 0)
+collision_mask = 256
 hit_from_inside = true
 opposite_side = 5
 
 [node name="SixSidedRayCast3" parent="Raycasts" instance=ExtResource("4_gyqed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
-target_position = Vector3(-0.1, 0, 0)
+target_position = Vector3(-0.05, 0, 0)
+collision_mask = 256
 hit_from_inside = true
 opposite_side = 4
 
 [node name="SixSidedRayCast4" parent="Raycasts" instance=ExtResource("4_gyqed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
-target_position = Vector3(0.1, 0, 0)
+target_position = Vector3(0.05, 0, 0)
+collision_mask = 256
 hit_from_inside = true
 opposite_side = 3
 
 [node name="SixSidedRayCast5" parent="Raycasts" instance=ExtResource("4_gyqed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-target_position = Vector3(0, -0.1, 0)
+target_position = Vector3(0, -0.05, 0)
+collision_mask = 256
 hit_from_inside = true
 opposite_side = 2
 
 [node name="SixSidedRayCast6" parent="Raycasts" instance=ExtResource("4_gyqed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
-target_position = Vector3(0, 0, 0.1)
+target_position = Vector3(0, 0, 0.05)
+collision_mask = 256
 hit_from_inside = true
 opposite_side = 1
 
