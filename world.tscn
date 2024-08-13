@@ -51,9 +51,12 @@ follow_viewport_enabled = true
 
 [node name="D66Control" type="Control" parent="DiceTray/DiceCanvas"]
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_bottom = -730.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="D66PrimaryPolygon2D" type="Polygon2D" parent="DiceTray/DiceCanvas/D66Control"]
 self_modulate = Color(0, 1, 1, 1)
@@ -102,9 +105,12 @@ horizontal_alignment = 1
 
 [node name="TwoD6Control" type="Control" parent="DiceTray/DiceCanvas"]
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_bottom = -730.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TwoD6PrimaryPolygon2D2" type="Polygon2D" parent="DiceTray/DiceCanvas/TwoD6Control"]
 self_modulate = Color(0, 0.390029, 0.890217, 1)
