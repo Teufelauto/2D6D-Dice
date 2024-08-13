@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c4vvr6o1gdvcn"
-path="res://.godot/imported/Die D3.glb-7d3bf771e062658d4c7af262aa186de6.scn"
+uid="uid://chobfas67bkml"
+path="res://.godot/imported/DieLocks.glb-98e53f9d3d08c438ccf264edc69d57f2.scn"
 
 [deps]
 
-source_file="res://Dice Models/Three Sided/Die D3.glb"
-dest_files=["res://.godot/imported/Die D3.glb-7d3bf771e062658d4c7af262aa186de6.scn"]
+source_file="res://Dice Models/DieLocks.glb"
+dest_files=["res://.godot/imported/DieLocks.glb-98e53f9d3d08c438ccf264edc69d57f2.scn"]
 
 [params]
 
