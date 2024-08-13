@@ -49,6 +49,107 @@ unique_name_in_owner = true
 layer = 2
 follow_viewport_enabled = true
 
+[node name="D66Control" type="Control" parent="DiceTray/DiceCanvas"]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -730.0
+
+[node name="D66PrimaryPolygon2D" type="Polygon2D" parent="DiceTray/DiceCanvas/D66Control"]
+self_modulate = Color(0, 1, 1, 1)
+position = Vector2(42, 25)
+scale = Vector2(7, 7)
+antialiased = true
+polygon = PackedVector2Array(0, 0, 0, 10, 10, 10, 10, 0)
+
+[node name="D66SecondaryPolygon2D" type="Polygon2D" parent="DiceTray/DiceCanvas/D66Control"]
+self_modulate = Color(0.992157, 0.607843, 0, 1)
+position = Vector2(122, 25)
+scale = Vector2(7, 7)
+antialiased = true
+polygon = PackedVector2Array(0, 0, 0, 10, 10, 10, 10, 0)
+
+[node name="D66PrimaryLabel" type="Label" parent="DiceTray/DiceCanvas/D66Control"]
+self_modulate = Color(0.521998, 0.462102, 0.204873, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = 15.0
+offset_right = -412.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 80
+text = "0"
+horizontal_alignment = 1
+
+[node name="D66SecondaryLabel" type="Label" parent="DiceTray/DiceCanvas/D66Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 140.0
+offset_top = 15.0
+offset_right = -332.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 80
+text = "0"
+horizontal_alignment = 1
+
+[node name="TwoD6Control" type="Control" parent="DiceTray/DiceCanvas"]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -730.0
+
+[node name="TwoD6PrimaryPolygon2D2" type="Polygon2D" parent="DiceTray/DiceCanvas/TwoD6Control"]
+self_modulate = Color(0, 0.390029, 0.890217, 1)
+position = Vector2(282, 25)
+scale = Vector2(7, 7)
+antialiased = true
+polygon = PackedVector2Array(0, 0, 0, 10, 10, 10, 10, 0)
+
+[node name="TwoD6SecondaryPolygon2D2" type="Polygon2D" parent="DiceTray/DiceCanvas/TwoD6Control"]
+self_modulate = Color(0.992157, 0.133333, 0, 1)
+position = Vector2(362, 25)
+scale = Vector2(7, 7)
+antialiased = true
+polygon = PackedVector2Array(0, 0, 0, 10, 10, 10, 10, 0)
+
+[node name="PrimaryLabel" type="Label" parent="DiceTray/DiceCanvas/TwoD6Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 300.0
+offset_top = 15.0
+offset_right = -172.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 80
+text = "0"
+horizontal_alignment = 1
+
+[node name="SecondaryLabel" type="Label" parent="DiceTray/DiceCanvas/TwoD6Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 380.0
+offset_top = 15.0
+offset_right = -92.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 80
+text = "0"
+horizontal_alignment = 1
+
 [node name="CenterResultLabel" type="Label" parent="DiceTray/DiceCanvas"]
 anchors_preset = 5
 anchor_left = 0.5
@@ -100,30 +201,6 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 60
 vertical_alignment = 2
 
-[node name="PrimaryLabel" type="Label" parent="DiceTray/DiceCanvas"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 28.0
-offset_top = 19.0
-offset_right = -438.0
-offset_bottom = -798.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 60
-
-[node name="SecondaryLabel" type="Label" parent="DiceTray/DiceCanvas"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 223.0
-offset_top = 26.0
-offset_right = -243.0
-offset_bottom = -791.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 60
-
 [node name="RoomRectangleLine2D" type="Line2D" parent="DiceTray/DiceCanvas"]
 position = Vector2(80, 492)
 points = PackedVector2Array(0, 220, 220, 220, 220, 0, 0, 0)
@@ -173,6 +250,7 @@ grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_default_cursor_shape = 2
+flat = true
 
 [node name="XYThrowButton2" type="Button" parent="DiceTray/RoomSizeDice"]
 light_mask = 8
@@ -189,6 +267,7 @@ grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_default_cursor_shape = 2
+flat = true
 
 [node name="DoublesDice" type="Node3D" parent="DiceTray"]
 
@@ -221,6 +300,7 @@ offset_bottom = -187.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
+flat = true
 
 [node name="RoomExitDirectionDie" type="Node3D" parent="DiceTray"]
 
@@ -244,6 +324,7 @@ offset_bottom = -82.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
+flat = true
 
 [node name="ExitLockCheckDie" type="Node3D" parent="DiceTray"]
 
@@ -268,6 +349,7 @@ offset_bottom = -82.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
+flat = true
 
 [node name="PrimaryDie" type="Node3D" parent="DiceTray"]
 
@@ -291,6 +373,7 @@ offset_bottom = -293.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
+flat = true
 
 [node name="SecondaryDie" type="Node3D" parent="DiceTray"]
 
@@ -314,6 +397,7 @@ offset_bottom = -193.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
+flat = true
 
 [node name="D3Die" type="Node3D" parent="DiceTray"]
 
@@ -338,6 +422,7 @@ offset_bottom = -82.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
+flat = true
 
 [node name="TrayModel" type="Node3D" parent="DiceTray"]
 
