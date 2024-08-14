@@ -2,7 +2,7 @@
 
 [ext_resource type="Shape3D" uid="uid://cfyl03tbplsu" path="res://DiceTrayData/Rounded_Die_Collision_Geometry.tres" id="1_cs02s"]
 [ext_resource type="PhysicsMaterial" uid="uid://d1euamslrd3qy" path="res://DiceTrayData/Die Phys Material.tres" id="1_khf0n"]
-[ext_resource type="PackedScene" uid="uid://cn2gw4ss76tcu" path="res://DiceTrayData/Six Sided RayCast.tscn" id="2_iy53e"]
+[ext_resource type="PackedScene" uid="uid://cn2gw4ss76tcu" path="res://DiceTrayData/DiceScenes/Six Sided RayCast.tscn" id="2_iy53e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hlixo"]
 resource_name = "Material.001"

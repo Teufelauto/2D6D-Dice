@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dpj01oa7wrh7g"]
 
-[ext_resource type="PackedScene" uid="uid://cn2gw4ss76tcu" path="res://DiceTrayData/Six Sided RayCast.tscn" id="1_eott6"]
+[ext_resource type="PackedScene" uid="uid://cn2gw4ss76tcu" path="res://DiceTrayData/DiceScenes/Six Sided RayCast.tscn" id="1_eott6"]
 [ext_resource type="PhysicsMaterial" uid="uid://d1euamslrd3qy" path="res://DiceTrayData/Die Phys Material.tres" id="1_omm11"]
 
 
