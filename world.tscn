@@ -1,18 +1,18 @@
 [gd_scene load_steps=22 format=3 uid="uid://dx5jaq5nccohx"]
 
-[ext_resource type="Script" path="res://DiceTray.gd" id="2_bf81o"]
-[ext_resource type="PackedScene" uid="uid://dwlkevdio50dl" path="res://Dice Models/Door Pics/die_door_pics.tscn" id="2_doy3w"]
-[ext_resource type="Script" path="res://RoomRectangleLine2D.gd" id="3_1vut0"]
-[ext_resource type="PackedScene" uid="uid://mnm1600ha20s" path="res://Dice Models/Door Locked/die_locked.tscn" id="4_wvsjv"]
-[ext_resource type="PackedScene" uid="uid://b5m3t0qb8cysk" path="res://Dice Models/Left Right Center Die/die_lcr.tscn" id="4_yene3"]
-[ext_resource type="Script" path="res://Dice Models/Die.gd" id="5_be0xo"]
-[ext_resource type="PackedScene" uid="uid://c1sbbpswt68eq" path="res://Dice Models/X Dim Die/D X Dim.tscn" id="5_rrt17"]
-[ext_resource type="PackedScene" uid="uid://ua53ly3yv0sv" path="res://Dice Models/Y Dim Die/D Y Dim.tscn" id="6_pkkkg"]
-[ext_resource type="PackedScene" uid="uid://4jtmcfbcxwts" path="res://Dice Models/Secondary Num Add/D Secondary Add Num.tscn" id="9_7pahk"]
-[ext_resource type="PackedScene" uid="uid://xh1dxg5lm7mp" path="res://Dice Models/Primary Num Add/D Primary Add Num.tscn" id="10_whr8r"]
-[ext_resource type="PackedScene" uid="uid://crf5mdkv3587n" path="res://Dice Models/Primary Num/die_numbered_primary.tscn" id="11_xvj32"]
-[ext_resource type="PackedScene" uid="uid://osco2cs718d7" path="res://Dice Models/Secondary Num/die_numbered_secondary.tscn" id="12_lylh5"]
-[ext_resource type="PackedScene" uid="uid://bi35saefl3rd4" path="res://Dice Models/Three Sided/die_d_3.tscn" id="13_sq0i1"]
+[ext_resource type="Script" path="res://DiceTrayData/DiceTray.gd" id="2_bf81o"]
+[ext_resource type="PackedScene" uid="uid://dwlkevdio50dl" path="res://DiceTrayData/die_door_pics.tscn" id="2_doy3w"]
+[ext_resource type="Script" path="res://DiceTrayData/RoomRectangleLine2D.gd" id="3_1vut0"]
+[ext_resource type="PackedScene" uid="uid://mnm1600ha20s" path="res://DiceTrayData/die_locked.tscn" id="4_wvsjv"]
+[ext_resource type="PackedScene" uid="uid://b5m3t0qb8cysk" path="res://DiceTrayData/die_lcr.tscn" id="4_yene3"]
+[ext_resource type="Script" path="res://DiceTrayData/Die.gd" id="5_be0xo"]
+[ext_resource type="PackedScene" uid="uid://c1sbbpswt68eq" path="res://DiceTrayData/D X Dim.tscn" id="5_rrt17"]
+[ext_resource type="PackedScene" uid="uid://ua53ly3yv0sv" path="res://DiceTrayData/D Y Dim.tscn" id="6_pkkkg"]
+[ext_resource type="PackedScene" uid="uid://4jtmcfbcxwts" path="res://DiceTrayData/D Secondary Add Num.tscn" id="9_7pahk"]
+[ext_resource type="PackedScene" uid="uid://xh1dxg5lm7mp" path="res://DiceTrayData/D Primary Add Num.tscn" id="10_whr8r"]
+[ext_resource type="PackedScene" uid="uid://crf5mdkv3587n" path="res://DiceTrayData/die_numbered_primary.tscn" id="11_xvj32"]
+[ext_resource type="PackedScene" uid="uid://osco2cs718d7" path="res://DiceTrayData/die_numbered_secondary.tscn" id="12_lylh5"]
+[ext_resource type="PackedScene" uid="uid://bi35saefl3rd4" path="res://DiceTrayData/die_d_3.tscn" id="13_sq0i1"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_dtie3"]
 
@@ -216,7 +216,7 @@ script = ExtResource("3_1vut0")
 
 [node name="RoomSizeDice" type="Node3D" parent="DiceTray"]
 
-[node name="DieDXDim" parent="DiceTray/RoomSizeDice" groups=["RoomSizeDice"] instance=ExtResource("5_rrt17")]
+[node name="DieDXDim" parent="DiceTray/RoomSizeDice" groups=["Dice", "RoomSizeDice"] instance=ExtResource("5_rrt17")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.8, 0.2)
 collision_layer = 0
