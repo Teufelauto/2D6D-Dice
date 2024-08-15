@@ -15,12 +15,9 @@ extends RigidBody3D
 @onready var button_throw_d3 = %DiceTray/D3Die/D3ThrowButton
 
 
-
-
-
-
 @export var roll_strength = 35    # -------- Toss Strength ------------------
 @export var spin_strength = 1.0   # ---------- Spin It ------------------------
+
 var start_pos
 var is_rolling = false
 
@@ -42,8 +39,8 @@ func _roll():
 	linear_velocity = Vector3.ZERO
 	angular_velocity = Vector3.ZERO
 	
-	self.set_collision_layer_value ( 2, true)
-	self.set_collision_mask_value(2,true)
+	self.set_collision_layer_value( 2, true)
+	self.set_collision_mask_value( 2, true)
 	
 	# Clear Roll Results
 	roll_started.emit()
@@ -53,10 +50,6 @@ func _roll():
 	transform.basis = Basis(Vector3.UP, randf_range(0, 2* PI)) * transform.basis
 	transform.basis = Basis(Vector3.FORWARD, randf_range(0, 2* PI)) * transform.basis
 	
-	
-	#transform.basis = Basis(Vector3.RIGHT, randf_range(0, 2* PI)) * transform.basis
-	#transform.basis = Basis(Vector3.UP, randf_range(0, 2* PI)) * transform.basis
-	#transform.basis = Basis(Vector3.FORWARD, randf_range(0, 2* PI)) * transform.basis
 	
 	# Random Throw Impulse  --- Change vector for direction
 	var throw_vector = Vector3(randf_range(-.4, .4), 0, randf_range(-1, -.8)).normalized()
@@ -82,8 +75,8 @@ func _on_sleeping_state_changed():
 # Put the dice back in the home position.
 func _return_die():
 	# Return the dice to home
-	self.set_collision_layer_value ( 2, false)
-	self.set_collision_mask_value(2,false)
+	self.set_collision_layer_value( 2, false)
+	self.set_collision_mask_value( 2, false)
 	linear_velocity = Vector3.ZERO
 	angular_velocity = Vector3.ZERO
 	transform.origin = start_pos
@@ -122,8 +115,8 @@ func _on_input_event(_camera, event, _position, _normal, _shape_idx):
 #---------------------------- ROLL DICE FROM HOME ------------------------------
 func _on_xy_throw_button_pressed():
 	if !is_rolling:
-		button_throw_xy.visible = false
-		button_throw_xy2.visible = false
+		button_throw_xy.visible = false # Main
+		button_throw_xy2.visible = false #  exit die location
 		_roll()
 
 

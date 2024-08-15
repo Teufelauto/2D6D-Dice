@@ -14,9 +14,15 @@ extends Node3D
 @onready var center_result_label = %DiceCanvas/CenterResultLabel
 @onready var x_result_label = %DiceCanvas/XResultLabel
 @onready var y_result_label = %DiceCanvas/YResultLabel
-@onready var primary_label = %DiceCanvas/TwoD6Control/PrimaryLabel
-@onready var secondary_label = %DiceCanvas/TwoD6Control/SecondaryLabel
 @onready var exit_number_label = $DiceCanvas/ExitNumberLabel
+@onready var d_66_primary_label = $DiceCanvas/D66ScoreBoard/D66PrimaryLabel
+@onready var d_66_secondary_label = $DiceCanvas/D66ScoreBoard/D66SecondaryLabel
+@onready var primary_label = $DiceCanvas/TwoD6ScoreBoard/PrimaryLabel
+@onready var secondary_label = $DiceCanvas/TwoD6ScoreBoard/SecondaryLabel
+
+
+
+
 
 static var room_size_x_roll_int : int = 0
 static var room_size_y_roll_int : int = 0

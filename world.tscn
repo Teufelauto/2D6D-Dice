@@ -49,7 +49,8 @@ unique_name_in_owner = true
 layer = 2
 follow_viewport_enabled = true
 
-[node name="D66Control" type="Control" parent="DiceTray/DiceCanvas"]
+[node name="D66ScoreBoard" type="Control" parent="DiceTray/DiceCanvas"]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,21 +59,21 @@ offset_bottom = -730.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="D66PrimaryPolygon2D" type="Polygon2D" parent="DiceTray/DiceCanvas/D66Control"]
+[node name="D66PrimaryPolygon2D" type="Polygon2D" parent="DiceTray/DiceCanvas/D66ScoreBoard"]
 self_modulate = Color(0, 1, 1, 1)
 position = Vector2(42, 25)
 scale = Vector2(7, 7)
 antialiased = true
 polygon = PackedVector2Array(0, 0, 0, 10, 10, 10, 10, 0)
 
-[node name="D66SecondaryPolygon2D" type="Polygon2D" parent="DiceTray/DiceCanvas/D66Control"]
+[node name="D66SecondaryPolygon2D" type="Polygon2D" parent="DiceTray/DiceCanvas/D66ScoreBoard"]
 self_modulate = Color(0.992157, 0.607843, 0, 1)
 position = Vector2(122, 25)
 scale = Vector2(7, 7)
 antialiased = true
 polygon = PackedVector2Array(0, 0, 0, 10, 10, 10, 10, 0)
 
-[node name="D66PrimaryLabel" type="Label" parent="DiceTray/DiceCanvas/D66Control"]
+[node name="D66PrimaryLabel" type="Label" parent="DiceTray/DiceCanvas/D66ScoreBoard"]
 self_modulate = Color(0.521998, 0.462102, 0.204873, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -88,7 +89,7 @@ theme_override_font_sizes/font_size = 80
 text = "0"
 horizontal_alignment = 1
 
-[node name="D66SecondaryLabel" type="Label" parent="DiceTray/DiceCanvas/D66Control"]
+[node name="D66SecondaryLabel" type="Label" parent="DiceTray/DiceCanvas/D66ScoreBoard"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -103,7 +104,8 @@ theme_override_font_sizes/font_size = 80
 text = "0"
 horizontal_alignment = 1
 
-[node name="TwoD6Control" type="Control" parent="DiceTray/DiceCanvas"]
+[node name="TwoD6ScoreBoard" type="Control" parent="DiceTray/DiceCanvas"]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -112,21 +114,21 @@ offset_bottom = -730.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TwoD6PrimaryPolygon2D2" type="Polygon2D" parent="DiceTray/DiceCanvas/TwoD6Control"]
+[node name="TwoD6PrimaryPolygon2D2" type="Polygon2D" parent="DiceTray/DiceCanvas/TwoD6ScoreBoard"]
 self_modulate = Color(0, 0.390029, 0.890217, 1)
 position = Vector2(282, 25)
 scale = Vector2(7, 7)
 antialiased = true
 polygon = PackedVector2Array(0, 0, 0, 10, 10, 10, 10, 0)
 
-[node name="TwoD6SecondaryPolygon2D2" type="Polygon2D" parent="DiceTray/DiceCanvas/TwoD6Control"]
+[node name="TwoD6SecondaryPolygon2D2" type="Polygon2D" parent="DiceTray/DiceCanvas/TwoD6ScoreBoard"]
 self_modulate = Color(0.992157, 0.133333, 0, 1)
 position = Vector2(362, 25)
 scale = Vector2(7, 7)
 antialiased = true
 polygon = PackedVector2Array(0, 0, 0, 10, 10, 10, 10, 0)
 
-[node name="PrimaryLabel" type="Label" parent="DiceTray/DiceCanvas/TwoD6Control"]
+[node name="PrimaryLabel" type="Label" parent="DiceTray/DiceCanvas/TwoD6ScoreBoard"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -141,7 +143,7 @@ theme_override_font_sizes/font_size = 80
 text = "0"
 horizontal_alignment = 1
 
-[node name="SecondaryLabel" type="Label" parent="DiceTray/DiceCanvas/TwoD6Control"]
+[node name="SecondaryLabel" type="Label" parent="DiceTray/DiceCanvas/TwoD6ScoreBoard"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
