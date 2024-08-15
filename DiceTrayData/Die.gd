@@ -35,12 +35,14 @@ func _roll():
 	# Reset State
 	sleeping = false
 	freeze = false
+	lock_rotation = false
 	transform.origin = start_pos
 	linear_velocity = Vector3.ZERO
 	angular_velocity = Vector3.ZERO
 	
 	self.set_collision_layer_value( 2, true)
 	self.set_collision_mask_value( 2, true)
+	
 	
 	# Clear Roll Results
 	roll_started.emit()
@@ -66,6 +68,7 @@ func _on_sleeping_state_changed():
 			if raycast.is_colliding():
 				roll_finished.emit(raycast.opposite_side) # INT   Send out the data!
 				is_rolling = false
+				lock_rotation = true
 				landed_on_side = true
 		
 		if !landed_on_side: # Auto reroll if rests at angle
@@ -82,6 +85,7 @@ func _return_die():
 	transform.origin = start_pos
 	freeze = true
 	sleeping = true
+	lock_rotation = true
 	
 	# Clear Roll Results
 	roll_started.emit()

@@ -15,6 +15,7 @@ extends Node3D
 @onready var x_result_label = %DiceCanvas/XResultLabel
 @onready var y_result_label = %DiceCanvas/YResultLabel
 @onready var exit_number_label = $DiceCanvas/ExitNumberLabel
+
 @onready var d_66_primary_label = $DiceCanvas/D66ScoreBoard/D66PrimaryLabel
 @onready var d_66_secondary_label = $DiceCanvas/D66ScoreBoard/D66SecondaryLabel
 @onready var primary_label = $DiceCanvas/TwoD6ScoreBoard/PrimaryLabel
@@ -146,7 +147,7 @@ func _room_doubles_done():
 	x_result_label.text = str(room_size_x_int)
 	y_result_label.text = str(room_size_y_int)
 	resize_room_rectangle.emit(room_size_x_int,room_size_y_int)
-
+	
 
 func _on_die_dx_dim_roll_finished(die_value):
 	room_size_x_roll_int = die_value
