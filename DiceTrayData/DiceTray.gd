@@ -76,6 +76,8 @@ func _on_room_dimension_roll_started():
 	center_result_label.text = ""
 	x_result_label.text = ""
 	y_result_label.text = ""
+	d_66_primary_label.text = ""
+	d_66_secondary_label.text = ""
 	primary_label.text = ""
 	secondary_label.text = ""
 	exit_number_label.text = ""
@@ -215,5 +217,5 @@ func _on_die_d_3_roll_finished(die_value):
 	
 #-----------------------------------------------------------------------------
 
-
-
+func _on_exit_button_pressed():
+	get_tree().change_scene_to_file("res://DiceTrayData/dice_start_menu.tscn")

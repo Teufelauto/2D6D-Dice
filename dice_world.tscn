@@ -216,6 +216,17 @@ closed = true
 width = 5.0
 script = ExtResource("2_21tng")
 
+[node name="ExitButton" type="Button" parent="DiceTray/DiceCanvas"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -50.0
+offset_bottom = 50.0
+grow_horizontal = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 30
+text = "X"
+
 [node name="RoomSizeDice" type="Node3D" parent="DiceTray"]
 
 [node name="DieDXDim" parent="DiceTray/RoomSizeDice" groups=["Dice", "RoomSizeDice"] instance=ExtResource("3_kng4p")]
@@ -546,6 +557,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13718, 4.67024, -1.29338)
 
 [connection signal="clear_room_rectangle" from="DiceTray" to="DiceTray/DiceCanvas/RoomRectangleLine2D" method="_on_dice_tray_clear_room_rectangle"]
 [connection signal="resize_room_rectangle" from="DiceTray" to="DiceTray/DiceCanvas/RoomRectangleLine2D" method="resize_room_rectangle"]
+[connection signal="pressed" from="DiceTray/DiceCanvas/ExitButton" to="DiceTray" method="_on_exit_button_pressed"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDXDim" to="DiceTray/RoomSizeDice/DieDXDim" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDXDim" to="DiceTray/RoomSizeDice/DieDYDim" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDXDim" to="DiceTray/RoomSizeDice/DieDoorPics" method="_on_input_event"]
