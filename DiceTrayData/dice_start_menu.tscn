@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://ibb5xmdf4h4s"]
 
-[ext_resource type="Script" path="res://StartDiceMenu.gd" id="1_n4ex5"]
+[ext_resource type="Script" path="res://DiceTrayData/DiceStartMenu.gd" id="1_n4ex5"]
 
 [sub_resource type="Theme" id="Theme_1glhj"]
 
-[node name="StartDiceMenu" type="Control"]
+[node name="DiceStartMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
