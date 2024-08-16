@@ -516,9 +516,9 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 50
 text = "Pick Up All Dice"
 
-[node name="Cam n Lights" type="Node" parent="."]
+[node name="CamNLights" type="Node" parent="."]
 
-[node name="Camera3D" type="Camera3D" parent="Cam n Lights"]
+[node name="Camera3D" type="Camera3D" parent="CamNLights"]
 transform = Transform3D(1, 0, 0, 0, 0.42382, 0.905746, 0, -0.905746, 0.42382, 0, 5.06183, 1.9732)
 environment = SubResource("Environment_ospvs")
 attributes = SubResource("CameraAttributesPractical_bmajt")
@@ -526,14 +526,14 @@ fov = 20.0
 near = 3.0
 far = 50.0
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Cam n Lights"]
+[node name="SpotLight3D" type="SpotLight3D" parent="CamNLights"]
 transform = Transform3D(1, 0, 0, 0, 0.414121, 0.910222, 0, -0.910222, 0.414121, 0.256, 5.71334, 2.61793)
 light_energy = 1.896
 spot_range = 29.425
 spot_attenuation = 0.203064
 spot_angle_attenuation = 0.176777
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="Cam n Lights"]
+[node name="SpotLight3D2" type="SpotLight3D" parent="CamNLights"]
 transform = Transform3D(-0.215252, 0.638348, -0.739039, 0.0301943, 0.760767, 0.648322, 0.976092, 0.117238, -0.183032, -3.32477, 3.50071, -0.72213)
 light_energy = 0.232
 spot_range = 9.917
@@ -541,7 +541,7 @@ spot_attenuation = 0.450625
 spot_angle = 29.1231
 spot_angle_attenuation = 0.25
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Cam n Lights"]
+[node name="OmniLight3D" type="OmniLight3D" parent="CamNLights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13718, 4.67024, -1.29338)
 
 [connection signal="clear_room_rectangle" from="DiceTray" to="DiceTray/DiceCanvas/RoomRectangleLine2D" method="_on_dice_tray_clear_room_rectangle"]
