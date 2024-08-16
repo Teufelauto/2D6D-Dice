@@ -44,6 +44,8 @@ static var primary_die_int : int = 0
 static var secondary_die_int : int = 0
 static var d3_die_int : int = 0
 
+@export var next_roll_returns_dice_home : bool = false
+@export var dice_in_home_position : bool = true
 
 signal resize_room_rectangle(x_size,y_size) # report room dimensions to drawing funcion
 signal clear_room_rectangle() # report to make invisible
@@ -70,7 +72,7 @@ func _on_room_dimension_roll_started():
 	center_result_label.text = ""
 	x_result_label.text = ""
 	y_result_label.text = ""
-	
+	dice_in_home_position = false
 	#  Remove ScoreBoard 
 	_remove_left_dice_scoreboard()
 	_remove_right_dice_scoreboard()
@@ -88,6 +90,7 @@ func _on_room_dimension_roll_started():
 	clear_room_rectangle.emit()
 
 func _on_die_double_roll_started():
+	dice_in_home_position = false
 	_remove_left_dice_scoreboard() # clear the old results
 	if room_size_rolled_doubles_bool:
 		center_result_label.text = ""
@@ -100,27 +103,27 @@ func _on_die_double_roll_started():
 
 func _on_die_lcr_roll_started():
 	center_result_label.text = ""
-	
+	dice_in_home_position = false
 
 
 func _on_die_locked_roll_started():
 	center_result_label.text = ""
-	
+	dice_in_home_position = false
 
 
 func _on_die_primary_numbered_roll_started():
 	center_result_label.text = ""
-	
+	dice_in_home_position = false
 
 
 func _on_die_secondary_numbered_roll_started():
 	center_result_label.text = ""
-	
+	dice_in_home_position = false
 
 
 func _on_die_d_3_roll_started():
 	center_result_label.text = ""
-	
+	dice_in_home_position = false
 
 
 
@@ -144,6 +147,10 @@ func _room_doubles_done():
 	x_result_label.text = str(room_size_x_int)
 	y_result_label.text = str(room_size_y_int)
 	resize_room_rectangle.emit(room_size_x_int,room_size_y_int)
+	
+	next_roll_returns_dice_home = true
+	
+	
 	
 
 func _on_die_dx_dim_roll_finished(die_value):
