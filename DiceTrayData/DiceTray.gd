@@ -165,24 +165,34 @@ func _on_die_dy_dim_roll_finished(die_value):
 
 
 func _on_die_double_primary_roll_finished(die_value):
+	#room size
 	if room_size_rolled_doubles_bool && room_size_y_add_int == 0 :
 		room_size_x_add_int = die_value
+	#room size
 	elif room_size_rolled_doubles_bool && room_size_y_add_int > 0 :
 		room_size_x_add_int = die_value
 		_room_doubles_done()
+	#roll 2 dice for d66 or 2d6
 	else:
 		doubles_primary_int = die_value
-	
+		%D66PrimaryPolygon2D.visible = true
+		d_66_primary_label.text = str(doubles_primary_int)
+
 
 func _on_die_double_secondary_roll_finished(die_value):
+	#room size
 	if room_size_rolled_doubles_bool && room_size_x_add_int == 0:
 		room_size_y_add_int = die_value
+	#room size
 	elif room_size_rolled_doubles_bool && room_size_x_add_int > 0 :
 		room_size_y_add_int = die_value
 		_room_doubles_done()
+	#roll 2 dice for d66 or 2d6
 	else:
 		doubles_secondary_int = die_value
-	
+		%D66SecondaryPolygon2D.visible = true
+		d_66_secondary_label.text = str(doubles_secondary_int)
+
 
 func _on_die_door_pics_roll_finished(die_value):
 	room_number_of_exits_int = die_value
