@@ -214,6 +214,7 @@ theme_override_font_sizes/font_size = 60
 vertical_alignment = 2
 
 [node name="RoomRectangleLine2D" type="Line2D" parent="DiceTray/DiceCanvas"]
+visible = false
 position = Vector2(80, 492)
 points = PackedVector2Array(0, 220, 220, 220, 220, 0, 0, 0)
 closed = true
