@@ -53,22 +53,27 @@ func _ready():
 	pass
 	
 
-		
+func _remove_left_dice_scoreboard():
+	%D66PrimaryPolygon2D.visible = false
+	d_66_primary_label.text = ""
+	%D66SecondaryPolygon2D.visible = false
+	d_66_secondary_label.text = ""
+
+func _remove_right_dice_scoreboard():
+	%TwoD6PrimaryPolygon2D2.visible = false
+	primary_label.text = ""
+	%TwoD6SecondaryPolygon2D2.visible = false
+	secondary_label.text = ""
+	
 # -----------------------------------ROLL STARTED-----------------------------
 func _on_room_dimension_roll_started():
 	center_result_label.text = ""
 	x_result_label.text = ""
 	y_result_label.text = ""
 	
-	# -------------  Remove ScoreBoard  ----------------
-	%D66PrimaryPolygon2D.visible = false
-	d_66_primary_label.text = ""
-	%D66SecondaryPolygon2D.visible = false
-	d_66_secondary_label.text = ""
-	%TwoD6PrimaryPolygon2D2.visible = false
-	primary_label.text = ""
-	%TwoD6SecondaryPolygon2D2.visible = false
-	secondary_label.text = ""
+	#  Remove ScoreBoard 
+	_remove_left_dice_scoreboard()
+	_remove_right_dice_scoreboard()
 	
 	exit_number_label.text = ""
 	room_size_x_roll_int = 0
@@ -83,6 +88,7 @@ func _on_room_dimension_roll_started():
 	clear_room_rectangle.emit()
 
 func _on_die_double_roll_started():
+	_remove_left_dice_scoreboard() # clear the old results
 	if room_size_rolled_doubles_bool:
 		center_result_label.text = ""
 		room_size_x_add_int = 0
@@ -133,8 +139,8 @@ func _determine_room_doubles():
 func _room_doubles_done():
 	center_result_label.text = ""
 	room_size_rolled_doubles_bool = false
-	room_size_x_int = room_size_x_roll_int + room_size_x_add_int
-	room_size_y_int = room_size_y_roll_int + room_size_y_add_int
+	room_size_x_int = room_size_x_int + room_size_x_add_int #hope that flipped xy dice don't update...
+	room_size_y_int = room_size_y_int + room_size_y_add_int
 	x_result_label.text = str(room_size_x_int)
 	y_result_label.text = str(room_size_y_int)
 	resize_room_rectangle.emit(room_size_x_int,room_size_y_int)
