@@ -76,10 +76,17 @@ func _on_room_dimension_roll_started():
 	center_result_label.text = ""
 	x_result_label.text = ""
 	y_result_label.text = ""
+	
+	%D66PrimaryPolygon2D.visible = false
 	d_66_primary_label.text = ""
+	%D66SecondaryPolygon2D.visible = false
 	d_66_secondary_label.text = ""
+	
+	%TwoD6PrimaryPolygon2D2.visible = false
 	primary_label.text = ""
+	%TwoD6SecondaryPolygon2D2.visible = false
 	secondary_label.text = ""
+	
 	exit_number_label.text = ""
 	room_size_x_roll_int = 0
 	room_size_y_roll_int = 0
