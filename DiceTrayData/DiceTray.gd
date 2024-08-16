@@ -51,22 +51,21 @@ signal clear_room_rectangle() # report to make invisible
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
-	# For all Rigidbody3D in DiceTray, set collision to false so you can roll 
-	# through docked dice
-	for RigidBody3d in get_tree().get_nodes_in_group("Dice") :
-		RigidBody3d.set_collision_layer_value ( 2, false)
-		RigidBody3d.set_collision_mask_value ( 2, false)
-	
+	## For all Rigidbody3D in DiceTray, set collision to false so you can roll 
+	## through docked dice
+	#for RigidBody3d in get_tree().get_nodes_in_group("Dice") :
+		#RigidBody3d.set_collision_layer_value ( 2, false)
+		#RigidBody3d.set_collision_mask_value ( 2, false)
 	
 # Ensure throw buttons can be clicked
-	button_throw_xy.visible = true
-	button_throw_xy2.visible = true
-	button_throw_doubles.visible = true
-	button_throw_exit_direction.visible = true
-	button_throw_lock_check.visible = true
-	button_throw_primary.visible = true
-	button_throw_secondary.visible = true
-	button_throw_d3.visible = true
+	#button_throw_xy.visible = true
+	#button_throw_xy2.visible = true
+	#button_throw_doubles.visible = true
+	#button_throw_exit_direction.visible = true
+	#button_throw_lock_check.visible = true
+	#button_throw_primary.visible = true
+	#button_throw_secondary.visible = true
+	#button_throw_d3.visible = true
 	
 	# make room rectangle invisible
 	clear_room_rectangle.emit()
