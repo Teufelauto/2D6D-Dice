@@ -53,8 +53,7 @@ signal clear_room_rectangle() # report to make invisible
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
-	#for member in get_tree().get_nodes_in_group("Dice"):
-		#member.input_ray_pickable = false
+
 
 func _rehome_dice():
 	button_throw_xy.visible = true
@@ -74,15 +73,22 @@ func _remove_left_dice_scoreboard():
 	%D66SecondaryPolygon2D.visible = false
 	d_66_secondary_label.text = ""
 
+
 func _remove_right_dice_scoreboard():
-	%TwoD6PrimaryPolygon2D2.visible = false
+	_remove_right_primary_die_scoreboard()
+	_remove_right_secondary_die_scoreboard()
+
+
+func _remove_right_primary_die_scoreboard():
+	%TwoD6PrimaryPolygon2D.visible = false
 	primary_label.text = ""
-	%TwoD6SecondaryPolygon2D2.visible = false
+
+
+func _remove_right_secondary_die_scoreboard():
+	%TwoD6SecondaryPolygon2D.visible = false
 	secondary_label.text = ""
-	
-	
-	
-	
+
+
 # -----------------------------------ROLL STARTED-----------------------------
 func _on_room_dimension_roll_started():
 	center_result_label.text = ""
@@ -234,11 +240,14 @@ func _on_die_locked_roll_finished(die_value):
 
 func _on_die_primary_numbered_roll_finished(die_value):
 	primary_die_int = die_value
-	
+	%TwoD6PrimaryPolygon2D.visible = true
+	primary_label.text = str(primary_die_int)
 
 func _on_die_secondary_numbered_roll_finished(die_value):
 	secondary_die_int = die_value
-	
+	%TwoD6SecondaryPolygon2D.visible = true
+	secondary_label.text = str(secondary_die_int)
+
 
 func _on_die_d_3_roll_finished(die_value):
 	d3_die_int = die_value

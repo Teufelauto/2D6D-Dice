@@ -116,7 +116,7 @@ offset_bottom = -730.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TwoD6PrimaryPolygon2D2" type="Polygon2D" parent="DiceTray/DiceCanvas/TwoD6ScoreBoard"]
+[node name="TwoD6PrimaryPolygon2D" type="Polygon2D" parent="DiceTray/DiceCanvas/TwoD6ScoreBoard"]
 unique_name_in_owner = true
 self_modulate = Color(0, 0.390029, 0.890217, 1)
 position = Vector2(282, 25)
@@ -124,7 +124,7 @@ scale = Vector2(7, 7)
 antialiased = true
 polygon = PackedVector2Array(0, 0, 0, 10, 10, 10, 10, 0)
 
-[node name="TwoD6SecondaryPolygon2D2" type="Polygon2D" parent="DiceTray/DiceCanvas/TwoD6ScoreBoard"]
+[node name="TwoD6SecondaryPolygon2D" type="Polygon2D" parent="DiceTray/DiceCanvas/TwoD6ScoreBoard"]
 unique_name_in_owner = true
 self_modulate = Color(0.992157, 0.133333, 0, 1)
 position = Vector2(362, 25)
@@ -623,11 +623,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13718, 4.67024, -1.29338)
 [connection signal="input_event" from="DiceTray/PrimaryDie/DiePrimaryNumbered" to="DiceTray/PrimaryDie/DiePrimaryNumbered" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/PrimaryDie/DiePrimaryNumbered" to="DiceTray" method="_on_die_primary_numbered_roll_finished"]
 [connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryNumbered" to="DiceTray" method="_on_die_primary_numbered_roll_started"]
+[connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryNumbered" to="DiceTray" method="_remove_right_primary_die_scoreboard"]
 [connection signal="sleeping_state_changed" from="DiceTray/PrimaryDie/DiePrimaryNumbered" to="DiceTray/PrimaryDie/DiePrimaryNumbered" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/PrimaryDie/PrimeThrowButton" to="DiceTray/PrimaryDie/DiePrimaryNumbered" method="_on_prime_throw_button_pressed"]
 [connection signal="input_event" from="DiceTray/SecondaryDie/DieSecondaryNumbered" to="DiceTray/SecondaryDie/DieSecondaryNumbered" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/SecondaryDie/DieSecondaryNumbered" to="DiceTray" method="_on_die_secondary_numbered_roll_finished"]
 [connection signal="roll_started" from="DiceTray/SecondaryDie/DieSecondaryNumbered" to="DiceTray" method="_on_die_secondary_numbered_roll_started"]
+[connection signal="roll_started" from="DiceTray/SecondaryDie/DieSecondaryNumbered" to="DiceTray" method="_remove_right_secondary_die_scoreboard"]
 [connection signal="sleeping_state_changed" from="DiceTray/SecondaryDie/DieSecondaryNumbered" to="DiceTray/SecondaryDie/DieSecondaryNumbered" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/SecondaryDie/SecondaryThrowButton" to="DiceTray/SecondaryDie/DieSecondaryNumbered" method="_on_secondary_throw_button_pressed"]
 [connection signal="input_event" from="DiceTray/D3Die/DieD3" to="DiceTray/D3Die/DieD3" method="_on_input_event"]
