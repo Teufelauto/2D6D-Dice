@@ -8,6 +8,7 @@ Required Assets:	Rapier 3d Physics
 dice values, or for reroll / pickup.
 
 - Recognizes when to roll additive dice for room size
+
 - Creates a small drawing of the room rolled for quick orientation.
 
 
