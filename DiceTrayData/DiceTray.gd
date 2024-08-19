@@ -1,6 +1,7 @@
 class_name DiceTray
 extends Node3D
 
+@onready var pick_up_all_dice_button_huge = $PickUpAllDiceButtonHuge
 
 @onready var button_throw_xy = $RoomSizeDice/XYThrowButton
 @onready var button_throw_xy2 = $RoomSizeDice/XYThrowButton2
@@ -44,7 +45,6 @@ static var primary_die_int : int = 0
 static var secondary_die_int : int = 0
 static var d3_die_int : int = 0
 
-@export var next_roll_returns_dice_home : bool = false
 @export var dice_in_home_position : bool = true
 
 signal resize_room_rectangle(x_size,y_size) # report room dimensions to drawing funcion
@@ -52,11 +52,20 @@ signal clear_room_rectangle() # report to make invisible
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
-	for member in get_tree().get_nodes_in_group("Dice"):
-		member.input_ray_pickable = false
-
 	pass
+	#for member in get_tree().get_nodes_in_group("Dice"):
+		#member.input_ray_pickable = false
+
+func _rehome_dice():
+	button_throw_xy.visible = true
+	button_throw_xy2.visible = true
+	button_throw_doubles.visible = true
+	button_throw_exit_direction.visible = true
+	button_throw_lock_check.visible = true
+	button_throw_primary.visible = true
+	button_throw_secondary.visible = true
+	button_throw_d3.visible = true
+	pick_up_all_dice_button_huge.visible = false
 	
 
 func _remove_left_dice_scoreboard():
@@ -95,7 +104,7 @@ func _on_room_dimension_roll_started():
 	doubles_primary_int = 0
 	doubles_secondary_int = 0
 	clear_room_rectangle.emit()
-	next_roll_returns_dice_home = false
+
 
 func _on_die_double_roll_started():
 	dice_in_home_position = false
@@ -156,10 +165,7 @@ func _room_doubles_done():
 		x_result_label.text = str(room_size_x_int)
 		y_result_label.text = str(room_size_y_int)
 		resize_room_rectangle.emit(room_size_x_int,room_size_y_int)
-		next_roll_returns_dice_home = true
-		
-		for member in get_tree().get_nodes_in_group("Dice"):
-			member.input_ray_pickable = false
+		pick_up_all_dice_button_huge.visible = true # All dice must be picked up!
 		
 
 func _on_die_dx_dim_roll_finished(die_value):

@@ -532,6 +532,21 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 50
 text = "Pick Up All Dice"
 
+[node name="PickUpAllDiceButtonHuge" type="Button" parent="DiceTray"]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -792.0
+offset_right = 2.0
+offset_bottom = -81.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 50
+flat = true
+
 [node name="CamNLights" type="Node" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="CamNLights"]
@@ -620,6 +635,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13718, 4.67024, -1.29338)
 [connection signal="roll_started" from="DiceTray/D3Die/DieD3" to="DiceTray" method="_on_die_d_3_roll_started"]
 [connection signal="sleeping_state_changed" from="DiceTray/D3Die/DieD3" to="DiceTray/D3Die/DieD3" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/D3Die/D3ThrowButton" to="DiceTray/D3Die/DieD3" method="_on_d_3_throw_button_pressed"]
+[connection signal="pressed" from="DiceTray/PickUpAllDiceButton" to="DiceTray" method="_rehome_dice"]
 [connection signal="pressed" from="DiceTray/PickUpAllDiceButton" to="DiceTray/RoomSizeDice/DieDXDim" method="_on_pick_up_all_dice_button_pressed"]
 [connection signal="pressed" from="DiceTray/PickUpAllDiceButton" to="DiceTray/RoomSizeDice/DieDYDim" method="_on_pick_up_all_dice_button_pressed"]
 [connection signal="pressed" from="DiceTray/PickUpAllDiceButton" to="DiceTray/RoomSizeDice/DieDoorPics" method="_on_pick_up_all_dice_button_pressed"]
@@ -630,3 +646,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13718, 4.67024, -1.29338)
 [connection signal="pressed" from="DiceTray/PickUpAllDiceButton" to="DiceTray/PrimaryDie/DiePrimaryNumbered" method="_on_pick_up_all_dice_button_pressed"]
 [connection signal="pressed" from="DiceTray/PickUpAllDiceButton" to="DiceTray/SecondaryDie/DieSecondaryNumbered" method="_on_pick_up_all_dice_button_pressed"]
 [connection signal="pressed" from="DiceTray/PickUpAllDiceButton" to="DiceTray/D3Die/DieD3" method="_on_pick_up_all_dice_button_pressed"]
+[connection signal="pressed" from="DiceTray/PickUpAllDiceButtonHuge" to="DiceTray" method="_rehome_dice"]
+[connection signal="pressed" from="DiceTray/PickUpAllDiceButtonHuge" to="DiceTray/RoomSizeDice/DieDXDim" method="_on_pick_up_all_dice_button_pressed"]
+[connection signal="pressed" from="DiceTray/PickUpAllDiceButtonHuge" to="DiceTray/RoomSizeDice/DieDYDim" method="_on_pick_up_all_dice_button_pressed"]
+[connection signal="pressed" from="DiceTray/PickUpAllDiceButtonHuge" to="DiceTray/RoomSizeDice/DieDoorPics" method="_on_pick_up_all_dice_button_pressed"]
+[connection signal="pressed" from="DiceTray/PickUpAllDiceButtonHuge" to="DiceTray/DoublesDice/DieDoublePrimary" method="_on_pick_up_all_dice_button_pressed"]
+[connection signal="pressed" from="DiceTray/PickUpAllDiceButtonHuge" to="DiceTray/DoublesDice/DieDoubleSecondary" method="_on_pick_up_all_dice_button_pressed"]
+[connection signal="pressed" from="DiceTray/PickUpAllDiceButtonHuge" to="DiceTray/RoomExitDirectionDie/DieLCR" method="_on_pick_up_all_dice_button_pressed"]
+[connection signal="pressed" from="DiceTray/PickUpAllDiceButtonHuge" to="DiceTray/ExitLockCheckDie/DieLocked" method="_on_pick_up_all_dice_button_pressed"]
+[connection signal="pressed" from="DiceTray/PickUpAllDiceButtonHuge" to="DiceTray/PrimaryDie/DiePrimaryNumbered" method="_on_pick_up_all_dice_button_pressed"]
+[connection signal="pressed" from="DiceTray/PickUpAllDiceButtonHuge" to="DiceTray/SecondaryDie/DieSecondaryNumbered" method="_on_pick_up_all_dice_button_pressed"]
+[connection signal="pressed" from="DiceTray/PickUpAllDiceButtonHuge" to="DiceTray/D3Die/DieD3" method="_on_pick_up_all_dice_button_pressed"]

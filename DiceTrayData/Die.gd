@@ -99,17 +99,6 @@ func _return_die():
 	# Clear Roll Results
 	roll_started.emit()
 	
-	# Turn on the Roll Buttons again
-	button_throw_xy.visible = true
-	button_throw_xy2.visible = true
-	button_throw_doubles.visible = true
-	button_throw_exit_direction.visible = true
-	button_throw_lock_check.visible = true
-	button_throw_primary.visible = true
-	button_throw_secondary.visible = true
-	button_throw_d3.visible = true
-	
-
 
 # -------------------------- PICK UP DICE --------------------------------------
 # Pick up ALL Dice
@@ -122,83 +111,47 @@ func _on_pick_up_all_dice_button_pressed():
 # ----------------- ReROLL Previously thrown DICE ------------------------------
 func _on_input_event(_camera, event, _position, _normal, _shape_idx):
 	if event.is_pressed() && !is_rolling:
-		if dice_tray.next_roll_returns_dice_home:
-			for member in get_tree().get_nodes_in_group("Dice"):
-				member._return_die()
-		
-		else: 
-			_roll()
+		_roll()
 
 
 #---------------------------- ROLL DICE FROM HOME ------------------------------
 func _on_xy_throw_button_pressed():
 	if !is_rolling:
-		if dice_tray.next_roll_returns_dice_home:
-			for member in get_tree().get_nodes_in_group("Dice"):
-				member._return_die()
-			
-		else:
-			button_throw_xy.visible = false # Main
-			button_throw_xy2.visible = false #  exit die location
-			_roll()
+		button_throw_xy.visible = false # Main
+		button_throw_xy2.visible = false #  exit die location
+		_roll()
 
 
 func _on_double_throw_button_pressed():
 	if !is_rolling:
-		if dice_tray.next_roll_returns_dice_home:
-			for member in get_tree().get_nodes_in_group("Dice"):
-				member._return_die()
-			
-		else:
-			button_throw_doubles.visible = false
-			_roll()
+		button_throw_doubles.visible = false
+		_roll()
 
 
 func _on_lcr_throw_button_pressed():
 	if !is_rolling:
-		if dice_tray.next_roll_returns_dice_home:
-			for member in get_tree().get_nodes_in_group("Dice"):
-				member._return_die()
-		else:
-			button_throw_exit_direction.visible = false
-			_roll()
+		button_throw_exit_direction.visible = false
+		_roll()
 
 
 func _on_exit_lock_throw_button_pressed():
 	if !is_rolling:
-		if dice_tray.next_roll_returns_dice_home:
-			for member in get_tree().get_nodes_in_group("Dice"):
-				member._return_die()
-		else:
-			button_throw_lock_check.visible = false
-			_roll()
+		button_throw_lock_check.visible = false
+		_roll()
 
 func _on_prime_throw_button_pressed():
 	if !is_rolling:
-		if dice_tray.next_roll_returns_dice_home:
-			for member in get_tree().get_nodes_in_group("Dice"):
-				member._return_die()
-		else:
-			button_throw_primary.visible = false
-			_roll()
+		button_throw_primary.visible = false
+		_roll()
 
 
 func _on_secondary_throw_button_pressed():
 	if !is_rolling:
-		if dice_tray.next_roll_returns_dice_home:
-			for member in get_tree().get_nodes_in_group("Dice"):
-				member._return_die()
-		else:
-			button_throw_secondary.visible = false
-			_roll()
+		button_throw_secondary.visible = false
+		_roll()
 
 
 func _on_d_3_throw_button_pressed():
 	if !is_rolling:
-		if dice_tray.next_roll_returns_dice_home:
-			for member in get_tree().get_nodes_in_group("Dice"):
-				member._return_die()
-		else:
-			button_throw_d3.visible = false
-			_roll()
-		
+		button_throw_d3.visible = false
+		_roll()

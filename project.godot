@@ -51,7 +51,7 @@ window/ios/hide_status_bar=false
 [physics]
 
 3d/physics_engine="Rapier3D"
-3d/default_gravity=9.0
+3d/default_gravity=10.0
 3d/time_before_sleep=0.1
 
 [rendering]
