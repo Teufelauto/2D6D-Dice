@@ -5,6 +5,7 @@ Game Engine:		Godot 4.2.2.stable
 
 Required Assets:	Rapier 3d Physics 
 
+Features:
 - Currently, dice rolling basically works, but relies on physics sleep to report 
 dice values, or for reroll / pickup.
 - Recognizes when to roll additive dice for room size
@@ -12,7 +13,6 @@ dice values, or for reroll / pickup.
 - 'Scoreboard' for normal rolls
 
 Future Features:
-
-- Fatigue die
 - Color selector
 - Dice style selector
+- Fatigue die
