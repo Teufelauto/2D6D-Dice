@@ -140,6 +140,8 @@ func _determine_room_doubles():
 
 
 func _room_doubles_done():
+	if room_size_x_add_int == 0 or room_size_y_add_int == 0 :
+		return
 	center_result_label.text = ""
 	room_size_rolled_doubles_bool = false
 	room_size_x_int = room_size_x_int + room_size_x_add_int #hope that flipped xy dice don't update...
@@ -156,7 +158,7 @@ func _room_doubles_done():
 func _on_die_dx_dim_roll_finished(die_value):
 	room_size_x_roll_int = die_value
 	room_size_x_int = room_size_x_roll_int
-	x_result_label.text = str(room_size_x_roll_int)
+	x_result_label.text = str(room_size_x_int)
 	if room_size_x_roll_int > 0 && room_size_y_roll_int > 0 :
 		_determine_room_doubles()
 	
@@ -165,7 +167,7 @@ func _on_die_dx_dim_roll_finished(die_value):
 func _on_die_dy_dim_roll_finished(die_value):
 	room_size_y_roll_int = die_value
 	room_size_y_int = room_size_y_roll_int
-	y_result_label.text = str(room_size_y_roll_int)
+	y_result_label.text = str(room_size_y_int)
 	if room_size_x_roll_int > 0 && room_size_y_roll_int > 0 :
 		_determine_room_doubles()
 	
