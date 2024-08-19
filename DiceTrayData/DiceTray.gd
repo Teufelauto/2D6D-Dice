@@ -52,6 +52,10 @@ signal clear_room_rectangle() # report to make invisible
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	for member in get_tree().get_nodes_in_group("Dice"):
+		member.input_ray_pickable = false
+
 	pass
 	
 
@@ -67,12 +71,15 @@ func _remove_right_dice_scoreboard():
 	%TwoD6SecondaryPolygon2D2.visible = false
 	secondary_label.text = ""
 	
+	
+	
+	
 # -----------------------------------ROLL STARTED-----------------------------
 func _on_room_dimension_roll_started():
 	center_result_label.text = ""
 	x_result_label.text = ""
 	y_result_label.text = ""
-	dice_in_home_position = false
+	
 	#  Remove ScoreBoard 
 	_remove_left_dice_scoreboard()
 	_remove_right_dice_scoreboard()
@@ -88,6 +95,7 @@ func _on_room_dimension_roll_started():
 	doubles_primary_int = 0
 	doubles_secondary_int = 0
 	clear_room_rectangle.emit()
+	next_roll_returns_dice_home = false
 
 func _on_die_double_roll_started():
 	dice_in_home_position = false
@@ -96,9 +104,9 @@ func _on_die_double_roll_started():
 		center_result_label.text = ""
 		room_size_x_add_int = 0
 		room_size_y_add_int = 0
-		
-	doubles_primary_int = 0
-	doubles_secondary_int = 0
+	else:
+		doubles_primary_int = 0
+		doubles_secondary_int = 0
 	
 
 func _on_die_lcr_roll_started():
@@ -140,20 +148,19 @@ func _determine_room_doubles():
 
 
 func _room_doubles_done():
-	if room_size_x_add_int == 0 or room_size_y_add_int == 0 :
-		return
-	center_result_label.text = ""
-	room_size_rolled_doubles_bool = false
-	room_size_x_int = room_size_x_int + room_size_x_add_int #hope that flipped xy dice don't update...
-	room_size_y_int = room_size_y_int + room_size_y_add_int
-	x_result_label.text = str(room_size_x_int)
-	y_result_label.text = str(room_size_y_int)
-	resize_room_rectangle.emit(room_size_x_int,room_size_y_int)
-	
-	next_roll_returns_dice_home = true
-	
-	
-	
+	if room_size_x_add_int > 0 and room_size_y_add_int > 0 :
+		center_result_label.text = ""
+		room_size_rolled_doubles_bool = false
+		room_size_x_int = room_size_x_int + room_size_x_add_int #hope that flipped xy dice don't update...
+		room_size_y_int = room_size_y_int + room_size_y_add_int
+		x_result_label.text = str(room_size_x_int)
+		y_result_label.text = str(room_size_y_int)
+		resize_room_rectangle.emit(room_size_x_int,room_size_y_int)
+		next_roll_returns_dice_home = true
+		
+		for member in get_tree().get_nodes_in_group("Dice"):
+			member.input_ray_pickable = false
+		
 
 func _on_die_dx_dim_roll_finished(die_value):
 	room_size_x_roll_int = die_value
@@ -174,10 +181,10 @@ func _on_die_dy_dim_roll_finished(die_value):
 
 
 func _on_die_double_primary_roll_finished(die_value):
-	#room size
+	#room size rolling not done
 	if room_size_rolled_doubles_bool && room_size_y_add_int == 0 :
 		room_size_x_add_int = die_value
-	#room size
+	#room size rolling IS done
 	elif room_size_rolled_doubles_bool && room_size_y_add_int > 0 :
 		room_size_x_add_int = die_value
 		_room_doubles_done()
@@ -189,10 +196,10 @@ func _on_die_double_primary_roll_finished(die_value):
 
 
 func _on_die_double_secondary_roll_finished(die_value):
-	#room size
+	#room size rolling not done
 	if room_size_rolled_doubles_bool && room_size_x_add_int == 0:
 		room_size_y_add_int = die_value
-	#room size
+	#room size rolling IS done
 	elif room_size_rolled_doubles_bool && room_size_x_add_int > 0 :
 		room_size_y_add_int = die_value
 		_room_doubles_done()
