@@ -22,6 +22,10 @@ extends Node3D
 @onready var primary_label = $DiceCanvas/TwoD6ScoreBoard/PrimaryLabel
 @onready var secondary_label = $DiceCanvas/TwoD6ScoreBoard/SecondaryLabel
 
+@onready var exit_direction_label = $DiceCanvas/ExitDirectionLabel
+@onready var exit_lock_label = $DiceCanvas/ExitLockLabel
+@onready var d_3_result_label = $DiceCanvas/D3ResultLabel
+
 
 
 
@@ -45,10 +49,10 @@ static var primary_die_int : int = 0
 static var secondary_die_int : int = 0
 static var d3_die_int : int = 0
 
-@export var dice_in_home_position : bool = true
+
 
 signal resize_room_rectangle(x_size,y_size) # report room dimensions to drawing funcion
-signal clear_room_rectangle() # report to make invisible
+signal clear_room_rectangle() # report to make room rectangle invisible
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -65,7 +69,7 @@ func _rehome_dice():
 	button_throw_secondary.visible = true
 	button_throw_d3.visible = true
 	pick_up_all_dice_button_huge.visible = false
-	
+	room_size_rolled_doubles_bool = false
 
 func _remove_left_dice_scoreboard():
 	%D66PrimaryPolygon2D.visible = false
@@ -113,7 +117,7 @@ func _on_room_dimension_roll_started():
 
 
 func _on_die_double_roll_started():
-	dice_in_home_position = false
+	
 	_remove_left_dice_scoreboard() # clear the old results
 	if room_size_rolled_doubles_bool:
 		center_result_label.text = ""
@@ -126,27 +130,30 @@ func _on_die_double_roll_started():
 
 func _on_die_lcr_roll_started():
 	center_result_label.text = ""
-	dice_in_home_position = false
+	exit_direction_label.text = ""
+
 
 
 func _on_die_locked_roll_started():
 	center_result_label.text = ""
-	dice_in_home_position = false
+	exit_lock_label.text = ""
+
 
 
 func _on_die_primary_numbered_roll_started():
 	center_result_label.text = ""
-	dice_in_home_position = false
+
 
 
 func _on_die_secondary_numbered_roll_started():
 	center_result_label.text = ""
-	dice_in_home_position = false
+
 
 
 func _on_die_d_3_roll_started():
 	center_result_label.text = ""
-	dice_in_home_position = false
+	d_3_result_label.text = ""
+
 
 
 
@@ -166,7 +173,7 @@ func _room_doubles_done():
 	if room_size_x_add_int > 0 and room_size_y_add_int > 0 :
 		center_result_label.text = ""
 		room_size_rolled_doubles_bool = false
-		room_size_x_int = room_size_x_int + room_size_x_add_int #hope that flipped xy dice don't update...
+		room_size_x_int = room_size_x_int + room_size_x_add_int
 		room_size_y_int = room_size_y_int + room_size_y_add_int
 		x_result_label.text = str(room_size_x_int)
 		y_result_label.text = str(room_size_y_int)
@@ -175,21 +182,21 @@ func _room_doubles_done():
 		
 
 func _on_die_dx_dim_roll_finished(die_value):
-	room_size_x_roll_int = die_value
-	room_size_x_int = room_size_x_roll_int
-	x_result_label.text = str(room_size_x_int)
-	if room_size_x_roll_int > 0 && room_size_y_roll_int > 0 :
-		_determine_room_doubles()
-	
+	if !room_size_rolled_doubles_bool : # prevent flipped die from changing room size
+		room_size_x_roll_int = die_value
+		room_size_x_int = room_size_x_roll_int
+		x_result_label.text = str(room_size_x_int)
+		if room_size_x_roll_int > 0 && room_size_y_roll_int > 0 :
+			_determine_room_doubles()
 
 
 func _on_die_dy_dim_roll_finished(die_value):
-	room_size_y_roll_int = die_value
-	room_size_y_int = room_size_y_roll_int
-	y_result_label.text = str(room_size_y_int)
-	if room_size_x_roll_int > 0 && room_size_y_roll_int > 0 :
-		_determine_room_doubles()
-	
+	if !room_size_rolled_doubles_bool : # prevent flipped die from changing room size
+		room_size_y_roll_int = die_value
+		room_size_y_int = room_size_y_roll_int
+		y_result_label.text = str(room_size_y_int)
+		if room_size_x_roll_int > 0 && room_size_y_roll_int > 0 :
+			_determine_room_doubles()
 
 
 func _on_die_double_primary_roll_finished(die_value):
@@ -232,16 +239,26 @@ func _on_die_door_pics_roll_finished(die_value):
 	
 func _on_die_lcr_roll_finished(die_value):
 	room_exit_direction_int = die_value
-	
+	if room_exit_direction_int == 1 : exit_direction_label.text = "L"
+	elif room_exit_direction_int == 2 : exit_direction_label.text = "C"
+	else : exit_direction_label.text = "R"
+	#exit_direction_label.text = str(room_exit_direction_int)
+
 
 func _on_die_locked_roll_finished(die_value):
 	door_lock_status_int = die_value
+	if door_lock_status_int == 1 : exit_lock_label.text = "Metal Locked"
+	elif door_lock_status_int == 2 : exit_lock_label.text = "Metal / Reinforced Locked"
+	elif door_lock_status_int == 3 : exit_lock_label.text = "Locked"
+	else : exit_lock_label.text = "Not Locked"
+	#exit_lock_label.text = str(door_lock_status_int)
 	
 
 func _on_die_primary_numbered_roll_finished(die_value):
 	primary_die_int = die_value
 	%TwoD6PrimaryPolygon2D.visible = true
 	primary_label.text = str(primary_die_int)
+
 
 func _on_die_secondary_numbered_roll_finished(die_value):
 	secondary_die_int = die_value
@@ -251,6 +268,7 @@ func _on_die_secondary_numbered_roll_finished(die_value):
 
 func _on_die_d_3_roll_finished(die_value):
 	d3_die_int = die_value
+	d_3_result_label.text = str(d3_die_int)
 	
 #-----------------------------------------------------------------------------
 
