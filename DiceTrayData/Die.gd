@@ -34,25 +34,31 @@ signal roll_finished(die_value) # Output the die result to another script
 func _ready():
 	start_pos = global_position
 	
+
+
+
+func _die_rotation_lock():
+	return # don't do it
+	axis_lock_angular_x = true # prevent being knocked over
+	axis_lock_angular_z = true # prevent being knocked over
 	
-	
-	
-	
-	
+func _die_rotation_unlock():
+	return #dont do it
+	axis_lock_angular_x = false # prevent being knocked over
+	axis_lock_angular_z = false # prevent being knocked over
+
 
 func _roll():
-	
 	# Reset State
+	_die_rotation_unlock()
 	sleeping = false
 	freeze = false
-	
+
 	transform.origin = start_pos
 	linear_velocity = Vector3.ZERO
 	angular_velocity = Vector3.ZERO
-	
 	self.set_collision_layer_value( 2, true)
 	self.set_collision_mask_value( 2, true)
-	
 	
 	# Clear Roll Results
 	roll_started.emit()
@@ -62,7 +68,6 @@ func _roll():
 	transform.basis = Basis(Vector3.UP, randf_range(0, 2* PI)) * transform.basis
 	transform.basis = Basis(Vector3.FORWARD, randf_range(0, 2* PI)) * transform.basis
 	
-	
 	# Random Throw Impulse  --- Change vector for direction
 	var throw_vector = Vector3(randf_range(-.4, .4), 0, randf_range(-1, -.8)).normalized()
 	angular_velocity = throw_vector * roll_strength * spin_strength
@@ -70,12 +75,12 @@ func _roll():
 	is_rolling = true
 
 
-
 func _on_sleeping_state_changed():
 	if sleeping:
 		var landed_on_side = false
 		for raycast in raycasts:
 			if raycast.is_colliding():
+				_die_rotation_lock()
 				roll_finished.emit(raycast.opposite_side) # INT   Send out the data!
 				is_rolling = false
 				landed_on_side = true
@@ -88,14 +93,14 @@ func _on_sleeping_state_changed():
 func _return_die():
 		
 	# Return the dice to home
+	_die_rotation_unlock()
 	set_collision_layer_value( 2, false)
 	set_collision_mask_value( 2, false)
 	linear_velocity = Vector3.ZERO
 	angular_velocity = Vector3.ZERO
-	transform.origin = start_pos
 	freeze = true
 	sleeping = true
-	
+	transform.origin = start_pos
 	# Clear Roll Results
 	roll_started.emit()
 	

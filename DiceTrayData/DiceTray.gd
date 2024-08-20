@@ -45,7 +45,7 @@ static var primary_die_int : int = 0
 static var secondary_die_int : int = 0
 static var d3_die_int : int = 0
 
-@export var dice_in_home_position : bool = true
+
 
 signal resize_room_rectangle(x_size,y_size) # report room dimensions to drawing funcion
 signal clear_room_rectangle() # report to make invisible
@@ -113,7 +113,7 @@ func _on_room_dimension_roll_started():
 
 
 func _on_die_double_roll_started():
-	dice_in_home_position = false
+	
 	_remove_left_dice_scoreboard() # clear the old results
 	if room_size_rolled_doubles_bool:
 		center_result_label.text = ""
@@ -126,27 +126,27 @@ func _on_die_double_roll_started():
 
 func _on_die_lcr_roll_started():
 	center_result_label.text = ""
-	dice_in_home_position = false
+
 
 
 func _on_die_locked_roll_started():
 	center_result_label.text = ""
-	dice_in_home_position = false
+
 
 
 func _on_die_primary_numbered_roll_started():
 	center_result_label.text = ""
-	dice_in_home_position = false
+
 
 
 func _on_die_secondary_numbered_roll_started():
 	center_result_label.text = ""
-	dice_in_home_position = false
+
 
 
 func _on_die_d_3_roll_started():
 	center_result_label.text = ""
-	dice_in_home_position = false
+
 
 
 
@@ -158,6 +158,8 @@ func _determine_room_doubles():
 			&& room_size_x_roll_int != 6 && room_size_rolled_doubles_bool == false:
 		center_result_label.text = "Doubles!\nRoll Doubles Dice"
 		room_size_rolled_doubles_bool = true
+		
+		
 		
 	resize_room_rectangle.emit(room_size_x_roll_int,room_size_y_roll_int)
 

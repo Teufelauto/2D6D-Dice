@@ -274,6 +274,7 @@ grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_default_cursor_shape = 2
+action_mode = 0
 flat = true
 
 [node name="XYThrowButton2" type="Button" parent="DiceTray/RoomSizeDice"]
@@ -291,6 +292,7 @@ grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_default_cursor_shape = 2
+action_mode = 0
 flat = true
 
 [node name="DoublesDice" type="Node3D" parent="DiceTray"]
@@ -324,6 +326,7 @@ offset_bottom = -187.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
+action_mode = 0
 flat = true
 
 [node name="RoomExitDirectionDie" type="Node3D" parent="DiceTray"]
@@ -348,6 +351,7 @@ offset_bottom = -82.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
+action_mode = 0
 flat = true
 
 [node name="ExitLockCheckDie" type="Node3D" parent="DiceTray"]
@@ -373,6 +377,7 @@ offset_bottom = -82.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
+action_mode = 0
 flat = true
 
 [node name="PrimaryDie" type="Node3D" parent="DiceTray"]
@@ -397,6 +402,7 @@ offset_bottom = -293.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
+action_mode = 0
 flat = true
 
 [node name="SecondaryDie" type="Node3D" parent="DiceTray"]
@@ -421,6 +427,7 @@ offset_bottom = -193.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
+action_mode = 0
 flat = true
 
 [node name="D3Die" type="Node3D" parent="DiceTray"]
@@ -446,6 +453,7 @@ offset_bottom = -82.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
+action_mode = 0
 flat = true
 
 [node name="TrayModel" type="Node3D" parent="DiceTray"]
@@ -530,6 +538,7 @@ offset_top = -75.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 50
+action_mode = 0
 text = "Pick Up All Dice"
 
 [node name="PickUpAllDiceButtonHuge" type="Button" parent="DiceTray"]
@@ -545,6 +554,7 @@ offset_bottom = -81.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 50
+action_mode = 0
 flat = true
 
 [node name="CamNLights" type="Node" parent="."]
