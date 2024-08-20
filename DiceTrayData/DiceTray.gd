@@ -52,7 +52,7 @@ static var d3_die_int : int = 0
 
 
 signal resize_room_rectangle(x_size,y_size) # report room dimensions to drawing funcion
-signal clear_room_rectangle() # report to make invisible
+signal clear_room_rectangle() # report to make room rectangle invisible
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -69,7 +69,7 @@ func _rehome_dice():
 	button_throw_secondary.visible = true
 	button_throw_d3.visible = true
 	pick_up_all_dice_button_huge.visible = false
-	
+	room_size_rolled_doubles_bool = false
 
 func _remove_left_dice_scoreboard():
 	%D66PrimaryPolygon2D.visible = false
@@ -173,7 +173,7 @@ func _room_doubles_done():
 	if room_size_x_add_int > 0 and room_size_y_add_int > 0 :
 		center_result_label.text = ""
 		room_size_rolled_doubles_bool = false
-		room_size_x_int = room_size_x_int + room_size_x_add_int #hope that flipped xy dice don't update...
+		room_size_x_int = room_size_x_int + room_size_x_add_int
 		room_size_y_int = room_size_y_int + room_size_y_add_int
 		x_result_label.text = str(room_size_x_int)
 		y_result_label.text = str(room_size_y_int)
@@ -182,21 +182,21 @@ func _room_doubles_done():
 		
 
 func _on_die_dx_dim_roll_finished(die_value):
-	room_size_x_roll_int = die_value
-	room_size_x_int = room_size_x_roll_int
-	x_result_label.text = str(room_size_x_int)
-	if room_size_x_roll_int > 0 && room_size_y_roll_int > 0 :
-		_determine_room_doubles()
-	
+	if !room_size_rolled_doubles_bool : # prevent flipped die from changing room size
+		room_size_x_roll_int = die_value
+		room_size_x_int = room_size_x_roll_int
+		x_result_label.text = str(room_size_x_int)
+		if room_size_x_roll_int > 0 && room_size_y_roll_int > 0 :
+			_determine_room_doubles()
 
 
 func _on_die_dy_dim_roll_finished(die_value):
-	room_size_y_roll_int = die_value
-	room_size_y_int = room_size_y_roll_int
-	y_result_label.text = str(room_size_y_int)
-	if room_size_x_roll_int > 0 && room_size_y_roll_int > 0 :
-		_determine_room_doubles()
-	
+	if !room_size_rolled_doubles_bool : # prevent flipped die from changing room size
+		room_size_y_roll_int = die_value
+		room_size_y_int = room_size_y_roll_int
+		y_result_label.text = str(room_size_y_int)
+		if room_size_x_roll_int > 0 && room_size_y_roll_int > 0 :
+			_determine_room_doubles()
 
 
 func _on_die_double_primary_roll_finished(die_value):
@@ -249,7 +249,7 @@ func _on_die_locked_roll_finished(die_value):
 	door_lock_status_int = die_value
 	if door_lock_status_int == 1 : exit_lock_label.text = "Metal Locked"
 	elif door_lock_status_int == 2 : exit_lock_label.text = "Metal / Reinforced Locked"
-	elif door_lock_status_int == 3 : exit_lock_label.text = "All Locked"
+	elif door_lock_status_int == 3 : exit_lock_label.text = "Locked"
 	else : exit_lock_label.text = "Not Locked"
 	#exit_lock_label.text = str(door_lock_status_int)
 	
