@@ -22,6 +22,10 @@ extends Node3D
 @onready var primary_label = $DiceCanvas/TwoD6ScoreBoard/PrimaryLabel
 @onready var secondary_label = $DiceCanvas/TwoD6ScoreBoard/SecondaryLabel
 
+@onready var exit_direction_label = $DiceCanvas/ExitDirectionLabel
+@onready var exit_lock_label = $DiceCanvas/ExitLockLabel
+@onready var d_3_result_label = $DiceCanvas/D3ResultLabel
+
 
 
 
@@ -126,11 +130,13 @@ func _on_die_double_roll_started():
 
 func _on_die_lcr_roll_started():
 	center_result_label.text = ""
+	exit_direction_label.text = ""
 
 
 
 func _on_die_locked_roll_started():
 	center_result_label.text = ""
+	exit_lock_label.text = ""
 
 
 
@@ -146,6 +152,7 @@ func _on_die_secondary_numbered_roll_started():
 
 func _on_die_d_3_roll_started():
 	center_result_label.text = ""
+	d_3_result_label.text = ""
 
 
 
@@ -158,8 +165,6 @@ func _determine_room_doubles():
 			&& room_size_x_roll_int != 6 && room_size_rolled_doubles_bool == false:
 		center_result_label.text = "Doubles!\nRoll Doubles Dice"
 		room_size_rolled_doubles_bool = true
-		
-		
 		
 	resize_room_rectangle.emit(room_size_x_roll_int,room_size_y_roll_int)
 
@@ -234,16 +239,26 @@ func _on_die_door_pics_roll_finished(die_value):
 	
 func _on_die_lcr_roll_finished(die_value):
 	room_exit_direction_int = die_value
-	
+	if room_exit_direction_int == 1 : exit_direction_label.text = "L"
+	elif room_exit_direction_int == 2 : exit_direction_label.text = "C"
+	else : exit_direction_label.text = "R"
+	#exit_direction_label.text = str(room_exit_direction_int)
+
 
 func _on_die_locked_roll_finished(die_value):
 	door_lock_status_int = die_value
+	if door_lock_status_int == 1 : exit_lock_label.text = "Metal Locked"
+	elif door_lock_status_int == 2 : exit_lock_label.text = "Metal / Reinforced Locked"
+	elif door_lock_status_int == 3 : exit_lock_label.text = "All Locked"
+	else : exit_lock_label.text = "Not Locked"
+	#exit_lock_label.text = str(door_lock_status_int)
 	
 
 func _on_die_primary_numbered_roll_finished(die_value):
 	primary_die_int = die_value
 	%TwoD6PrimaryPolygon2D.visible = true
 	primary_label.text = str(primary_die_int)
+
 
 func _on_die_secondary_numbered_roll_finished(die_value):
 	secondary_die_int = die_value
@@ -253,6 +268,7 @@ func _on_die_secondary_numbered_roll_finished(die_value):
 
 func _on_die_d_3_roll_finished(die_value):
 	d3_die_int = die_value
+	d_3_result_label.text = str(d3_die_int)
 	
 #-----------------------------------------------------------------------------
 

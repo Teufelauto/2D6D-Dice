@@ -38,14 +38,14 @@ func _ready():
 
 
 func _die_rotation_lock():
-	return # don't do it
-	axis_lock_angular_x = true # prevent being knocked over
-	axis_lock_angular_z = true # prevent being knocked over
+	pass # don't do it because it messes up picking dice. Bug?
+	#axis_lock_angular_x = true # prevent being knocked over
+	#axis_lock_angular_z = true # prevent being knocked over
 	
 func _die_rotation_unlock():
-	return #dont do it
-	axis_lock_angular_x = false # prevent being knocked over
-	axis_lock_angular_z = false # prevent being knocked over
+	pass #dont do it
+	#axis_lock_angular_x = false # prevent being knocked over
+	#axis_lock_angular_z = false # prevent being knocked over
 
 
 func _roll():
