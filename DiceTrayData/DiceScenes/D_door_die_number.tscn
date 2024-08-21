@@ -1,8 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dpj01oa7wrh7g"]
 
-[ext_resource type="PackedScene" uid="uid://cn2gw4ss76tcu" path="res://DiceTrayData/DiceScenes/Six Sided RayCast.tscn" id="1_eott6"]
-[ext_resource type="PhysicsMaterial" uid="uid://d1euamslrd3qy" path="res://DiceTrayData/Die Phys Material.tres" id="1_omm11"]
-
+[ext_resource type="PackedScene" uid="uid://cn2gw4ss76tcu" path="res://DiceTrayData/DiceScenes/SixSidedRayCast.tscn" id="1_eott6"]
+[ext_resource type="PhysicsMaterial" uid="uid://d1euamslrd3qy" path="res://DiceTrayData/DiePhysMaterial.tres" id="1_omm11"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0fbjf"]
 resource_name = "Plastic Black.002"
@@ -88,9 +87,11 @@ mesh = SubResource("ArrayMesh_50y2j")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+visible = false
 shape = SubResource("ConvexPolygonShape3D_aypki")
 
 [node name="Raycasts" type="Node3D" parent="."]
+visible = false
 
 [node name="SixSidedRayCast1" parent="Raycasts" instance=ExtResource("1_eott6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)

@@ -1,9 +1,9 @@
 [gd_scene load_steps=17 format=3 uid="uid://ua53ly3yv0sv"]
 
 [ext_resource type="Script" path="res://DiceTrayData/Die.gd" id="1_l357j"]
-[ext_resource type="PhysicsMaterial" uid="uid://d1euamslrd3qy" path="res://DiceTrayData/Die Phys Material.tres" id="1_o1nm7"]
+[ext_resource type="PhysicsMaterial" uid="uid://d1euamslrd3qy" path="res://DiceTrayData/DiePhysMaterial.tres" id="1_o1nm7"]
 [ext_resource type="Shape3D" uid="uid://cfyl03tbplsu" path="res://DiceTrayData/Rounded_Die_Collision_Geometry.tres" id="3_5puoa"]
-[ext_resource type="PackedScene" uid="uid://cn2gw4ss76tcu" path="res://DiceTrayData/DiceScenes/Six Sided RayCast.tscn" id="4_gyqed"]
+[ext_resource type="PackedScene" uid="uid://cn2gw4ss76tcu" path="res://DiceTrayData/DiceScenes/SixSidedRayCast.tscn" id="4_gyqed"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ge5dv"]
 resource_name = "Material.001"
@@ -283,7 +283,5 @@ target_position = Vector3(0, 0, 0.05)
 collision_mask = 256
 hit_from_inside = true
 opposite_side = 1
-
-[node name="Die Numbered Secondary" type="Node3D" parent="."]
 
 [connection signal="sleeping_state_changed" from="." to="." method="_on_sleeping_state_changed"]

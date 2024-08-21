@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://d3jt3pc4pgd3s"
-path="res://.godot/imported/Die Door Numbered.glb-fe7b050b8a1b6eb3ac22247e880ecbab.scn"
+path="res://.godot/imported/DieDoorNumbered.glb-8d5edf23e99bbf1b0d17d2c75f525d5c.scn"
 
 [deps]
 
-source_file="res://DiceTrayData/DiceModels/Die Door Numbered.glb"
-dest_files=["res://.godot/imported/Die Door Numbered.glb-fe7b050b8a1b6eb3ac22247e880ecbab.scn"]
+source_file="res://DiceTrayData/DiceModels/DieDoorNumbered.glb"
+dest_files=["res://.godot/imported/DieDoorNumbered.glb-8d5edf23e99bbf1b0d17d2c75f525d5c.scn"]
 
 [params]
 

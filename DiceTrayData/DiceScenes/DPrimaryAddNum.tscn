@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://xh1dxg5lm7mp"]
 
-[ext_resource type="PhysicsMaterial" uid="uid://d1euamslrd3qy" path="res://DiceTrayData/Die Phys Material.tres" id="1_l1xpq"]
+[ext_resource type="PhysicsMaterial" uid="uid://d1euamslrd3qy" path="res://DiceTrayData/DiePhysMaterial.tres" id="1_l1xpq"]
 [ext_resource type="Script" path="res://DiceTrayData/Die.gd" id="1_vwyma"]
 [ext_resource type="Shape3D" uid="uid://cfyl03tbplsu" path="res://DiceTrayData/Rounded_Die_Collision_Geometry.tres" id="3_gw0v0"]
-[ext_resource type="PackedScene" uid="uid://cn2gw4ss76tcu" path="res://DiceTrayData/DiceScenes/Six Sided RayCast.tscn" id="4_248m1"]
+[ext_resource type="PackedScene" uid="uid://cn2gw4ss76tcu" path="res://DiceTrayData/DiceScenes/SixSidedRayCast.tscn" id="4_248m1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c8uya"]
 resource_name = "Material"

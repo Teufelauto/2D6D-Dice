@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://bbgk8vem2ro85"]
 
-[ext_resource type="PhysicsMaterial" uid="uid://d1euamslrd3qy" path="res://DiceTrayData/Die Phys Material.tres" id="1_6n3mw"]
+[ext_resource type="PhysicsMaterial" uid="uid://d1euamslrd3qy" path="res://DiceTrayData/DiePhysMaterial.tres" id="1_6n3mw"]
 [ext_resource type="Shape3D" uid="uid://cfyl03tbplsu" path="res://DiceTrayData/Rounded_Die_Collision_Geometry.tres" id="1_pd3h2"]
-[ext_resource type="PackedScene" uid="uid://cn2gw4ss76tcu" path="res://DiceTrayData/DiceScenes/Six Sided RayCast.tscn" id="2_tj2j7"]
+[ext_resource type="PackedScene" uid="uid://cn2gw4ss76tcu" path="res://DiceTrayData/DiceScenes/SixSidedRayCast.tscn" id="2_tj2j7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4llme"]
 resource_name = "Material"
@@ -72,7 +72,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_82ye8")
 
-[node name="Die Dotted Primary" type="RigidBody3D"]
+[node name="DieDottedPrimary" type="RigidBody3D"]
 mass = 4.0
 physics_material_override = ExtResource("1_6n3mw")
 gravity_scale = 8.0

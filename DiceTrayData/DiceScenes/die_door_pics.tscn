@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://dwlkevdio50dl"]
 
 [ext_resource type="Shape3D" uid="uid://cfyl03tbplsu" path="res://DiceTrayData/Rounded_Die_Collision_Geometry.tres" id="1_cs02s"]
-[ext_resource type="PhysicsMaterial" uid="uid://d1euamslrd3qy" path="res://DiceTrayData/Die Phys Material.tres" id="1_khf0n"]
-[ext_resource type="PackedScene" uid="uid://cn2gw4ss76tcu" path="res://DiceTrayData/DiceScenes/Six Sided RayCast.tscn" id="2_iy53e"]
+[ext_resource type="PhysicsMaterial" uid="uid://d1euamslrd3qy" path="res://DiceTrayData/DiePhysMaterial.tres" id="1_khf0n"]
+[ext_resource type="PackedScene" uid="uid://cn2gw4ss76tcu" path="res://DiceTrayData/DiceScenes/SixSidedRayCast.tscn" id="2_iy53e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hlixo"]
 resource_name = "Material.001"
@@ -72,7 +72,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_lpgc8")
 
-[node name="Die Door Pics" type="RigidBody3D"]
+[node name="DieDoorPics" type="RigidBody3D"]
 collision_layer = 2
 collision_mask = 255
 mass = 5.0
@@ -134,4 +134,4 @@ collision_mask = 256
 hit_from_inside = true
 opposite_side = 1
 
-[node name="Die Door Numbered" type="Node3D" parent="."]
+[node name="DieDoorNumbered" type="Node3D" parent="."]
