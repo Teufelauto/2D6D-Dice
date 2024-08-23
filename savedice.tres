@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="SavedDice" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://DiceTrayData/saved_dice.gd" id="1_2jjxc"]
+
+[resource]
+script = ExtResource("1_2jjxc")
+die_text_color_x = Color(1, 1, 0.941176, 1)
+die_body_color_x = Color(0.254902, 0.411765, 0.882353, 1)
+die_text_color_y = Color(1, 1, 0.941176, 1)
+die_body_color_y = Color(0.698039, 0.133333, 0.133333, 1)
+die_text_color_d66_prime = Color(0.898438, 0.173447, 0.0772095, 1)
+die_body_color_d66_prime = Color(0.101563, 0, 1, 1)
+die_text_color_d66_secondary = Color(0.123596, 0.703125, 0.214148, 1)
+die_body_color_d66_secondary = Color(1, 0.046875, 0, 1)
+die_text_color_single_primary = Color(1, 1, 0.941176, 1)
+die_body_color_single_primary = Color(0, 0, 0.803922, 1)
+die_text_color_single_secondary = Color(1, 1, 0.941176, 1)
+die_body_color_single_secondary = Color(1, 0.270588, 0, 1)
+die_text_color_exit_numbers = Color(0, 0, 0, 1)
+die_body_color_exit_numbers = Color(0.870588, 0.721569, 0.529412, 1)
+die_text_color_exit_direction = Color(1, 1, 0.941176, 1)
+die_body_color_exit_direction = Color(0.501961, 0, 0, 1)
+die_text_color_exit_lock = Color(0, 0, 0, 1)
+die_body_color_exit_lock = Color(0.862745, 0.862745, 0.862745, 1)
+die_text_color_d3 = Color(1, 1, 0.941176, 1)
+die_body_color_d3 = Color(0.4, 0.2, 0.6, 1)
