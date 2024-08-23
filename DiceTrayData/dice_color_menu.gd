@@ -21,7 +21,7 @@ static var d_text_color_exit_lock : Color
 static var d_body_color_exit_lock : Color
 static var d_text_color_d3 : Color
 static var d_body_color_d3 : Color
-
+static var d_tray_felt_color : Color
 
 
 func _ready():
@@ -76,8 +76,10 @@ func _paint_buttons_and_text_in_menu():
 	%ColorPickerButton_D3Text.color = d_text_color_d3
 	%ColorPickerButton_D3.color = d_body_color_d3
 	%LabelD3.label_settings.font_color = d_text_color_d3
+	# Tray Felt color
+	%ColorPickerButton_TrayFelt.color = d_tray_felt_color
 	
-		
+	
 static func load_default_dice_colors():
 	
 	d_text_color_x = Color.IVORY
@@ -100,7 +102,7 @@ static func load_default_dice_colors():
 	d_body_color_exit_lock = Color.GAINSBORO
 	d_text_color_d3 = Color.IVORY
 	d_body_color_d3 = Color.REBECCA_PURPLE
-	
+	d_tray_felt_color = Color.FOREST_GREEN
 
 func save_dice_colors():
 	var saved_dice:SavedDice = SavedDice.new()
@@ -125,6 +127,7 @@ func save_dice_colors():
 	saved_dice.die_body_color_exit_lock = d_body_color_exit_lock
 	saved_dice.die_text_color_d3 = d_text_color_d3
 	saved_dice.die_body_color_d3 = d_body_color_d3
+	saved_dice.die_tray_felt_color = d_tray_felt_color
 	
 	ResourceSaver.save(saved_dice, "res://savedice.tres")
 	
@@ -153,10 +156,15 @@ static func load_dice_colors():
 	d_body_color_exit_lock = saved_dice.die_body_color_exit_lock
 	d_text_color_d3 = saved_dice.die_text_color_d3
 	d_body_color_d3 = saved_dice.die_body_color_d3
-
+	d_tray_felt_color = saved_dice.die_tray_felt_color
 
 func _on_back_pressed():
 	get_tree().change_scene_to_file("res://DiceTrayData/dice_options_menu.tscn")
+
+
+func _on_load_default_pressed():
+	DiceColor.load_default_dice_colors()
+	_paint_buttons_and_text_in_menu()
 
 
 func _on_color_picker_button_xtext_color_changed(color):
@@ -247,7 +255,11 @@ func _on_color_picker_button_d_3_text_color_changed(color):
 func _on_color_picker_button_d_3_color_changed(color):
 	d_body_color_d3 = color
 
+func _on_color_picker_button_tray_felt_color_changed(color):
+	d_tray_felt_color = color
+	
+	
 
-func _on_load_default_pressed():
-	DiceColor.load_default_dice_colors()
-	_paint_buttons_and_text_in_menu()
+
+
+

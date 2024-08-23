@@ -22,3 +22,4 @@ extends Resource
 @export var die_body_color_exit_lock : Color
 @export var die_text_color_d3 : Color
 @export var die_body_color_d3 : Color
+@export var die_tray_felt_color : Color
