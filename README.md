@@ -11,8 +11,8 @@ Features:
 - Recognizes when to roll additive dice for room size
 - Creates a small drawing of the room rolled for quick orientation.
 - 'Scoreboard' for normal rolls indicate when physics is done and the dice can be interacted with. - Rerolling before values come up could cause dice to get locked, and require backing out of the tray and opening it again.
+- Dice colors (text and bodies) can be changed and saved to disk. (While in dev, saved to res instead of user. Must be changed to 'user' before export!  DiceTray and DiceColorMenu)
 
 Future Features:
-- Color selector
 - Dice style selector
 - Fatigue die
