@@ -56,6 +56,10 @@ signal clear_room_rectangle() # report to make room rectangle invisible
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#clear scoreboard
+	_remove_left_dice_scoreboard()
+	_remove_right_dice_scoreboard()
+	
 	# load the dice colors
 	if ResourceLoader.exists("res://savedice.tres") : #Load custom colors
 		DiceColor.load_dice_colors()
@@ -78,38 +82,74 @@ func _assign_colors():
 	
 	var DieMesh :StandardMaterial3D
 	# Door X Die
-	for member in get_tree().get_nodes_in_group("mesh_x"):
+	for member in get_tree().get_nodes_in_group("mesh_die_x"):
 		DieMesh = member.get_surface_override_material(0)
 		DieMesh.albedo_color = DiceColor.d_text_color_x
 		DieMesh = member.get_surface_override_material(1)
 		DieMesh.albedo_color = DiceColor.d_body_color_x
 		
 	# Door Y Die
-	for member in get_tree().get_nodes_in_group("mesh_y"):
+	for member in get_tree().get_nodes_in_group("mesh_die_y"):
 		DieMesh = member.get_surface_override_material(0)
 		DieMesh.albedo_color = DiceColor.d_text_color_y
 		DieMesh = member.get_surface_override_material(1)
 		DieMesh.albedo_color = DiceColor.d_body_color_y
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	# Door Exit Qty
+	for member in get_tree().get_nodes_in_group("mesh_die_exit_qty"):
+		DieMesh = member.get_surface_override_material(0)
+		DieMesh.albedo_color = DiceColor.d_text_color_exit_numbers
+		DieMesh = member.get_surface_override_material(1)
+		DieMesh.albedo_color = DiceColor.d_body_color_exit_numbers
 	
+	# D66 Primary
+	for member in get_tree().get_nodes_in_group("mesh_die_d66_primary"):
+		DieMesh = member.get_surface_override_material(0)
+		DieMesh.albedo_color = DiceColor.d_text_color_d66_prime
+		DieMesh = member.get_surface_override_material(1)
+		DieMesh.albedo_color = DiceColor.d_body_color_d66_prime
 	
+	# D66 Secondary
+	for member in get_tree().get_nodes_in_group("mesh_die_d66_secondary"):
+		DieMesh = member.get_surface_override_material(0)
+		DieMesh.albedo_color = DiceColor.d_text_color_d66_secondary
+		DieMesh = member.get_surface_override_material(1)
+		DieMesh.albedo_color = DiceColor.d_body_color_d66_secondary
+	
+	# die LCR
+	for member in get_tree().get_nodes_in_group("mesh_die_lcr"):
+		DieMesh = member.get_surface_override_material(0)
+		DieMesh.albedo_color = DiceColor.d_text_color_exit_direction
+		DieMesh = member.get_surface_override_material(1)
+		DieMesh.albedo_color = DiceColor.d_body_color_exit_direction
+	
+	# Lock check
+	for member in get_tree().get_nodes_in_group("mesh_die_door_lock"):
+		DieMesh = member.get_surface_override_material(0)
+		DieMesh.albedo_color = DiceColor.d_text_color_exit_lock
+		DieMesh = member.get_surface_override_material(1)
+		DieMesh.albedo_color = DiceColor.d_body_color_exit_lock
+	
+	# single Primary
+	for member in get_tree().get_nodes_in_group("mesh_die_single_primary"):
+		DieMesh = member.get_surface_override_material(0)
+		DieMesh.albedo_color = DiceColor.d_text_color_single_primary
+		DieMesh = member.get_surface_override_material(1)
+		DieMesh.albedo_color = DiceColor.d_body_color_single_primary
+		
+	# single secondary
+	for member in get_tree().get_nodes_in_group("mesh_die_single_secondary"):
+		DieMesh = member.get_surface_override_material(0)
+		DieMesh.albedo_color = DiceColor.d_text_color_single_secondary
+		DieMesh = member.get_surface_override_material(1)
+		DieMesh.albedo_color = DiceColor.d_body_color_single_secondary
+		
+	# d3 die
+	for member in get_tree().get_nodes_in_group("mesh_die_d3"):
+		DieMesh = member.get_surface_override_material(0)
+		DieMesh.albedo_color = DiceColor.d_text_color_d3
+		DieMesh = member.get_surface_override_material(1)
+		DieMesh.albedo_color = DiceColor.d_body_color_d3
 
 
 func _rehome_dice():

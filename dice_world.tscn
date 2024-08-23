@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://DiceTrayData/RoomRectangleLine2D.gd" id="2_21tng"]
 [ext_resource type="PackedScene" uid="uid://c1sbbpswt68eq" path="res://DiceTrayData/DiceScenes/DXDim.tscn" id="3_kng4p"]
 [ext_resource type="PackedScene" uid="uid://ua53ly3yv0sv" path="res://DiceTrayData/DiceScenes/DYDim.tscn" id="4_x4k34"]
-[ext_resource type="PackedScene" uid="uid://dwlkevdio50dl" path="res://DiceTrayData/DiceScenes/die_door_pics.tscn" id="5_qjmgg"]
+[ext_resource type="PackedScene" uid="uid://dwlkevdio50dl" path="res://DiceTrayData/DiceScenes/die_door_qty.tscn" id="5_qjmgg"]
 [ext_resource type="Script" path="res://DiceTrayData/Die.gd" id="6_14uwm"]
 [ext_resource type="PackedScene" uid="uid://xh1dxg5lm7mp" path="res://DiceTrayData/DiceScenes/DPrimaryAddNum.tscn" id="7_na2sw"]
 [ext_resource type="PackedScene" uid="uid://4jtmcfbcxwts" path="res://DiceTrayData/DiceScenes/DSecondaryAddNum.tscn" id="8_qpv5r"]

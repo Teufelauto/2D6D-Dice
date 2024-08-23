@@ -81,7 +81,7 @@ func _paint_buttons_and_text_in_menu():
 static func load_default_dice_colors():
 	
 	d_text_color_x = Color.IVORY
-	d_body_color_x = Color.MAGENTA#ROYAL_BLUE
+	d_body_color_x = Color.ROYAL_BLUE
 	d_text_color_y = Color.IVORY
 	d_body_color_y = Color.FIREBRICK
 	d_text_color_d66_prime = Color("7f6e19")
