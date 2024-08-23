@@ -56,9 +56,14 @@ signal clear_room_rectangle() # report to make room rectangle invisible
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# load the dice colors
+	#var die_color : DiceColor
+	#if ResourceLoader.exists("res://savedice.tres") : #Load custom colors
+		#die_color.load_dice_colors()
+	#else: # load standard colors chosen by the developer!
+		#die_color.load_default_dice_colors()
 	pass
-
-
+	
 func _rehome_dice():
 	button_throw_xy.visible = true
 	button_throw_xy2.visible = true
