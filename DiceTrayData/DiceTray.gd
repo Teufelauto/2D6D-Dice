@@ -76,11 +76,38 @@ func _assign_colors():
 	%SecondaryLabel.label_settings.font_color = DiceColor.d_text_color_single_secondary
 	%TwoD6SecondaryPolygon2D.self_modulate = DiceColor.d_body_color_single_secondary
 	
-	
-	
-	
-	
-	
+	var DieMesh :StandardMaterial3D
+	# Door X Die
+	for member in get_tree().get_nodes_in_group("mesh_x"):
+		DieMesh = member.get_surface_override_material(0)
+		DieMesh.albedo_color = DiceColor.d_text_color_x
+		DieMesh = member.get_surface_override_material(1)
+		DieMesh.albedo_color = DiceColor.d_body_color_x
+		
+	# Door Y Die
+	for member in get_tree().get_nodes_in_group("mesh_y"):
+		DieMesh = member.get_surface_override_material(0)
+		DieMesh.albedo_color = DiceColor.d_text_color_y
+		DieMesh = member.get_surface_override_material(1)
+		DieMesh.albedo_color = DiceColor.d_body_color_y
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
 	
 
@@ -117,9 +144,10 @@ func _remove_right_primary_die_scoreboard():
 func _remove_right_secondary_die_scoreboard():
 	%TwoD6SecondaryPolygon2D.visible = false
 	secondary_label.text = ""
+	
+	
+#region -------------------------ROLL STARTED-----------------------------
 
-
-# -----------------------------------ROLL STARTED-----------------------------
 func _on_room_dimension_roll_started():
 	center_result_label.text = ""
 	x_result_label.text = ""
@@ -159,31 +187,28 @@ func _on_die_lcr_roll_started():
 	exit_direction_label.text = ""
 
 
-
 func _on_die_locked_roll_started():
 	center_result_label.text = ""
 	exit_lock_label.text = ""
-
 
 
 func _on_die_primary_numbered_roll_started():
 	center_result_label.text = ""
 
 
-
 func _on_die_secondary_numbered_roll_started():
 	center_result_label.text = ""
-
 
 
 func _on_die_d_3_roll_started():
 	center_result_label.text = ""
 	d_3_result_label.text = ""
 
+#endregion
 
 
+#region ---------------------- ROLL FINISHED -----------------------------
 
-# --------------------------------- ROLL FINISHED -----------------------------
 
 func _determine_room_doubles():
 	# Determine if valid or need more rolls
@@ -295,7 +320,9 @@ func _on_die_secondary_numbered_roll_finished(die_value):
 func _on_die_d_3_roll_finished(die_value):
 	d3_die_int = die_value
 	d_3_result_label.text = str(d3_die_int)
-	
+
+#endregion
+
 #-----------------------------------------------------------------------------
 
 func _on_exit_button_pressed():
