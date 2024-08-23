@@ -1,10 +1,10 @@
-[gd_scene load_steps=26 format=3 uid="uid://dx5jaq5nccohx"]
+[gd_scene load_steps=22 format=3 uid="uid://dx5jaq5nccohx"]
 
 [ext_resource type="Script" path="res://DiceTrayData/DiceTray.gd" id="1_w2v6l"]
 [ext_resource type="Script" path="res://DiceTrayData/RoomRectangleLine2D.gd" id="2_21tng"]
 [ext_resource type="PackedScene" uid="uid://c1sbbpswt68eq" path="res://DiceTrayData/DiceScenes/DXDim.tscn" id="3_kng4p"]
 [ext_resource type="PackedScene" uid="uid://ua53ly3yv0sv" path="res://DiceTrayData/DiceScenes/DYDim.tscn" id="4_x4k34"]
-[ext_resource type="PackedScene" uid="uid://dwlkevdio50dl" path="res://DiceTrayData/DiceScenes/die_door_qty.tscn" id="5_qjmgg"]
+[ext_resource type="PackedScene" uid="uid://dwlkevdio50dl" path="res://DiceTrayData/DiceScenes/die_door_pics.tscn" id="5_qjmgg"]
 [ext_resource type="Script" path="res://DiceTrayData/Die.gd" id="6_14uwm"]
 [ext_resource type="PackedScene" uid="uid://xh1dxg5lm7mp" path="res://DiceTrayData/DiceScenes/DPrimaryAddNum.tscn" id="7_na2sw"]
 [ext_resource type="PackedScene" uid="uid://4jtmcfbcxwts" path="res://DiceTrayData/DiceScenes/DSecondaryAddNum.tscn" id="8_qpv5r"]
@@ -13,18 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://crf5mdkv3587n" path="res://DiceTrayData/DiceScenes/die_numbered_primary.tscn" id="11_yvrk6"]
 [ext_resource type="PackedScene" uid="uid://osco2cs718d7" path="res://DiceTrayData/DiceScenes/die_numbered_secondary.tscn" id="12_1abmh"]
 [ext_resource type="PackedScene" uid="uid://bi35saefl3rd4" path="res://DiceTrayData/DiceScenes/die_d_3.tscn" id="13_vjmht"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_gdq0w"]
-font_size = 80
-
-[sub_resource type="LabelSettings" id="LabelSettings_wcw80"]
-font_size = 80
-
-[sub_resource type="LabelSettings" id="LabelSettings_p6gre"]
-font_size = 80
-
-[sub_resource type="LabelSettings" id="LabelSettings_ybirq"]
-font_size = 80
 
 [sub_resource type="BoxMesh" id="BoxMesh_dtie3"]
 
@@ -73,6 +61,7 @@ grow_vertical = 2
 
 [node name="D66PrimaryPolygon2D" type="Polygon2D" parent="DiceTray/DiceCanvas/D66ScoreBoard"]
 unique_name_in_owner = true
+self_modulate = Color(0, 1, 1, 1)
 position = Vector2(42, 25)
 scale = Vector2(7, 7)
 antialiased = true
@@ -80,14 +69,13 @@ polygon = PackedVector2Array(0, 0, 0, 10, 10, 10, 10, 0)
 
 [node name="D66SecondaryPolygon2D" type="Polygon2D" parent="DiceTray/DiceCanvas/D66ScoreBoard"]
 unique_name_in_owner = true
-self_modulate = Color(0.85614, 0.857382, 0.846623, 1)
+self_modulate = Color(0.992157, 0.607843, 0, 1)
 position = Vector2(122, 25)
 scale = Vector2(7, 7)
 antialiased = true
 polygon = PackedVector2Array(0, 0, 0, 10, 10, 10, 10, 0)
 
 [node name="D66PrimaryLabel" type="Label" parent="DiceTray/DiceCanvas/D66ScoreBoard"]
-unique_name_in_owner = true
 self_modulate = Color(0.521998, 0.462102, 0.204873, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -101,11 +89,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 80
 text = "0"
-label_settings = SubResource("LabelSettings_gdq0w")
 horizontal_alignment = 1
 
 [node name="D66SecondaryLabel" type="Label" parent="DiceTray/DiceCanvas/D66ScoreBoard"]
-unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -118,7 +104,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 80
 text = "0"
-label_settings = SubResource("LabelSettings_wcw80")
 horizontal_alignment = 1
 
 [node name="TwoD6ScoreBoard" type="Control" parent="DiceTray/DiceCanvas"]
@@ -148,7 +133,6 @@ antialiased = true
 polygon = PackedVector2Array(0, 0, 0, 10, 10, 10, 10, 0)
 
 [node name="PrimaryLabel" type="Label" parent="DiceTray/DiceCanvas/TwoD6ScoreBoard"]
-unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -161,11 +145,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 80
 text = "0"
-label_settings = SubResource("LabelSettings_p6gre")
 horizontal_alignment = 1
 
 [node name="SecondaryLabel" type="Label" parent="DiceTray/DiceCanvas/TwoD6ScoreBoard"]
-unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -178,7 +160,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 80
 text = "0"
-label_settings = SubResource("LabelSettings_ybirq")
 horizontal_alignment = 1
 
 [node name="CenterResultLabel" type="Label" parent="DiceTray/DiceCanvas"]
@@ -694,14 +675,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13718, 4.67024, -1.29338)
 [connection signal="pressed" from="DiceTray/ExitLockCheckDie/ExitLockThrowButton" to="DiceTray/ExitLockCheckDie/DieLocked" method="_on_exit_lock_throw_button_pressed"]
 [connection signal="input_event" from="DiceTray/PrimaryDie/DiePrimaryNumbered" to="DiceTray/PrimaryDie/DiePrimaryNumbered" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/PrimaryDie/DiePrimaryNumbered" to="DiceTray" method="_on_die_primary_numbered_roll_finished"]
-[connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryNumbered" to="DiceTray" method="_on_die_primary_numbered_roll_started"]
 [connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryNumbered" to="DiceTray" method="_remove_right_primary_die_scoreboard"]
+[connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryNumbered" to="DiceTray" method="_on_die_primary_numbered_roll_started"]
 [connection signal="sleeping_state_changed" from="DiceTray/PrimaryDie/DiePrimaryNumbered" to="DiceTray/PrimaryDie/DiePrimaryNumbered" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/PrimaryDie/PrimeThrowButton" to="DiceTray/PrimaryDie/DiePrimaryNumbered" method="_on_prime_throw_button_pressed"]
 [connection signal="input_event" from="DiceTray/SecondaryDie/DieSecondaryNumbered" to="DiceTray/SecondaryDie/DieSecondaryNumbered" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/SecondaryDie/DieSecondaryNumbered" to="DiceTray" method="_on_die_secondary_numbered_roll_finished"]
-[connection signal="roll_started" from="DiceTray/SecondaryDie/DieSecondaryNumbered" to="DiceTray" method="_on_die_secondary_numbered_roll_started"]
 [connection signal="roll_started" from="DiceTray/SecondaryDie/DieSecondaryNumbered" to="DiceTray" method="_remove_right_secondary_die_scoreboard"]
+[connection signal="roll_started" from="DiceTray/SecondaryDie/DieSecondaryNumbered" to="DiceTray" method="_on_die_secondary_numbered_roll_started"]
 [connection signal="sleeping_state_changed" from="DiceTray/SecondaryDie/DieSecondaryNumbered" to="DiceTray/SecondaryDie/DieSecondaryNumbered" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/SecondaryDie/SecondaryThrowButton" to="DiceTray/SecondaryDie/DieSecondaryNumbered" method="_on_secondary_throw_button_pressed"]
 [connection signal="input_event" from="DiceTray/D3Die/DieD3" to="DiceTray/D3Die/DieD3" method="_on_input_event"]

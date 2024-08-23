@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5m3t0qb8cysk"]
+[gd_scene load_steps=10 format=3 uid="uid://b5m3t0qb8cysk"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://d1euamslrd3qy" path="res://DiceTrayData/DiePhysMaterial.tres" id="1_5wt0r"]
 [ext_resource type="Shape3D" uid="uid://cfyl03tbplsu" path="res://DiceTrayData/Rounded_Die_Collision_Geometry.tres" id="1_widlt"]
@@ -72,16 +72,28 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ny674")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xcbcc"]
+albedo_color = Color(0.347817, 0.347817, 0.347817, 1)
+roughness = 0.1
+clearcoat_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y5qw4"]
+albedo_color = Color(0.697661, 0, 0.0702771, 1)
+roughness = 0.1
+clearcoat_enabled = true
+
 [node name="DieLCR" type="RigidBody3D"]
 mass = 5.0
 physics_material_override = ExtResource("1_5wt0r")
 gravity_scale = 5.0
 freeze = true
 
-[node name="Die_Body" type="MeshInstance3D" parent="."]
+[node name="Die_Body" type="MeshInstance3D" parent="." groups=["mesh_die_lcr"]]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 mesh = SubResource("ArrayMesh_xwes4")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_xcbcc")
+surface_material_override/1 = SubResource("StandardMaterial3D_y5qw4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 visible = false

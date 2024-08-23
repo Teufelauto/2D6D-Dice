@@ -56,7 +56,100 @@ signal clear_room_rectangle() # report to make room rectangle invisible
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	#clear scoreboard
+	_remove_left_dice_scoreboard()
+	_remove_right_dice_scoreboard()
+	
+	# load the dice colors
+	if ResourceLoader.exists("res://savedice.tres") : #Load custom colors
+		DiceColor.load_dice_colors()
+	else: # load standard colors chosen by the developer!
+		DiceColor.load_default_dice_colors()
+	#print(DiceColor.d_body_color_d3)
+	_assign_colors()
+	
+func _assign_colors():
+	# D66 Scoreboard
+	%D66PrimaryLabel.label_settings.font_color = DiceColor.d_text_color_d66_prime
+	%D66PrimaryPolygon2D.self_modulate = DiceColor.d_body_color_d66_prime
+	%D66SecondaryLabel.label_settings.font_color = DiceColor.d_text_color_d66_secondary
+	%D66SecondaryPolygon2D.self_modulate = DiceColor.d_body_color_d66_secondary
+	# D6 Scoreboard
+	%PrimaryLabel.label_settings.font_color = DiceColor.d_text_color_single_primary
+	%TwoD6PrimaryPolygon2D.self_modulate = DiceColor.d_body_color_single_primary
+	%SecondaryLabel.label_settings.font_color = DiceColor.d_text_color_single_secondary
+	%TwoD6SecondaryPolygon2D.self_modulate = DiceColor.d_body_color_single_secondary
+	
+	var DieMesh :StandardMaterial3D
+	# Door X Die
+	for member in get_tree().get_nodes_in_group("mesh_die_x"):
+		DieMesh = member.get_surface_override_material(0)
+		DieMesh.albedo_color = DiceColor.d_text_color_x
+		DieMesh = member.get_surface_override_material(1)
+		DieMesh.albedo_color = DiceColor.d_body_color_x
+		
+	# Door Y Die
+	for member in get_tree().get_nodes_in_group("mesh_die_y"):
+		DieMesh = member.get_surface_override_material(0)
+		DieMesh.albedo_color = DiceColor.d_text_color_y
+		DieMesh = member.get_surface_override_material(1)
+		DieMesh.albedo_color = DiceColor.d_body_color_y
+		
+	# Door Exit Qty
+	for member in get_tree().get_nodes_in_group("mesh_die_exit_qty"):
+		DieMesh = member.get_surface_override_material(0)
+		DieMesh.albedo_color = DiceColor.d_text_color_exit_numbers
+		DieMesh = member.get_surface_override_material(1)
+		DieMesh.albedo_color = DiceColor.d_body_color_exit_numbers
+	
+	# D66 Primary
+	for member in get_tree().get_nodes_in_group("mesh_die_d66_primary"):
+		DieMesh = member.get_surface_override_material(0)
+		DieMesh.albedo_color = DiceColor.d_text_color_d66_prime
+		DieMesh = member.get_surface_override_material(1)
+		DieMesh.albedo_color = DiceColor.d_body_color_d66_prime
+	
+	# D66 Secondary
+	for member in get_tree().get_nodes_in_group("mesh_die_d66_secondary"):
+		DieMesh = member.get_surface_override_material(0)
+		DieMesh.albedo_color = DiceColor.d_text_color_d66_secondary
+		DieMesh = member.get_surface_override_material(1)
+		DieMesh.albedo_color = DiceColor.d_body_color_d66_secondary
+	
+	# die LCR
+	for member in get_tree().get_nodes_in_group("mesh_die_lcr"):
+		DieMesh = member.get_surface_override_material(0)
+		DieMesh.albedo_color = DiceColor.d_text_color_exit_direction
+		DieMesh = member.get_surface_override_material(1)
+		DieMesh.albedo_color = DiceColor.d_body_color_exit_direction
+	
+	# Lock check
+	for member in get_tree().get_nodes_in_group("mesh_die_door_lock"):
+		DieMesh = member.get_surface_override_material(0)
+		DieMesh.albedo_color = DiceColor.d_text_color_exit_lock
+		DieMesh = member.get_surface_override_material(1)
+		DieMesh.albedo_color = DiceColor.d_body_color_exit_lock
+	
+	# single Primary
+	for member in get_tree().get_nodes_in_group("mesh_die_single_primary"):
+		DieMesh = member.get_surface_override_material(0)
+		DieMesh.albedo_color = DiceColor.d_text_color_single_primary
+		DieMesh = member.get_surface_override_material(1)
+		DieMesh.albedo_color = DiceColor.d_body_color_single_primary
+		
+	# single secondary
+	for member in get_tree().get_nodes_in_group("mesh_die_single_secondary"):
+		DieMesh = member.get_surface_override_material(0)
+		DieMesh.albedo_color = DiceColor.d_text_color_single_secondary
+		DieMesh = member.get_surface_override_material(1)
+		DieMesh.albedo_color = DiceColor.d_body_color_single_secondary
+		
+	# d3 die
+	for member in get_tree().get_nodes_in_group("mesh_die_d3"):
+		DieMesh = member.get_surface_override_material(0)
+		DieMesh.albedo_color = DiceColor.d_text_color_d3
+		DieMesh = member.get_surface_override_material(1)
+		DieMesh.albedo_color = DiceColor.d_body_color_d3
 
 
 func _rehome_dice():
@@ -91,9 +184,10 @@ func _remove_right_primary_die_scoreboard():
 func _remove_right_secondary_die_scoreboard():
 	%TwoD6SecondaryPolygon2D.visible = false
 	secondary_label.text = ""
+	
+	
+#region -------------------------ROLL STARTED-----------------------------
 
-
-# -----------------------------------ROLL STARTED-----------------------------
 func _on_room_dimension_roll_started():
 	center_result_label.text = ""
 	x_result_label.text = ""
@@ -133,31 +227,28 @@ func _on_die_lcr_roll_started():
 	exit_direction_label.text = ""
 
 
-
 func _on_die_locked_roll_started():
 	center_result_label.text = ""
 	exit_lock_label.text = ""
-
 
 
 func _on_die_primary_numbered_roll_started():
 	center_result_label.text = ""
 
 
-
 func _on_die_secondary_numbered_roll_started():
 	center_result_label.text = ""
-
 
 
 func _on_die_d_3_roll_started():
 	center_result_label.text = ""
 	d_3_result_label.text = ""
 
+#endregion
 
 
+#region ---------------------- ROLL FINISHED -----------------------------
 
-# --------------------------------- ROLL FINISHED -----------------------------
 
 func _determine_room_doubles():
 	# Determine if valid or need more rolls
@@ -269,7 +360,9 @@ func _on_die_secondary_numbered_roll_finished(die_value):
 func _on_die_d_3_roll_finished(die_value):
 	d3_die_int = die_value
 	d_3_result_label.text = str(d3_die_int)
-	
+
+#endregion
+
 #-----------------------------------------------------------------------------
 
 func _on_exit_button_pressed():
