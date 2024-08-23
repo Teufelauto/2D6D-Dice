@@ -248,4 +248,6 @@ func _on_color_picker_button_d_3_color_changed(color):
 	d_body_color_d3 = color
 
 
-
+func _on_load_default_pressed():
+	DiceColor.load_default_dice_colors()
+	_paint_buttons_and_text_in_menu()

@@ -1,41 +1,60 @@
-[gd_scene load_steps=13 format=3 uid="uid://deae8wqbvikx6"]
+[gd_scene load_steps=15 format=3 uid="uid://deae8wqbvikx6"]
 
 [ext_resource type="Script" path="res://DiceTrayData/dice_color_menu.gd" id="1_8g6k6"]
 
 [sub_resource type="Theme" id="Theme_1glhj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ohjsl"]
-font_size = 60
+font_size = 40
 
 [sub_resource type="LabelSettings" id="LabelSettings_6e7hy"]
-font_size = 60
+font_size = 40
 
 [sub_resource type="LabelSettings" id="LabelSettings_pym11"]
-font_size = 60
+font_size = 40
 font_color = Color(0.91251, 0.900141, 0.903229, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_qx1n0"]
-font_size = 60
+font_size = 40
 
 [sub_resource type="LabelSettings" id="LabelSettings_4sbx1"]
-font_size = 60
+font_size = 40
 
 [sub_resource type="LabelSettings" id="LabelSettings_be7hf"]
-font_size = 60
+font_size = 40
 
 [sub_resource type="LabelSettings" id="LabelSettings_wbofp"]
-font_size = 60
+font_size = 40
 font_color = Color(0.00184107, 0.00184107, 0.00184107, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ilo6k"]
-font_size = 60
+font_size = 40
+
+[sub_resource type="FontFile" id="FontFile_n6suf"]
+cache/0/40/0/ascent = 0.0
+cache/0/40/0/descent = 0.0
+cache/0/40/0/underline_position = 0.0
+cache/0/40/0/underline_thickness = 0.0
+cache/0/40/0/scale = 1.0
+cache/0/40/0/kerning_overrides/40/0 = Vector2(0, 0)
+cache/0/40/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/40/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ke64u"]
-font_size = 60
+font = SubResource("FontFile_n6suf")
+font_size = 40
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_vh3od"]
-font_size = 60
+font_size = 40
+
+[sub_resource type="Theme" id="Theme_jf8ki"]
 
 [node name="DiceColorMenu" type="Control"]
 layout_mode = 3
@@ -67,12 +86,14 @@ columns = 3
 [node name="XDim" type="Button" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 40
+button_mask = 0
 text = "Room X"
+flat = true
 
 [node name="ColorPickerButton_Xtext" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 70)
+custom_minimum_size = Vector2(70, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
 theme_override_font_sizes/font_size = 45
@@ -81,7 +102,7 @@ edit_alpha = false
 
 [node name="ColorPickerButton_X" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 70)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
 theme_override_font_sizes/font_size = 45
@@ -106,12 +127,14 @@ vertical_alignment = 1
 [node name="YDim" type="Button" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 40
+button_mask = 0
 text = "Room Y"
+flat = true
 
 [node name="ColorPickerButton_Ytext" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 70)
+custom_minimum_size = Vector2(70, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
 theme_override_font_sizes/font_size = 45
@@ -120,7 +143,7 @@ edit_alpha = false
 
 [node name="ColorPickerButton_Y" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 70)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
 theme_override_font_sizes/font_size = 45
@@ -151,12 +174,14 @@ vertical_alignment = 1
 [node name="DoublePrimary" type="Button" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 40
+button_mask = 0
 text = "Primary D66"
+flat = true
 
 [node name="ColorPickerButton_D66Ptext" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 70)
+custom_minimum_size = Vector2(70, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
 theme_override_font_sizes/font_size = 45
@@ -165,7 +190,7 @@ edit_alpha = false
 
 [node name="ColorPickerButton_D66Prime" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 70)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
 theme_override_font_sizes/font_size = 45
@@ -196,12 +221,14 @@ vertical_alignment = 1
 [node name="DoubleSecondary" type="Button" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 40
+button_mask = 0
 text = "2ndary D66"
+flat = true
 
 [node name="ColorPickerButton_D66Stext" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 70)
+custom_minimum_size = Vector2(70, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
 theme_override_font_sizes/font_size = 45
@@ -210,7 +237,7 @@ edit_alpha = false
 
 [node name="ColorPickerButton_D66Secondary" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 70)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
 theme_override_font_sizes/font_size = 45
@@ -241,12 +268,14 @@ vertical_alignment = 1
 [node name="SinglePrimary" type="Button" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 40
+button_mask = 0
 text = "Primary D6"
+flat = true
 
 [node name="ColorPickerButton_PrimeText" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 70)
+custom_minimum_size = Vector2(70, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
 theme_override_font_sizes/font_size = 45
@@ -255,7 +284,7 @@ edit_alpha = false
 
 [node name="ColorPickerButton_Primary" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 70)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
 theme_override_font_sizes/font_size = 45
@@ -286,12 +315,14 @@ vertical_alignment = 1
 [node name="SingleSecondary" type="Button" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 40
+button_mask = 0
 text = "2ndary D6"
+flat = true
 
 [node name="ColorPickerButton_secondaryText" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 70)
+custom_minimum_size = Vector2(70, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
 theme_override_font_sizes/font_size = 45
@@ -300,7 +331,7 @@ edit_alpha = false
 
 [node name="ColorPickerButton_Secondary" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 70)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
 theme_override_font_sizes/font_size = 45
@@ -331,12 +362,14 @@ vertical_alignment = 1
 [node name="ExitNum" type="Button" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 40
+button_mask = 0
 text = "# of Exits"
+flat = true
 
 [node name="ColorPickerButton_ExitNumText" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 70)
+custom_minimum_size = Vector2(70, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
 theme_override_font_sizes/font_size = 45
@@ -344,7 +377,7 @@ edit_alpha = false
 
 [node name="ColorPickerButton_ExitNum" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 70)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
 theme_override_font_sizes/font_size = 45
@@ -375,12 +408,14 @@ vertical_alignment = 1
 [node name="ExitDirection" type="Button" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 40
+button_mask = 0
 text = "Exit Direction"
+flat = true
 
 [node name="ColorPickerButton_ExitDirText" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 70)
+custom_minimum_size = Vector2(70, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
 theme_override_font_sizes/font_size = 45
@@ -389,7 +424,7 @@ edit_alpha = false
 
 [node name="ColorPickerButton_ExitDirection" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 70)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
 theme_override_font_sizes/font_size = 45
@@ -420,12 +455,14 @@ vertical_alignment = 1
 [node name="ExitLock" type="Button" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 40
+button_mask = 0
 text = "Exit Lock"
+flat = true
 
 [node name="ColorPickerButton_ExitLockText" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 70)
+custom_minimum_size = Vector2(70, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
 theme_override_font_sizes/font_size = 45
@@ -433,7 +470,7 @@ edit_alpha = false
 
 [node name="ColorPickerButton_ExitLock" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 70)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
 theme_override_font_sizes/font_size = 45
@@ -464,12 +501,14 @@ vertical_alignment = 1
 [node name="D3Die" type="Button" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 40
+button_mask = 0
 text = "D3"
+flat = true
 
 [node name="ColorPickerButton_D3Text" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 70)
+custom_minimum_size = Vector2(70, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
 theme_override_font_sizes/font_size = 45
@@ -478,7 +517,7 @@ edit_alpha = false
 
 [node name="ColorPickerButton_D3" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 70)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
 theme_override_font_sizes/font_size = 45
@@ -501,21 +540,35 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 60
-text = "3"
+text = "I"
 label_settings = SubResource("LabelSettings_vh3od")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="LoadDefault" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+theme = SubResource("Theme_jf8ki")
+theme_override_font_sizes/font_size = 40
+text = "Load Default"
+
+[node name="Spacer" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+flat = true
+
+[node name="Spacer2" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+flat = true
+
 [node name="SaveColors" type="Button" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
-theme_override_font_sizes/font_size = 45
-text = "Save"
+theme_override_font_sizes/font_size = 40
+text = "Save Current"
 
 [node name="Back" type="Button" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 40
 text = "Back"
 
 [connection signal="ready" from="." to="." method="_on_ready"]
@@ -539,5 +592,6 @@ text = "Back"
 [connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_ExitLock" to="." method="_on_color_picker_button_exit_lock_color_changed"]
 [connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_D3Text" to="." method="_on_color_picker_button_d_3_text_color_changed"]
 [connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_D3" to="." method="_on_color_picker_button_d_3_color_changed"]
+[connection signal="pressed" from="MarginContainer/GridContainer/LoadDefault" to="." method="_on_load_default_pressed"]
 [connection signal="pressed" from="MarginContainer/GridContainer/SaveColors" to="." method="save_dice_colors"]
 [connection signal="pressed" from="MarginContainer/GridContainer/Back" to="." method="_on_back_pressed"]
