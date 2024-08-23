@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c1sbbpswt68eq"]
+[gd_scene load_steps=19 format=3 uid="uid://c1sbbpswt68eq"]
 
 [ext_resource type="Script" path="res://DiceTrayData/Die.gd" id="1_aasm6"]
 [ext_resource type="PhysicsMaterial" uid="uid://d1euamslrd3qy" path="res://DiceTrayData/DiePhysMaterial.tres" id="1_jowh7"]
@@ -72,6 +72,16 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_srk8b")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q27d7"]
+albedo_color = Color(1, 0.129412, 1, 1)
+roughness = 0.1
+clearcoat_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ppfov"]
+albedo_color = Color(0.444382, 0.362434, 0.107113, 1)
+roughness = 0.1
+clearcoat_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g4m5y"]
 resource_name = "Material"
@@ -219,9 +229,11 @@ freeze = true
 script = ExtResource("1_aasm6")
 
 [node name="Die_Body_X" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
+transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, -0.0167287, 0.00617832, 0.000733227)
 mesh = SubResource("ArrayMesh_idfjp")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_q27d7")
+surface_material_override/1 = SubResource("StandardMaterial3D_ppfov")
 
 [node name="Die_Body_Dots" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)

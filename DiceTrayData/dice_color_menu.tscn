@@ -12,7 +12,7 @@ font_size = 60
 
 [sub_resource type="LabelSettings" id="LabelSettings_pym11"]
 font_size = 60
-font_color = Color(0.52549, 0.45098, 0.141176, 1)
+font_color = Color(0.91251, 0.900141, 0.903229, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_qx1n0"]
 font_size = 60
@@ -76,7 +76,7 @@ custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
 theme_override_font_sizes/font_size = 45
-color = Color(0.12549, 1, 1, 1)
+color = Color(0.878385, 0.877118, 0.890863, 1)
 edit_alpha = false
 
 [node name="ColorPickerButton_X" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
@@ -160,7 +160,7 @@ custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
 theme_override_font_sizes/font_size = 45
-color = Color(0.52549, 0.45098, 0.141176, 1)
+color = Color(0.86187, 0.82921, 0.795206, 1)
 edit_alpha = false
 
 [node name="ColorPickerButton_D66Prime" type="ColorPickerButton" parent="MarginContainer/GridContainer"]

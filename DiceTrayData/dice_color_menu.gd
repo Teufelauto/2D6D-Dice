@@ -1,26 +1,26 @@
 extends Control
 class_name DiceColor
 
-static var d_text_color_x := Color(0,0,0,1)
-static var d_body_color_x := Color(0,0,0,1)
-static var d_text_color_y := Color(0,0,0,1)
-static var d_body_color_y := Color(0,0,0,1)
-static var d_text_color_d66_prime := Color(0,0,0,1)
-static var d_body_color_d66_prime := Color(0,0,0,1)
-static var d_text_color_d66_secondary := Color(0,0,0,1)
-static var d_body_color_d66_secondary := Color(0,0,0,1)
-static var d_text_color_single_primary := Color(0,0,0,1)
-static var d_body_color_single_primary := Color(0,0,0,1)
-static var d_text_color_single_secondary := Color(0,0,0,1)
-static var d_body_color_single_secondary := Color(0,0,0,1)
-static var d_text_color_exit_numbers := Color(0,0,0,1)
-static var d_body_color_exit_numbers := Color(0,0,0,1)
-static var d_text_color_exit_direction := Color(0,0,0,1)
-static var d_body_color_exit_direction := Color(0,0,0,1)
-static var d_text_color_exit_lock := Color(0,0,0,1)
-static var d_body_color_exit_lock := Color(0,0,0,1)
-static var d_text_color_d3 := Color(0,0,0,1)
-static var d_body_color_d3 := Color(0,0,0,1)
+static var d_text_color_x : Color
+static var d_body_color_x : Color
+static var d_text_color_y : Color
+static var d_body_color_y : Color
+static var d_text_color_d66_prime : Color
+static var d_body_color_d66_prime : Color
+static var d_text_color_d66_secondary : Color
+static var d_body_color_d66_secondary : Color
+static var d_text_color_single_primary : Color
+static var d_body_color_single_primary : Color
+static var d_text_color_single_secondary : Color
+static var d_body_color_single_secondary : Color
+static var d_text_color_exit_numbers : Color
+static var d_body_color_exit_numbers : Color
+static var d_text_color_exit_direction : Color
+static var d_body_color_exit_direction : Color
+static var d_text_color_exit_lock : Color
+static var d_body_color_exit_lock : Color
+static var d_text_color_d3 : Color
+static var d_body_color_d3 : Color
 
 
 
@@ -81,7 +81,7 @@ func _paint_buttons_and_text_in_menu():
 static func load_default_dice_colors():
 	
 	d_text_color_x = Color.IVORY
-	d_body_color_x = Color.ROYAL_BLUE
+	d_body_color_x = Color.MAGENTA#ROYAL_BLUE
 	d_text_color_y = Color.IVORY
 	d_body_color_y = Color.FIREBRICK
 	d_text_color_d66_prime = Color("7f6e19")

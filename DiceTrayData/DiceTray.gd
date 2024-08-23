@@ -57,13 +57,34 @@ signal clear_room_rectangle() # report to make room rectangle invisible
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# load the dice colors
-	#var die_color : DiceColor
-	#if ResourceLoader.exists("res://savedice.tres") : #Load custom colors
-		#die_color.load_dice_colors()
-	#else: # load standard colors chosen by the developer!
-		#die_color.load_default_dice_colors()
-	pass
+	if ResourceLoader.exists("res://savedice.tres") : #Load custom colors
+		DiceColor.load_dice_colors()
+	else: # load standard colors chosen by the developer!
+		DiceColor.load_default_dice_colors()
+	#print(DiceColor.d_body_color_d3)
+	_assign_colors()
 	
+func _assign_colors():
+	# D66 Scoreboard
+	%D66PrimaryLabel.label_settings.font_color = DiceColor.d_text_color_d66_prime
+	%D66PrimaryPolygon2D.self_modulate = DiceColor.d_body_color_d66_prime
+	%D66SecondaryLabel.label_settings.font_color = DiceColor.d_text_color_d66_secondary
+	%D66SecondaryPolygon2D.self_modulate = DiceColor.d_body_color_d66_secondary
+	# D6 Scoreboard
+	%PrimaryLabel.label_settings.font_color = DiceColor.d_text_color_single_primary
+	%TwoD6PrimaryPolygon2D.self_modulate = DiceColor.d_body_color_single_primary
+	%SecondaryLabel.label_settings.font_color = DiceColor.d_text_color_single_secondary
+	%TwoD6SecondaryPolygon2D.self_modulate = DiceColor.d_body_color_single_secondary
+	
+	
+	
+	
+	
+	
+	
+	
+
+
 func _rehome_dice():
 	button_throw_xy.visible = true
 	button_throw_xy2.visible = true
