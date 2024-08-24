@@ -1,6 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://deae8wqbvikx6"]
+[gd_scene load_steps=15 format=3 uid="uid://bw8h8rfm67dud"]
 
-[ext_resource type="Script" path="res://DiceTrayData/dice_color_menu.gd" id="1_8g6k6"]
+[ext_resource type="Script" path="res://DiceTrayData/dice_style_menu.gd" id="1_4qj4j"]
 
 [sub_resource type="Theme" id="Theme_1glhj"]
 
@@ -56,14 +56,14 @@ font_size = 40
 
 [sub_resource type="Theme" id="Theme_jf8ki"]
 
-[node name="DiceColorMenu" type="Control"]
+[node name="DiceStyleMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_8g6k6")
+script = ExtResource("1_4qj4j")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -580,7 +580,7 @@ flat = true
 layout_mode = 2
 flat = true
 
-[node name="SaveColors" type="Button" parent="MarginContainer/GridContainer"]
+[node name="SaveStyles" type="Button" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
@@ -615,5 +615,5 @@ text = "Back"
 [connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_D3" to="." method="_on_color_picker_button_d_3_color_changed"]
 [connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_TrayFelt" to="." method="_on_color_picker_button_tray_felt_color_changed"]
 [connection signal="pressed" from="MarginContainer/GridContainer/LoadDefault" to="." method="_on_load_default_pressed"]
-[connection signal="pressed" from="MarginContainer/GridContainer/SaveColors" to="." method="_save_dice_colors"]
+[connection signal="pressed" from="MarginContainer/GridContainer/SaveStyles" to="." method="_save_dice_styles"]
 [connection signal="pressed" from="MarginContainer/GridContainer/Back" to="." method="_on_back_pressed"]

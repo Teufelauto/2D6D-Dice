@@ -4,7 +4,7 @@ A Dice Simulator for use with the solo RPG '2D6 Dungeon' by Toby Lancaster. This
 
 Game Engine:		Godot 4.2.2.stable
 
-Required Assets:	Rapier 3d Physics 
+Required Addons:	Rapier 3d Physics , Godot Safe Resource Loader
 
 Features:
 - Currently, dice rolling basically works, but relies on physics sleep to report dice values, or for reroll / pickup.

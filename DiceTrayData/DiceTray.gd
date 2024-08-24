@@ -1,6 +1,7 @@
 class_name DiceTray
 extends Node3D
 
+
 @onready var pick_up_all_dice_button_huge = $PickUpAllDiceButtonHuge
 
 @onready var button_throw_xy = $RoomSizeDice/XYThrowButton
@@ -26,7 +27,7 @@ extends Node3D
 @onready var exit_lock_label = $DiceCanvas/ExitLockLabel
 @onready var d_3_result_label = $DiceCanvas/D3ResultLabel
 
-
+#@onready var dice_color : DiceColor
 
 
 
@@ -62,10 +63,12 @@ func _ready():
 	_remove_right_dice_scoreboard()
 	
 	# load the dice colors
-	if ResourceLoader.exists("res://savedice.tres") : #Load custom colors
+	if ResourceLoader.exists("user://savedice.tres") : #Load custom colors
 		DiceColor.load_dice_colors()
+		DiceStyle.load_dice_styles()
 	else: # load standard colors chosen by the developer!
 		DiceColor.load_default_dice_colors()
+		DiceStyle.load_default_dice_styles()
 	#print(DiceColor.d_body_color_d3)
 	_assign_die_styles()
 	_assign_colors()
@@ -74,43 +77,43 @@ func _ready():
 func _assign_die_styles():
 	# Room X die
 	for member in get_tree().get_nodes_in_group("mesh_die_x") :
-		if member.is_in_group(DiceColor.d_style_x) : member.visible = true
+		if member.is_in_group(DiceStyle.d_style_x) : member.visible = true
 		else : member.visible = false
 	# Room Y die
 	for member in get_tree().get_nodes_in_group("mesh_die_y") :
-		if member.is_in_group(DiceColor.d_style_y) : member.visible = true
+		if member.is_in_group(DiceStyle.d_style_y) : member.visible = true
 		else : member.visible = false
 	# Room exit qty
 	for member in get_tree().get_nodes_in_group("mesh_die_exit_qty") :
-		if member.is_in_group(DiceColor.d_style_exit_qty) : member.visible = true
+		if member.is_in_group(DiceStyle.d_style_exit_qty) : member.visible = true
 		else : member.visible = false
 	
 	for member in get_tree().get_nodes_in_group("mesh_die_d66_primary") :
-		if member.is_in_group(DiceColor.d_style_d66_prime) : member.visible = true
+		if member.is_in_group(DiceStyle.d_style_d66_prime) : member.visible = true
 		else : member.visible = false
 	
 	for member in get_tree().get_nodes_in_group("mesh_die_d66_secondary") :
-		if member.is_in_group(DiceColor.d_style_d66_secondary) : member.visible = true
+		if member.is_in_group(DiceStyle.d_style_d66_secondary) : member.visible = true
 		else : member.visible = false
 		
 	for member in get_tree().get_nodes_in_group("mesh_die_lcr") :
-		if member.is_in_group(DiceColor.d_style_exit_direction) : member.visible = true
+		if member.is_in_group(DiceStyle.d_style_exit_direction) : member.visible = true
 		else : member.visible = false
 		
 	for member in get_tree().get_nodes_in_group("mesh_die_door_lock") :
-		if member.is_in_group(DiceColor.d_style_exit_lock) : member.visible = true
+		if member.is_in_group(DiceStyle.d_style_exit_lock) : member.visible = true
 		else : member.visible = false
 		
 	for member in get_tree().get_nodes_in_group("mesh_die_single_primary") :
-		if member.is_in_group(DiceColor.d_style_single_primary) : member.visible = true
+		if member.is_in_group(DiceStyle.d_style_single_primary) : member.visible = true
 		else : member.visible = false
 		
 	for member in get_tree().get_nodes_in_group("mesh_die_single_secondary") :
-		if member.is_in_group(DiceColor.d_style_single_secondary) : member.visible = true
+		if member.is_in_group(DiceStyle.d_style_single_secondary) : member.visible = true
 		else : member.visible = false
 		
 	for member in get_tree().get_nodes_in_group("mesh_die_d3") :
-		if member.is_in_group(DiceColor.d_style_d3) : member.visible = true
+		if member.is_in_group(DiceStyle.d_style_d3) : member.visible = true
 		else : member.visible = false
 	
 	

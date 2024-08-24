@@ -32,6 +32,10 @@ window/handheld/orientation=1
 window/ios/allow_high_refresh_rate=false
 window/ios/hide_status_bar=false
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/safe_resource_loader/plugin.cfg")
+
 [layer_names]
 
 2d_render/layer_1="RoomXYResults"

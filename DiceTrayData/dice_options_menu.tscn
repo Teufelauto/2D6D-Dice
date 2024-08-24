@@ -36,11 +36,11 @@ theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 60
 text = "Change Colors"
 
-[node name="DiceOptions" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="DiceStyles" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 60
-text = "Future Use"
+text = "Dice Styles"
 
 [node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -49,5 +49,5 @@ theme_override_font_sizes/font_size = 60
 text = "Back"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ChangeColors" to="." method="_on_change_colors_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/DiceOptions" to="." method="_on_dice_options_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/DiceStyles" to="." method="_on_dice_styles_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
