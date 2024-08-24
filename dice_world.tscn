@@ -180,6 +180,7 @@ label_settings = SubResource("LabelSettings_ybirq")
 horizontal_alignment = 1
 
 [node name="CenterResultLabel" type="Label" parent="DiceTray/DiceCanvas"]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -237,6 +238,40 @@ points = PackedVector2Array(0, 220, 220, 220, 220, 0, 0, 0)
 closed = true
 width = 5.0
 script = ExtResource("2_21tng")
+
+[node name="RoomSizeLargeLabel" type="Label" parent="DiceTray/DiceCanvas"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 85.0
+offset_top = 641.0
+offset_right = -347.0
+offset_bottom = -185.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "Large
+Room"
+vertical_alignment = 2
+
+[node name="RoomSizeSmallLabel" type="Label" parent="DiceTray/DiceCanvas"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 73.0
+offset_top = 568.0
+offset_right = -358.0
+offset_bottom = -254.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "Small
+Room"
+vertical_alignment = 2
 
 [node name="ExitDirectionLabel" type="Label" parent="DiceTray/DiceCanvas"]
 anchors_preset = 15
@@ -324,7 +359,7 @@ visibility_layer = 8
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 94.0
+offset_left = 88.0
 offset_top = 513.0
 offset_right = -318.0
 offset_bottom = -187.0
@@ -704,8 +739,8 @@ light_energy = 7.72
 [connection signal="pressed" from="DiceTray/ExitLockCheckDie/ExitLockThrowButton" to="DiceTray/ExitLockCheckDie/DieLocked" method="_on_exit_lock_throw_button_pressed"]
 [connection signal="input_event" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_on_die_primary_numbered_roll_finished"]
-[connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_on_die_primary_numbered_roll_started"]
 [connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_remove_right_primary_die_scoreboard"]
+[connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_on_die_primary_numbered_roll_started"]
 [connection signal="sleeping_state_changed" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/PrimaryDie/PrimeThrowButton" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_prime_throw_button_pressed"]
 [connection signal="input_event" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray/SecondaryDie/DieSecondaryD6" method="_on_input_event"]

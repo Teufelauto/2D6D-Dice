@@ -123,7 +123,7 @@ static func load_default_dice_colors():
 	d_style_d66_secondary = "die_num"
 	d_style_single_primary = "die_num"
 	d_style_single_secondary = "die_num"
-	d_style_exit_qty = "die_num"
+	d_style_exit_qty = "die_dot"
 	d_style_exit_direction = "die_let"
 	d_style_exit_lock = "die_dot"
 	d_style_d3 = "die_let"

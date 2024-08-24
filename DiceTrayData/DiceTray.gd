@@ -39,6 +39,7 @@ static var room_size_y_add_int : int = 0
 
 static var room_size_x_int : int = 0
 static var room_size_y_int : int = 0
+static var room_area_rolled : int = 0
 
 static var doubles_primary_int : int = 0
 static var doubles_secondary_int : int = 0
@@ -66,8 +67,9 @@ func _ready():
 	else: # load standard colors chosen by the developer!
 		DiceColor.load_default_dice_colors()
 	#print(DiceColor.d_body_color_d3)
-	_assign_colors()
 	_assign_die_styles()
+	_assign_colors()
+	
 	
 func _assign_die_styles():
 	# Room X die
@@ -79,11 +81,11 @@ func _assign_die_styles():
 		if member.is_in_group(DiceColor.d_style_y) : member.visible = true
 		else : member.visible = false
 	# Room exit qty
-	for member in get_tree().get_nodes_in_group("mesh_exit_qty") :
+	for member in get_tree().get_nodes_in_group("mesh_die_exit_qty") :
 		if member.is_in_group(DiceColor.d_style_exit_qty) : member.visible = true
 		else : member.visible = false
 	
-	for member in get_tree().get_nodes_in_group("mesh_d66_primary") :
+	for member in get_tree().get_nodes_in_group("mesh_die_d66_primary") :
 		if member.is_in_group(DiceColor.d_style_d66_prime) : member.visible = true
 		else : member.visible = false
 	
@@ -213,6 +215,8 @@ func _rehome_dice():
 	button_throw_d3.visible = true
 	pick_up_all_dice_button_huge.visible = false
 	room_size_rolled_doubles_bool = false
+	%RoomSizeSmallLabel.visible = false
+	%RoomSizeLargeLabel.visible = false
 
 func _remove_left_dice_scoreboard():
 	%D66PrimaryPolygon2D.visible = false
@@ -235,7 +239,11 @@ func _remove_right_secondary_die_scoreboard():
 	%TwoD6SecondaryPolygon2D.visible = false
 	secondary_label.text = ""
 	
-	
+func _remove_small_or_large_room_labels():
+	%RoomSizeSmallLabel.visible = false
+	%RoomSizeLargeLabel.visible = false
+
+
 #region -------------------------ROLL STARTED-----------------------------
 
 func _on_room_dimension_roll_started():
@@ -257,7 +265,9 @@ func _on_room_dimension_roll_started():
 	room_size_rolled_doubles_bool = false
 	doubles_primary_int = 0
 	doubles_secondary_int = 0
+	# Remove rectangle Drawing and size labels
 	clear_room_rectangle.emit()
+	_remove_small_or_large_room_labels()
 
 
 func _on_die_double_roll_started():
@@ -298,7 +308,16 @@ func _on_die_d_3_roll_started():
 
 
 #region ---------------------- ROLL FINISHED -----------------------------
-
+func _add_small_or_large_room_labels( _room_x , _room_y ):
+	var _room_area :int = _room_x * _room_y
+	if _room_x > 1 and _room_y > 1 : 
+		if _room_area <= 6 : # 2x3 or 3x2 room 'Small Room'
+			%RoomSizeSmallLabel.visible = true
+			
+		elif _room_area >= 32 : # 4x8 5x7 6x6, or larger
+			%RoomSizeLargeLabel.visible = true
+			
+	
 
 func _determine_room_doubles():
 	# Determine if valid or need more rolls
@@ -306,10 +325,13 @@ func _determine_room_doubles():
 			&& room_size_x_roll_int != 6 && room_size_rolled_doubles_bool == false:
 		center_result_label.text = "Doubles!\nRoll Doubles Dice"
 		room_size_rolled_doubles_bool = true
-		
-	resize_room_rectangle.emit(room_size_x_roll_int,room_size_y_roll_int)
-
-
+	else: #room is not doubles
+		resize_room_rectangle.emit(room_size_x_roll_int,room_size_y_roll_int) 
+		_add_small_or_large_room_labels(room_size_x_int,room_size_y_int)
+	
+	
+	
+	
 func _room_doubles_done():
 	if room_size_x_add_int > 0 and room_size_y_add_int > 0 :
 		center_result_label.text = ""
@@ -319,6 +341,7 @@ func _room_doubles_done():
 		x_result_label.text = str(room_size_x_int)
 		y_result_label.text = str(room_size_y_int)
 		resize_room_rectangle.emit(room_size_x_int,room_size_y_int)
+		_add_small_or_large_room_labels(room_size_x_int,room_size_y_int)
 		pick_up_all_dice_button_huge.visible = true # All dice must be picked up!
 		
 
