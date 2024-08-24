@@ -160,13 +160,13 @@ albedo_color = Color(1, 1, 0.0156863, 1)
 roughness = 0.1
 clearcoat_enabled = true
 
-[node name="Die Numbered Secondary" type="RigidBody3D"]
+[node name="DieSingleSecondary" type="RigidBody3D"]
 mass = 5.0
 physics_material_override = ExtResource("1_fh5eb")
 gravity_scale = 5.0
 freeze = true
 
-[node name="Die_Body_Num" type="MeshInstance3D" parent="." groups=["mesh_die_single_secondary"]]
+[node name="Die_Body_Num" type="MeshInstance3D" parent="." groups=["die_num", "mesh_die_single_secondary"]]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 visible = false
 cast_shadow = 2
@@ -176,7 +176,7 @@ skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_10q1y")
 surface_material_override/1 = SubResource("StandardMaterial3D_w5ssn")
 
-[node name="Die_Body_Dots" type="MeshInstance3D" parent="." groups=["mesh_die_single_secondary"]]
+[node name="Die_Body_Dots" type="MeshInstance3D" parent="." groups=["die_dot", "mesh_die_single_secondary"]]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 cast_shadow = 2
 gi_mode = 0

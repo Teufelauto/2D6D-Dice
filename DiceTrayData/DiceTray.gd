@@ -67,6 +67,50 @@ func _ready():
 		DiceColor.load_default_dice_colors()
 	#print(DiceColor.d_body_color_d3)
 	_assign_colors()
+	_assign_die_styles()
+	
+func _assign_die_styles():
+	# Room X die
+	for member in get_tree().get_nodes_in_group("mesh_die_x") :
+		if member.is_in_group(DiceColor.d_style_x) : member.visible = true
+		else : member.visible = false
+	# Room Y die
+	for member in get_tree().get_nodes_in_group("mesh_die_y") :
+		if member.is_in_group(DiceColor.d_style_y) : member.visible = true
+		else : member.visible = false
+	# Room exit qty
+	for member in get_tree().get_nodes_in_group("mesh_exit_qty") :
+		if member.is_in_group(DiceColor.d_style_exit_qty) : member.visible = true
+		else : member.visible = false
+	
+	for member in get_tree().get_nodes_in_group("mesh_d66_primary") :
+		if member.is_in_group(DiceColor.d_style_d66_prime) : member.visible = true
+		else : member.visible = false
+	
+	for member in get_tree().get_nodes_in_group("mesh_die_d66_secondary") :
+		if member.is_in_group(DiceColor.d_style_d66_secondary) : member.visible = true
+		else : member.visible = false
+		
+	for member in get_tree().get_nodes_in_group("mesh_die_lcr") :
+		if member.is_in_group(DiceColor.d_style_exit_direction) : member.visible = true
+		else : member.visible = false
+		
+	for member in get_tree().get_nodes_in_group("mesh_die_door_lock") :
+		if member.is_in_group(DiceColor.d_style_exit_lock) : member.visible = true
+		else : member.visible = false
+		
+	for member in get_tree().get_nodes_in_group("mesh_die_single_primary") :
+		if member.is_in_group(DiceColor.d_style_single_primary) : member.visible = true
+		else : member.visible = false
+		
+	for member in get_tree().get_nodes_in_group("mesh_die_single_secondary") :
+		if member.is_in_group(DiceColor.d_style_single_secondary) : member.visible = true
+		else : member.visible = false
+		
+	for member in get_tree().get_nodes_in_group("mesh_die_d3") :
+		if member.is_in_group(DiceColor.d_style_d3) : member.visible = true
+		else : member.visible = false
+	
 	
 func _assign_colors():
 	# D66 Scoreboard
@@ -80,81 +124,82 @@ func _assign_colors():
 	%SecondaryLabel.label_settings.font_color = DiceColor.d_text_color_single_secondary
 	%TwoD6SecondaryPolygon2D.self_modulate = DiceColor.d_body_color_single_secondary
 	
-	var DieMesh :StandardMaterial3D
+	
+	var DieMeshMat :StandardMaterial3D
 	# Door X Die
 	for member in get_tree().get_nodes_in_group("mesh_die_x"):
-		DieMesh = member.get_surface_override_material(0)
-		DieMesh.albedo_color = DiceColor.d_text_color_x
-		DieMesh = member.get_surface_override_material(1)
-		DieMesh.albedo_color = DiceColor.d_body_color_x
+		DieMeshMat = member.get_surface_override_material(0)
+		DieMeshMat.albedo_color = DiceColor.d_text_color_x
+		DieMeshMat = member.get_surface_override_material(1)
+		DieMeshMat.albedo_color = DiceColor.d_body_color_x
 		
 	# Door Y Die
 	for member in get_tree().get_nodes_in_group("mesh_die_y"):
-		DieMesh = member.get_surface_override_material(0)
-		DieMesh.albedo_color = DiceColor.d_text_color_y
-		DieMesh = member.get_surface_override_material(1)
-		DieMesh.albedo_color = DiceColor.d_body_color_y
+		DieMeshMat = member.get_surface_override_material(0)
+		DieMeshMat.albedo_color = DiceColor.d_text_color_y
+		DieMeshMat = member.get_surface_override_material(1)
+		DieMeshMat.albedo_color = DiceColor.d_body_color_y
 		
 	# Door Exit Qty
 	for member in get_tree().get_nodes_in_group("mesh_die_exit_qty"):
-		DieMesh = member.get_surface_override_material(0)
-		DieMesh.albedo_color = DiceColor.d_text_color_exit_numbers
-		DieMesh = member.get_surface_override_material(1)
-		DieMesh.albedo_color = DiceColor.d_body_color_exit_numbers
+		DieMeshMat = member.get_surface_override_material(0)
+		DieMeshMat.albedo_color = DiceColor.d_text_color_exit_numbers
+		DieMeshMat = member.get_surface_override_material(1)
+		DieMeshMat.albedo_color = DiceColor.d_body_color_exit_numbers
 	
 	# D66 Primary
 	for member in get_tree().get_nodes_in_group("mesh_die_d66_primary"):
-		DieMesh = member.get_surface_override_material(0)
-		DieMesh.albedo_color = DiceColor.d_text_color_d66_prime
-		DieMesh = member.get_surface_override_material(1)
-		DieMesh.albedo_color = DiceColor.d_body_color_d66_prime
+		DieMeshMat = member.get_surface_override_material(0)
+		DieMeshMat.albedo_color = DiceColor.d_text_color_d66_prime
+		DieMeshMat = member.get_surface_override_material(1)
+		DieMeshMat.albedo_color = DiceColor.d_body_color_d66_prime
 	
 	# D66 Secondary
 	for member in get_tree().get_nodes_in_group("mesh_die_d66_secondary"):
-		DieMesh = member.get_surface_override_material(0)
-		DieMesh.albedo_color = DiceColor.d_text_color_d66_secondary
-		DieMesh = member.get_surface_override_material(1)
-		DieMesh.albedo_color = DiceColor.d_body_color_d66_secondary
+		DieMeshMat = member.get_surface_override_material(0)
+		DieMeshMat.albedo_color = DiceColor.d_text_color_d66_secondary
+		DieMeshMat = member.get_surface_override_material(1)
+		DieMeshMat.albedo_color = DiceColor.d_body_color_d66_secondary
 	
 	# die LCR
 	for member in get_tree().get_nodes_in_group("mesh_die_lcr"):
-		DieMesh = member.get_surface_override_material(0)
-		DieMesh.albedo_color = DiceColor.d_text_color_exit_direction
-		DieMesh = member.get_surface_override_material(1)
-		DieMesh.albedo_color = DiceColor.d_body_color_exit_direction
+		DieMeshMat = member.get_surface_override_material(0)
+		DieMeshMat.albedo_color = DiceColor.d_text_color_exit_direction
+		DieMeshMat = member.get_surface_override_material(1)
+		DieMeshMat.albedo_color = DiceColor.d_body_color_exit_direction
 	
 	# Lock check
 	for member in get_tree().get_nodes_in_group("mesh_die_door_lock"):
-		DieMesh = member.get_surface_override_material(0)
-		DieMesh.albedo_color = DiceColor.d_text_color_exit_lock
-		DieMesh = member.get_surface_override_material(1)
-		DieMesh.albedo_color = DiceColor.d_body_color_exit_lock
+		DieMeshMat = member.get_surface_override_material(0)
+		DieMeshMat.albedo_color = DiceColor.d_text_color_exit_lock
+		DieMeshMat = member.get_surface_override_material(1)
+		DieMeshMat.albedo_color = DiceColor.d_body_color_exit_lock
 	
 	# single Primary
 	for member in get_tree().get_nodes_in_group("mesh_die_single_primary"):
-		DieMesh = member.get_surface_override_material(0)
-		DieMesh.albedo_color = DiceColor.d_text_color_single_primary
-		DieMesh = member.get_surface_override_material(1)
-		DieMesh.albedo_color = DiceColor.d_body_color_single_primary
+		DieMeshMat = member.get_surface_override_material(0)
+		DieMeshMat.albedo_color = DiceColor.d_text_color_single_primary
+		DieMeshMat = member.get_surface_override_material(1)
+		DieMeshMat.albedo_color = DiceColor.d_body_color_single_primary
 		
 	# single secondary
 	for member in get_tree().get_nodes_in_group("mesh_die_single_secondary"):
-		DieMesh = member.get_surface_override_material(0)
-		DieMesh.albedo_color = DiceColor.d_text_color_single_secondary
-		DieMesh = member.get_surface_override_material(1)
-		DieMesh.albedo_color = DiceColor.d_body_color_single_secondary
+		DieMeshMat = member.get_surface_override_material(0)
+		DieMeshMat.albedo_color = DiceColor.d_text_color_single_secondary
+		DieMeshMat = member.get_surface_override_material(1)
+		DieMeshMat.albedo_color = DiceColor.d_body_color_single_secondary
 		
 	# d3 die
 	for member in get_tree().get_nodes_in_group("mesh_die_d3"):
-		DieMesh = member.get_surface_override_material(0)
-		DieMesh.albedo_color = DiceColor.d_text_color_d3
-		DieMesh = member.get_surface_override_material(1)
-		DieMesh.albedo_color = DiceColor.d_body_color_d3
+		DieMeshMat = member.get_surface_override_material(0)
+		DieMeshMat.albedo_color = DiceColor.d_text_color_d3
+		DieMeshMat = member.get_surface_override_material(1)
+		DieMeshMat.albedo_color = DiceColor.d_body_color_d3
 	
 	# Dice Tray Felt Color assignment
 	for member in get_tree().get_nodes_in_group("mesh_die_tray_felt"):
-		DieMesh = member.get_surface_override_material(0)
-		DieMesh.albedo_color = DiceColor.d_tray_felt_color
+		DieMeshMat = member.get_surface_override_material(0)
+		DieMeshMat.albedo_color = DiceColor.d_tray_felt_color
 
 
 func _rehome_dice():

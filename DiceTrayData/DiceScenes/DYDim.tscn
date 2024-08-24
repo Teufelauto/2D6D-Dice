@@ -245,7 +245,7 @@ physics_material_override = ExtResource("1_o1nm7")
 freeze = true
 script = ExtResource("1_l357j")
 
-[node name="Die_Body_Dots" type="MeshInstance3D" parent="." groups=["mesh_die_y"]]
+[node name="Die_Body_Dots" type="MeshInstance3D" parent="." groups=["die_dot", "mesh_die_y"]]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 visible = false
 cast_shadow = 2
@@ -255,7 +255,7 @@ skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_t35s1")
 surface_material_override/1 = SubResource("StandardMaterial3D_moum7")
 
-[node name="Die_Body_Y" type="MeshInstance3D" parent="." groups=["mesh_die_y"]]
+[node name="Die_Body_Y" type="MeshInstance3D" parent="." groups=["die_let", "mesh_die_y"]]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 cast_shadow = 2
 gi_mode = 0
@@ -264,7 +264,7 @@ skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_3bdj1")
 surface_material_override/1 = SubResource("StandardMaterial3D_suq04")
 
-[node name="Die_Body_Num" type="MeshInstance3D" parent="." groups=["mesh_die_y"]]
+[node name="Die_Body_Num" type="MeshInstance3D" parent="." groups=["die_num", "mesh_die_y"]]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 visible = false
 cast_shadow = 2

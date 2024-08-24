@@ -164,7 +164,7 @@ physics_material_override = ExtResource("1_khf0n")
 gravity_scale = 10.0
 freeze = true
 
-[node name="Die_Body_Door_Pics" type="MeshInstance3D" parent="." groups=["mesh_die_exit_qty"]]
+[node name="Die_Body_Door_Pics" type="MeshInstance3D" parent="." groups=["die_dot", "mesh_die_exit_qty"]]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 cast_shadow = 2
 gi_mode = 0
@@ -173,7 +173,7 @@ skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_r11qr")
 surface_material_override/1 = SubResource("StandardMaterial3D_jh0fm")
 
-[node name="Die_Body_Door_numbered" type="MeshInstance3D" parent="." groups=["mesh_die_exit_qty"]]
+[node name="Die_Body_Door_numbered" type="MeshInstance3D" parent="." groups=["die_num", "mesh_die_exit_qty"]]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 visible = false
 cast_shadow = 2

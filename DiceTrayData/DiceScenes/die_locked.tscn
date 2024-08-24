@@ -86,7 +86,7 @@ physics_material_override = ExtResource("1_uxbpr")
 gravity_scale = 5.0
 freeze = true
 
-[node name="Die_Body" type="MeshInstance3D" parent="." groups=["mesh_die_door_lock"]]
+[node name="Die_Body" type="MeshInstance3D" parent="." groups=["die_dot", "mesh_die_door_lock"]]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 cast_shadow = 2
 gi_mode = 0

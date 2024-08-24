@@ -172,7 +172,7 @@ gravity_scale = 5.0
 freeze = true
 script = ExtResource("1_vwyma")
 
-[node name="Die_Body_Num" type="MeshInstance3D" parent="." groups=["mesh_die_d66_primary"]]
+[node name="Die_Body_Num" type="MeshInstance3D" parent="." groups=["die_num", "mesh_die_d66_primary"]]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 visible = false
 cast_shadow = 2
@@ -182,7 +182,7 @@ skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_xcohc")
 surface_material_override/1 = SubResource("StandardMaterial3D_pfv8u")
 
-[node name="Die_Body_Dot" type="MeshInstance3D" parent="." groups=["mesh_die_d66_primary"]]
+[node name="Die_Body_Dot" type="MeshInstance3D" parent="." groups=["die_dot", "mesh_die_d66_primary"]]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 cast_shadow = 2
 gi_mode = 0
