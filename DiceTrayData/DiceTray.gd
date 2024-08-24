@@ -62,14 +62,14 @@ func _ready():
 	_remove_left_dice_scoreboard()
 	_remove_right_dice_scoreboard()
 	
-	# load the dice colors
-	if ResourceLoader.exists("user://savedice.tres") : #Load custom colors
-		DiceColor.load_dice_colors()
-		DiceStyle.load_dice_styles()
+	# load the dice colors and styles
+	if ResourceLoader.exists("user://savedice.tres") : 
+		DiceColor.load_dice_colors() #from file if exists
+		DiceStyle.load_dice_styles() #from file if exists
 	else: # load standard colors chosen by the developer!
 		DiceColor.load_default_dice_colors()
 		DiceStyle.load_default_dice_styles()
-	#print(DiceColor.d_body_color_d3)
+
 	_assign_die_styles()
 	_assign_colors()
 	

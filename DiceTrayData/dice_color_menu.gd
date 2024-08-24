@@ -87,6 +87,10 @@ static func load_dice_colors(): # from file
 	
 	var saved_dice:SavedDice = SafeResourceLoader.load("user://savedice.tres") as SavedDice
 	
+	if saved_dice == null:
+		print("SaveDice.tres file was unsafe!")
+		return
+	
 	d_text_color_x = saved_dice.die_text_color_x
 	d_body_color_x = saved_dice.die_body_color_x
 	d_text_color_y = saved_dice.die_text_color_y

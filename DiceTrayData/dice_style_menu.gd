@@ -16,6 +16,7 @@ static var d_style_d3 : String
 func _ready():
 	if ResourceLoader.exists("user://savedice.tres") : #Load custom colors
 		DiceColor.load_dice_colors()
+		DiceStyle.load_dice_styles()
 		
 	else: # load standard colors and styles chosen by the developer!
 		DiceColor.load_default_dice_colors()
@@ -91,6 +92,10 @@ func _save_dice_styles():
 static func load_dice_styles(): # from file
 	
 	var saved_dice:SavedDice = SafeResourceLoader.load("user://savedice.tres") as SavedDice
+	
+	if saved_dice == null:
+		print("SaveDice.tres file was unsafe!")
+		return
 	
 	#styles
 	d_style_x = saved_dice.die_style_x
