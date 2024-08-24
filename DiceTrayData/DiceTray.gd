@@ -150,6 +150,11 @@ func _assign_colors():
 		DieMesh.albedo_color = DiceColor.d_text_color_d3
 		DieMesh = member.get_surface_override_material(1)
 		DieMesh.albedo_color = DiceColor.d_body_color_d3
+	
+	# Dice Tray Felt Color assignment
+	for member in get_tree().get_nodes_in_group("mesh_die_tray_felt"):
+		DieMesh = member.get_surface_override_material(0)
+		DieMesh.albedo_color = DiceColor.d_tray_felt_color
 
 
 func _rehome_dice():

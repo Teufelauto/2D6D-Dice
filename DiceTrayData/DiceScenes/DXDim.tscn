@@ -246,6 +246,8 @@ script = ExtResource("1_aasm6")
 
 [node name="Die_Body_X" type="MeshInstance3D" parent="." groups=["mesh_die_x"]]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, -0.0167287, 0.00617832, 0.000733227)
+cast_shadow = 2
+gi_mode = 0
 mesh = SubResource("ArrayMesh_idfjp")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_q27d7")
@@ -254,6 +256,8 @@ surface_material_override/1 = SubResource("StandardMaterial3D_ppfov")
 [node name="Die_Body_Dots" type="MeshInstance3D" parent="." groups=["mesh_die_x"]]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 visible = false
+cast_shadow = 2
+gi_mode = 0
 mesh = SubResource("ArrayMesh_rfg8b")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_bnfdu")
@@ -262,6 +266,8 @@ surface_material_override/1 = SubResource("StandardMaterial3D_euos4")
 [node name="Die_Body_Num" type="MeshInstance3D" parent="." groups=["mesh_die_x"]]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 visible = false
+cast_shadow = 2
+gi_mode = 0
 mesh = SubResource("ArrayMesh_r5mgc")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_qb8uy")

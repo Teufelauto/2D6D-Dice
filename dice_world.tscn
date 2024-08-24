@@ -518,8 +518,9 @@ flat = true
 
 [node name="TrayModel" type="Node3D" parent="DiceTray"]
 
-[node name="TableBackstop" type="MeshInstance3D" parent="DiceTray/TrayModel"]
+[node name="TableBackstop" type="MeshInstance3D" parent="DiceTray/TrayModel" groups=["mesh_die_tray_felt"]]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 0.001, -0.00907886, 0.464872, -1.24492)
+cast_shadow = 0
 mesh = SubResource("BoxMesh_dtie3")
 skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_u08sl")
@@ -532,8 +533,9 @@ physics_material_override = SubResource("PhysicsMaterial_4piwt")
 visible = false
 shape = SubResource("BoxShape3D_a2wnj")
 
-[node name="TableRight" type="MeshInstance3D" parent="DiceTray/TrayModel"]
+[node name="TableRight" type="MeshInstance3D" parent="DiceTray/TrayModel" groups=["mesh_die_tray_felt"]]
 transform = Transform3D(0.001, 0, 0, 0, 1, 0, 0, 0, 3, 0.473461, 0.496143, -0.0349791)
+cast_shadow = 0
 mesh = SubResource("BoxMesh_dtie3")
 skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_u08sl")
@@ -546,8 +548,9 @@ physics_material_override = SubResource("PhysicsMaterial_4piwt")
 visible = false
 shape = SubResource("BoxShape3D_a2wnj")
 
-[node name="TableLeft" type="MeshInstance3D" parent="DiceTray/TrayModel"]
+[node name="TableLeft" type="MeshInstance3D" parent="DiceTray/TrayModel" groups=["mesh_die_tray_felt"]]
 transform = Transform3D(0.001, 0, 0, 0, 1, 0, 0, 0, 3, -0.508575, 0.4, -0.0343166)
+cast_shadow = 0
 mesh = SubResource("BoxMesh_dtie3")
 skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_u08sl")
@@ -564,6 +567,7 @@ shape = SubResource("BoxShape3D_a2wnj")
 [node name="TableFront" type="MeshInstance3D" parent="DiceTray/TrayModel"]
 transform = Transform3D(2, 0, 0, 0, 0.698094, -0.187421, 0, 1.87421, 0.0698094, -0.00492978, 0.368759, 0.739153)
 layers = 0
+cast_shadow = 0
 mesh = SubResource("BoxMesh_dtie3")
 skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_xr2f7")
@@ -575,7 +579,7 @@ physics_material_override = SubResource("PhysicsMaterial_4piwt")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DiceTray/TrayModel/TableFront/StaticBody3D"]
 shape = SubResource("BoxShape3D_a2wnj")
 
-[node name="DiceTrayBottom" type="MeshInstance3D" parent="DiceTray/TrayModel"]
+[node name="DiceTrayBottom" type="MeshInstance3D" parent="DiceTray/TrayModel" groups=["mesh_die_tray_felt"]]
 transform = Transform3D(20, 0, 0, 0, 0.01, 0, 0, 0, 10, 0, -0.005, 0)
 mesh = SubResource("BoxMesh_dtie3")
 skeleton = NodePath("../../..")
@@ -628,22 +632,30 @@ near = 3.0
 far = 50.0
 
 [node name="SpotLight3D" type="SpotLight3D" parent="CamNLights"]
-transform = Transform3D(1, 0, 0, 0, 0.414121, 0.910222, 0, -0.910222, 0.414121, 0.256, 5.71334, 2.61793)
-light_energy = 1.896
-spot_range = 29.425
+transform = Transform3D(0.781528, -0.213039, 0.586368, -0.294329, 0.702809, 0.647634, -0.550076, -0.678729, 0.486562, 3.57244, 3.56264, 2.61793)
+light_energy = 1.891
+light_bake_mode = 1
+shadow_enabled = true
+spot_range = 10.0
 spot_attenuation = 0.203064
+spot_angle = 23.4
 spot_angle_attenuation = 0.176777
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="CamNLights"]
-transform = Transform3D(-0.215252, 0.638348, -0.739039, 0.0301943, 0.760767, 0.648322, 0.976092, 0.117238, -0.183032, -3.32477, 3.50071, -0.72213)
-light_energy = 0.232
-spot_range = 9.917
+[node name="SpotLight3D_Side" type="SpotLight3D" parent="CamNLights"]
+transform = Transform3D(-0.196745, 0.834484, -0.514712, 0.0923927, 0.538417, 0.837598, 0.976092, 0.117238, -0.183031, -2.32477, 3.50071, -1.2354)
+light_energy = 2.152
+light_bake_mode = 1
+shadow_enabled = true
+shadow_bias = 0.02
+spot_range = 13.1452
 spot_attenuation = 0.450625
-spot_angle = 29.1231
+spot_angle = 19.4366
 spot_angle_attenuation = 0.25
 
 [node name="OmniLight3D" type="OmniLight3D" parent="CamNLights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13718, 4.67024, -1.29338)
+visible = false
+light_energy = 7.72
 
 [connection signal="clear_room_rectangle" from="DiceTray" to="DiceTray/DiceCanvas/RoomRectangleLine2D" method="_on_dice_tray_clear_room_rectangle"]
 [connection signal="resize_room_rectangle" from="DiceTray" to="DiceTray/DiceCanvas/RoomRectangleLine2D" method="resize_room_rectangle"]

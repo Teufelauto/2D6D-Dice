@@ -87,6 +87,8 @@ gravity_scale = 5.0
 
 [node name="Die_Body" type="MeshInstance3D" parent="." groups=["mesh_die_d3"]]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
+cast_shadow = 2
+gi_mode = 0
 mesh = SubResource("ArrayMesh_nqrxf")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_oml8n")

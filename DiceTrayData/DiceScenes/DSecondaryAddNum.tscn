@@ -172,6 +172,8 @@ script = ExtResource("1_4opgp")
 
 [node name="Die_Body_Dot" type="MeshInstance3D" parent="." groups=["mesh_die_d66_secondary"]]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
+cast_shadow = 2
+gi_mode = 0
 mesh = SubResource("ArrayMesh_uespp")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_2qkuc")
@@ -180,6 +182,8 @@ surface_material_override/1 = SubResource("StandardMaterial3D_rkute")
 [node name="Die_Body_Num" type="MeshInstance3D" parent="." groups=["mesh_die_d66_secondary"]]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 visible = false
+cast_shadow = 2
+gi_mode = 0
 mesh = SubResource("ArrayMesh_hgbid")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_dn0bs")

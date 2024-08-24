@@ -170,6 +170,8 @@ freeze = true
 [node name="Die_Body_Num" type="MeshInstance3D" parent="." groups=["mesh_die_single_primary"]]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 visible = false
+cast_shadow = 2
+gi_mode = 0
 mesh = SubResource("ArrayMesh_mcd7l")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_8n7bf")
@@ -177,6 +179,8 @@ surface_material_override/1 = SubResource("StandardMaterial3D_jbmvn")
 
 [node name="Die_Body_Dots" type="MeshInstance3D" parent="." groups=["mesh_die_single_primary"]]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
+cast_shadow = 2
+gi_mode = 0
 mesh = SubResource("ArrayMesh_rfg8b")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_ktop3")

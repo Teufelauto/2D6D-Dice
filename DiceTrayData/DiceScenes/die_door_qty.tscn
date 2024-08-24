@@ -166,6 +166,8 @@ freeze = true
 
 [node name="Die_Body_Door_Pics" type="MeshInstance3D" parent="." groups=["mesh_die_exit_qty"]]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
+cast_shadow = 2
+gi_mode = 0
 mesh = SubResource("ArrayMesh_pjfx0")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_r11qr")
@@ -174,6 +176,8 @@ surface_material_override/1 = SubResource("StandardMaterial3D_jh0fm")
 [node name="Die_Body_Door_numbered" type="MeshInstance3D" parent="." groups=["mesh_die_exit_qty"]]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 visible = false
+cast_shadow = 2
+gi_mode = 0
 mesh = SubResource("ArrayMesh_uiyvq")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_6lbe0")

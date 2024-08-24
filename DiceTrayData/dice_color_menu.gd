@@ -102,7 +102,7 @@ static func load_default_dice_colors():
 	d_body_color_exit_lock = Color.GAINSBORO
 	d_text_color_d3 = Color.IVORY
 	d_body_color_d3 = Color.REBECCA_PURPLE
-	d_tray_felt_color = Color.FOREST_GREEN
+	d_tray_felt_color = Color.DARK_GREEN
 
 func save_dice_colors():
 	var saved_dice:SavedDice = SavedDice.new()
