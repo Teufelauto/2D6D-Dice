@@ -43,11 +43,10 @@ theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
 text = "Room X"
 
-[node name="OptionButtonX" type="OptionButton" parent="MarginContainer/GridContainer"]
+[node name="d_style_x" type="OptionButton" parent="MarginContainer/GridContainer" groups=["DiceStyleSelection"]]
 layout_mode = 2
 theme = SubResource("Theme_oddly")
 item_count = 3
-selected = 2
 allow_reselect = true
 popup/item_0/text = "Numbers"
 popup/item_0/id = 0
@@ -62,7 +61,7 @@ theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
 text = "Room Y"
 
-[node name="OptionButtonY" type="OptionButton" parent="MarginContainer/GridContainer"]
+[node name="d_style_y" type="OptionButton" parent="MarginContainer/GridContainer" groups=["DiceStyleSelection"]]
 layout_mode = 2
 theme = SubResource("Theme_oddly")
 item_count = 3
@@ -81,7 +80,7 @@ theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
 text = "Primary D66"
 
-[node name="OptionButtonD66Primary" type="OptionButton" parent="MarginContainer/GridContainer"]
+[node name="d_style_d66_prime" type="OptionButton" parent="MarginContainer/GridContainer" groups=["DiceStyleSelection"]]
 layout_mode = 2
 theme = SubResource("Theme_oddly")
 item_count = 3
@@ -101,7 +100,7 @@ theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
 text = "2ndary D66"
 
-[node name="OptionButtonD66Secondary" type="OptionButton" parent="MarginContainer/GridContainer"]
+[node name="d_style_d66_secondary" type="OptionButton" parent="MarginContainer/GridContainer" groups=["DiceStyleSelection"]]
 layout_mode = 2
 theme = SubResource("Theme_oddly")
 item_count = 3
@@ -121,7 +120,7 @@ theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
 text = "Primary D6"
 
-[node name="OptionButtonSinglePrimary" type="OptionButton" parent="MarginContainer/GridContainer"]
+[node name="d_style_single_primary" type="OptionButton" parent="MarginContainer/GridContainer" groups=["DiceStyleSelection"]]
 layout_mode = 2
 theme = SubResource("Theme_oddly")
 item_count = 3
@@ -141,7 +140,7 @@ theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
 text = "2ndary D6"
 
-[node name="OptionButtonSingleSecondary" type="OptionButton" parent="MarginContainer/GridContainer"]
+[node name="d_style_single_secondary" type="OptionButton" parent="MarginContainer/GridContainer" groups=["DiceStyleSelection"]]
 layout_mode = 2
 theme = SubResource("Theme_oddly")
 item_count = 3
@@ -161,7 +160,7 @@ theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
 text = "# of Exits"
 
-[node name="OptionButtonExitQty" type="OptionButton" parent="MarginContainer/GridContainer"]
+[node name="d_style_exit_qty" type="OptionButton" parent="MarginContainer/GridContainer" groups=["DiceStyleSelection"]]
 layout_mode = 2
 theme = SubResource("Theme_oddly")
 item_count = 3
@@ -181,7 +180,7 @@ theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
 text = "Exit Direction"
 
-[node name="OptionButtonExitDirection" type="OptionButton" parent="MarginContainer/GridContainer"]
+[node name="d_style_exit_direction" type="OptionButton" parent="MarginContainer/GridContainer" groups=["DiceStyleSelection"]]
 layout_mode = 2
 theme = SubResource("Theme_oddly")
 item_count = 3
@@ -202,7 +201,7 @@ theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
 text = "Exit Lock"
 
-[node name="OptionButtonLock" type="OptionButton" parent="MarginContainer/GridContainer"]
+[node name="d_style_exit_lock" type="OptionButton" parent="MarginContainer/GridContainer" groups=["DiceStyleSelection"]]
 layout_mode = 2
 theme = SubResource("Theme_oddly")
 item_count = 3
@@ -223,7 +222,7 @@ theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
 text = "D3"
 
-[node name="OptionButtonD3" type="OptionButton" parent="MarginContainer/GridContainer"]
+[node name="d_style_d3" type="OptionButton" parent="MarginContainer/GridContainer" groups=["DiceStyleSelection"]]
 layout_mode = 2
 theme = SubResource("Theme_oddly")
 item_count = 3
@@ -260,16 +259,16 @@ theme_override_font_sizes/font_size = 40
 text = "Back"
 
 [connection signal="ready" from="." to="." method="_on_ready_set_style_popups"]
-[connection signal="item_selected" from="MarginContainer/GridContainer/OptionButtonX" to="." method="_on_option_button_x_item_selected"]
-[connection signal="item_selected" from="MarginContainer/GridContainer/OptionButtonY" to="." method="_on_option_button_y_item_selected"]
-[connection signal="item_selected" from="MarginContainer/GridContainer/OptionButtonD66Primary" to="." method="_on_option_button_d_66_primary_item_selected"]
-[connection signal="item_selected" from="MarginContainer/GridContainer/OptionButtonD66Secondary" to="." method="_on_option_button_d_66_secondary_item_selected"]
-[connection signal="item_selected" from="MarginContainer/GridContainer/OptionButtonSinglePrimary" to="." method="_on_option_button_single_primary_item_selected"]
-[connection signal="item_selected" from="MarginContainer/GridContainer/OptionButtonSingleSecondary" to="." method="_on_option_button_single_secondary_item_selected"]
-[connection signal="item_selected" from="MarginContainer/GridContainer/OptionButtonExitQty" to="." method="_on_option_button_exit_qty_item_selected"]
-[connection signal="item_selected" from="MarginContainer/GridContainer/OptionButtonExitDirection" to="." method="_on_option_button_exit_direction_item_selected"]
-[connection signal="item_selected" from="MarginContainer/GridContainer/OptionButtonLock" to="." method="_on_option_button_lock_item_selected"]
-[connection signal="item_selected" from="MarginContainer/GridContainer/OptionButtonD3" to="." method="_on_option_button_d_3_item_selected"]
+[connection signal="item_selected" from="MarginContainer/GridContainer/d_style_x" to="." method="_on_option_button_x_item_selected"]
+[connection signal="item_selected" from="MarginContainer/GridContainer/d_style_y" to="." method="_on_option_button_y_item_selected"]
+[connection signal="item_selected" from="MarginContainer/GridContainer/d_style_d66_prime" to="." method="_on_option_button_d_66_primary_item_selected"]
+[connection signal="item_selected" from="MarginContainer/GridContainer/d_style_d66_secondary" to="." method="_on_option_button_d_66_secondary_item_selected"]
+[connection signal="item_selected" from="MarginContainer/GridContainer/d_style_single_primary" to="." method="_on_option_button_single_primary_item_selected"]
+[connection signal="item_selected" from="MarginContainer/GridContainer/d_style_single_secondary" to="." method="_on_option_button_single_secondary_item_selected"]
+[connection signal="item_selected" from="MarginContainer/GridContainer/d_style_exit_qty" to="." method="_on_option_button_exit_qty_item_selected"]
+[connection signal="item_selected" from="MarginContainer/GridContainer/d_style_exit_direction" to="." method="_on_option_button_exit_direction_item_selected"]
+[connection signal="item_selected" from="MarginContainer/GridContainer/d_style_exit_lock" to="." method="_on_option_button_lock_item_selected"]
+[connection signal="item_selected" from="MarginContainer/GridContainer/d_style_d3" to="." method="_on_option_button_d_3_item_selected"]
 [connection signal="pressed" from="MarginContainer/GridContainer/LoadDefault" to="." method="_on_load_default_styles_pressed"]
 [connection signal="pressed" from="MarginContainer/GridContainer/SaveStyles" to="." method="_save_dice_preferences"]
 [connection signal="pressed" from="MarginContainer/GridContainer/Back" to="." method="_on_back_pressed"]

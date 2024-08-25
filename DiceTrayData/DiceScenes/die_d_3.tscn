@@ -85,7 +85,7 @@ mass = 5.0
 physics_material_override = ExtResource("1_0e613")
 gravity_scale = 5.0
 
-[node name="Die_Body" type="MeshInstance3D" parent="." groups=["die_let", "mesh_die_d3"]]
+[node name="Die_Body" type="MeshInstance3D" parent="." groups=["die_dot", "mesh_die_d3"]]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 cast_shadow = 2
 gi_mode = 0

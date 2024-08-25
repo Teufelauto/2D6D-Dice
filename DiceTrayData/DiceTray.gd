@@ -406,9 +406,9 @@ func _on_die_door_pics_roll_finished(die_value):
 	
 func _on_die_lcr_roll_finished(die_value):
 	room_exit_direction_int = die_value
-	if room_exit_direction_int == 1 : exit_direction_label.text = "L"
-	elif room_exit_direction_int == 2 : exit_direction_label.text = "C"
-	else : exit_direction_label.text = "R"
+	if room_exit_direction_int == 1 : exit_direction_label.text = "Left"
+	elif room_exit_direction_int == 2 : exit_direction_label.text = "Center"
+	else : exit_direction_label.text = "Right"
 	#exit_direction_label.text = str(room_exit_direction_int)
 
 

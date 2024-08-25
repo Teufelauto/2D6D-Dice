@@ -51,11 +51,70 @@ func _on_ready_color_menu(): # called only by Color menu when opened
 	_paint_buttons_and_text_in_menu()
 
 func _on_ready_set_style_popups():
+	_update_displayed_style_buttons()
+
+func _update_displayed_style_buttons():
+	var index :int 
+	match d_style_x:
+		"die_num" : index = 0
+		"die_dot" : index = 1
+		"die_let" : index = 2
+	$MarginContainer/GridContainer/d_style_x.selected = index
 	
+	match d_style_y:
+		"die_num" : index = 0
+		"die_dot" : index = 1
+		"die_let" : index = 2
+	$MarginContainer/GridContainer/d_style_y.selected = index
 	
+	match d_style_d66_prime:
+		"die_num" : index = 0
+		"die_dot" : index = 1
+		"die_let" : index = 2
+	$MarginContainer/GridContainer/d_style_d66_prime.selected = index
 	
+	match d_style_d66_secondary:
+		"die_num" : index = 0
+		"die_dot" : index = 1
+		"die_let" : index = 2
+	$MarginContainer/GridContainer/d_style_d66_secondary.selected = index
 	
-	pass
+	match d_style_single_primary:
+		"die_num" : index = 0
+		"die_dot" : index = 1
+		"die_let" : index = 2
+	$MarginContainer/GridContainer/d_style_single_primary.selected = index
+	
+	match d_style_single_secondary:
+		"die_num" : index = 0
+		"die_dot" : index = 1
+		"die_let" : index = 2
+	$MarginContainer/GridContainer/d_style_single_secondary.selected = index
+	
+	match d_style_exit_direction:
+		"die_num" : index = 0
+		"die_dot" : index = 1
+		"die_let" : index = 2
+	$MarginContainer/GridContainer/d_style_exit_direction.selected = index
+	
+	match d_style_exit_qty:
+		"die_num" : index = 0
+		"die_dot" : index = 1
+		"die_let" : index = 2
+	$MarginContainer/GridContainer/d_style_exit_qty.selected = index
+	
+	match d_style_exit_lock:
+		"die_num" : index = 0
+		"die_dot" : index = 1
+		"die_let" : index = 2
+	$MarginContainer/GridContainer/d_style_exit_lock.selected = index
+	
+	match d_style_d3:
+		"die_num" : index = 0
+		"die_dot" : index = 1
+		"die_let" : index = 2
+	$MarginContainer/GridContainer/d_style_d3.selected = index
+
 
 func _paint_buttons_and_text_in_menu(): # in color menu
 	# X
@@ -109,6 +168,7 @@ func _on_load_default_colors_pressed():
 
 func _on_load_default_styles_pressed():
 	DicePreferences.load_default_dice_styles()
+	_update_displayed_style_buttons()
 
 
 static func load_dice_colors(): # from file
@@ -143,25 +203,25 @@ static func load_dice_colors(): # from file
 
 static func load_default_dice_colors():
 	# Dice Colors
-	d_text_color_x = Color.IVORY
+	d_text_color_x = Color.ANTIQUE_WHITE
 	d_body_color_x = Color.ROYAL_BLUE
-	d_text_color_y = Color.IVORY
+	d_text_color_y = Color.ANTIQUE_WHITE
 	d_body_color_y = Color.FIREBRICK
 	d_text_color_d66_prime = Color("7f6e19")
 	d_body_color_d66_prime = Color.DEEP_SKY_BLUE
-	d_text_color_d66_secondary = Color.IVORY
+	d_text_color_d66_secondary = Color.ANTIQUE_WHITE
 	d_body_color_d66_secondary = Color.DARK_ORANGE
-	d_text_color_single_primary = Color.IVORY
+	d_text_color_single_primary = Color.ANTIQUE_WHITE
 	d_body_color_single_primary = Color.MEDIUM_BLUE
-	d_text_color_single_secondary = Color.IVORY
+	d_text_color_single_secondary = Color.ANTIQUE_WHITE
 	d_body_color_single_secondary = Color.ORANGE_RED
 	d_text_color_exit_numbers = Color.BLACK
 	d_body_color_exit_numbers = Color.BURLYWOOD
-	d_text_color_exit_direction = Color.IVORY
+	d_text_color_exit_direction = Color.ANTIQUE_WHITE
 	d_body_color_exit_direction = Color.WEB_MAROON
 	d_text_color_exit_lock = Color.BLACK
-	d_body_color_exit_lock = Color.GAINSBORO
-	d_text_color_d3 = Color.IVORY
+	d_body_color_exit_lock = Color.ANTIQUE_WHITE
+	d_text_color_d3 = Color.ANTIQUE_WHITE
 	d_body_color_d3 = Color.REBECCA_PURPLE
 	d_tray_felt_color = Color.DARK_GREEN
 
@@ -191,8 +251,8 @@ static func load_default_dice_styles():
 	# dice styles
 	d_style_x = "die_let"
 	d_style_y = "die_let"
-	d_style_d66_prime = "die_num"
-	d_style_d66_secondary = "die_num"
+	d_style_d66_prime = "die_dot"
+	d_style_d66_secondary = "die_dot"
 	d_style_single_primary = "die_num"
 	d_style_single_secondary = "die_num"
 	d_style_exit_qty = "die_dot"
@@ -429,4 +489,5 @@ func _on_option_button_d_3_item_selected(index):
 		2: die_style = "die_let"
 	d_style_d3 = die_style
 #endregion
+
 
