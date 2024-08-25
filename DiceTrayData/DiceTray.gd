@@ -64,11 +64,11 @@ func _ready():
 	
 	# load the dice colors and styles
 	if ResourceLoader.exists("user://savedice.tres") : 
-		DiceColor.load_dice_colors() #from file if exists
-		DiceStyle.load_dice_styles() #from file if exists
+		DicePreferences.load_dice_colors() #from file if exists
+		DicePreferences.load_dice_styles() #from file if exists
 	else: # load standard colors chosen by the developer!
-		DiceColor.load_default_dice_colors()
-		DiceStyle.load_default_dice_styles()
+		DicePreferences.load_default_dice_colors()
+		DicePreferences.load_default_dice_styles()
 
 	_assign_die_styles()
 	_assign_colors()
@@ -77,134 +77,134 @@ func _ready():
 func _assign_die_styles():
 	# Room X die
 	for member in get_tree().get_nodes_in_group("mesh_die_x") :
-		if member.is_in_group(DiceStyle.d_style_x) : member.visible = true
+		if member.is_in_group(DicePreferences.d_style_x) : member.visible = true
 		else : member.visible = false
 	# Room Y die
 	for member in get_tree().get_nodes_in_group("mesh_die_y") :
-		if member.is_in_group(DiceStyle.d_style_y) : member.visible = true
+		if member.is_in_group(DicePreferences.d_style_y) : member.visible = true
 		else : member.visible = false
 	# Room exit qty
 	for member in get_tree().get_nodes_in_group("mesh_die_exit_qty") :
-		if member.is_in_group(DiceStyle.d_style_exit_qty) : member.visible = true
+		if member.is_in_group(DicePreferences.d_style_exit_qty) : member.visible = true
 		else : member.visible = false
 	
 	for member in get_tree().get_nodes_in_group("mesh_die_d66_primary") :
-		if member.is_in_group(DiceStyle.d_style_d66_prime) : member.visible = true
+		if member.is_in_group(DicePreferences.d_style_d66_prime) : member.visible = true
 		else : member.visible = false
 	
 	for member in get_tree().get_nodes_in_group("mesh_die_d66_secondary") :
-		if member.is_in_group(DiceStyle.d_style_d66_secondary) : member.visible = true
+		if member.is_in_group(DicePreferences.d_style_d66_secondary) : member.visible = true
 		else : member.visible = false
 		
 	for member in get_tree().get_nodes_in_group("mesh_die_lcr") :
-		if member.is_in_group(DiceStyle.d_style_exit_direction) : member.visible = true
+		if member.is_in_group(DicePreferences.d_style_exit_direction) : member.visible = true
 		else : member.visible = false
 		
 	for member in get_tree().get_nodes_in_group("mesh_die_door_lock") :
-		if member.is_in_group(DiceStyle.d_style_exit_lock) : member.visible = true
+		if member.is_in_group(DicePreferences.d_style_exit_lock) : member.visible = true
 		else : member.visible = false
 		
 	for member in get_tree().get_nodes_in_group("mesh_die_single_primary") :
-		if member.is_in_group(DiceStyle.d_style_single_primary) : member.visible = true
+		if member.is_in_group(DicePreferences.d_style_single_primary) : member.visible = true
 		else : member.visible = false
 		
 	for member in get_tree().get_nodes_in_group("mesh_die_single_secondary") :
-		if member.is_in_group(DiceStyle.d_style_single_secondary) : member.visible = true
+		if member.is_in_group(DicePreferences.d_style_single_secondary) : member.visible = true
 		else : member.visible = false
 		
 	for member in get_tree().get_nodes_in_group("mesh_die_d3") :
-		if member.is_in_group(DiceStyle.d_style_d3) : member.visible = true
+		if member.is_in_group(DicePreferences.d_style_d3) : member.visible = true
 		else : member.visible = false
 	
 	
 func _assign_colors():
 	# D66 Scoreboard
-	%D66PrimaryLabel.label_settings.font_color = DiceColor.d_text_color_d66_prime
-	%D66PrimaryPolygon2D.self_modulate = DiceColor.d_body_color_d66_prime
-	%D66SecondaryLabel.label_settings.font_color = DiceColor.d_text_color_d66_secondary
-	%D66SecondaryPolygon2D.self_modulate = DiceColor.d_body_color_d66_secondary
+	%D66PrimaryLabel.label_settings.font_color = DicePreferences.d_text_color_d66_prime
+	%D66PrimaryPolygon2D.self_modulate = DicePreferences.d_body_color_d66_prime
+	%D66SecondaryLabel.label_settings.font_color = DicePreferences.d_text_color_d66_secondary
+	%D66SecondaryPolygon2D.self_modulate = DicePreferences.d_body_color_d66_secondary
 	# D6 Scoreboard
-	%PrimaryLabel.label_settings.font_color = DiceColor.d_text_color_single_primary
-	%TwoD6PrimaryPolygon2D.self_modulate = DiceColor.d_body_color_single_primary
-	%SecondaryLabel.label_settings.font_color = DiceColor.d_text_color_single_secondary
-	%TwoD6SecondaryPolygon2D.self_modulate = DiceColor.d_body_color_single_secondary
+	%PrimaryLabel.label_settings.font_color = DicePreferences.d_text_color_single_primary
+	%TwoD6PrimaryPolygon2D.self_modulate = DicePreferences.d_body_color_single_primary
+	%SecondaryLabel.label_settings.font_color = DicePreferences.d_text_color_single_secondary
+	%TwoD6SecondaryPolygon2D.self_modulate = DicePreferences.d_body_color_single_secondary
 	
 	
 	var DieMeshMat :StandardMaterial3D
 	# Door X Die
 	for member in get_tree().get_nodes_in_group("mesh_die_x"):
 		DieMeshMat = member.get_surface_override_material(0)
-		DieMeshMat.albedo_color = DiceColor.d_text_color_x
+		DieMeshMat.albedo_color = DicePreferences.d_text_color_x
 		DieMeshMat = member.get_surface_override_material(1)
-		DieMeshMat.albedo_color = DiceColor.d_body_color_x
+		DieMeshMat.albedo_color = DicePreferences.d_body_color_x
 		
 	# Door Y Die
 	for member in get_tree().get_nodes_in_group("mesh_die_y"):
 		DieMeshMat = member.get_surface_override_material(0)
-		DieMeshMat.albedo_color = DiceColor.d_text_color_y
+		DieMeshMat.albedo_color = DicePreferences.d_text_color_y
 		DieMeshMat = member.get_surface_override_material(1)
-		DieMeshMat.albedo_color = DiceColor.d_body_color_y
+		DieMeshMat.albedo_color = DicePreferences.d_body_color_y
 		
 	# Door Exit Qty
 	for member in get_tree().get_nodes_in_group("mesh_die_exit_qty"):
 		DieMeshMat = member.get_surface_override_material(0)
-		DieMeshMat.albedo_color = DiceColor.d_text_color_exit_numbers
+		DieMeshMat.albedo_color = DicePreferences.d_text_color_exit_numbers
 		DieMeshMat = member.get_surface_override_material(1)
-		DieMeshMat.albedo_color = DiceColor.d_body_color_exit_numbers
+		DieMeshMat.albedo_color = DicePreferences.d_body_color_exit_numbers
 	
 	# D66 Primary
 	for member in get_tree().get_nodes_in_group("mesh_die_d66_primary"):
 		DieMeshMat = member.get_surface_override_material(0)
-		DieMeshMat.albedo_color = DiceColor.d_text_color_d66_prime
+		DieMeshMat.albedo_color = DicePreferences.d_text_color_d66_prime
 		DieMeshMat = member.get_surface_override_material(1)
-		DieMeshMat.albedo_color = DiceColor.d_body_color_d66_prime
+		DieMeshMat.albedo_color = DicePreferences.d_body_color_d66_prime
 	
 	# D66 Secondary
 	for member in get_tree().get_nodes_in_group("mesh_die_d66_secondary"):
 		DieMeshMat = member.get_surface_override_material(0)
-		DieMeshMat.albedo_color = DiceColor.d_text_color_d66_secondary
+		DieMeshMat.albedo_color = DicePreferences.d_text_color_d66_secondary
 		DieMeshMat = member.get_surface_override_material(1)
-		DieMeshMat.albedo_color = DiceColor.d_body_color_d66_secondary
+		DieMeshMat.albedo_color = DicePreferences.d_body_color_d66_secondary
 	
 	# die LCR
 	for member in get_tree().get_nodes_in_group("mesh_die_lcr"):
 		DieMeshMat = member.get_surface_override_material(0)
-		DieMeshMat.albedo_color = DiceColor.d_text_color_exit_direction
+		DieMeshMat.albedo_color = DicePreferences.d_text_color_exit_direction
 		DieMeshMat = member.get_surface_override_material(1)
-		DieMeshMat.albedo_color = DiceColor.d_body_color_exit_direction
+		DieMeshMat.albedo_color = DicePreferences.d_body_color_exit_direction
 	
 	# Lock check
 	for member in get_tree().get_nodes_in_group("mesh_die_door_lock"):
 		DieMeshMat = member.get_surface_override_material(0)
-		DieMeshMat.albedo_color = DiceColor.d_text_color_exit_lock
+		DieMeshMat.albedo_color = DicePreferences.d_text_color_exit_lock
 		DieMeshMat = member.get_surface_override_material(1)
-		DieMeshMat.albedo_color = DiceColor.d_body_color_exit_lock
+		DieMeshMat.albedo_color = DicePreferences.d_body_color_exit_lock
 	
 	# single Primary
 	for member in get_tree().get_nodes_in_group("mesh_die_single_primary"):
 		DieMeshMat = member.get_surface_override_material(0)
-		DieMeshMat.albedo_color = DiceColor.d_text_color_single_primary
+		DieMeshMat.albedo_color = DicePreferences.d_text_color_single_primary
 		DieMeshMat = member.get_surface_override_material(1)
-		DieMeshMat.albedo_color = DiceColor.d_body_color_single_primary
+		DieMeshMat.albedo_color = DicePreferences.d_body_color_single_primary
 		
 	# single secondary
 	for member in get_tree().get_nodes_in_group("mesh_die_single_secondary"):
 		DieMeshMat = member.get_surface_override_material(0)
-		DieMeshMat.albedo_color = DiceColor.d_text_color_single_secondary
+		DieMeshMat.albedo_color = DicePreferences.d_text_color_single_secondary
 		DieMeshMat = member.get_surface_override_material(1)
-		DieMeshMat.albedo_color = DiceColor.d_body_color_single_secondary
+		DieMeshMat.albedo_color = DicePreferences.d_body_color_single_secondary
 		
 	# d3 die
 	for member in get_tree().get_nodes_in_group("mesh_die_d3"):
 		DieMeshMat = member.get_surface_override_material(0)
-		DieMeshMat.albedo_color = DiceColor.d_text_color_d3
+		DieMeshMat.albedo_color = DicePreferences.d_text_color_d3
 		DieMeshMat = member.get_surface_override_material(1)
-		DieMeshMat.albedo_color = DiceColor.d_body_color_d3
+		DieMeshMat.albedo_color = DicePreferences.d_body_color_d3
 	
 	# Dice Tray Felt Color assignment
 	for member in get_tree().get_nodes_in_group("mesh_die_tray_felt"):
 		DieMeshMat = member.get_surface_override_material(0)
-		DieMeshMat.albedo_color = DiceColor.d_tray_felt_color
+		DieMeshMat.albedo_color = DicePreferences.d_tray_felt_color
 
 
 func _rehome_dice():

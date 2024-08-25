@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://bw8h8rfm67dud"]
 
-[ext_resource type="Script" path="res://DiceTrayData/dice_style_menu.gd" id="1_4qj4j"]
+[ext_resource type="Script" path="res://DiceTrayData/dice_preferences.gd" id="1_15tm0"]
 
 [sub_resource type="Theme" id="Theme_1glhj"]
 
@@ -63,7 +63,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_4qj4j")
+script = ExtResource("1_15tm0")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -545,27 +545,6 @@ label_settings = SubResource("LabelSettings_vh3od")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TrayFelt" type="Button" parent="MarginContainer/GridContainer"]
-layout_mode = 2
-theme = SubResource("Theme_1glhj")
-theme_override_font_sizes/font_size = 40
-button_mask = 0
-text = "Tray Felt"
-flat = true
-
-[node name="ColorPickerButton_TrayFelt" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 60)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
-theme_override_font_sizes/font_size = 45
-color = Color(1, 1, 1, 1)
-edit_alpha = false
-
-[node name="Spacer4" type="Button" parent="MarginContainer/GridContainer"]
-layout_mode = 2
-flat = true
-
 [node name="LoadDefault" type="Button" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_jf8ki")
@@ -613,7 +592,6 @@ text = "Back"
 [connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_ExitLock" to="." method="_on_color_picker_button_exit_lock_color_changed"]
 [connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_D3Text" to="." method="_on_color_picker_button_d_3_text_color_changed"]
 [connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_D3" to="." method="_on_color_picker_button_d_3_color_changed"]
-[connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_TrayFelt" to="." method="_on_color_picker_button_tray_felt_color_changed"]
-[connection signal="pressed" from="MarginContainer/GridContainer/LoadDefault" to="." method="_on_load_default_pressed"]
-[connection signal="pressed" from="MarginContainer/GridContainer/SaveStyles" to="." method="_save_dice_styles"]
+[connection signal="pressed" from="MarginContainer/GridContainer/LoadDefault" to="." method="_on_load_default_styles_pressed"]
+[connection signal="pressed" from="MarginContainer/GridContainer/SaveStyles" to="." method="_save_dice_preferences"]
 [connection signal="pressed" from="MarginContainer/GridContainer/Back" to="." method="_on_back_pressed"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://deae8wqbvikx6"]
 
-[ext_resource type="Script" path="res://DiceTrayData/dice_color_menu.gd" id="1_8g6k6"]
+[ext_resource type="Script" path="res://DiceTrayData/dice_preferences.gd" id="1_8g6k6"]
 
 [sub_resource type="Theme" id="Theme_1glhj"]
 
@@ -614,6 +614,6 @@ text = "Back"
 [connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_D3Text" to="." method="_on_color_picker_button_d_3_text_color_changed"]
 [connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_D3" to="." method="_on_color_picker_button_d_3_color_changed"]
 [connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_TrayFelt" to="." method="_on_color_picker_button_tray_felt_color_changed"]
-[connection signal="pressed" from="MarginContainer/GridContainer/LoadDefault" to="." method="_on_load_default_pressed"]
-[connection signal="pressed" from="MarginContainer/GridContainer/SaveColors" to="." method="_save_dice_colors"]
+[connection signal="pressed" from="MarginContainer/GridContainer/LoadDefault" to="." method="_on_load_default_colors_pressed"]
+[connection signal="pressed" from="MarginContainer/GridContainer/SaveColors" to="." method="_save_dice_preferences"]
 [connection signal="pressed" from="MarginContainer/GridContainer/Back" to="." method="_on_back_pressed"]

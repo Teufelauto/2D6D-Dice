@@ -1,6 +1,7 @@
 extends Control
-class_name DiceColor
+class_name DicePreferences
 
+# Colors
 static var d_text_color_x : Color
 static var d_body_color_x : Color
 static var d_text_color_y : Color
@@ -23,20 +24,33 @@ static var d_text_color_d3 : Color
 static var d_body_color_d3 : Color
 static var d_tray_felt_color : Color
 
-
+# Styles
+static var d_style_x : String
+static var d_style_y : String
+static var d_style_d66_prime : String
+static var d_style_d66_secondary : String
+static var d_style_single_primary : String
+static var d_style_single_secondary : String
+static var d_style_exit_qty : String
+static var d_style_exit_direction : String
+static var d_style_exit_lock : String
+static var d_style_d3 : String
 
 
 
 func _ready():
 	if ResourceLoader.exists("user://savedice.tres") : #Load custom colors
-		DiceColor.load_dice_colors()
-	else: # load standard colors chosen by the developer!
-		DiceColor.load_default_dice_colors()
+		DicePreferences.load_dice_colors()
+		DicePreferences.load_dice_styles()
 		
+	else: # load standard colors chosen by the developer!
+		DicePreferences.load_default_dice_colors()
+		DicePreferences.load_default_dice_styles()
 	
 func _on_ready():
-	_paint_buttons_and_text_in_menu()
-
+	if self.name == "DiceColorMenu":
+		_paint_buttons_and_text_in_menu()
+		
 
 func _paint_buttons_and_text_in_menu():
 	# X
@@ -83,10 +97,17 @@ func _paint_buttons_and_text_in_menu():
 	%ColorPickerButton_TrayFelt.color = d_tray_felt_color
 	
 	
+func _on_load_default_colors_pressed():
+	DicePreferences.load_default_dice_colors()
+	_paint_buttons_and_text_in_menu()
+
+func _on_load_default_styles_pressed():
+	DicePreferences.load_default_dice_styles()
+	
+	
 static func load_dice_colors(): # from file
-	
 	var saved_dice:SavedDice = SafeResourceLoader.load("user://savedice.tres") as SavedDice
-	
+		
 	if saved_dice == null:
 		print("SaveDice.tres file was unsafe!")
 		return
@@ -112,8 +133,8 @@ static func load_dice_colors(): # from file
 	d_text_color_d3 = saved_dice.die_text_color_d3
 	d_body_color_d3 = saved_dice.die_body_color_d3
 	d_tray_felt_color = saved_dice.die_tray_felt_color
-	
-	
+
+
 static func load_default_dice_colors():
 	# Dice Colors
 	d_text_color_x = Color.IVORY
@@ -137,14 +158,46 @@ static func load_default_dice_colors():
 	d_text_color_d3 = Color.IVORY
 	d_body_color_d3 = Color.REBECCA_PURPLE
 	d_tray_felt_color = Color.DARK_GREEN
-	
-	
-func _on_load_default_pressed():
-	DiceColor.load_default_dice_colors()
-	_paint_buttons_and_text_in_menu()
 
-func _save_dice_colors():
+
+static func load_dice_styles(): # from file
+	
+	var saved_dice:SavedDice = SafeResourceLoader.load("user://savedice.tres") as SavedDice
+	
+	if saved_dice == null:
+		print("SaveDice.tres file was unsafe!")
+		return
+	
+	#styles
+	d_style_x = saved_dice.die_style_x
+	d_style_y = saved_dice.die_style_y
+	d_style_d66_prime = saved_dice.die_style_d66_prime
+	d_style_d66_secondary = saved_dice.die_style_d66_secondary
+	d_style_single_primary = saved_dice.die_style_single_primary
+	d_style_single_secondary = saved_dice.die_style_single_secondary
+	d_style_exit_qty = saved_dice.die_style_exit_qty
+	d_style_exit_direction = saved_dice.die_style_exit_direction
+	d_style_exit_lock = saved_dice.die_style_exit_lock
+	d_style_d3 = saved_dice.die_style_d3
+
+
+static func load_default_dice_styles():
+	# dice styles
+	d_style_x = "die_let"
+	d_style_y = "die_let"
+	d_style_d66_prime = "die_num"
+	d_style_d66_secondary = "die_num"
+	d_style_single_primary = "die_num"
+	d_style_single_secondary = "die_num"
+	d_style_exit_qty = "die_dot"
+	d_style_exit_direction = "die_let"
+	d_style_exit_lock = "die_dot"
+	d_style_d3 = "die_let"
+
+
+func _save_dice_preferences():
 	var saved_dice:SavedDice = SavedDice.new()
+	
 	#colors
 	saved_dice.die_text_color_x = d_text_color_x 
 	saved_dice.die_body_color_x = d_body_color_x 
@@ -168,11 +221,21 @@ func _save_dice_colors():
 	saved_dice.die_body_color_d3 = d_body_color_d3
 	saved_dice.die_tray_felt_color = d_tray_felt_color
 	
-	
+	#styles
+	saved_dice.die_style_x = d_style_x
+	saved_dice.die_style_y = d_style_y
+	saved_dice.die_style_d66_prime = d_style_d66_prime
+	saved_dice.die_style_d66_secondary = d_style_d66_secondary
+	saved_dice.die_style_single_primary = d_style_single_primary 
+	saved_dice.die_style_single_secondary = d_style_single_secondary
+	saved_dice.die_style_exit_qty = d_style_exit_qty
+	saved_dice.die_style_exit_direction = d_style_exit_direction
+	saved_dice.die_style_exit_lock = d_style_exit_lock
+	saved_dice.die_style_d3 = d_style_d3
 	
 	ResourceSaver.save(saved_dice, "user://savedice.tres")
-	
-	
+
+
 func _on_back_pressed():
 	get_tree().change_scene_to_file("res://DiceTrayData/dice_options_menu.tscn")
 
