@@ -1,58 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://bw8h8rfm67dud"]
+[gd_scene load_steps=5 format=3 uid="uid://bw8h8rfm67dud"]
 
 [ext_resource type="Script" path="res://DiceTrayData/dice_preferences.gd" id="1_15tm0"]
 
 [sub_resource type="Theme" id="Theme_1glhj"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_ohjsl"]
-font_size = 40
-
-[sub_resource type="LabelSettings" id="LabelSettings_6e7hy"]
-font_size = 40
-
-[sub_resource type="LabelSettings" id="LabelSettings_pym11"]
-font_size = 40
-font_color = Color(0.91251, 0.900141, 0.903229, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_qx1n0"]
-font_size = 40
-
-[sub_resource type="LabelSettings" id="LabelSettings_4sbx1"]
-font_size = 40
-
-[sub_resource type="LabelSettings" id="LabelSettings_be7hf"]
-font_size = 40
-
-[sub_resource type="LabelSettings" id="LabelSettings_wbofp"]
-font_size = 40
-font_color = Color(0.00184107, 0.00184107, 0.00184107, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_ilo6k"]
-font_size = 40
-
-[sub_resource type="FontFile" id="FontFile_n6suf"]
-cache/0/40/0/ascent = 0.0
-cache/0/40/0/descent = 0.0
-cache/0/40/0/underline_position = 0.0
-cache/0/40/0/underline_thickness = 0.0
-cache/0/40/0/scale = 1.0
-cache/0/40/0/kerning_overrides/40/0 = Vector2(0, 0)
-cache/0/40/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/40/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-
-[sub_resource type="LabelSettings" id="LabelSettings_ke64u"]
-font = SubResource("FontFile_n6suf")
-font_size = 40
-font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_vh3od"]
-font_size = 40
+[sub_resource type="Theme" id="Theme_oddly"]
+default_font_size = 40
+PopupMenu/font_sizes/font_size = 60
 
 [sub_resource type="Theme" id="Theme_jf8ki"]
 
@@ -81,469 +35,208 @@ grow_vertical = 2
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer"]
 layout_mode = 2
-columns = 3
+columns = 2
 
-[node name="XDim" type="Button" parent="MarginContainer/GridContainer"]
+[node name="XDim" type="Label" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
-button_mask = 0
 text = "Room X"
-flat = true
 
-[node name="ColorPickerButton_Xtext" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 60)
+[node name="OptionButtonX" type="OptionButton" parent="MarginContainer/GridContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
-theme_override_font_sizes/font_size = 45
-color = Color(0.878385, 0.877118, 0.890863, 1)
-edit_alpha = false
+theme = SubResource("Theme_oddly")
+item_count = 3
+selected = 2
+allow_reselect = true
+popup/item_0/text = "Numbers"
+popup/item_0/id = 0
+popup/item_1/text = "Dots"
+popup/item_1/id = 1
+popup/item_2/text = "Letters"
+popup/item_2/id = 2
 
-[node name="ColorPickerButton_X" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
-theme_override_font_sizes/font_size = 45
-color = Color(0.108874, 0.0178528, 0.914063, 1)
-edit_alpha = false
-
-[node name="LabelX" type="Label" parent="MarginContainer/GridContainer/ColorPickerButton_X"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.623181, 0.638934, 0.654841, 1)
-theme_override_font_sizes/font_size = 60
-text = "X"
-label_settings = SubResource("LabelSettings_ohjsl")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="YDim" type="Button" parent="MarginContainer/GridContainer"]
+[node name="YDim" type="Label" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
-button_mask = 0
 text = "Room Y"
-flat = true
 
-[node name="ColorPickerButton_Ytext" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 60)
+[node name="OptionButtonY" type="OptionButton" parent="MarginContainer/GridContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
-theme_override_font_sizes/font_size = 45
-color = Color(1, 1, 1, 1)
-edit_alpha = false
+theme = SubResource("Theme_oddly")
+item_count = 3
+selected = 2
+allow_reselect = true
+popup/item_0/text = "Numbers"
+popup/item_0/id = 0
+popup/item_1/text = "Dots"
+popup/item_1/id = 1
+popup/item_2/text = "Letters"
+popup/item_2/id = 2
 
-[node name="ColorPickerButton_Y" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
-theme_override_font_sizes/font_size = 45
-color = Color(0.941176, 0, 0.282353, 1)
-edit_alpha = false
-
-[node name="LabelY" type="Label" parent="MarginContainer/GridContainer/ColorPickerButton_Y"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -13.0
-offset_top = -31.5
-offset_right = 13.0
-offset_bottom = 31.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 60
-text = "Y"
-label_settings = SubResource("LabelSettings_6e7hy")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="DoublePrimary" type="Button" parent="MarginContainer/GridContainer"]
+[node name="DoublePrimary" type="Label" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
-button_mask = 0
 text = "Primary D66"
-flat = true
 
-[node name="ColorPickerButton_D66Ptext" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 60)
+[node name="OptionButtonD66Primary" type="OptionButton" parent="MarginContainer/GridContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
-theme_override_font_sizes/font_size = 45
-color = Color(0.86187, 0.82921, 0.795206, 1)
-edit_alpha = false
+theme = SubResource("Theme_oddly")
+item_count = 3
+selected = 0
+allow_reselect = true
+popup/item_0/text = "Numbers"
+popup/item_0/id = 0
+popup/item_1/text = "Dots"
+popup/item_1/id = 1
+popup/item_2/text = "Letters"
+popup/item_2/id = 2
+popup/item_2/disabled = true
 
-[node name="ColorPickerButton_D66Prime" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
-theme_override_font_sizes/font_size = 45
-color = Color(0.109804, 0.800842, 0.956863, 1)
-edit_alpha = false
-
-[node name="LabelD66Prime" type="Label" parent="MarginContainer/GridContainer/ColorPickerButton_D66Prime"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -13.0
-offset_top = -31.5
-offset_right = 13.0
-offset_bottom = 31.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.526793, 0.450863, 0.142001, 1)
-theme_override_font_sizes/font_size = 60
-text = "1"
-label_settings = SubResource("LabelSettings_pym11")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="DoubleSecondary" type="Button" parent="MarginContainer/GridContainer"]
+[node name="DoubleSecondary" type="Label" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
-button_mask = 0
 text = "2ndary D66"
-flat = true
 
-[node name="ColorPickerButton_D66Stext" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 60)
+[node name="OptionButtonD66Secondary" type="OptionButton" parent="MarginContainer/GridContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
-theme_override_font_sizes/font_size = 45
-color = Color(1, 1, 1, 1)
-edit_alpha = false
+theme = SubResource("Theme_oddly")
+item_count = 3
+selected = 0
+allow_reselect = true
+popup/item_0/text = "Numbers"
+popup/item_0/id = 0
+popup/item_1/text = "Dots"
+popup/item_1/id = 1
+popup/item_2/text = "Letters"
+popup/item_2/id = 2
+popup/item_2/disabled = true
 
-[node name="ColorPickerButton_D66Secondary" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
-theme_override_font_sizes/font_size = 45
-color = Color(0.961629, 0.528175, 0.0634195, 1)
-edit_alpha = false
-
-[node name="LabelD66Secondary" type="Label" parent="MarginContainer/GridContainer/ColorPickerButton_D66Secondary"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -13.0
-offset_top = -31.5
-offset_right = 13.0
-offset_bottom = 31.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 60
-text = "2"
-label_settings = SubResource("LabelSettings_qx1n0")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SinglePrimary" type="Button" parent="MarginContainer/GridContainer"]
+[node name="SinglePrimary" type="Label" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
-button_mask = 0
 text = "Primary D6"
-flat = true
 
-[node name="ColorPickerButton_PrimeText" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 60)
+[node name="OptionButtonSinglePrimary" type="OptionButton" parent="MarginContainer/GridContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
-theme_override_font_sizes/font_size = 45
-color = Color(1, 1, 1, 1)
-edit_alpha = false
+theme = SubResource("Theme_oddly")
+item_count = 3
+selected = 1
+allow_reselect = true
+popup/item_0/text = "Numbers"
+popup/item_0/id = 0
+popup/item_1/text = "Dots"
+popup/item_1/id = 1
+popup/item_2/text = "Letters"
+popup/item_2/id = 2
+popup/item_2/disabled = true
 
-[node name="ColorPickerButton_Primary" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
-theme_override_font_sizes/font_size = 45
-color = Color(0.158593, 0.27828, 0.997649, 1)
-edit_alpha = false
-
-[node name="LabelD6Prime" type="Label" parent="MarginContainer/GridContainer/ColorPickerButton_Primary"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -13.0
-offset_top = -31.5
-offset_right = 13.0
-offset_bottom = 31.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 60
-text = "5"
-label_settings = SubResource("LabelSettings_4sbx1")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SingleSecondary" type="Button" parent="MarginContainer/GridContainer"]
+[node name="SingleSecondary" type="Label" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
-button_mask = 0
 text = "2ndary D6"
-flat = true
 
-[node name="ColorPickerButton_secondaryText" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 60)
+[node name="OptionButtonSingleSecondary" type="OptionButton" parent="MarginContainer/GridContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
-theme_override_font_sizes/font_size = 45
-color = Color(1, 1, 1, 1)
-edit_alpha = false
+theme = SubResource("Theme_oddly")
+item_count = 3
+selected = 1
+allow_reselect = true
+popup/item_0/text = "Numbers"
+popup/item_0/id = 0
+popup/item_1/text = "Dots"
+popup/item_1/id = 1
+popup/item_2/text = "Letters"
+popup/item_2/id = 2
+popup/item_2/disabled = true
 
-[node name="ColorPickerButton_Secondary" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
-theme_override_font_sizes/font_size = 45
-color = Color(0.812278, 0.104924, 0.0909635, 1)
-edit_alpha = false
-
-[node name="LabelD6Secondary" type="Label" parent="MarginContainer/GridContainer/ColorPickerButton_Secondary"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -13.0
-offset_top = -31.5
-offset_right = 13.0
-offset_bottom = 31.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 60
-text = "6"
-label_settings = SubResource("LabelSettings_be7hf")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ExitNum" type="Button" parent="MarginContainer/GridContainer"]
+[node name="ExitNum" type="Label" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
-button_mask = 0
 text = "# of Exits"
-flat = true
 
-[node name="ColorPickerButton_ExitNumText" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 60)
+[node name="OptionButtonExitQty" type="OptionButton" parent="MarginContainer/GridContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
-theme_override_font_sizes/font_size = 45
-edit_alpha = false
+theme = SubResource("Theme_oddly")
+item_count = 3
+selected = 1
+allow_reselect = true
+popup/item_0/text = "Numbers"
+popup/item_0/id = 0
+popup/item_1/text = "Dots"
+popup/item_1/id = 1
+popup/item_2/text = "Letters"
+popup/item_2/id = 2
+popup/item_2/disabled = true
 
-[node name="ColorPickerButton_ExitNum" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
-theme_override_font_sizes/font_size = 45
-color = Color(0.874905, 0.784764, 0.624556, 1)
-edit_alpha = false
-
-[node name="LabelExitQty" type="Label" parent="MarginContainer/GridContainer/ColorPickerButton_ExitNum"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -13.0
-offset_top = -31.5
-offset_right = 13.0
-offset_bottom = 31.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 60
-text = "2"
-label_settings = SubResource("LabelSettings_wbofp")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ExitDirection" type="Button" parent="MarginContainer/GridContainer"]
+[node name="ExitDirection" type="Label" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
-button_mask = 0
 text = "Exit Direction"
-flat = true
 
-[node name="ColorPickerButton_ExitDirText" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 60)
+[node name="OptionButtonExitDirection" type="OptionButton" parent="MarginContainer/GridContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
-theme_override_font_sizes/font_size = 45
-color = Color(1, 1, 1, 1)
-edit_alpha = false
+theme = SubResource("Theme_oddly")
+item_count = 3
+selected = 2
+allow_reselect = true
+popup/item_0/text = "Numbers"
+popup/item_0/id = 0
+popup/item_0/disabled = true
+popup/item_1/text = "Dots"
+popup/item_1/id = 1
+popup/item_1/disabled = true
+popup/item_2/text = "Letters"
+popup/item_2/id = 2
 
-[node name="ColorPickerButton_ExitDirection" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
-theme_override_font_sizes/font_size = 45
-color = Color(0.445691, 0.0469799, 0.0939396, 1)
-edit_alpha = false
-
-[node name="LabelExitDir" type="Label" parent="MarginContainer/GridContainer/ColorPickerButton_ExitDirection"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -13.0
-offset_top = -31.5
-offset_right = 13.0
-offset_bottom = 31.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 60
-text = "L"
-label_settings = SubResource("LabelSettings_ilo6k")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ExitLock" type="Button" parent="MarginContainer/GridContainer"]
+[node name="ExitLock" type="Label" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
-button_mask = 0
 text = "Exit Lock"
-flat = true
 
-[node name="ColorPickerButton_ExitLockText" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 60)
+[node name="OptionButtonLock" type="OptionButton" parent="MarginContainer/GridContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
-theme_override_font_sizes/font_size = 45
-edit_alpha = false
+theme = SubResource("Theme_oddly")
+item_count = 3
+selected = 1
+allow_reselect = true
+popup/item_0/text = "Numbers"
+popup/item_0/id = 0
+popup/item_0/disabled = true
+popup/item_1/text = "Dots"
+popup/item_1/id = 1
+popup/item_2/text = "Letters"
+popup/item_2/id = 2
+popup/item_2/disabled = true
 
-[node name="ColorPickerButton_ExitLock" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
-theme_override_font_sizes/font_size = 45
-color = Color(0.962434, 0.960162, 0.955978, 1)
-edit_alpha = false
-
-[node name="LabelExitLock" type="Label" parent="MarginContainer/GridContainer/ColorPickerButton_ExitLock"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -13.0
-offset_top = -31.5
-offset_right = 13.0
-offset_bottom = 31.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 60
-text = "0"
-label_settings = SubResource("LabelSettings_ke64u")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="D3Die" type="Button" parent="MarginContainer/GridContainer"]
+[node name="D3Die" type="Label" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
-button_mask = 0
 text = "D3"
-flat = true
 
-[node name="ColorPickerButton_D3Text" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 60)
+[node name="OptionButtonD3" type="OptionButton" parent="MarginContainer/GridContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
-theme_override_font_sizes/font_size = 45
-color = Color(1, 1, 1, 1)
-edit_alpha = false
-
-[node name="ColorPickerButton_D3" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
-theme_override_font_sizes/font_size = 45
-color = Color(0.351066, 0.114892, 0.60183, 1)
-edit_alpha = false
-
-[node name="LabelD3" type="Label" parent="MarginContainer/GridContainer/ColorPickerButton_D3"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -13.0
-offset_top = -31.5
-offset_right = 13.0
-offset_bottom = 31.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 60
-text = "I"
-label_settings = SubResource("LabelSettings_vh3od")
-horizontal_alignment = 1
-vertical_alignment = 1
+theme = SubResource("Theme_oddly")
+item_count = 3
+selected = 1
+allow_reselect = true
+popup/item_0/text = "Numbers"
+popup/item_0/id = 0
+popup/item_0/disabled = true
+popup/item_1/text = "Dots"
+popup/item_1/id = 1
+popup/item_2/text = "Letters"
+popup/item_2/id = 2
+popup/item_2/disabled = true
 
 [node name="LoadDefault" type="Button" parent="MarginContainer/GridContainer"]
 layout_mode = 2
@@ -551,13 +244,8 @@ theme = SubResource("Theme_jf8ki")
 theme_override_font_sizes/font_size = 40
 text = "Load Default"
 
-[node name="Spacer" type="Button" parent="MarginContainer/GridContainer"]
+[node name="Spacer" type="Label" parent="MarginContainer/GridContainer"]
 layout_mode = 2
-flat = true
-
-[node name="Spacer2" type="Button" parent="MarginContainer/GridContainer"]
-layout_mode = 2
-flat = true
 
 [node name="SaveStyles" type="Button" parent="MarginContainer/GridContainer"]
 layout_mode = 2
@@ -571,27 +259,17 @@ theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
 text = "Back"
 
-[connection signal="ready" from="." to="." method="_on_ready"]
-[connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_Xtext" to="." method="_on_color_picker_button_xtext_color_changed"]
-[connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_X" to="." method="_on_color_picker_button_x_color_changed"]
-[connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_Ytext" to="." method="_on_color_picker_button_ytext_color_changed"]
-[connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_Y" to="." method="_on_color_picker_button_y_color_changed"]
-[connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_D66Ptext" to="." method="_on_color_picker_button_d_66_ptext_color_changed"]
-[connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_D66Prime" to="." method="_on_color_picker_button_d_66_prime_color_changed"]
-[connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_D66Stext" to="." method="_on_color_picker_button_d_66_stext_color_changed"]
-[connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_D66Secondary" to="." method="_on_color_picker_button_d_66_secondary_color_changed"]
-[connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_PrimeText" to="." method="_on_color_picker_button_prime_text_color_changed"]
-[connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_Primary" to="." method="_on_color_picker_button_primary_color_changed"]
-[connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_secondaryText" to="." method="_on_color_picker_button_secondary_text_color_changed"]
-[connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_Secondary" to="." method="_on_color_picker_button_secondary_color_changed"]
-[connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_ExitNumText" to="." method="_on_color_picker_button_exit_num_text_color_changed"]
-[connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_ExitNum" to="." method="_on_color_picker_button_exit_num_color_changed"]
-[connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_ExitDirText" to="." method="_on_color_picker_button_exit_dir_text_color_changed"]
-[connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_ExitDirection" to="." method="_on_color_picker_button_exit_direction_color_changed"]
-[connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_ExitLockText" to="." method="_on_color_picker_button_exit_lock_text_color_changed"]
-[connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_ExitLock" to="." method="_on_color_picker_button_exit_lock_color_changed"]
-[connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_D3Text" to="." method="_on_color_picker_button_d_3_text_color_changed"]
-[connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_D3" to="." method="_on_color_picker_button_d_3_color_changed"]
+[connection signal="ready" from="." to="." method="_on_ready_set_style_popups"]
+[connection signal="item_selected" from="MarginContainer/GridContainer/OptionButtonX" to="." method="_on_option_button_x_item_selected"]
+[connection signal="item_selected" from="MarginContainer/GridContainer/OptionButtonY" to="." method="_on_option_button_y_item_selected"]
+[connection signal="item_selected" from="MarginContainer/GridContainer/OptionButtonD66Primary" to="." method="_on_option_button_d_66_primary_item_selected"]
+[connection signal="item_selected" from="MarginContainer/GridContainer/OptionButtonD66Secondary" to="." method="_on_option_button_d_66_secondary_item_selected"]
+[connection signal="item_selected" from="MarginContainer/GridContainer/OptionButtonSinglePrimary" to="." method="_on_option_button_single_primary_item_selected"]
+[connection signal="item_selected" from="MarginContainer/GridContainer/OptionButtonSingleSecondary" to="." method="_on_option_button_single_secondary_item_selected"]
+[connection signal="item_selected" from="MarginContainer/GridContainer/OptionButtonExitQty" to="." method="_on_option_button_exit_qty_item_selected"]
+[connection signal="item_selected" from="MarginContainer/GridContainer/OptionButtonExitDirection" to="." method="_on_option_button_exit_direction_item_selected"]
+[connection signal="item_selected" from="MarginContainer/GridContainer/OptionButtonLock" to="." method="_on_option_button_lock_item_selected"]
+[connection signal="item_selected" from="MarginContainer/GridContainer/OptionButtonD3" to="." method="_on_option_button_d_3_item_selected"]
 [connection signal="pressed" from="MarginContainer/GridContainer/LoadDefault" to="." method="_on_load_default_styles_pressed"]
 [connection signal="pressed" from="MarginContainer/GridContainer/SaveStyles" to="." method="_save_dice_preferences"]
 [connection signal="pressed" from="MarginContainer/GridContainer/Back" to="." method="_on_back_pressed"]

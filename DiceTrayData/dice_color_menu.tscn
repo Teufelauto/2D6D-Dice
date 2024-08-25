@@ -83,13 +83,11 @@ grow_vertical = 2
 layout_mode = 2
 columns = 3
 
-[node name="XDim" type="Button" parent="MarginContainer/GridContainer"]
+[node name="XDim" type="Label" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
-button_mask = 0
 text = "Room X"
-flat = true
 
 [node name="ColorPickerButton_Xtext" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
@@ -124,13 +122,11 @@ label_settings = SubResource("LabelSettings_ohjsl")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="YDim" type="Button" parent="MarginContainer/GridContainer"]
+[node name="YDim" type="Label" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
-button_mask = 0
 text = "Room Y"
-flat = true
 
 [node name="ColorPickerButton_Ytext" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
@@ -171,13 +167,11 @@ label_settings = SubResource("LabelSettings_6e7hy")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DoublePrimary" type="Button" parent="MarginContainer/GridContainer"]
+[node name="DoublePrimary" type="Label" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
-button_mask = 0
 text = "Primary D66"
-flat = true
 
 [node name="ColorPickerButton_D66Ptext" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
@@ -218,13 +212,11 @@ label_settings = SubResource("LabelSettings_pym11")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DoubleSecondary" type="Button" parent="MarginContainer/GridContainer"]
+[node name="DoubleSecondary" type="Label" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
-button_mask = 0
 text = "2ndary D66"
-flat = true
 
 [node name="ColorPickerButton_D66Stext" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
@@ -265,13 +257,11 @@ label_settings = SubResource("LabelSettings_qx1n0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SinglePrimary" type="Button" parent="MarginContainer/GridContainer"]
+[node name="SinglePrimary" type="Label" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
-button_mask = 0
 text = "Primary D6"
-flat = true
 
 [node name="ColorPickerButton_PrimeText" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
@@ -312,13 +302,11 @@ label_settings = SubResource("LabelSettings_4sbx1")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SingleSecondary" type="Button" parent="MarginContainer/GridContainer"]
+[node name="SingleSecondary" type="Label" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
-button_mask = 0
 text = "2ndary D6"
-flat = true
 
 [node name="ColorPickerButton_secondaryText" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
@@ -359,13 +347,11 @@ label_settings = SubResource("LabelSettings_be7hf")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ExitNum" type="Button" parent="MarginContainer/GridContainer"]
+[node name="ExitNum" type="Label" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
-button_mask = 0
 text = "# of Exits"
-flat = true
 
 [node name="ColorPickerButton_ExitNumText" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
@@ -405,13 +391,11 @@ label_settings = SubResource("LabelSettings_wbofp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ExitDirection" type="Button" parent="MarginContainer/GridContainer"]
+[node name="ExitDirection" type="Label" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
-button_mask = 0
 text = "Exit Direction"
-flat = true
 
 [node name="ColorPickerButton_ExitDirText" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
@@ -452,13 +436,11 @@ label_settings = SubResource("LabelSettings_ilo6k")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ExitLock" type="Button" parent="MarginContainer/GridContainer"]
+[node name="ExitLock" type="Label" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
-button_mask = 0
 text = "Exit Lock"
-flat = true
 
 [node name="ColorPickerButton_ExitLockText" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
@@ -498,13 +480,11 @@ label_settings = SubResource("LabelSettings_ke64u")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="D3Die" type="Button" parent="MarginContainer/GridContainer"]
+[node name="D3Die" type="Label" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
-button_mask = 0
 text = "D3"
-flat = true
 
 [node name="ColorPickerButton_D3Text" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
@@ -545,13 +525,11 @@ label_settings = SubResource("LabelSettings_vh3od")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TrayFelt" type="Button" parent="MarginContainer/GridContainer"]
+[node name="TrayFelt" type="Label" parent="MarginContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
-button_mask = 0
 text = "Tray Felt"
-flat = true
 
 [node name="ColorPickerButton_TrayFelt" type="ColorPickerButton" parent="MarginContainer/GridContainer"]
 unique_name_in_owner = true
@@ -562,9 +540,8 @@ theme_override_font_sizes/font_size = 45
 color = Color(1, 1, 1, 1)
 edit_alpha = false
 
-[node name="Spacer4" type="Button" parent="MarginContainer/GridContainer"]
+[node name="Spacer4" type="Label" parent="MarginContainer/GridContainer"]
 layout_mode = 2
-flat = true
 
 [node name="LoadDefault" type="Button" parent="MarginContainer/GridContainer"]
 layout_mode = 2
@@ -572,13 +549,11 @@ theme = SubResource("Theme_jf8ki")
 theme_override_font_sizes/font_size = 40
 text = "Load Default"
 
-[node name="Spacer" type="Button" parent="MarginContainer/GridContainer"]
+[node name="Spacer" type="Label" parent="MarginContainer/GridContainer"]
 layout_mode = 2
-flat = true
 
-[node name="Spacer2" type="Button" parent="MarginContainer/GridContainer"]
+[node name="Spacer2" type="Label" parent="MarginContainer/GridContainer"]
 layout_mode = 2
-flat = true
 
 [node name="SaveColors" type="Button" parent="MarginContainer/GridContainer"]
 layout_mode = 2
@@ -592,7 +567,7 @@ theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 40
 text = "Back"
 
-[connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="ready" from="." to="." method="_on_ready_color_menu"]
 [connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_Xtext" to="." method="_on_color_picker_button_xtext_color_changed"]
 [connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_X" to="." method="_on_color_picker_button_x_color_changed"]
 [connection signal="color_changed" from="MarginContainer/GridContainer/ColorPickerButton_Ytext" to="." method="_on_color_picker_button_ytext_color_changed"]

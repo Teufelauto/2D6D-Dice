@@ -47,12 +47,17 @@ func _ready():
 		DicePreferences.load_default_dice_colors()
 		DicePreferences.load_default_dice_styles()
 	
-func _on_ready():
-	if self.name == "DiceColorMenu":
-		_paint_buttons_and_text_in_menu()
-		
+func _on_ready_color_menu(): # called only by Color menu when opened
+	_paint_buttons_and_text_in_menu()
 
-func _paint_buttons_and_text_in_menu():
+func _on_ready_set_style_popups():
+	
+	
+	
+	
+	pass
+
+func _paint_buttons_and_text_in_menu(): # in color menu
 	# X
 	%ColorPickerButton_Xtext.color = d_text_color_x
 	%ColorPickerButton_X.color = d_body_color_x
@@ -101,10 +106,11 @@ func _on_load_default_colors_pressed():
 	DicePreferences.load_default_dice_colors()
 	_paint_buttons_and_text_in_menu()
 
+
 func _on_load_default_styles_pressed():
 	DicePreferences.load_default_dice_styles()
-	
-	
+
+
 static func load_dice_colors(): # from file
 	var saved_dice:SavedDice = SafeResourceLoader.load("user://savedice.tres") as SavedDice
 		
@@ -192,7 +198,7 @@ static func load_default_dice_styles():
 	d_style_exit_qty = "die_dot"
 	d_style_exit_direction = "die_let"
 	d_style_exit_lock = "die_dot"
-	d_style_d3 = "die_let"
+	d_style_d3 = "die_dot"
 
 
 func _save_dice_preferences():
@@ -239,7 +245,7 @@ func _save_dice_preferences():
 func _on_back_pressed():
 	get_tree().change_scene_to_file("res://DiceTrayData/dice_options_menu.tscn")
 
-
+#region ------- Color Menu Signals --------------------------------------------
 func _on_color_picker_button_xtext_color_changed(color):
 	%LabelX.label_settings.font_color = color
 	d_text_color_x = color
@@ -331,8 +337,96 @@ func _on_color_picker_button_d_3_color_changed(color):
 func _on_color_picker_button_tray_felt_color_changed(color):
 	d_tray_felt_color = color
 	
+#endregion
+
+#region -------- Style Menu Signals -----------------------------------------------------------
+func _on_option_button_x_item_selected(index):
+	var die_style : String
+	match index:
+		0: die_style = "die_num"
+		1: die_style = "die_dot"
+		2: die_style = "die_let"
+	d_style_x = die_style
+
+
+func _on_option_button_y_item_selected(index):
+	var die_style : String
+	match index:
+		0: die_style = "die_num"
+		1: die_style = "die_dot"
+		2: die_style = "die_let"
+	d_style_y = die_style
+
+
+func _on_option_button_d_66_primary_item_selected(index):
+	var die_style : String
+	match index:
+		0: die_style = "die_num"
+		1: die_style = "die_dot"
+		2: die_style = "die_let"
+	d_style_d66_prime = die_style
+
+
+func _on_option_button_d_66_secondary_item_selected(index):
+	var die_style : String
+	match index:
+		0: die_style = "die_num"
+		1: die_style = "die_dot"
+		2: die_style = "die_let"
+	d_style_d66_secondary = die_style
+
+
+func _on_option_button_single_primary_item_selected(index):
+	var die_style : String
+	match index:
+		0: die_style = "die_num"
+		1: die_style = "die_dot"
+		2: die_style = "die_let"
+	d_style_single_primary = die_style
+
+
+func _on_option_button_single_secondary_item_selected(index):
+	var die_style : String
+	match index:
+		0: die_style = "die_num"
+		1: die_style = "die_dot"
+		2: die_style = "die_let"
+	d_style_single_secondary = die_style
 	
 
+func _on_option_button_exit_qty_item_selected(index):
+	var die_style : String
+	match index:
+		0: die_style = "die_num"
+		1: die_style = "die_dot"
+		2: die_style = "die_let"
+	d_style_exit_qty = die_style
 
 
+func _on_option_button_exit_direction_item_selected(index):
+	var die_style : String
+	match index:
+		0: die_style = "die_num"
+		1: die_style = "die_dot"
+		2: die_style = "die_let"
+	d_style_exit_direction = die_style
+
+
+func _on_option_button_lock_item_selected(index):
+	var die_style : String
+	match index:
+		0: die_style = "die_num"
+		1: die_style = "die_dot"
+		2: die_style = "die_let"
+	d_style_exit_lock = die_style
+
+
+func _on_option_button_d_3_item_selected(index):
+	var die_style : String
+	match index:
+		0: die_style = "die_num"
+		1: die_style = "die_dot"
+		2: die_style = "die_let"
+	d_style_d3 = die_style
+#endregion
 
