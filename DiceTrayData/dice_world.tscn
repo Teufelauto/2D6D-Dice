@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dx5jaq5nccohx"]
+[gd_scene load_steps=32 format=3 uid="uid://dx5jaq5nccohx"]
 
 [ext_resource type="Script" path="res://DiceTrayData/DiceTray.gd" id="1_dw3jc"]
 [ext_resource type="Script" path="res://DiceTrayData/RoomRectangleLine2D.gd" id="2_dw6wt"]
@@ -13,6 +13,20 @@
 [ext_resource type="PackedScene" uid="uid://crf5mdkv3587n" path="res://DiceTrayData/DiceScenes/die_numbered_primary.tscn" id="11_l77u2"]
 [ext_resource type="PackedScene" uid="uid://osco2cs718d7" path="res://DiceTrayData/DiceScenes/die_numbered_secondary.tscn" id="12_vu5er"]
 [ext_resource type="PackedScene" uid="uid://bi35saefl3rd4" path="res://DiceTrayData/DiceScenes/die_d_3.tscn" id="13_eavoq"]
+[ext_resource type="PackedScene" uid="uid://ckfuq8vy5qkbm" path="res://DiceTrayData/DiceScenes/die_fatigue.tscn" id="14_nh5cq"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0vmny"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_8c6rn"]
+sky_material = SubResource("ProceduralSkyMaterial_0vmny")
+
+[sub_resource type="Environment" id="Environment_ba38j"]
+background_mode = 2
+sky = SubResource("Sky_8c6rn")
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="LabelSettings" id="LabelSettings_gdq0w"]
 font_size = 80
@@ -25,6 +39,13 @@ font_size = 80
 
 [sub_resource type="LabelSettings" id="LabelSettings_ybirq"]
 font_size = 80
+
+[sub_resource type="Theme" id="Theme_3xk1n"]
+default_font_size = 30
+Button/font_sizes/font_size = 25
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ja2eq"]
+points = PackedVector3Array(-0.11, -0.11, 0.25, -0.11, -0.11, -0.25, 0.11, -0.11, 0.25, 0.11, -0.11, -0.25, -0.11, 0.17, 0.25, -0.11, 0.17, -0.25, 0.11, 0.06, 0.25, 0.11, 0.06, -0.25)
 
 [sub_resource type="BoxMesh" id="BoxMesh_dtie3"]
 
@@ -51,6 +72,14 @@ bounce = 0.12
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bmajt"]
 
 [node name="world" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+visible = false
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ba38j")
 
 [node name="DiceTray" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -315,6 +344,37 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 60
 horizontal_alignment = 1
 
+[node name="FatigueIncrementButton" type="Button" parent="DiceTray/DiceCanvas"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 243.0
+offset_top = 87.0
+offset_right = -43.0
+offset_bottom = -720.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.0917655
+focus_mode = 0
+shortcut_feedback = false
+shortcut_in_tooltip = false
+flat = true
+
+[node name="FatigueResetButton" type="Button" parent="DiceTray/DiceCanvas"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 227.0
+offset_top = 2.0
+offset_right = -69.0
+offset_bottom = -820.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme = SubResource("Theme_3xk1n")
+text = "Reset Combat
+Round"
+
 [node name="ExitButton" type="Button" parent="DiceTray/DiceCanvas"]
 anchors_preset = 1
 anchor_left = 1.0
@@ -551,6 +611,21 @@ mouse_default_cursor_shape = 2
 action_mode = 0
 flat = true
 
+[node name="FatigueDie" type="Node3D" parent="DiceTray"]
+transform = Transform3D(-0.104112, 0, -0.994566, 0, 1, 0, 0.994566, 0, -0.104112, 0.210638, 0.105, -1.10817)
+
+[node name="DieFatigue" parent="DiceTray/FatigueDie" instance=ExtResource("14_nh5cq")]
+input_ray_pickable = false
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="DiceTray/FatigueDie"]
+collision_layer = 2
+collision_mask = 2
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DiceTray/FatigueDie/AnimatableBody3D"]
+transform = Transform3D(1, 0, -7.45058e-09, 0, 1, 0, 7.45058e-09, 0, 1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_ja2eq")
+
 [node name="TrayModel" type="Node3D" parent="DiceTray"]
 
 [node name="TableBackstop" type="MeshInstance3D" parent="DiceTray/TrayModel" groups=["mesh_die_tray_felt"]]
@@ -633,9 +708,10 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -75.0
+offset_top = -77.0
 grow_horizontal = 2
 grow_vertical = 0
+focus_mode = 0
 theme_override_font_sizes/font_size = 50
 action_mode = 0
 text = "Pick Up All Dice"
@@ -671,6 +747,7 @@ transform = Transform3D(0.781528, -0.213039, 0.586368, -0.294329, 0.702809, 0.64
 light_energy = 1.891
 light_bake_mode = 1
 shadow_enabled = true
+shadow_bias = 0.01
 spot_range = 10.0
 spot_attenuation = 0.203064
 spot_angle = 23.4
@@ -681,7 +758,7 @@ transform = Transform3D(-0.196745, 0.834484, -0.514712, 0.0923927, 0.538417, 0.8
 light_energy = 2.152
 light_bake_mode = 1
 shadow_enabled = true
-shadow_bias = 0.02
+shadow_bias = 0.001
 spot_range = 13.1452
 spot_attenuation = 0.450625
 spot_angle = 19.4366
@@ -694,6 +771,8 @@ light_energy = 7.72
 
 [connection signal="clear_room_rectangle" from="DiceTray" to="DiceTray/DiceCanvas/RoomRectangleLine2D" method="_on_dice_tray_clear_room_rectangle"]
 [connection signal="resize_room_rectangle" from="DiceTray" to="DiceTray/DiceCanvas/RoomRectangleLine2D" method="resize_room_rectangle"]
+[connection signal="pressed" from="DiceTray/DiceCanvas/FatigueIncrementButton" to="DiceTray/FatigueDie/DieFatigue" method="increment_fatigue_die_to_next_round"]
+[connection signal="pressed" from="DiceTray/DiceCanvas/FatigueResetButton" to="DiceTray/FatigueDie/DieFatigue" method="return_fatigue_die_to_one"]
 [connection signal="pressed" from="DiceTray/DiceCanvas/ExitButton" to="DiceTray" method="_on_exit_button_pressed"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDXDim" to="DiceTray/RoomSizeDice/DieDXDim" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDXDim" to="DiceTray/RoomSizeDice/DieDYDim" method="_on_input_event"]
@@ -739,8 +818,8 @@ light_energy = 7.72
 [connection signal="pressed" from="DiceTray/ExitLockCheckDie/ExitLockThrowButton" to="DiceTray/ExitLockCheckDie/DieLocked" method="_on_exit_lock_throw_button_pressed"]
 [connection signal="input_event" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_on_die_primary_numbered_roll_finished"]
-[connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_on_die_primary_numbered_roll_started"]
 [connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_remove_right_primary_die_scoreboard"]
+[connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_on_die_primary_numbered_roll_started"]
 [connection signal="sleeping_state_changed" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/PrimaryDie/PrimeThrowButton" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_prime_throw_button_pressed"]
 [connection signal="input_event" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray/SecondaryDie/DieSecondaryD6" method="_on_input_event"]

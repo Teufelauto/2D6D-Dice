@@ -3,6 +3,7 @@ extends Node3D
 
 
 @onready var pick_up_all_dice_button_huge = $PickUpAllDiceButtonHuge
+@onready var fatigue_reset_button = $DiceCanvas/FatigueResetButton
 
 @onready var button_throw_xy = $RoomSizeDice/XYThrowButton
 @onready var button_throw_xy2 = $RoomSizeDice/XYThrowButton2
@@ -55,6 +56,7 @@ static var d3_die_int : int = 0
 
 signal resize_room_rectangle(x_size,y_size) # report room dimensions to drawing funcion
 signal clear_room_rectangle() # report to make room rectangle invisible
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -220,6 +222,7 @@ func _rehome_dice():
 	room_size_rolled_doubles_bool = false
 	%RoomSizeSmallLabel.visible = false
 	%RoomSizeLargeLabel.visible = false
+	fatigue_reset_button.visible = true
 
 func _remove_left_dice_scoreboard():
 	%D66PrimaryPolygon2D.visible = false
@@ -245,6 +248,7 @@ func _remove_right_secondary_die_scoreboard():
 func _remove_small_or_large_room_labels():
 	%RoomSizeSmallLabel.visible = false
 	%RoomSizeLargeLabel.visible = false
+	
 
 
 #region -------------------------ROLL STARTED-----------------------------
@@ -288,30 +292,36 @@ func _on_die_double_roll_started():
 func _on_die_lcr_roll_started():
 	center_result_label.text = ""
 	exit_direction_label.text = ""
+	
 
 
 func _on_die_locked_roll_started():
 	center_result_label.text = ""
 	exit_lock_label.text = ""
+	
 
 
 func _on_die_primary_numbered_roll_started():
 	center_result_label.text = ""
+	
 
 
 func _on_die_secondary_numbered_roll_started():
 	center_result_label.text = ""
+	
 
 
 func _on_die_d_3_roll_started():
 	center_result_label.text = ""
 	d_3_result_label.text = ""
+	
 
 #endregion
 
 
 #region ---------------------- ROLL FINISHED -----------------------------
 func _add_small_or_large_room_labels( _room_x , _room_y ):
+	
 	var _room_area :int = _room_x * _room_y
 	if _room_x > 1 and _room_y > 1 : 
 		if _room_area <= 6 : # 2x3 or 3x2 room 'Small Room'
@@ -323,6 +333,7 @@ func _add_small_or_large_room_labels( _room_x , _room_y ):
 	
 
 func _determine_room_doubles():
+	
 	# Determine if valid or need more rolls
 	if room_size_x_roll_int == room_size_y_roll_int \
 			&& room_size_x_roll_int != 6 && room_size_rolled_doubles_bool == false:
@@ -349,6 +360,7 @@ func _room_doubles_done():
 		
 
 func _on_die_dx_dim_roll_finished(die_value):
+	fatigue_reset_button.visible = false
 	if !room_size_rolled_doubles_bool : # prevent flipped die from changing room size
 		room_size_x_roll_int = die_value
 		room_size_x_int = room_size_x_roll_int
@@ -358,6 +370,7 @@ func _on_die_dx_dim_roll_finished(die_value):
 
 
 func _on_die_dy_dim_roll_finished(die_value):
+	fatigue_reset_button.visible = false
 	if !room_size_rolled_doubles_bool : # prevent flipped die from changing room size
 		room_size_y_roll_int = die_value
 		room_size_y_int = room_size_y_roll_int
@@ -367,6 +380,7 @@ func _on_die_dy_dim_roll_finished(die_value):
 
 
 func _on_die_double_primary_roll_finished(die_value):
+	fatigue_reset_button.visible = false
 	#room size rolling not done
 	if room_size_rolled_doubles_bool && room_size_y_add_int == 0 :
 		room_size_x_add_int = die_value
@@ -382,6 +396,7 @@ func _on_die_double_primary_roll_finished(die_value):
 
 
 func _on_die_double_secondary_roll_finished(die_value):
+	fatigue_reset_button.visible = false
 	#room size rolling not done
 	if room_size_rolled_doubles_bool && room_size_x_add_int == 0:
 		room_size_y_add_int = die_value
@@ -397,6 +412,7 @@ func _on_die_double_secondary_roll_finished(die_value):
 
 
 func _on_die_door_pics_roll_finished(die_value):
+	fatigue_reset_button.visible = false
 	room_number_of_exits_int = die_value
 	if room_number_of_exits_int == 1:
 		exit_number_label.text = str(room_number_of_exits_int) + " Exit"
@@ -405,6 +421,7 @@ func _on_die_door_pics_roll_finished(die_value):
 	
 	
 func _on_die_lcr_roll_finished(die_value):
+	fatigue_reset_button.visible = false
 	room_exit_direction_int = die_value
 	if room_exit_direction_int == 1 : exit_direction_label.text = "Left"
 	elif room_exit_direction_int == 2 : exit_direction_label.text = "Center"
@@ -413,6 +430,7 @@ func _on_die_lcr_roll_finished(die_value):
 
 
 func _on_die_locked_roll_finished(die_value):
+	fatigue_reset_button.visible = false
 	door_lock_status_int = die_value
 	if door_lock_status_int == 1 : exit_lock_label.text = "Metal Locked"
 	elif door_lock_status_int == 2 : exit_lock_label.text = "Metal / Reinforced Locked"
@@ -422,18 +440,21 @@ func _on_die_locked_roll_finished(die_value):
 	
 
 func _on_die_primary_numbered_roll_finished(die_value):
+	fatigue_reset_button.visible = false
 	primary_die_int = die_value
 	%TwoD6PrimaryPolygon2D.visible = true
 	primary_label.text = str(primary_die_int)
 
 
 func _on_die_secondary_numbered_roll_finished(die_value):
+	fatigue_reset_button.visible = false
 	secondary_die_int = die_value
 	%TwoD6SecondaryPolygon2D.visible = true
 	secondary_label.text = str(secondary_die_int)
 
 
 func _on_die_d_3_roll_finished(die_value):
+	fatigue_reset_button.visible = false
 	d3_die_int = die_value
 	d_3_result_label.text = str(d3_die_int)
 
@@ -443,3 +464,6 @@ func _on_die_d_3_roll_finished(die_value):
 
 func _on_exit_button_pressed():
 	get_tree().change_scene_to_file("res://DiceTrayData/dice_start_menu.tscn")
+
+
+
