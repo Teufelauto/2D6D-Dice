@@ -1,7 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://ibb5xmdf4h4s"]
 
 [ext_resource type="Script" path="res://DiceTrayData/DiceStartMenu.gd" id="1_n4ex5"]
-[ext_resource type="Texture2D" uid="uid://d1u2swk5mv4pn" path="res://2D6_Dungeon_Compatible_BigDice_Logo.png" id="2_fpwaa"]
 [ext_resource type="Texture2D" uid="uid://cui16rtfhryd0" path="res://2D6_Dungeon_Compatible_Logo.png" id="2_nh2tl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tviu5"]
@@ -11,6 +10,9 @@ bg_color = Color(0.147672, 0.147672, 0.147672, 1)
 load_path = "res://.godot/imported/Dice.png-882c6eafe4e41c1ad8b5d2d9c8d260aa.ctex"
 
 [sub_resource type="ImageTexture" id="ImageTexture_qky25"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pa56q"]
+load_path = "res://.godot/imported/2D6_Dungeon_Compatible_BigDice_Logo.png-07ab99f140d34f826a2507fa8e2b9ff0.ctex"
 
 [sub_resource type="Theme" id="Theme_1glhj"]
 
@@ -79,7 +81,7 @@ stretch_mode = 5
 [node name="2d6DungeonCompatibleBigDiceLogo" type="Sprite2D" parent="FancyTitle"]
 position = Vector2(255, 206)
 scale = Vector2(0.45, 0.45)
-texture = ExtResource("2_fpwaa")
+texture = SubResource("CompressedTexture2D_pa56q")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
