@@ -37,20 +37,10 @@ func _ready():
 
 
 
-func _die_rotation_lock():
-	pass # don't do it because it messes up picking dice. Bug?
-	#axis_lock_angular_x = true # prevent being knocked over
-	#axis_lock_angular_z = true # prevent being knocked over
-	
-func _die_rotation_unlock():
-	pass #dont do it
-	#axis_lock_angular_x = false # prevent being knocked over
-	#axis_lock_angular_z = false # prevent being knocked over
-
 
 func _roll():
 	# Reset State
-	_die_rotation_unlock()
+
 	sleeping = false
 	freeze = false
 
@@ -80,7 +70,7 @@ func _on_sleeping_state_changed():
 		var landed_on_side = false
 		for raycast in raycasts:
 			if raycast.is_colliding():
-				_die_rotation_lock()
+
 				roll_finished.emit(raycast.opposite_side) # INT   Send out the data!
 				is_rolling = false
 				landed_on_side = true
@@ -91,16 +81,20 @@ func _on_sleeping_state_changed():
 
 # Put the dice back in the home position.
 func _return_die():
-		
+	is_rolling = false
 	# Return the dice to home
-	_die_rotation_unlock()
+	freeze = false
+	sleeping = true
+	
 	set_collision_layer_value( 2, false)
 	set_collision_mask_value( 2, false)
 	linear_velocity = Vector3.ZERO
 	angular_velocity = Vector3.ZERO
+	
+	transform.origin = start_pos
 	freeze = true
 	sleeping = true
-	transform.origin = start_pos
+	
 	# Clear Roll Results
 	roll_started.emit()
 	
@@ -108,9 +102,9 @@ func _return_die():
 # -------------------------- PICK UP DICE --------------------------------------
 # Pick up ALL Dice
 func _on_pick_up_all_dice_button_pressed():
-	if !is_rolling:
-		_return_die()
-		
+	#if !is_rolling:
+	#	_return_die()
+	_return_die()
 
 
 # ----------------- ReROLL Previously thrown DICE ------------------------------
