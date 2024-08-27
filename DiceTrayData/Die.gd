@@ -1,11 +1,7 @@
 class_name DiceControl
 extends RigidBody3D
 
-
-
 @onready var raycasts = $Raycasts.get_children()
-
-
 
 @onready var button_throw_xy = %DiceTray/RoomSizeDice/XYThrowButton
 @onready var button_throw_xy2 = %DiceTray/RoomSizeDice/XYThrowButton2
@@ -17,10 +13,8 @@ extends RigidBody3D
 @onready var button_throw_d3 = %DiceTray/D3Die/D3ThrowButton
 @onready var dice_tray = %DiceTray
 
-
 @export var roll_strength = 35    # -------- Toss Strength ------------------
 @export var spin_strength = 1.0   # ---------- Spin It ------------------------
-
 
 var start_pos
 var is_rolling = false
@@ -33,17 +27,13 @@ signal roll_finished(die_value) # Output the die result to another script
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	start_pos = global_position
-	
-
-
 
 
 func _roll():
+	
 	# Reset State
-
 	sleeping = false
 	freeze = false
-
 	transform.origin = start_pos
 	linear_velocity = Vector3.ZERO
 	angular_velocity = Vector3.ZERO
@@ -75,7 +65,7 @@ func _on_sleeping_state_changed():
 				is_rolling = false
 				landed_on_side = true
 		
-		if !landed_on_side: # Auto reroll if rests at angle
+		if not landed_on_side: # Auto reroll if rests at angle
 			_roll()
 
 
@@ -102,55 +92,57 @@ func _return_die():
 # -------------------------- PICK UP DICE --------------------------------------
 # Pick up ALL Dice
 func _on_pick_up_all_dice_button_pressed():
-	#if !is_rolling:
+	
+	# commented out is not rolling to allow picking up frozen dice
+	#if not is_rolling:
 	#	_return_die()
 	_return_die()
 
 
 # ----------------- ReROLL Previously thrown DICE ------------------------------
 func _on_input_event(_camera, event, _position, _normal, _shape_idx):
-	if event.is_pressed() && !is_rolling:
+	if event.is_pressed() and not is_rolling:
 		_roll()
 
 
 #---------------------------- ROLL DICE FROM HOME ------------------------------
 func _on_xy_throw_button_pressed():
-	if !is_rolling:
+	if not is_rolling:
 		button_throw_xy.visible = false # Main
 		button_throw_xy2.visible = false #  exit die location
 		_roll()
 
 
 func _on_double_throw_button_pressed():
-	if !is_rolling:
+	if not is_rolling:
 		button_throw_doubles.visible = false
 		_roll()
 
 
 func _on_lcr_throw_button_pressed():
-	if !is_rolling:
+	if not is_rolling:
 		button_throw_exit_direction.visible = false
 		_roll()
 
 
 func _on_exit_lock_throw_button_pressed():
-	if !is_rolling:
+	if not is_rolling:
 		button_throw_lock_check.visible = false
 		_roll()
 
 func _on_prime_throw_button_pressed():
-	if !is_rolling:
+	if not is_rolling:
 		button_throw_primary.visible = false
 		_roll()
 
 
 func _on_secondary_throw_button_pressed():
-	if !is_rolling:
+	if not is_rolling:
 		button_throw_secondary.visible = false
 		_roll()
 
 
 func _on_d_3_throw_button_pressed():
-	if !is_rolling:
+	if not is_rolling:
 		button_throw_d3.visible = false
 		_roll()

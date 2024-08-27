@@ -38,23 +38,31 @@ static var d_style_exit_direction : String
 static var d_style_exit_lock : String
 static var d_style_d3 : String
 static var d_style_fatigue : String
-static var d_vis_fatigue : int
+static var d_vis_fatigue : bool
 #die_vis_fatigue
 
 func _ready():
 	if ResourceLoader.exists("user://savedice.tres") : #Load custom colors
 		DicePreferences.load_dice_colors()
 		DicePreferences.load_dice_styles()
+		DicePreferences.load_fatigue_die()
 		
 	else: # load standard colors chosen by the developer!
 		DicePreferences.load_default_dice_colors()
 		DicePreferences.load_default_dice_styles()
+		DicePreferences.load_default_fatigue_die()
 	
 func _on_ready_color_menu(): # called only by Color menu when opened
 	_paint_buttons_and_text_in_menu()
 
-func _on_ready_set_style_popups():
+
+func _on_ready_set_style_popups(): # called only by Style menu when opened
 	_update_displayed_style_buttons()
+
+
+func _on_ready_fatigue_options_menu(): # called only by fatigue menu when opened
+	_paint_buttons_and_update_style_in_fatigue_menu()
+
 
 func _update_displayed_style_buttons():
 	var index :int 
@@ -119,6 +127,28 @@ func _update_displayed_style_buttons():
 	$MarginContainer/GridContainer/d_style_d3.selected = index
 
 
+func _paint_buttons_and_update_style_in_fatigue_menu():
+	
+	# Fatigue die visibility
+	if d_vis_fatigue:
+		%FatigueDieVisiblity.selected = 1
+	else:
+		%FatigueDieVisiblity.selected = 0
+	
+	# Fatigue Color
+	%ColorPickerButton_FatigueText.color = d_text_color_fatigue
+	%ColorPickerButton_Fatigue.color = d_body_color_fatigue
+	%LabelFatigue.label_settings.font_color = d_text_color_fatigue
+	
+	# Fatigue Style
+	var index :int 
+	match d_style_fatigue:
+		"1" : index = 0
+		"2" : index = 1
+		"3" : index = 2
+	$MarginContainer/VBoxContainer/GridContainer/d_style_fatigue.selected = index
+
+
 func _paint_buttons_and_text_in_menu(): # in color menu
 	# X
 	%ColorPickerButton_Xtext.color = d_text_color_x
@@ -172,6 +202,11 @@ func _on_load_default_colors_pressed():
 func _on_load_default_styles_pressed():
 	DicePreferences.load_default_dice_styles()
 	_update_displayed_style_buttons()
+	
+	
+func _on_load_default_fatigue_pressed():
+	DicePreferences.load_default_fatigue_die()
+	_paint_buttons_and_update_style_in_fatigue_menu()
 
 
 static func load_dice_colors(): # from file
@@ -202,8 +237,6 @@ static func load_dice_colors(): # from file
 	d_text_color_d3 = saved_dice.die_text_color_d3
 	d_body_color_d3 = saved_dice.die_body_color_d3
 	d_tray_felt_color = saved_dice.die_tray_felt_color
-	d_text_color_fatigue = saved_dice.die_text_color_fatigue
-	d_body_color_fatigue = saved_dice.die_body_color_fatigue
 
 
 static func load_default_dice_colors():
@@ -229,8 +262,7 @@ static func load_default_dice_colors():
 	d_text_color_d3 = Color.ANTIQUE_WHITE
 	d_body_color_d3 = Color.REBECCA_PURPLE
 	d_tray_felt_color = Color.DARK_GREEN
-	d_text_color_fatigue = Color.ANTIQUE_WHITE
-	d_body_color_fatigue = Color.DIM_GRAY
+	
 
 static func load_dice_styles(): # from file
 	
@@ -251,8 +283,6 @@ static func load_dice_styles(): # from file
 	d_style_exit_direction = saved_dice.die_style_exit_direction
 	d_style_exit_lock = saved_dice.die_style_exit_lock
 	d_style_d3 = saved_dice.die_style_d3
-	d_style_fatigue = saved_dice.die_style_fatigue
-	d_vis_fatigue = saved_dice.die_vis_fatigue
 
 
 static func load_default_dice_styles():
@@ -267,8 +297,39 @@ static func load_default_dice_styles():
 	d_style_exit_direction = "die_let"
 	d_style_exit_lock = "die_dot"
 	d_style_d3 = "die_dot"
+	
+
+static func load_fatigue_die():
+	
+	var saved_dice:SavedDice = SafeResourceLoader.load("user://savedice.tres") as SavedDice
+	
+	if saved_dice == null:
+		print("SaveDice.tres file was unsafe!")
+		return
+	
+	# color
+	d_text_color_fatigue = saved_dice.die_text_color_fatigue
+	d_body_color_fatigue = saved_dice.die_body_color_fatigue
+	
+	# style
+	d_style_fatigue = saved_dice.die_style_fatigue
+	
+	# option
+	d_vis_fatigue = saved_dice.die_vis_fatigue
+
+
+static func load_default_fatigue_die():
+	
+	# color
+	d_text_color_fatigue = Color.ANTIQUE_WHITE
+	d_body_color_fatigue = Color.DIM_GRAY
+	
+	# style
 	d_style_fatigue = "1"
-	d_vis_fatigue = 0
+	
+	# option
+	d_vis_fatigue = true
+
 
 func _save_dice_preferences():
 	var saved_dice:SavedDice = SavedDice.new()
@@ -310,6 +371,8 @@ func _save_dice_preferences():
 	saved_dice.die_style_exit_lock = d_style_exit_lock
 	saved_dice.die_style_d3 = d_style_d3
 	saved_dice.die_style_fatigue = d_style_fatigue
+	
+	#option
 	saved_dice.die_vis_fatigue = d_vis_fatigue
 	
 	ResourceSaver.save(saved_dice, "user://savedice.tres")
@@ -410,12 +473,9 @@ func _on_color_picker_button_d_3_color_changed(color):
 func _on_color_picker_button_tray_felt_color_changed(color):
 	d_tray_felt_color = color
 	
-	
-	
-	
 #endregion
 
-#region -------- Style Menu Signals -----------------------------------------------------------
+#region -------- Style Menu Signals -----------------------------------
 func _on_option_button_x_item_selected(index):
 	var die_style : String
 	match index:
@@ -505,5 +565,39 @@ func _on_option_button_d_3_item_selected(index):
 		2: die_style = "die_let"
 	d_style_d3 = die_style
 #endregion
+
+
+
+#region -----------  Fatigue Menu Signals ---------------------------------------
+func _on_fatigue_die_visiblity_item_selected(index):
+	match index:
+		0: d_vis_fatigue = false
+		1: d_vis_fatigue = true
+
+func _on_color_picker_button_fatigue_text_color_changed(color):
+	%LabelFatigue.label_settings.font_color = color
+	d_text_color_fatigue = color
+
+
+func _on_color_picker_button_fatigue_color_changed(color):
+	d_body_color_fatigue = color
+
+
+func _on_d_style_fatigue_item_selected(index):
+	var die_style : String
+	match index:
+		0: die_style = "1"
+		1: die_style = "2"
+		2: die_style = "3"
+	d_style_fatigue = die_style
+
+
+
+
+
+#endregion
+
+
+
 
 

@@ -23,8 +23,6 @@ extends Resource
 @export var die_text_color_d3 : Color
 @export var die_body_color_d3 : Color
 @export var die_tray_felt_color : Color
-@export var die_text_color_fatigue : Color
-@export var die_body_color_fatigue : Color
 
 ## Dice Styles
 @export var die_style_x : String
@@ -37,5 +35,9 @@ extends Resource
 @export var die_style_exit_direction : String
 @export var die_style_exit_lock : String
 @export var die_style_d3 : String
+
+# Fatigue Die
+@export var die_text_color_fatigue : Color
+@export var die_body_color_fatigue : Color
 @export var die_style_fatigue : String
-@export var die_vis_fatigue : int # Dice Option
+@export var die_vis_fatigue : bool # Dice Option

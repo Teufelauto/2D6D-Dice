@@ -42,6 +42,7 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Fatigue / Combat Round Die"
@@ -49,13 +50,14 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="FatigueDieVisiblity" type="OptionButton" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 60
 item_count = 2
-popup/item_0/text = "Visible"
+popup/item_0/text = "Not Visible"
 popup/item_0/id = 0
-popup/item_1/text = "Not Visible"
+popup/item_1/text = "Visible"
 popup/item_1/id = 1
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
@@ -75,7 +77,6 @@ layout_mode = 2
 layout_mode = 2
 theme = SubResource("Theme_6bui5")
 item_count = 2
-selected = 0
 allow_reselect = true
 popup/item_0/text = "1"
 popup/item_0/id = 0
@@ -90,6 +91,7 @@ theme_override_font_sizes/font_size = 40
 text = "Die Color"
 
 [node name="ColorPickerButton_FatigueText" type="ColorPickerButton" parent="MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(70, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
@@ -98,6 +100,7 @@ color = Color(0.878385, 0.877118, 0.890863, 1)
 edit_alpha = false
 
 [node name="ColorPickerButton_Fatigue" type="ColorPickerButton" parent="MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
@@ -106,6 +109,7 @@ color = Color(0.108874, 0.0178528, 0.914063, 1)
 edit_alpha = false
 
 [node name="LabelFatigue" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/ColorPickerButton_Fatigue"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -119,7 +123,7 @@ label_settings = SubResource("LabelSettings_j4rsd")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LoadDefault" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
+[node name="LoadDefaultFatigue" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_tg4dw")
 theme_override_font_sizes/font_size = 40
@@ -131,7 +135,7 @@ layout_mode = 2
 [node name="Spacer" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 
-[node name="SaveColors" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
+[node name="SaveFatigue" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_flbc3")
 theme_override_font_sizes/font_size = 40
@@ -146,4 +150,11 @@ theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 60
 text = "Back"
 
+[connection signal="ready" from="." to="." method="_on_ready_fatigue_options_menu"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/FatigueDieVisiblity" to="." method="_on_fatigue_die_visiblity_item_selected"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/GridContainer/d_style_fatigue" to="." method="_on_d_style_fatigue_item_selected"]
+[connection signal="color_changed" from="MarginContainer/VBoxContainer/GridContainer/ColorPickerButton_FatigueText" to="." method="_on_color_picker_button_fatigue_text_color_changed"]
+[connection signal="color_changed" from="MarginContainer/VBoxContainer/GridContainer/ColorPickerButton_Fatigue" to="." method="_on_color_picker_button_fatigue_color_changed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/LoadDefaultFatigue" to="." method="_on_load_default_fatigue_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/SaveFatigue" to="." method="_save_dice_preferences"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

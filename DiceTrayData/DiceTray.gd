@@ -68,12 +68,16 @@ func _ready():
 	if ResourceLoader.exists("user://savedice.tres") : 
 		DicePreferences.load_dice_colors() #from file if exists
 		DicePreferences.load_dice_styles() #from file if exists
+		DicePreferences.load_fatigue_die()
+		
 	else: # load standard colors chosen by the developer!
 		DicePreferences.load_default_dice_colors()
 		DicePreferences.load_default_dice_styles()
+		DicePreferences.load_default_fatigue_die()
 
 	_assign_die_styles()
 	_assign_colors()
+	_fatigue_die_visibility()
 	
 	
 func _assign_die_styles():
@@ -336,7 +340,7 @@ func _determine_room_doubles():
 	
 	# Determine if valid or need more rolls
 	if room_size_x_roll_int == room_size_y_roll_int \
-			&& room_size_x_roll_int != 6 && room_size_rolled_doubles_bool == false:
+			and room_size_x_roll_int != 6 and room_size_rolled_doubles_bool == false:
 		center_result_label.text = "Doubles!\nRoll Doubles Dice"
 		room_size_rolled_doubles_bool = true
 	else: #room is not doubles
@@ -361,31 +365,31 @@ func _room_doubles_done():
 
 func _on_die_dx_dim_roll_finished(die_value):
 	fatigue_reset_button.visible = false
-	if !room_size_rolled_doubles_bool : # prevent flipped die from changing room size
+	if not room_size_rolled_doubles_bool : # prevent flipped die from changing room size
 		room_size_x_roll_int = die_value
 		room_size_x_int = room_size_x_roll_int
 		x_result_label.text = str(room_size_x_int)
-		if room_size_x_roll_int > 0 && room_size_y_roll_int > 0 :
+		if room_size_x_roll_int > 0 and room_size_y_roll_int > 0 :
 			_determine_room_doubles()
 
 
 func _on_die_dy_dim_roll_finished(die_value):
 	fatigue_reset_button.visible = false
-	if !room_size_rolled_doubles_bool : # prevent flipped die from changing room size
+	if not room_size_rolled_doubles_bool : # prevent flipped die from changing room size
 		room_size_y_roll_int = die_value
 		room_size_y_int = room_size_y_roll_int
 		y_result_label.text = str(room_size_y_int)
-		if room_size_x_roll_int > 0 && room_size_y_roll_int > 0 :
+		if room_size_x_roll_int > 0 and room_size_y_roll_int > 0 :
 			_determine_room_doubles()
 
 
 func _on_die_double_primary_roll_finished(die_value):
 	fatigue_reset_button.visible = false
 	#room size rolling not done
-	if room_size_rolled_doubles_bool && room_size_y_add_int == 0 :
+	if room_size_rolled_doubles_bool and room_size_y_add_int == 0 :
 		room_size_x_add_int = die_value
 	#room size rolling IS done
-	elif room_size_rolled_doubles_bool && room_size_y_add_int > 0 :
+	elif room_size_rolled_doubles_bool and room_size_y_add_int > 0 :
 		room_size_x_add_int = die_value
 		_room_doubles_done()
 	#roll 2 dice for d66 or 2d6
@@ -398,10 +402,10 @@ func _on_die_double_primary_roll_finished(die_value):
 func _on_die_double_secondary_roll_finished(die_value):
 	fatigue_reset_button.visible = false
 	#room size rolling not done
-	if room_size_rolled_doubles_bool && room_size_x_add_int == 0:
+	if room_size_rolled_doubles_bool and room_size_x_add_int == 0:
 		room_size_y_add_int = die_value
 	#room size rolling IS done
-	elif room_size_rolled_doubles_bool && room_size_x_add_int > 0 :
+	elif room_size_rolled_doubles_bool and room_size_x_add_int > 0 :
 		room_size_y_add_int = die_value
 		_room_doubles_done()
 	#roll 2 dice for d66 or 2d6
@@ -468,14 +472,15 @@ func _on_exit_button_pressed():
 
 func _fatigue_die_visibility():
 	
+	if DicePreferences.d_vis_fatigue:
+		# to put in scene:
+		%AnimatableBody3DFatigue.set_collision_layer_value( 2, true)
+		%AnimatableBody3DFatigue.set_collision_mask_value( 2, true)
+		%DieFatigue.visible = true
+	else:
+		# to remove:
+		%AnimatableBody3DFatigue.set_collision_layer_value( 2, false)
+		%AnimatableBody3DFatigue.set_collision_mask_value( 2, false)
+		%DieFatigue.visible = false
 	
-	# to remove:
-	%AnimatableBody3DFatigue.set_collision_layer_value( 2, false)
-	%AnimatableBody3DFatigue.set_collision_mask_value( 2, false)
-	%DieFatigue.visible = false
 	
-	
-	# to put in scene:
-	%AnimatableBody3DFatigue.set_collision_layer_value( 2, true)
-	%AnimatableBody3DFatigue.set_collision_mask_value( 2, true)
-	%DieFatigue.visible = true
