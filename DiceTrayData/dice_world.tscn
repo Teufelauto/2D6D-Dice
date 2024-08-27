@@ -1,7 +1,8 @@
-[gd_scene load_steps=32 format=3 uid="uid://dx5jaq5nccohx"]
+[gd_scene load_steps=33 format=3 uid="uid://dx5jaq5nccohx"]
 
 [ext_resource type="Script" path="res://DiceTrayData/DiceTray.gd" id="1_dw3jc"]
 [ext_resource type="Script" path="res://DiceTrayData/RoomRectangleLine2D.gd" id="2_dw6wt"]
+[ext_resource type="AudioStream" uid="uid://c1slmenn35iqp" path="res://DiceTrayData/dice-roll-short.mp3" id="2_isjaf"]
 [ext_resource type="PackedScene" uid="uid://c1sbbpswt68eq" path="res://DiceTrayData/DiceScenes/DXDim.tscn" id="3_nj75j"]
 [ext_resource type="PackedScene" uid="uid://ua53ly3yv0sv" path="res://DiceTrayData/DiceScenes/DYDim.tscn" id="4_vau0y"]
 [ext_resource type="PackedScene" uid="uid://dwlkevdio50dl" path="res://DiceTrayData/DiceScenes/die_door_qty.tscn" id="5_nhunv"]
@@ -84,6 +85,10 @@ environment = SubResource("Environment_ba38j")
 [node name="DiceTray" type="Node3D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("1_dw3jc")
+
+[node name="AudioStreamPlayerSingle" type="AudioStreamPlayer" parent="DiceTray"]
+unique_name_in_owner = true
+stream = ExtResource("2_isjaf")
 
 [node name="DiceCanvas" type="CanvasLayer" parent="DiceTray"]
 unique_name_in_owner = true
@@ -829,8 +834,8 @@ light_energy = 7.72
 [connection signal="pressed" from="DiceTray/PrimaryDie/PrimeThrowButton" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_prime_throw_button_pressed"]
 [connection signal="input_event" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray/SecondaryDie/DieSecondaryD6" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray" method="_on_die_secondary_numbered_roll_finished"]
-[connection signal="roll_started" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray" method="_on_die_secondary_numbered_roll_started"]
 [connection signal="roll_started" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray" method="_remove_right_secondary_die_scoreboard"]
+[connection signal="roll_started" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray" method="_on_die_secondary_numbered_roll_started"]
 [connection signal="sleeping_state_changed" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray/SecondaryDie/DieSecondaryD6" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/SecondaryDie/SecondaryThrowButton" to="DiceTray/SecondaryDie/DieSecondaryD6" method="_on_secondary_throw_button_pressed"]
 [connection signal="input_event" from="DiceTray/D3Die/DieD3" to="DiceTray/D3Die/DieD3" method="_on_input_event"]

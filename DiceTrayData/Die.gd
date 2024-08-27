@@ -53,6 +53,7 @@ func _roll():
 	angular_velocity = throw_vector * roll_strength * spin_strength
 	apply_central_impulse(throw_vector * roll_strength)
 	is_rolling = true
+	%AudioStreamPlayerSingle.play()
 
 
 func _on_sleeping_state_changed():
