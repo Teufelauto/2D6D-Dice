@@ -23,8 +23,6 @@ static var d_body_color_exit_lock : Color
 static var d_text_color_d3 : Color
 static var d_body_color_d3 : Color
 static var d_tray_felt_color : Color
-static var d_text_color_fatigue :Color
-static var d_body_color_fatigue :Color
 
 # Styles
 static var d_style_x : String
@@ -37,9 +35,13 @@ static var d_style_exit_qty : String
 static var d_style_exit_direction : String
 static var d_style_exit_lock : String
 static var d_style_d3 : String
+
+# Fatigue die
+static var d_text_color_fatigue :Color
+static var d_body_color_fatigue :Color
 static var d_style_fatigue : String
 static var d_vis_fatigue : bool
-#die_vis_fatigue
+
 
 func _ready():
 	if ResourceLoader.exists("user://savedice.tres") : #Load custom colors
@@ -130,7 +132,7 @@ func _update_displayed_style_buttons():
 func _paint_buttons_and_update_style_in_fatigue_menu():
 	
 	# Fatigue die visibility
-	if d_vis_fatigue:
+	if d_vis_fatigue == true:
 		%FatigueDieVisiblity.selected = 1
 	else:
 		%FatigueDieVisiblity.selected = 0
@@ -143,9 +145,9 @@ func _paint_buttons_and_update_style_in_fatigue_menu():
 	# Fatigue Style
 	var index :int 
 	match d_style_fatigue:
-		"1" : index = 0
-		"2" : index = 1
-		"3" : index = 2
+		"die_1" : index = 0
+		"die_2" : index = 1
+		"die_3" : index = 2
 	$MarginContainer/VBoxContainer/GridContainer/d_style_fatigue.selected = index
 
 
@@ -325,7 +327,7 @@ static func load_default_fatigue_die():
 	d_body_color_fatigue = Color.DIM_GRAY
 	
 	# style
-	d_style_fatigue = "1"
+	d_style_fatigue = "die_1"
 	
 	# option
 	d_vis_fatigue = true
@@ -586,14 +588,10 @@ func _on_color_picker_button_fatigue_color_changed(color):
 func _on_d_style_fatigue_item_selected(index):
 	var die_style : String
 	match index:
-		0: die_style = "1"
-		1: die_style = "2"
-		2: die_style = "3"
+		0: die_style = "die_1"
+		1: die_style = "die_2"
+		2: die_style = "die_3"
 	d_style_fatigue = die_style
-
-
-
-
 
 #endregion
 

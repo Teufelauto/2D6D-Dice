@@ -226,7 +226,12 @@ func _rehome_dice():
 	room_size_rolled_doubles_bool = false
 	%RoomSizeSmallLabel.visible = false
 	%RoomSizeLargeLabel.visible = false
-	fatigue_reset_button.visible = true
+	
+	if DicePreferences.d_vis_fatigue == true: # if fatigue die visible
+		fatigue_reset_button.visible = true
+	else:
+		fatigue_reset_button.visible = false
+	
 
 func _remove_left_dice_scoreboard():
 	%D66PrimaryPolygon2D.visible = false
@@ -472,15 +477,29 @@ func _on_exit_button_pressed():
 
 func _fatigue_die_visibility():
 	
-	if DicePreferences.d_vis_fatigue:
+	# make VISIBLE or invisible
+	if DicePreferences.d_vis_fatigue == true:
 		# to put in scene:
 		%AnimatableBody3DFatigue.set_collision_layer_value( 2, true)
 		%AnimatableBody3DFatigue.set_collision_mask_value( 2, true)
 		%DieFatigue.visible = true
+		%FatigueIncrementButton.visible = true
 	else:
 		# to remove:
 		%AnimatableBody3DFatigue.set_collision_layer_value( 2, false)
 		%AnimatableBody3DFatigue.set_collision_mask_value( 2, false)
 		%DieFatigue.visible = false
+		%FatigueIncrementButton.visible = false
 	
+	# Fatigue die STYLE
+	for member in get_tree().get_nodes_in_group("mesh_die_fatigue") :
+		if member.is_in_group(DicePreferences.d_style_fatigue) : member.visible = true
+		else : member.visible = false
 	
+	# Fatigue die COLOR
+	var DieMeshMat :StandardMaterial3D
+	for member in get_tree().get_nodes_in_group("mesh_die_fatigue"):
+		DieMeshMat = member.get_surface_override_material(0)
+		DieMeshMat.albedo_color = DicePreferences.d_text_color_fatigue
+		DieMeshMat = member.get_surface_override_material(1)
+		DieMeshMat.albedo_color = DicePreferences.d_body_color_fatigue

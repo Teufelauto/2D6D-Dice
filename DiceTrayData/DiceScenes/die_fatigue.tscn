@@ -90,7 +90,7 @@ sleeping = true
 freeze = true
 script = ExtResource("1_2kw5k")
 
-[node name="Fatigue_Roller_Die_Body" type="MeshInstance3D" parent="." groups=["die_let_bare", "mesh_die_fatigue"]]
+[node name="Fatigue_Roller_Die_Body" type="MeshInstance3D" parent="." groups=["die_1", "mesh_die_fatigue"]]
 transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, -0.25)
 cast_shadow = 2
 gi_mode = 2

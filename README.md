@@ -14,8 +14,7 @@ Features:
 - Creates a small drawing of the room rolled for quick orientation.
 - 'Scoreboard' for normal rolls indicate when physics is done and the dice can be interacted with. - Rerolling before values come up could cause dice to get locked, and require backing out of the tray and opening it again.
 - Dice style selector, and dice colors (text and bodies) can be changed and saved to disk. C:\Users\YourName\AppData\Roaming\Godot\app_userdata\2D6D Dice.saedice.tres.
-- Combat Round tracking roller die (Fatigue die)
+- Combat Round tracking roller die (Fatigue die) can be removed from scene.
 
 Future Features:
-- Make Fatigue Die optional
 - Sound of plastic hitting faux-velvet covered cardstock
