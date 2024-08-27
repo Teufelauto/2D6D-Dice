@@ -1,0 +1,149 @@
+[gd_scene load_steps=7 format=3 uid="uid://osr76i2mtsgd"]
+
+[ext_resource type="Script" path="res://DiceTrayData/dice_preferences.gd" id="1_1diu3"]
+
+[sub_resource type="Theme" id="Theme_1glhj"]
+
+[sub_resource type="Theme" id="Theme_flbc3"]
+
+[sub_resource type="Theme" id="Theme_6bui5"]
+default_font_size = 40
+PopupMenu/font_sizes/font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_j4rsd"]
+font_size = 40
+
+[sub_resource type="Theme" id="Theme_tg4dw"]
+
+[node name="FatigueDieMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1diu3")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.5
+offset_top = -20.0
+offset_right = 20.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Fatigue / Combat Round Die"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="FatigueDieVisiblity" type="OptionButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1glhj")
+theme_override_font_sizes/font_size = 60
+item_count = 2
+popup/item_0/text = "Visible"
+popup/item_0/id = 0
+popup/item_1/text = "Not Visible"
+popup/item_1/id = 1
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="FatigueDieStyle" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme = SubResource("Theme_flbc3")
+theme_override_font_sizes/font_size = 40
+text = "Die Style"
+
+[node name="Spacer5" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="d_style_fatigue" type="OptionButton" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme = SubResource("Theme_6bui5")
+item_count = 2
+selected = 0
+allow_reselect = true
+popup/item_0/text = "1"
+popup/item_0/id = 0
+popup/item_1/text = "2"
+popup/item_1/id = 1
+popup/item_1/disabled = true
+
+[node name="FatigueDieColor" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme = SubResource("Theme_flbc3")
+theme_override_font_sizes/font_size = 40
+text = "Die Color"
+
+[node name="ColorPickerButton_FatigueText" type="ColorPickerButton" parent="MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(70, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
+theme_override_font_sizes/font_size = 45
+color = Color(0.878385, 0.877118, 0.890863, 1)
+edit_alpha = false
+
+[node name="ColorPickerButton_Fatigue" type="ColorPickerButton" parent="MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.125408, 0.498564, 0.378657, 1)
+theme_override_font_sizes/font_size = 45
+color = Color(0.108874, 0.0178528, 0.914063, 1)
+edit_alpha = false
+
+[node name="LabelFatigue" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/ColorPickerButton_Fatigue"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.623181, 0.638934, 0.654841, 1)
+theme_override_font_sizes/font_size = 60
+text = "7"
+label_settings = SubResource("LabelSettings_j4rsd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LoadDefault" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme = SubResource("Theme_tg4dw")
+theme_override_font_sizes/font_size = 40
+text = " Load Default "
+
+[node name="Spacer4" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Spacer" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="SaveColors" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme = SubResource("Theme_flbc3")
+theme_override_font_sizes/font_size = 40
+text = " Save Current "
+
+[node name="Spacer2" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1glhj")
+theme_override_font_sizes/font_size = 60
+text = "Back"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

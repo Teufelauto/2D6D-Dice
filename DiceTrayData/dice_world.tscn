@@ -615,14 +615,16 @@ flat = true
 transform = Transform3D(-0.104112, 0, -0.994566, 0, 1, 0, 0.994566, 0, -0.104112, 0.210638, 0.105, -1.10817)
 
 [node name="DieFatigue" parent="DiceTray/FatigueDie" instance=ExtResource("14_nh5cq")]
+unique_name_in_owner = true
 input_ray_pickable = false
 
-[node name="AnimatableBody3D" type="AnimatableBody3D" parent="DiceTray/FatigueDie"]
+[node name="AnimatableBody3DFatigue" type="AnimatableBody3D" parent="DiceTray/FatigueDie"]
+unique_name_in_owner = true
 collision_layer = 2
 collision_mask = 2
 input_ray_pickable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DiceTray/FatigueDie/AnimatableBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DiceTray/FatigueDie/AnimatableBody3DFatigue"]
 transform = Transform3D(1, 0, -7.45058e-09, 0, 1, 0, 7.45058e-09, 0, 1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_ja2eq")
 

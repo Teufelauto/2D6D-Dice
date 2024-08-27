@@ -23,6 +23,8 @@ static var d_body_color_exit_lock : Color
 static var d_text_color_d3 : Color
 static var d_body_color_d3 : Color
 static var d_tray_felt_color : Color
+static var d_text_color_fatigue :Color
+static var d_body_color_fatigue :Color
 
 # Styles
 static var d_style_x : String
@@ -35,8 +37,9 @@ static var d_style_exit_qty : String
 static var d_style_exit_direction : String
 static var d_style_exit_lock : String
 static var d_style_d3 : String
-
-
+static var d_style_fatigue : String
+static var d_vis_fatigue : int
+#die_vis_fatigue
 
 func _ready():
 	if ResourceLoader.exists("user://savedice.tres") : #Load custom colors
@@ -199,6 +202,8 @@ static func load_dice_colors(): # from file
 	d_text_color_d3 = saved_dice.die_text_color_d3
 	d_body_color_d3 = saved_dice.die_body_color_d3
 	d_tray_felt_color = saved_dice.die_tray_felt_color
+	d_text_color_fatigue = saved_dice.die_text_color_fatigue
+	d_body_color_fatigue = saved_dice.die_body_color_fatigue
 
 
 static func load_default_dice_colors():
@@ -224,7 +229,8 @@ static func load_default_dice_colors():
 	d_text_color_d3 = Color.ANTIQUE_WHITE
 	d_body_color_d3 = Color.REBECCA_PURPLE
 	d_tray_felt_color = Color.DARK_GREEN
-
+	d_text_color_fatigue = Color.ANTIQUE_WHITE
+	d_body_color_fatigue = Color.DIM_GRAY
 
 static func load_dice_styles(): # from file
 	
@@ -245,6 +251,8 @@ static func load_dice_styles(): # from file
 	d_style_exit_direction = saved_dice.die_style_exit_direction
 	d_style_exit_lock = saved_dice.die_style_exit_lock
 	d_style_d3 = saved_dice.die_style_d3
+	d_style_fatigue = saved_dice.die_style_fatigue
+	d_vis_fatigue = saved_dice.die_vis_fatigue
 
 
 static func load_default_dice_styles():
@@ -259,7 +267,8 @@ static func load_default_dice_styles():
 	d_style_exit_direction = "die_let"
 	d_style_exit_lock = "die_dot"
 	d_style_d3 = "die_dot"
-
+	d_style_fatigue = "1"
+	d_vis_fatigue = 0
 
 func _save_dice_preferences():
 	var saved_dice:SavedDice = SavedDice.new()
@@ -286,6 +295,8 @@ func _save_dice_preferences():
 	saved_dice.die_text_color_d3 = d_text_color_d3
 	saved_dice.die_body_color_d3 = d_body_color_d3
 	saved_dice.die_tray_felt_color = d_tray_felt_color
+	saved_dice.die_text_color_fatigue = d_text_color_fatigue
+	saved_dice.die_body_color_fatigue = d_body_color_fatigue
 	
 	#styles
 	saved_dice.die_style_x = d_style_x
@@ -298,6 +309,8 @@ func _save_dice_preferences():
 	saved_dice.die_style_exit_direction = d_style_exit_direction
 	saved_dice.die_style_exit_lock = d_style_exit_lock
 	saved_dice.die_style_d3 = d_style_d3
+	saved_dice.die_style_fatigue = d_style_fatigue
+	saved_dice.die_vis_fatigue = d_vis_fatigue
 	
 	ResourceSaver.save(saved_dice, "user://savedice.tres")
 
@@ -396,6 +409,9 @@ func _on_color_picker_button_d_3_color_changed(color):
 
 func _on_color_picker_button_tray_felt_color_changed(color):
 	d_tray_felt_color = color
+	
+	
+	
 	
 #endregion
 

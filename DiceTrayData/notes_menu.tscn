@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://DiceTrayData/notes_menu.gd" id="1_l34cr"]
 
 [sub_resource type="Theme" id="Theme_1glhj"]
+default_font_size = 30
 
 [node name="NotesMenu" type="Control"]
 layout_mode = 3
@@ -31,10 +32,16 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="Notes" type="Label" parent="MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(460, 0)
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
-theme_override_font_sizes/font_size = 40
-text = "D3"
+text = "A Dice Simulator by Jamie Halford, for use with the solo RPG '2D6 Dungeon' by Toby Lancaster. This program is not an official product of Toby Lancaster or DR Games.
+
+MIT License
+Copyright (c) 2024 by Jamie Halford. 
+
+https://github.com/Teufelauto/2D6D-Dice"
+autowrap_mode = 3
 
 [node name="Spacer" type="Label" parent="MarginContainer/GridContainer"]
 layout_mode = 2

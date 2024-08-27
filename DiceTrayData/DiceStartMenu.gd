@@ -1,7 +1,7 @@
 extends Control
 
 func _ready():
-	$VersionLabel.text = " 2D6D Dice v" + ProjectSettings.get_setting("application/config/version")
+	$VersionLabel.text = " v" + ProjectSettings.get_setting("application/config/version")
 
 
 func _on_play_pressed():

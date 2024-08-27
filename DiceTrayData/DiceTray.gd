@@ -466,4 +466,16 @@ func _on_exit_button_pressed():
 	get_tree().change_scene_to_file("res://DiceTrayData/dice_start_menu.tscn")
 
 
-
+func _fatigue_die_visibility():
+	
+	
+	# to remove:
+	%AnimatableBody3DFatigue.set_collision_layer_value( 2, false)
+	%AnimatableBody3DFatigue.set_collision_mask_value( 2, false)
+	%DieFatigue.visible = false
+	
+	
+	# to put in scene:
+	%AnimatableBody3DFatigue.set_collision_layer_value( 2, true)
+	%AnimatableBody3DFatigue.set_collision_mask_value( 2, true)
+	%DieFatigue.visible = true
