@@ -55,7 +55,7 @@ enabled=PackedStringArray("res://addons/safe_resource_loader/plugin.cfg")
 [physics]
 
 3d/physics_engine="Rapier3D"
-3d/default_gravity=10.0
+3d/default_gravity=15.0
 3d/time_before_sleep=0.1
 
 [rendering]

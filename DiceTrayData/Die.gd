@@ -16,7 +16,8 @@ extends RigidBody3D
 @export var roll_strength = 35    # -------- Toss Strength ------------------
 @export var spin_strength = 1.0   # ---------- Spin It ------------------------
 
-@export var die_sound_velocity_factor : float = 1.5
+@export var die_sound_tray_velocity_factor : float = .3
+@export var die_sound_velocity_factor : float = 0.8
 
 var start_pos
 var is_rolling = false
@@ -55,7 +56,7 @@ func _roll():
 	angular_velocity = throw_vector * roll_strength * spin_strength
 	apply_central_impulse(throw_vector * roll_strength)
 	is_rolling = true
-	
+	%AudioStreamPlayerPlastic.play()
 
 
 func _on_sleeping_state_changed():
@@ -74,6 +75,7 @@ func _on_sleeping_state_changed():
 
 # Put the dice back in the home position.
 func _return_die():
+	
 	is_rolling = false
 	# Return the dice to home
 	freeze = false
@@ -99,12 +101,14 @@ func _on_pick_up_all_dice_button_pressed():
 	# commented out is not rolling to allow picking up frozen dice
 	#if not is_rolling:
 	#	_return_die()
+	%AudioStreamPlayerPlastic.play()
 	_return_die()
 
 
 # ----------------- ReROLL Previously thrown DICE ------------------------------
 func _on_input_event(_camera, event, _position, _normal, _shape_idx):
 	if event.is_pressed() and not is_rolling:
+		%AudioStreamPlayerPlastic.play()
 		_roll()
 
 
@@ -113,12 +117,14 @@ func _on_xy_throw_button_pressed():
 	if not is_rolling:
 		button_throw_xy.visible = false # Main
 		button_throw_xy2.visible = false #  exit die location
+		%AudioStreamPlayerPlastic.play()
 		_roll()
 
 
 func _on_double_throw_button_pressed():
 	if not is_rolling:
 		button_throw_doubles.visible = false
+		%AudioStreamPlayerPlastic.play()
 		_roll()
 
 
@@ -154,16 +160,20 @@ func _on_d_3_throw_button_pressed():
 # ----------------   SOUND -----------------------------
 
 func _on_body_entered(body):
-	if abs(linear_velocity.x) > die_sound_velocity_factor or \
-			abs(linear_velocity.y) > die_sound_velocity_factor or \
-			abs(linear_velocity.z) > die_sound_velocity_factor :
+	
+	#print(body.name)
+	if body.name == "StaticBody3D" :  # If hitting tray
+		if abs(linear_velocity.x) > die_sound_tray_velocity_factor or \
+				abs(linear_velocity.y) > die_sound_tray_velocity_factor or \
+				abs(linear_velocity.z) > die_sound_tray_velocity_factor :
+			%AudioStreamPlayerDiceTray.play()
+			
+	else:
+		if abs(linear_velocity.x) > die_sound_velocity_factor or \
+				abs(linear_velocity.y) > die_sound_velocity_factor or \
+				abs(linear_velocity.z) > die_sound_velocity_factor :
+			%AudioStreamPlayerPlastic.play()
 		
-		print(body.name)
-		# If hitting tray
 		
-		%AudioStreamPlayerDiceTray.play()
-		
-		
-		# If hitting other dice
 		
 

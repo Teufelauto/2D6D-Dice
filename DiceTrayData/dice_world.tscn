@@ -450,7 +450,8 @@ collision_layer = 0
 collision_mask = 5
 mass = 10.0
 gravity_scale = 2.0
-max_contacts_reported = 1
+continuous_cd = true
+max_contacts_reported = 2
 contact_monitor = true
 
 [node name="DieDYDim" parent="DiceTray/RoomSizeDice" groups=["Dice", "RoomSizeDice"] instance=ExtResource("4_vau0y")]
@@ -460,7 +461,8 @@ collision_layer = 0
 collision_mask = 5
 mass = 10.0
 gravity_scale = 2.0
-max_contacts_reported = 1
+continuous_cd = true
+max_contacts_reported = 2
 contact_monitor = true
 
 [node name="DieDoorPics" parent="DiceTray/RoomSizeDice" groups=["Dice", "RoomSizeDice"] instance=ExtResource("5_nhunv")]
@@ -470,7 +472,8 @@ collision_layer = 0
 collision_mask = 5
 mass = 10.0
 gravity_scale = 2.0
-max_contacts_reported = 1
+continuous_cd = true
+max_contacts_reported = 2
 contact_monitor = true
 script = ExtResource("6_ivoei")
 
@@ -519,7 +522,8 @@ collision_layer = 0
 collision_mask = 5
 mass = 10.0
 gravity_scale = 2.0
-max_contacts_reported = 1
+continuous_cd = true
+max_contacts_reported = 2
 contact_monitor = true
 
 [node name="DieDoubleSecondary" parent="DiceTray/DoublesDice" groups=["Dice", "DoubleDice"] instance=ExtResource("8_ohkq0")]
@@ -529,7 +533,8 @@ collision_layer = 0
 collision_mask = 5
 mass = 10.0
 gravity_scale = 2.0
-max_contacts_reported = 1
+continuous_cd = true
+max_contacts_reported = 2
 contact_monitor = true
 
 [node name="DoubleThrowButton" type="Button" parent="DiceTray/DoublesDice"]
@@ -557,7 +562,8 @@ collision_layer = 0
 collision_mask = 5
 mass = 10.0
 gravity_scale = 2.0
-max_contacts_reported = 1
+continuous_cd = true
+max_contacts_reported = 2
 contact_monitor = true
 script = ExtResource("6_ivoei")
 
@@ -585,7 +591,8 @@ collision_layer = 0
 collision_mask = 5
 mass = 10.0
 gravity_scale = 2.0
-max_contacts_reported = 1
+continuous_cd = true
+max_contacts_reported = 2
 contact_monitor = true
 script = ExtResource("6_ivoei")
 
@@ -613,7 +620,8 @@ collision_layer = 0
 collision_mask = 5
 mass = 10.0
 gravity_scale = 2.0
-max_contacts_reported = 1
+continuous_cd = true
+max_contacts_reported = 2
 contact_monitor = true
 script = ExtResource("6_ivoei")
 
@@ -640,7 +648,8 @@ collision_layer = 0
 collision_mask = 5
 mass = 10.0
 gravity_scale = 2.0
-max_contacts_reported = 1
+continuous_cd = true
+max_contacts_reported = 2
 contact_monitor = true
 script = ExtResource("6_ivoei")
 
@@ -668,7 +677,8 @@ collision_mask = 5
 mass = 10.0
 gravity_scale = 2.0
 freeze = true
-max_contacts_reported = 1
+continuous_cd = true
+max_contacts_reported = 2
 contact_monitor = true
 script = ExtResource("6_ivoei")
 
@@ -810,12 +820,15 @@ action_mode = 0
 flat = true
 
 [node name="AudioStreamPlayerPlastic" type="AudioStreamPlayer" parent="DiceTray"]
+unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_sh0ll")
+volume_db = 2.616
 max_polyphony = 3
 
 [node name="AudioStreamPlayerDiceTray" type="AudioStreamPlayer" parent="DiceTray"]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_gov20")
+volume_db = 2.616
 
 [node name="CamNLights" type="Node" parent="."]
 
