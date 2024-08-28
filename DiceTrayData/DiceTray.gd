@@ -28,7 +28,7 @@ extends Node3D
 @onready var exit_lock_label = $DiceCanvas/ExitLockLabel
 @onready var d_3_result_label = $DiceCanvas/D3ResultLabel
 
-#@onready var dice_color : DiceColor
+
 
 
 
@@ -259,6 +259,36 @@ func _remove_small_or_large_room_labels():
 	%RoomSizeLargeLabel.visible = false
 	
 
+func _fatigue_die_visibility():
+	
+	# make VISIBLE or invisible
+	if DicePreferences.d_vis_fatigue == true:
+		# to put in scene:
+		%AnimatableBody3DFatigue.set_collision_layer_value( 2, true)
+		%AnimatableBody3DFatigue.set_collision_mask_value( 2, true)
+		%DieFatigue.visible = true
+		%FatigueIncrementButton.visible = true
+	else:
+		# to remove:
+		%AnimatableBody3DFatigue.set_collision_layer_value( 2, false)
+		%AnimatableBody3DFatigue.set_collision_mask_value( 2, false)
+		%DieFatigue.visible = false
+		%FatigueIncrementButton.visible = false
+	
+	# Fatigue die STYLE
+	for member in get_tree().get_nodes_in_group("mesh_die_fatigue") :
+		if member.is_in_group(DicePreferences.d_style_fatigue) : member.visible = true
+		else : member.visible = false
+	
+	# Fatigue die COLOR
+	var DieMeshMat :StandardMaterial3D
+	for member in get_tree().get_nodes_in_group("mesh_die_fatigue"):
+		DieMeshMat = member.get_surface_override_material(0)
+		DieMeshMat.albedo_color = DicePreferences.d_text_color_fatigue
+		DieMeshMat = member.get_surface_override_material(1)
+		DieMeshMat.albedo_color = DicePreferences.d_body_color_fatigue
+
+
 
 #region -------------------------ROLL STARTED-----------------------------
 
@@ -475,31 +505,3 @@ func _on_exit_button_pressed():
 	get_tree().change_scene_to_file("res://DiceTrayData/dice_start_menu.tscn")
 
 
-func _fatigue_die_visibility():
-	
-	# make VISIBLE or invisible
-	if DicePreferences.d_vis_fatigue == true:
-		# to put in scene:
-		%AnimatableBody3DFatigue.set_collision_layer_value( 2, true)
-		%AnimatableBody3DFatigue.set_collision_mask_value( 2, true)
-		%DieFatigue.visible = true
-		%FatigueIncrementButton.visible = true
-	else:
-		# to remove:
-		%AnimatableBody3DFatigue.set_collision_layer_value( 2, false)
-		%AnimatableBody3DFatigue.set_collision_mask_value( 2, false)
-		%DieFatigue.visible = false
-		%FatigueIncrementButton.visible = false
-	
-	# Fatigue die STYLE
-	for member in get_tree().get_nodes_in_group("mesh_die_fatigue") :
-		if member.is_in_group(DicePreferences.d_style_fatigue) : member.visible = true
-		else : member.visible = false
-	
-	# Fatigue die COLOR
-	var DieMeshMat :StandardMaterial3D
-	for member in get_tree().get_nodes_in_group("mesh_die_fatigue"):
-		DieMeshMat = member.get_surface_override_material(0)
-		DieMeshMat.albedo_color = DicePreferences.d_text_color_fatigue
-		DieMeshMat = member.get_surface_override_material(1)
-		DieMeshMat.albedo_color = DicePreferences.d_body_color_fatigue

@@ -1,8 +1,7 @@
-[gd_scene load_steps=33 format=3 uid="uid://dx5jaq5nccohx"]
+[gd_scene load_steps=40 format=3 uid="uid://dx5jaq5nccohx"]
 
 [ext_resource type="Script" path="res://DiceTrayData/DiceTray.gd" id="1_dw3jc"]
 [ext_resource type="Script" path="res://DiceTrayData/RoomRectangleLine2D.gd" id="2_dw6wt"]
-[ext_resource type="AudioStream" uid="uid://c1slmenn35iqp" path="res://DiceTrayData/dice-roll-short.mp3" id="2_isjaf"]
 [ext_resource type="PackedScene" uid="uid://c1sbbpswt68eq" path="res://DiceTrayData/DiceScenes/DXDim.tscn" id="3_nj75j"]
 [ext_resource type="PackedScene" uid="uid://ua53ly3yv0sv" path="res://DiceTrayData/DiceScenes/DYDim.tscn" id="4_vau0y"]
 [ext_resource type="PackedScene" uid="uid://dwlkevdio50dl" path="res://DiceTrayData/DiceScenes/die_door_qty.tscn" id="5_nhunv"]
@@ -15,6 +14,13 @@
 [ext_resource type="PackedScene" uid="uid://osco2cs718d7" path="res://DiceTrayData/DiceScenes/die_numbered_secondary.tscn" id="12_vu5er"]
 [ext_resource type="PackedScene" uid="uid://bi35saefl3rd4" path="res://DiceTrayData/DiceScenes/die_d_3.tscn" id="13_eavoq"]
 [ext_resource type="PackedScene" uid="uid://ckfuq8vy5qkbm" path="res://DiceTrayData/DiceScenes/die_fatigue.tscn" id="14_nh5cq"]
+[ext_resource type="AudioStream" uid="uid://bxsphdlbjqrqd" path="res://DiceTrayData/DiceSounds/d1.mp3" id="15_j8146"]
+[ext_resource type="AudioStream" uid="uid://c2abbhaxh6uds" path="res://DiceTrayData/DiceSounds/d2.mp3" id="16_gi5n6"]
+[ext_resource type="AudioStream" uid="uid://cqjvhwif784nk" path="res://DiceTrayData/DiceSounds/d3.mp3" id="17_lup6l"]
+[ext_resource type="AudioStream" uid="uid://b8qx62m15l2lg" path="res://DiceTrayData/DiceSounds/d4.mp3" id="18_vkatu"]
+[ext_resource type="AudioStream" uid="uid://hmxaj22fwawp" path="res://DiceTrayData/DiceSounds/d5.mp3" id="19_8asi4"]
+[ext_resource type="AudioStream" uid="uid://fkmxwxhxd6ii" path="res://DiceTrayData/DiceSounds/d6.mp3" id="20_ivp1t"]
+[ext_resource type="AudioStream" uid="uid://ctn7xcvn36lgk" path="res://DiceTrayData/DiceSounds/d7.mp3" id="21_qdixd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0vmny"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -68,6 +74,25 @@ friction = 0.32
 rough = true
 bounce = 0.12
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_sh0ll"]
+random_pitch = 1.5
+random_volume_offset_db = 3.0
+streams_count = 7
+stream_0/stream = ExtResource("15_j8146")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("16_gi5n6")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("17_lup6l")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("18_vkatu")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("19_8asi4")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("20_ivp1t")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("21_qdixd")
+stream_6/weight = 1.0
+
 [sub_resource type="Environment" id="Environment_ospvs"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bmajt"]
@@ -85,10 +110,6 @@ environment = SubResource("Environment_ba38j")
 [node name="DiceTray" type="Node3D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("1_dw3jc")
-
-[node name="AudioStreamPlayerSingle" type="AudioStreamPlayer" parent="DiceTray"]
-unique_name_in_owner = true
-stream = ExtResource("2_isjaf")
 
 [node name="DiceCanvas" type="CanvasLayer" parent="DiceTray"]
 unique_name_in_owner = true
@@ -403,6 +424,8 @@ collision_layer = 0
 collision_mask = 5
 mass = 10.0
 gravity_scale = 2.0
+max_contacts_reported = 1
+contact_monitor = true
 
 [node name="DieDYDim" parent="DiceTray/RoomSizeDice" groups=["Dice", "RoomSizeDice"] instance=ExtResource("4_vau0y")]
 unique_name_in_owner = true
@@ -411,6 +434,8 @@ collision_layer = 0
 collision_mask = 5
 mass = 10.0
 gravity_scale = 2.0
+max_contacts_reported = 1
+contact_monitor = true
 
 [node name="DieDoorPics" parent="DiceTray/RoomSizeDice" groups=["Dice", "RoomSizeDice"] instance=ExtResource("5_nhunv")]
 unique_name_in_owner = true
@@ -419,6 +444,8 @@ collision_layer = 0
 collision_mask = 5
 mass = 10.0
 gravity_scale = 2.0
+max_contacts_reported = 1
+contact_monitor = true
 script = ExtResource("6_ivoei")
 
 [node name="XYThrowButton" type="Button" parent="DiceTray/RoomSizeDice"]
@@ -466,6 +493,8 @@ collision_layer = 0
 collision_mask = 5
 mass = 10.0
 gravity_scale = 2.0
+max_contacts_reported = 1
+contact_monitor = true
 
 [node name="DieDoubleSecondary" parent="DiceTray/DoublesDice" groups=["Dice", "DoubleDice"] instance=ExtResource("8_ohkq0")]
 unique_name_in_owner = true
@@ -474,6 +503,8 @@ collision_layer = 0
 collision_mask = 5
 mass = 10.0
 gravity_scale = 2.0
+max_contacts_reported = 1
+contact_monitor = true
 
 [node name="DoubleThrowButton" type="Button" parent="DiceTray/DoublesDice"]
 light_mask = 16
@@ -500,6 +531,8 @@ collision_layer = 0
 collision_mask = 5
 mass = 10.0
 gravity_scale = 2.0
+max_contacts_reported = 1
+contact_monitor = true
 script = ExtResource("6_ivoei")
 
 [node name="LCRThrowButton" type="Button" parent="DiceTray/RoomExitDirectionDie"]
@@ -526,6 +559,8 @@ collision_layer = 0
 collision_mask = 5
 mass = 10.0
 gravity_scale = 2.0
+max_contacts_reported = 1
+contact_monitor = true
 script = ExtResource("6_ivoei")
 
 [node name="ExitLockThrowButton" type="Button" parent="DiceTray/ExitLockCheckDie"]
@@ -552,6 +587,8 @@ collision_layer = 0
 collision_mask = 5
 mass = 10.0
 gravity_scale = 2.0
+max_contacts_reported = 1
+contact_monitor = true
 script = ExtResource("6_ivoei")
 
 [node name="PrimeThrowButton" type="Button" parent="DiceTray/PrimaryDie"]
@@ -577,6 +614,8 @@ collision_layer = 0
 collision_mask = 5
 mass = 10.0
 gravity_scale = 2.0
+max_contacts_reported = 1
+contact_monitor = true
 script = ExtResource("6_ivoei")
 
 [node name="SecondaryThrowButton" type="Button" parent="DiceTray/SecondaryDie"]
@@ -603,6 +642,8 @@ collision_mask = 5
 mass = 10.0
 gravity_scale = 2.0
 freeze = true
+max_contacts_reported = 1
+contact_monitor = true
 script = ExtResource("6_ivoei")
 
 [node name="D3ThrowButton" type="Button" parent="DiceTray/D3Die"]
@@ -742,6 +783,16 @@ theme_override_font_sizes/font_size = 50
 action_mode = 0
 flat = true
 
+[node name="AudioStreamPlayerBoard" type="AudioStreamPlayer" parent="DiceTray"]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_sh0ll")
+max_polyphony = 3
+
+[node name="AudioStreamPlayerPlastic" type="AudioStreamPlayer" parent="DiceTray"]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_sh0ll")
+max_polyphony = 3
+
 [node name="CamNLights" type="Node" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="CamNLights"]
@@ -784,16 +835,19 @@ light_energy = 7.72
 [connection signal="pressed" from="DiceTray/DiceCanvas/FatigueIncrementButton" to="DiceTray/FatigueDie/DieFatigue" method="increment_fatigue_die_to_next_round"]
 [connection signal="pressed" from="DiceTray/DiceCanvas/FatigueResetButton" to="DiceTray/FatigueDie/DieFatigue" method="return_fatigue_die_to_one"]
 [connection signal="pressed" from="DiceTray/DiceCanvas/ExitButton" to="DiceTray" method="_on_exit_button_pressed"]
+[connection signal="body_entered" from="DiceTray/RoomSizeDice/DieDXDim" to="DiceTray/RoomSizeDice/DieDXDim" method="_on_body_entered"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDXDim" to="DiceTray/RoomSizeDice/DieDXDim" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDXDim" to="DiceTray/RoomSizeDice/DieDYDim" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDXDim" to="DiceTray/RoomSizeDice/DieDoorPics" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/RoomSizeDice/DieDXDim" to="DiceTray" method="_on_die_dx_dim_roll_finished"]
 [connection signal="roll_started" from="DiceTray/RoomSizeDice/DieDXDim" to="DiceTray" method="_on_room_dimension_roll_started"]
+[connection signal="body_entered" from="DiceTray/RoomSizeDice/DieDYDim" to="DiceTray/RoomSizeDice/DieDYDim" method="_on_body_entered"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDYDim" to="DiceTray/RoomSizeDice/DieDXDim" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDYDim" to="DiceTray/RoomSizeDice/DieDYDim" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDYDim" to="DiceTray/RoomSizeDice/DieDoorPics" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/RoomSizeDice/DieDYDim" to="DiceTray" method="_on_die_dy_dim_roll_finished"]
 [connection signal="roll_started" from="DiceTray/RoomSizeDice/DieDYDim" to="DiceTray" method="_on_room_dimension_roll_started"]
+[connection signal="body_entered" from="DiceTray/RoomSizeDice/DieDoorPics" to="DiceTray/RoomSizeDice/DieDoorPics" method="_on_body_entered"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDoorPics" to="DiceTray/RoomSizeDice/DieDXDim" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDoorPics" to="DiceTray/RoomSizeDice/DieDYDim" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDoorPics" to="DiceTray/RoomSizeDice/DieDoorPics" method="_on_input_event"]
@@ -806,38 +860,45 @@ light_energy = 7.72
 [connection signal="pressed" from="DiceTray/RoomSizeDice/XYThrowButton2" to="DiceTray/RoomSizeDice/DieDXDim" method="_on_xy_throw_button_pressed"]
 [connection signal="pressed" from="DiceTray/RoomSizeDice/XYThrowButton2" to="DiceTray/RoomSizeDice/DieDYDim" method="_on_xy_throw_button_pressed"]
 [connection signal="pressed" from="DiceTray/RoomSizeDice/XYThrowButton2" to="DiceTray/RoomSizeDice/DieDoorPics" method="_on_xy_throw_button_pressed"]
+[connection signal="body_entered" from="DiceTray/DoublesDice/DieDoublePrimary" to="DiceTray/DoublesDice/DieDoublePrimary" method="_on_body_entered"]
 [connection signal="input_event" from="DiceTray/DoublesDice/DieDoublePrimary" to="DiceTray/DoublesDice/DieDoublePrimary" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/DoublesDice/DieDoublePrimary" to="DiceTray/DoublesDice/DieDoubleSecondary" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/DoublesDice/DieDoublePrimary" to="DiceTray" method="_on_die_double_primary_roll_finished"]
 [connection signal="roll_started" from="DiceTray/DoublesDice/DieDoublePrimary" to="DiceTray" method="_on_die_double_roll_started"]
+[connection signal="body_entered" from="DiceTray/DoublesDice/DieDoubleSecondary" to="DiceTray/DoublesDice/DieDoubleSecondary" method="_on_body_entered"]
 [connection signal="input_event" from="DiceTray/DoublesDice/DieDoubleSecondary" to="DiceTray/DoublesDice/DieDoublePrimary" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/DoublesDice/DieDoubleSecondary" to="DiceTray/DoublesDice/DieDoubleSecondary" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/DoublesDice/DieDoubleSecondary" to="DiceTray" method="_on_die_double_secondary_roll_finished"]
 [connection signal="roll_started" from="DiceTray/DoublesDice/DieDoubleSecondary" to="DiceTray" method="_on_die_double_roll_started"]
 [connection signal="pressed" from="DiceTray/DoublesDice/DoubleThrowButton" to="DiceTray/DoublesDice/DieDoublePrimary" method="_on_double_throw_button_pressed"]
 [connection signal="pressed" from="DiceTray/DoublesDice/DoubleThrowButton" to="DiceTray/DoublesDice/DieDoubleSecondary" method="_on_double_throw_button_pressed"]
+[connection signal="body_entered" from="DiceTray/RoomExitDirectionDie/DieLCR" to="DiceTray/RoomExitDirectionDie/DieLCR" method="_on_body_entered"]
 [connection signal="input_event" from="DiceTray/RoomExitDirectionDie/DieLCR" to="DiceTray/RoomExitDirectionDie/DieLCR" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/RoomExitDirectionDie/DieLCR" to="DiceTray" method="_on_die_lcr_roll_finished"]
 [connection signal="roll_started" from="DiceTray/RoomExitDirectionDie/DieLCR" to="DiceTray" method="_on_die_lcr_roll_started"]
 [connection signal="sleeping_state_changed" from="DiceTray/RoomExitDirectionDie/DieLCR" to="DiceTray/RoomExitDirectionDie/DieLCR" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/RoomExitDirectionDie/LCRThrowButton" to="DiceTray/RoomExitDirectionDie/DieLCR" method="_on_lcr_throw_button_pressed"]
+[connection signal="body_entered" from="DiceTray/ExitLockCheckDie/DieLocked" to="DiceTray/ExitLockCheckDie/DieLocked" method="_on_body_entered"]
 [connection signal="input_event" from="DiceTray/ExitLockCheckDie/DieLocked" to="DiceTray/ExitLockCheckDie/DieLocked" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/ExitLockCheckDie/DieLocked" to="DiceTray" method="_on_die_locked_roll_finished"]
 [connection signal="roll_started" from="DiceTray/ExitLockCheckDie/DieLocked" to="DiceTray" method="_on_die_locked_roll_started"]
 [connection signal="sleeping_state_changed" from="DiceTray/ExitLockCheckDie/DieLocked" to="DiceTray/ExitLockCheckDie/DieLocked" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/ExitLockCheckDie/ExitLockThrowButton" to="DiceTray/ExitLockCheckDie/DieLocked" method="_on_exit_lock_throw_button_pressed"]
+[connection signal="body_entered" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_body_entered"]
 [connection signal="input_event" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_on_die_primary_numbered_roll_finished"]
 [connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_remove_right_primary_die_scoreboard"]
 [connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_on_die_primary_numbered_roll_started"]
 [connection signal="sleeping_state_changed" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/PrimaryDie/PrimeThrowButton" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_prime_throw_button_pressed"]
+[connection signal="body_entered" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray/SecondaryDie/DieSecondaryD6" method="_on_body_entered"]
 [connection signal="input_event" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray/SecondaryDie/DieSecondaryD6" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray" method="_on_die_secondary_numbered_roll_finished"]
 [connection signal="roll_started" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray" method="_remove_right_secondary_die_scoreboard"]
 [connection signal="roll_started" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray" method="_on_die_secondary_numbered_roll_started"]
 [connection signal="sleeping_state_changed" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray/SecondaryDie/DieSecondaryD6" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/SecondaryDie/SecondaryThrowButton" to="DiceTray/SecondaryDie/DieSecondaryD6" method="_on_secondary_throw_button_pressed"]
+[connection signal="body_entered" from="DiceTray/D3Die/DieD3" to="DiceTray/D3Die/DieD3" method="_on_body_entered"]
 [connection signal="input_event" from="DiceTray/D3Die/DieD3" to="DiceTray/D3Die/DieD3" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/D3Die/DieD3" to="DiceTray" method="_on_die_d_3_roll_finished"]
 [connection signal="roll_started" from="DiceTray/D3Die/DieD3" to="DiceTray" method="_on_die_d_3_roll_started"]

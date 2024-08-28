@@ -16,6 +16,8 @@ extends RigidBody3D
 @export var roll_strength = 35    # -------- Toss Strength ------------------
 @export var spin_strength = 1.0   # ---------- Spin It ------------------------
 
+@export var die_sound_velocity_factor : float = 1.5
+
 var start_pos
 var is_rolling = false
 
@@ -53,7 +55,7 @@ func _roll():
 	angular_velocity = throw_vector * roll_strength * spin_strength
 	apply_central_impulse(throw_vector * roll_strength)
 	is_rolling = true
-	%AudioStreamPlayerSingle.play()
+	
 
 
 func _on_sleeping_state_changed():
@@ -147,3 +149,16 @@ func _on_d_3_throw_button_pressed():
 	if not is_rolling:
 		button_throw_d3.visible = false
 		_roll()
+
+
+# ----------------   SOUND -----------------------------
+
+func _on_body_entered(_body):
+	if abs(linear_velocity.x) > die_sound_velocity_factor or \
+			abs(linear_velocity.y) > die_sound_velocity_factor or \
+			abs(linear_velocity.z) > die_sound_velocity_factor :
+		#%AudioStreamPlayer3DFelt.play()
+		%AudioStreamPlayerBoard.play()
+	
+	
+
