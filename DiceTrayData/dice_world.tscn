@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dx5jaq5nccohx"]
+[gd_scene load_steps=48 format=3 uid="uid://dx5jaq5nccohx"]
 
 [ext_resource type="Script" path="res://DiceTrayData/DiceTray.gd" id="1_dw3jc"]
 [ext_resource type="Script" path="res://DiceTrayData/RoomRectangleLine2D.gd" id="2_dw6wt"]
@@ -21,6 +21,13 @@
 [ext_resource type="AudioStream" uid="uid://hmxaj22fwawp" path="res://DiceTrayData/DiceSounds/d5.mp3" id="19_8asi4"]
 [ext_resource type="AudioStream" uid="uid://fkmxwxhxd6ii" path="res://DiceTrayData/DiceSounds/d6.mp3" id="20_ivp1t"]
 [ext_resource type="AudioStream" uid="uid://ctn7xcvn36lgk" path="res://DiceTrayData/DiceSounds/d7.mp3" id="21_qdixd"]
+[ext_resource type="AudioStream" uid="uid://j8w7obdit0ym" path="res://DiceTrayData/DiceSounds/f1.mp3" id="22_yu0k5"]
+[ext_resource type="AudioStream" uid="uid://bnobf6ngqu1ci" path="res://DiceTrayData/DiceSounds/f2.mp3" id="23_ghex4"]
+[ext_resource type="AudioStream" uid="uid://c0owtjuddmmvd" path="res://DiceTrayData/DiceSounds/f3.mp3" id="24_ejgr1"]
+[ext_resource type="AudioStream" uid="uid://bcingdtxpr57o" path="res://DiceTrayData/DiceSounds/f4.mp3" id="25_ucsvk"]
+[ext_resource type="AudioStream" uid="uid://l7roshu74mw1" path="res://DiceTrayData/DiceSounds/f5.mp3" id="26_s05un"]
+[ext_resource type="AudioStream" uid="uid://donvynlu87mef" path="res://DiceTrayData/DiceSounds/f6.mp3" id="27_me0nb"]
+[ext_resource type="AudioStream" uid="uid://cofwok558uenj" path="res://DiceTrayData/DiceSounds/f7.mp3" id="28_qrvte"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0vmny"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -91,6 +98,25 @@ stream_4/weight = 1.0
 stream_5/stream = ExtResource("20_ivp1t")
 stream_5/weight = 1.0
 stream_6/stream = ExtResource("21_qdixd")
+stream_6/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gov20"]
+random_pitch = 1.64
+random_volume_offset_db = 2.86
+streams_count = 7
+stream_0/stream = ExtResource("22_yu0k5")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("23_ghex4")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("24_ejgr1")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("25_ucsvk")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("26_s05un")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("27_me0nb")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("28_qrvte")
 stream_6/weight = 1.0
 
 [sub_resource type="Environment" id="Environment_ospvs"]
@@ -783,15 +809,13 @@ theme_override_font_sizes/font_size = 50
 action_mode = 0
 flat = true
 
-[node name="AudioStreamPlayerBoard" type="AudioStreamPlayer" parent="DiceTray"]
-unique_name_in_owner = true
+[node name="AudioStreamPlayerPlastic" type="AudioStreamPlayer" parent="DiceTray"]
 stream = SubResource("AudioStreamRandomizer_sh0ll")
 max_polyphony = 3
 
-[node name="AudioStreamPlayerPlastic" type="AudioStreamPlayer" parent="DiceTray"]
+[node name="AudioStreamPlayerDiceTray" type="AudioStreamPlayer" parent="DiceTray"]
 unique_name_in_owner = true
-stream = SubResource("AudioStreamRandomizer_sh0ll")
-max_polyphony = 3
+stream = SubResource("AudioStreamRandomizer_gov20")
 
 [node name="CamNLights" type="Node" parent="."]
 
@@ -887,8 +911,8 @@ light_energy = 7.72
 [connection signal="body_entered" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_body_entered"]
 [connection signal="input_event" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_on_die_primary_numbered_roll_finished"]
-[connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_remove_right_primary_die_scoreboard"]
 [connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_on_die_primary_numbered_roll_started"]
+[connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_remove_right_primary_die_scoreboard"]
 [connection signal="sleeping_state_changed" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/PrimaryDie/PrimeThrowButton" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_prime_throw_button_pressed"]
 [connection signal="body_entered" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray/SecondaryDie/DieSecondaryD6" method="_on_body_entered"]

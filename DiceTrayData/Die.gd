@@ -153,12 +153,17 @@ func _on_d_3_throw_button_pressed():
 
 # ----------------   SOUND -----------------------------
 
-func _on_body_entered(_body):
+func _on_body_entered(body):
 	if abs(linear_velocity.x) > die_sound_velocity_factor or \
 			abs(linear_velocity.y) > die_sound_velocity_factor or \
 			abs(linear_velocity.z) > die_sound_velocity_factor :
-		#%AudioStreamPlayer3DFelt.play()
-		%AudioStreamPlayerBoard.play()
-	
-	
+		
+		print(body.name)
+		# If hitting tray
+		
+		%AudioStreamPlayerDiceTray.play()
+		
+		
+		# If hitting other dice
+		
 
