@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://dx5jaq5nccohx"]
+[gd_scene load_steps=49 format=3 uid="uid://dx5jaq5nccohx"]
 
 [ext_resource type="Script" path="res://DiceTrayData/DiceTray.gd" id="1_dw3jc"]
 [ext_resource type="Script" path="res://DiceTrayData/RoomRectangleLine2D.gd" id="2_dw6wt"]
@@ -58,6 +58,10 @@ font_size = 80
 default_font_size = 30
 Button/font_sizes/font_size = 25
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bhmng"]
+friction = 0.45
+bounce = 0.3
+
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ja2eq"]
 points = PackedVector3Array(-0.11, -0.11, 0.25, -0.11, -0.11, -0.25, 0.11, -0.11, 0.25, 0.11, -0.11, -0.25, -0.11, 0.17, 0.25, -0.11, 0.17, -0.25, 0.11, 0.06, 0.25, 0.11, 0.06, -0.25)
 
@@ -101,8 +105,7 @@ stream_6/stream = ExtResource("21_qdixd")
 stream_6/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gov20"]
-random_pitch = 1.64
-random_volume_offset_db = 2.86
+random_volume_offset_db = 3.0
 streams_count = 7
 stream_0/stream = ExtResource("22_yu0k5")
 stream_0/weight = 1.0
@@ -448,10 +451,10 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.8, 0.2)
 collision_layer = 0
 collision_mask = 5
-mass = 10.0
-gravity_scale = 2.0
+mass = 20.0
+gravity_scale = 3.0
 continuous_cd = true
-max_contacts_reported = 2
+max_contacts_reported = 1
 contact_monitor = true
 
 [node name="DieDYDim" parent="DiceTray/RoomSizeDice" groups=["Dice", "RoomSizeDice"] instance=ExtResource("4_vau0y")]
@@ -459,10 +462,10 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.8, 0.4)
 collision_layer = 0
 collision_mask = 5
-mass = 10.0
-gravity_scale = 2.0
+mass = 20.0
+gravity_scale = 3.0
 continuous_cd = true
-max_contacts_reported = 2
+max_contacts_reported = 1
 contact_monitor = true
 
 [node name="DieDoorPics" parent="DiceTray/RoomSizeDice" groups=["Dice", "RoomSizeDice"] instance=ExtResource("5_nhunv")]
@@ -470,10 +473,10 @@ unique_name_in_owner = true
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -0.3, 0.8, 0.6)
 collision_layer = 0
 collision_mask = 5
-mass = 10.0
-gravity_scale = 2.0
+mass = 20.0
+gravity_scale = 3.0
 continuous_cd = true
-max_contacts_reported = 2
+max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("6_ivoei")
 
@@ -520,10 +523,10 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0.2)
 collision_layer = 0
 collision_mask = 5
-mass = 10.0
-gravity_scale = 2.0
+mass = 20.0
+gravity_scale = 3.0
 continuous_cd = true
-max_contacts_reported = 2
+max_contacts_reported = 1
 contact_monitor = true
 
 [node name="DieDoubleSecondary" parent="DiceTray/DoublesDice" groups=["Dice", "DoubleDice"] instance=ExtResource("8_ohkq0")]
@@ -531,10 +534,10 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0.4)
 collision_layer = 0
 collision_mask = 5
-mass = 10.0
-gravity_scale = 2.0
+mass = 20.0
+gravity_scale = 3.0
 continuous_cd = true
-max_contacts_reported = 2
+max_contacts_reported = 1
 contact_monitor = true
 
 [node name="DoubleThrowButton" type="Button" parent="DiceTray/DoublesDice"]
@@ -560,10 +563,10 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.8, 0.6)
 collision_layer = 0
 collision_mask = 5
-mass = 10.0
-gravity_scale = 2.0
+mass = 20.0
+gravity_scale = 3.0
 continuous_cd = true
-max_contacts_reported = 2
+max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("6_ivoei")
 
@@ -589,10 +592,10 @@ unique_name_in_owner = true
 transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 0.1, 0.8, 0.6)
 collision_layer = 0
 collision_mask = 5
-mass = 10.0
-gravity_scale = 2.0
+mass = 20.0
+gravity_scale = 3.0
 continuous_cd = true
-max_contacts_reported = 2
+max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("6_ivoei")
 
@@ -618,10 +621,9 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.8, 0.2)
 collision_layer = 0
 collision_mask = 5
-mass = 10.0
-gravity_scale = 2.0
-continuous_cd = true
-max_contacts_reported = 2
+mass = 20.0
+gravity_scale = 3.0
+max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("6_ivoei")
 
@@ -646,10 +648,10 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.8, 0.4)
 collision_layer = 0
 collision_mask = 5
-mass = 10.0
-gravity_scale = 2.0
+mass = 20.0
+gravity_scale = 3.0
 continuous_cd = true
-max_contacts_reported = 2
+max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("6_ivoei")
 
@@ -675,10 +677,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.8, 0.6)
 collision_layer = 0
 collision_mask = 5
 mass = 10.0
-gravity_scale = 2.0
+gravity_scale = 3.0
 freeze = true
 continuous_cd = true
-max_contacts_reported = 2
+max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("6_ivoei")
 
@@ -708,6 +710,7 @@ unique_name_in_owner = true
 collision_layer = 2
 collision_mask = 2
 input_ray_pickable = false
+physics_material_override = SubResource("PhysicsMaterial_bhmng")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DiceTray/FatigueDie/AnimatableBody3DFatigue"]
 transform = Transform3D(1, 0, -7.45058e-09, 0, 1, 0, 7.45058e-09, 0, 1, 0, 0, 0)
@@ -822,13 +825,11 @@ flat = true
 [node name="AudioStreamPlayerPlastic" type="AudioStreamPlayer" parent="DiceTray"]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_sh0ll")
-volume_db = 2.616
-max_polyphony = 3
 
 [node name="AudioStreamPlayerDiceTray" type="AudioStreamPlayer" parent="DiceTray"]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_gov20")
-volume_db = 2.616
+max_polyphony = 2
 
 [node name="CamNLights" type="Node" parent="."]
 
@@ -931,8 +932,8 @@ light_energy = 7.72
 [connection signal="body_entered" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray/SecondaryDie/DieSecondaryD6" method="_on_body_entered"]
 [connection signal="input_event" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray/SecondaryDie/DieSecondaryD6" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray" method="_on_die_secondary_numbered_roll_finished"]
-[connection signal="roll_started" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray" method="_remove_right_secondary_die_scoreboard"]
 [connection signal="roll_started" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray" method="_on_die_secondary_numbered_roll_started"]
+[connection signal="roll_started" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray" method="_remove_right_secondary_die_scoreboard"]
 [connection signal="sleeping_state_changed" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray/SecondaryDie/DieSecondaryD6" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/SecondaryDie/SecondaryThrowButton" to="DiceTray/SecondaryDie/DieSecondaryD6" method="_on_secondary_throw_button_pressed"]
 [connection signal="body_entered" from="DiceTray/D3Die/DieD3" to="DiceTray/D3Die/DieD3" method="_on_body_entered"]

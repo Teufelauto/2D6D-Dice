@@ -13,11 +13,10 @@ extends RigidBody3D
 @onready var button_throw_d3 = %DiceTray/D3Die/D3ThrowButton
 @onready var dice_tray = %DiceTray
 
-@export var roll_strength = 35    # -------- Toss Strength ------------------
-@export var spin_strength = 1.0   # ---------- Spin It ------------------------
-
-@export var die_sound_tray_velocity_factor : float = .3
-@export var die_sound_velocity_factor : float = 0.8
+@export var roll_strength = 60    # -------- Toss Strength ------------------
+@export var spin_strength = .8   # ---------- Spin It ------------------------
+@export var die_sound_tray_velocity_factor : float = 1.5
+@export var die_sound_velocity_factor : float = 1.5
 
 var start_pos
 var is_rolling = false
@@ -33,7 +32,7 @@ func _ready():
 
 
 func _roll():
-	
+	#print("_______________________________ New Roll ___________________")
 	# Reset State
 	sleeping = false
 	freeze = false
@@ -64,11 +63,11 @@ func _on_sleeping_state_changed():
 		var landed_on_side = false
 		for raycast in raycasts:
 			if raycast.is_colliding():
-
+				
 				roll_finished.emit(raycast.opposite_side) # INT   Send out the data!
 				is_rolling = false
 				landed_on_side = true
-		
+				
 		if not landed_on_side: # Auto reroll if rests at angle
 			_roll()
 
@@ -92,6 +91,8 @@ func _return_die():
 	
 	# Clear Roll Results
 	roll_started.emit()
+	
+	
 	
 
 # -------------------------- PICK UP DICE --------------------------------------
@@ -160,18 +161,33 @@ func _on_d_3_throw_button_pressed():
 # ----------------   SOUND -----------------------------
 
 func _on_body_entered(body):
-	
 	#print(body.name)
-	if body.name == "StaticBody3D" :  # If hitting tray
-		if abs(linear_velocity.x) > die_sound_tray_velocity_factor or \
-				abs(linear_velocity.y) > die_sound_tray_velocity_factor or \
-				abs(linear_velocity.z) > die_sound_tray_velocity_factor :
+	var greatest_observed_velocity
+	
+	if abs(linear_velocity.x) > abs(linear_velocity.y):
+		greatest_observed_velocity = abs(linear_velocity.x)
+	else:
+		greatest_observed_velocity = abs(linear_velocity.y)
+	if abs(linear_velocity.z) > greatest_observed_velocity:
+		greatest_observed_velocity = abs(linear_velocity.z)
+		
+	#var hit
+	#hit = get_colliding_bodies() 
+	#print(hit)
+
+	if body == self:
+		if greatest_observed_velocity > die_sound_tray_velocity_factor :
+			#print("xxxxxxx Self Contact xxxxxxx" + str(greatest_observed_velocity))
+			%AudioStreamPlayerDiceTray.play()
+	
+	elif body.name == "StaticBody3D" :  # If hitting tray
+		if greatest_observed_velocity > die_sound_tray_velocity_factor :
+			#print("///////// Tray /////////" + str(greatest_observed_velocity))
 			%AudioStreamPlayerDiceTray.play()
 			
 	else:
-		if abs(linear_velocity.x) > die_sound_velocity_factor or \
-				abs(linear_velocity.y) > die_sound_velocity_factor or \
-				abs(linear_velocity.z) > die_sound_velocity_factor :
+		if greatest_observed_velocity > die_sound_velocity_factor :
+			#print("======== Dice =========" + str(greatest_observed_velocity))
 			%AudioStreamPlayerPlastic.play()
 		
 		
