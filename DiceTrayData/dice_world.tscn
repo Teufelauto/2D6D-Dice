@@ -704,7 +704,7 @@ transform = Transform3D(-0.104112, 0, -0.994566, 0, 1, 0, 0.994566, 0, -0.104112
 unique_name_in_owner = true
 collision_mask = 0
 
-[node name="AnimatableBody3DFatigue" type="AnimatableBody3D" parent="DiceTray/FatigueDie"]
+[node name="StaticBody3DFatigue" type="StaticBody3D" parent="DiceTray/FatigueDie"]
 unique_name_in_owner = true
 visible = false
 collision_layer = 0
@@ -712,7 +712,7 @@ collision_mask = 0
 input_ray_pickable = false
 physics_material_override = SubResource("PhysicsMaterial_bhmng")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DiceTray/FatigueDie/AnimatableBody3DFatigue"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DiceTray/FatigueDie/StaticBody3DFatigue"]
 transform = Transform3D(1, 0, -7.45058e-09, 0, 1, 0, 7.45058e-09, 0, 1, 0, 0, 0)
 visible = false
 shape = SubResource("ConvexPolygonShape3D_ja2eq")
@@ -926,8 +926,8 @@ light_energy = 7.72
 [connection signal="body_entered" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_body_entered"]
 [connection signal="input_event" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_on_die_primary_numbered_roll_finished"]
-[connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_on_die_primary_numbered_roll_started"]
 [connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_remove_right_primary_die_scoreboard"]
+[connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_on_die_primary_numbered_roll_started"]
 [connection signal="sleeping_state_changed" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/PrimaryDie/PrimeThrowButton" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_prime_throw_button_pressed"]
 [connection signal="body_entered" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray/SecondaryDie/DieSecondaryD6" method="_on_body_entered"]
