@@ -594,8 +594,3 @@ func _on_d_style_fatigue_item_selected(index):
 	d_style_fatigue = die_style
 
 #endregion
-
-
-
-
-

@@ -503,5 +503,3 @@ func _on_die_d_3_roll_finished(die_value):
 
 func _on_exit_button_pressed():
 	get_tree().change_scene_to_file("res://DiceTrayData/dice_start_menu.tscn")
-
-

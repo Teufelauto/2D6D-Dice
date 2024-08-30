@@ -15,5 +15,3 @@ func _on_fatigue_die_pressed():
 
 func _on_back_pressed():
 	get_tree().change_scene_to_file("res://DiceTrayData/dice_start_menu.tscn")
-
-

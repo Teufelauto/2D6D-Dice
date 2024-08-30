@@ -90,37 +90,23 @@ random_pitch = 1.5
 random_volume_offset_db = 3.0
 streams_count = 7
 stream_0/stream = ExtResource("15_j8146")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("16_gi5n6")
-stream_1/weight = 1.0
 stream_2/stream = ExtResource("17_lup6l")
-stream_2/weight = 1.0
 stream_3/stream = ExtResource("18_vkatu")
-stream_3/weight = 1.0
 stream_4/stream = ExtResource("19_8asi4")
-stream_4/weight = 1.0
 stream_5/stream = ExtResource("20_ivp1t")
-stream_5/weight = 1.0
 stream_6/stream = ExtResource("21_qdixd")
-stream_6/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gov20"]
 random_volume_offset_db = 3.0
 streams_count = 7
 stream_0/stream = ExtResource("22_yu0k5")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("23_ghex4")
-stream_1/weight = 1.0
 stream_2/stream = ExtResource("24_ejgr1")
-stream_2/weight = 1.0
 stream_3/stream = ExtResource("25_ucsvk")
-stream_3/weight = 1.0
 stream_4/stream = ExtResource("26_s05un")
-stream_4/weight = 1.0
 stream_5/stream = ExtResource("27_me0nb")
-stream_5/weight = 1.0
 stream_6/stream = ExtResource("28_qrvte")
-stream_6/weight = 1.0
 
 [sub_resource type="Environment" id="Environment_ospvs"]
 
@@ -454,8 +440,8 @@ collision_mask = 5
 mass = 20.0
 gravity_scale = 3.0
 continuous_cd = true
-max_contacts_reported = 1
 contact_monitor = true
+max_contacts_reported = 1
 
 [node name="DieDYDim" parent="DiceTray/RoomSizeDice" groups=["Dice", "RoomSizeDice"] instance=ExtResource("4_vau0y")]
 unique_name_in_owner = true
@@ -465,8 +451,8 @@ collision_mask = 5
 mass = 20.0
 gravity_scale = 3.0
 continuous_cd = true
-max_contacts_reported = 1
 contact_monitor = true
+max_contacts_reported = 1
 
 [node name="DieDoorPics" parent="DiceTray/RoomSizeDice" groups=["Dice", "RoomSizeDice"] instance=ExtResource("5_nhunv")]
 unique_name_in_owner = true
@@ -476,8 +462,8 @@ collision_mask = 5
 mass = 20.0
 gravity_scale = 3.0
 continuous_cd = true
-max_contacts_reported = 1
 contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("6_ivoei")
 
 [node name="XYThrowButton" type="Button" parent="DiceTray/RoomSizeDice"]
@@ -526,8 +512,8 @@ collision_mask = 5
 mass = 20.0
 gravity_scale = 3.0
 continuous_cd = true
-max_contacts_reported = 1
 contact_monitor = true
+max_contacts_reported = 1
 
 [node name="DieDoubleSecondary" parent="DiceTray/DoublesDice" groups=["Dice", "DoubleDice"] instance=ExtResource("8_ohkq0")]
 unique_name_in_owner = true
@@ -537,8 +523,8 @@ collision_mask = 5
 mass = 20.0
 gravity_scale = 3.0
 continuous_cd = true
-max_contacts_reported = 1
 contact_monitor = true
+max_contacts_reported = 1
 
 [node name="DoubleThrowButton" type="Button" parent="DiceTray/DoublesDice"]
 light_mask = 16
@@ -566,8 +552,8 @@ collision_mask = 5
 mass = 20.0
 gravity_scale = 3.0
 continuous_cd = true
-max_contacts_reported = 1
 contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("6_ivoei")
 
 [node name="LCRThrowButton" type="Button" parent="DiceTray/RoomExitDirectionDie"]
@@ -595,8 +581,8 @@ collision_mask = 5
 mass = 20.0
 gravity_scale = 3.0
 continuous_cd = true
-max_contacts_reported = 1
 contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("6_ivoei")
 
 [node name="ExitLockThrowButton" type="Button" parent="DiceTray/ExitLockCheckDie"]
@@ -623,8 +609,8 @@ collision_layer = 0
 collision_mask = 5
 mass = 20.0
 gravity_scale = 3.0
-max_contacts_reported = 1
 contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("6_ivoei")
 
 [node name="PrimeThrowButton" type="Button" parent="DiceTray/PrimaryDie"]
@@ -651,8 +637,8 @@ collision_mask = 5
 mass = 20.0
 gravity_scale = 3.0
 continuous_cd = true
-max_contacts_reported = 1
 contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("6_ivoei")
 
 [node name="SecondaryThrowButton" type="Button" parent="DiceTray/SecondaryDie"]
@@ -680,8 +666,8 @@ mass = 10.0
 gravity_scale = 3.0
 freeze = true
 continuous_cd = true
-max_contacts_reported = 1
 contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("6_ivoei")
 
 [node name="D3ThrowButton" type="Button" parent="DiceTray/D3Die"]
@@ -703,6 +689,8 @@ transform = Transform3D(-0.104112, 0, -0.994566, 0, 1, 0, 0.994566, 0, -0.104112
 
 [node name="DieFatigue" parent="DiceTray/FatigueDie" instance=ExtResource("14_nh5cq")]
 unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 0
 input_ray_pickable = false
 
 [node name="AnimatableBody3DFatigue" type="AnimatableBody3D" parent="DiceTray/FatigueDie"]
@@ -925,15 +913,15 @@ light_energy = 7.72
 [connection signal="body_entered" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_body_entered"]
 [connection signal="input_event" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_on_die_primary_numbered_roll_finished"]
-[connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_on_die_primary_numbered_roll_started"]
 [connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_remove_right_primary_die_scoreboard"]
+[connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_on_die_primary_numbered_roll_started"]
 [connection signal="sleeping_state_changed" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/PrimaryDie/PrimeThrowButton" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_prime_throw_button_pressed"]
 [connection signal="body_entered" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray/SecondaryDie/DieSecondaryD6" method="_on_body_entered"]
 [connection signal="input_event" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray/SecondaryDie/DieSecondaryD6" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray" method="_on_die_secondary_numbered_roll_finished"]
-[connection signal="roll_started" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray" method="_on_die_secondary_numbered_roll_started"]
 [connection signal="roll_started" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray" method="_remove_right_secondary_die_scoreboard"]
+[connection signal="roll_started" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray" method="_on_die_secondary_numbered_roll_started"]
 [connection signal="sleeping_state_changed" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray/SecondaryDie/DieSecondaryD6" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/SecondaryDie/SecondaryThrowButton" to="DiceTray/SecondaryDie/DieSecondaryD6" method="_on_secondary_throw_button_pressed"]
 [connection signal="body_entered" from="DiceTray/D3Die/DieD3" to="DiceTray/D3Die/DieD3" method="_on_body_entered"]

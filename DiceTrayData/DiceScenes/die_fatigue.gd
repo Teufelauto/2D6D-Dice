@@ -37,4 +37,3 @@ func return_fatigue_die_to_one():
 	battle_round = 0
 	increment_fatigue_die_to_next_round()
 	%AudioStreamPlayerDiceTray.play()
-
