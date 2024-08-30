@@ -264,14 +264,14 @@ func _fatigue_die_visibility():
 	# make VISIBLE or invisible
 	if DicePreferences.d_vis_fatigue == true:
 		# to put in scene:
-		%AnimatableBody3DFatigue.set_collision_layer_value( 2, true)
-		%AnimatableBody3DFatigue.set_collision_mask_value( 2, true)
+		%AnimatableBody3DFatigue.set_collision_layer_value( 3, true)
+		#%AnimatableBody3DFatigue.set_collision_mask_value( 2, true)
 		%DieFatigue.visible = true
 		%FatigueIncrementButton.visible = true
 	else:
 		# to remove:
-		%AnimatableBody3DFatigue.set_collision_layer_value( 2, false)
-		%AnimatableBody3DFatigue.set_collision_mask_value( 2, false)
+		%AnimatableBody3DFatigue.set_collision_layer_value( 3, false)
+		#%AnimatableBody3DFatigue.set_collision_mask_value( 2, false)
 		%DieFatigue.visible = false
 		%FatigueIncrementButton.visible = false
 	

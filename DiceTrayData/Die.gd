@@ -13,7 +13,7 @@ extends RigidBody3D
 @onready var button_throw_d3 = %DiceTray/D3Die/D3ThrowButton
 @onready var dice_tray = %DiceTray
 
-@export var roll_strength = 60    # -------- Toss Strength ------------------
+@export var roll_strength = 45    # -------- Toss Strength ------------------
 @export var spin_strength = .8   # ---------- Spin It ------------------------
 @export var die_sound_tray_velocity_factor : float = 1.5
 @export var die_sound_velocity_factor : float = 1.5

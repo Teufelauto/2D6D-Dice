@@ -57,6 +57,7 @@ enabled=PackedStringArray("res://addons/godot-rapier3d/plugin.cfg", "res://addon
 common/physics_ticks_per_second=120
 3d/physics_engine="Rapier3D"
 3d/default_gravity=10.0
+3d/sleep_threshold_angular=0.3
 3d/time_before_sleep=0.1
 
 [rendering]

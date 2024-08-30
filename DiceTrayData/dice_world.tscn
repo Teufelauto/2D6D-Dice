@@ -401,14 +401,13 @@ horizontal_alignment = 1
 
 [node name="FatigueIncrementButton" type="Button" parent="DiceTray/DiceCanvas"]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 243.0
 offset_top = 87.0
 offset_right = -43.0
-offset_bottom = -720.0
+offset_bottom = -745.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.0917655
@@ -703,19 +702,19 @@ transform = Transform3D(-0.104112, 0, -0.994566, 0, 1, 0, 0.994566, 0, -0.104112
 
 [node name="DieFatigue" parent="DiceTray/FatigueDie" instance=ExtResource("14_nh5cq")]
 unique_name_in_owner = true
-collision_layer = 0
 collision_mask = 0
-input_ray_pickable = false
 
 [node name="AnimatableBody3DFatigue" type="AnimatableBody3D" parent="DiceTray/FatigueDie"]
 unique_name_in_owner = true
-collision_layer = 2
-collision_mask = 2
+visible = false
+collision_layer = 0
+collision_mask = 0
 input_ray_pickable = false
 physics_material_override = SubResource("PhysicsMaterial_bhmng")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DiceTray/FatigueDie/AnimatableBody3DFatigue"]
 transform = Transform3D(1, 0, -7.45058e-09, 0, 1, 0, 7.45058e-09, 0, 1, 0, 0, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_ja2eq")
 
 [node name="TrayModel" type="Node3D" parent="DiceTray"]
