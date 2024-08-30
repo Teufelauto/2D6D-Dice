@@ -41,7 +41,7 @@ text = "2D6D Dice is an independent production by Jamie Halford and is not affil
 MIT License
 Copyright (c) 2024 by Jamie Halford. 
 Source code and license at:
-https://github.com/Teufelauto/2D6D-Dice"
+https://github.com/Teufelauto/ 2D6D-Dice"
 autowrap_mode = 3
 
 [node name="Spacer" type="Label" parent="MarginContainer/GridContainer"]
