@@ -213,9 +213,10 @@ func _on_load_default_fatigue_pressed():
 
 static func load_dice_colors(): # from file
 	var saved_dice:SavedDice = SafeResourceLoader.load("user://savedice.tres") as SavedDice
-		
-	if saved_dice == null:
-		print("SaveDice.tres file was unsafe!")
+	
+	if saved_dice == null:  ## ---------- RED Alert! -----------------
+		print("SaveDice.tres file was unsafe! Possible malicious code injection prevented.")
+		OS.alert( "SaveDice.tres file is unsafe! Possible malicious code injection prevented. Your save file is borked.",  "WARNING!")
 		return
 	
 	d_text_color_x = saved_dice.die_text_color_x
@@ -271,7 +272,8 @@ static func load_dice_styles(): # from file
 	var saved_dice:SavedDice = SafeResourceLoader.load("user://savedice.tres") as SavedDice
 	
 	if saved_dice == null:
-		print("SaveDice.tres file was unsafe!")
+		print("SaveDice.tres file was unsafe! Possible malicious code injection prevented.")
+		OS.alert( "SaveDice.tres file is unsafe! Possible malicious code injection prevented. Your save file is borked.",  "WARNING!")
 		return
 	
 	#styles
@@ -306,7 +308,8 @@ static func load_fatigue_die():
 	var saved_dice:SavedDice = SafeResourceLoader.load("user://savedice.tres") as SavedDice
 	
 	if saved_dice == null:
-		print("SaveDice.tres file was unsafe!")
+		print("SaveDice.tres file was unsafe! Possible malicious code injection prevented.")
+		OS.alert( "SaveDice.tres file is unsafe! Possible malicious code injection prevented. Your save file is borked.",  "WARNING!")
 		return
 	
 	# color
