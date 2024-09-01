@@ -13,8 +13,8 @@ extends RigidBody3D
 @onready var button_throw_d3 = %DiceTray/D3Die/D3ThrowButton
 @onready var dice_tray = %DiceTray
 
-@export var roll_strength = 45    # -------- Toss Strength ------------------
-@export var spin_strength = .8   # ---------- Spin It ------------------------
+@export var roll_strength = 50    # -------- Toss Strength ------------------
+@export var spin_strength = 1.2   # ---------- Spin It ------------------------
 @export var die_sound_tray_velocity_factor : float = 1.5
 @export var die_sound_velocity_factor : float = 1.5
 
@@ -34,6 +34,10 @@ func _ready():
 func _roll():
 	#print("_______________________________ New Roll ___________________")
 	# Reset State
+	
+	#lock_rotation = false
+	axis_lock_linear_y = false
+	
 	sleeping = false
 	freeze = false
 	transform.origin = start_pos
@@ -67,6 +71,9 @@ func _on_sleeping_state_changed():
 				roll_finished.emit(raycast.opposite_side) # INT   Send out the data!
 				is_rolling = false
 				landed_on_side = true
+				#freeze = true #Works to keep dice from flipping, but they can't slide around
+				#lock_rotation = true # This line breaks ability to unlock, even though value un checks
+				axis_lock_linear_y = true
 				
 		if not landed_on_side: # Auto reroll if rests at angle
 			_roll()
@@ -79,7 +86,7 @@ func _return_die():
 	# Return the dice to home
 	freeze = false
 	sleeping = true
-	
+	axis_lock_linear_y = false
 	set_collision_layer_value( 2, false)
 	set_collision_mask_value( 2, false)
 	linear_velocity = Vector3.ZERO

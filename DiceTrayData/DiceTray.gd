@@ -253,7 +253,8 @@ func _remove_right_primary_die_scoreboard():
 func _remove_right_secondary_die_scoreboard():
 	%TwoD6SecondaryPolygon2D.visible = false
 	secondary_label.text = ""
-	
+
+
 func _remove_small_or_large_room_labels():
 	%RoomSizeSmallLabel.visible = false
 	%RoomSizeLargeLabel.visible = false
