@@ -7,7 +7,7 @@ A Dice Simulator for use with the solo RPG '2D6 Dungeon' by Toby Lancaster.
 2D6D Dice is an independent production by Jamie Halford and is not affiliated with DR Games or Toby Lancaster. It is published under the 2D6 Dungeon Third Party License.
 
 Dice colors can be changed, as well as styles; dots or numbers. Any changes must be saved in the same menu, or they will disappear when leaving that menu. Default colors can be reset without affecting dot styles, and vice versa. The saved preference file is human-readable.
-In the Windows Demo, the save file is found at C:\Users\your_name_here\AppData\Roaming\Godot\app_userdata\2D6D Dice
+In the Windows Demo, the save file is found at C:\Users\your_name_here\AppData\Roaming\Godot\app_userdata\2D6D_Dice
 
 The compiled zip file does not require downloading Godot.
 

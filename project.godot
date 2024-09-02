@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="2D6D Dice"
+config/name="2D6D_Dice"
 config/description="A Digital Dice app for the Solo Player Dungeon Crawler \"2D6 Dungeon\" by Toby Lancaster.  This app was created by Jamie Halford, and is not an official product of DR Games or Toby Lancaster. More information on 2D6 Dungeon, including how to get it, may be found at www.drgames.co.uk"
 config/version="0.9.1"
 config/tags=PackedStringArray("3d", "dice", "mobile", "rpg")
@@ -37,7 +37,7 @@ run/main_run_args="--verbose"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot-rapier3d/plugin.cfg", "res://addons/safe_resource_loader/plugin.cfg")
+enabled=PackedStringArray("res://addons/safe_resource_loader/plugin.cfg")
 
 [layer_names]
 
@@ -62,7 +62,7 @@ common/physics_ticks_per_second=120
 3d/physics_engine="Rapier3D"
 3d/default_gravity=10.0
 3d/default_angular_damp=1.0
-3d/sleep_threshold_angular=0.3
+3d/sleep_threshold_angular=0.1
 3d/time_before_sleep=0.1
 
 [rendering]
