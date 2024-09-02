@@ -14,7 +14,7 @@ extends RigidBody3D
 @onready var dice_tray = %DiceTray
 
 @export var roll_strength = 50    # -------- Toss Strength ------------------
-@export var spin_strength = 1.2   # ---------- Spin It ------------------------
+@export var spin_strength = 1.0   # ---------- Spin It ------------------------
 @export var die_sound_tray_velocity_factor : float = 1.5
 @export var die_sound_velocity_factor : float = 1.5
 
