@@ -17,6 +17,8 @@ extends RigidBody3D
 @export var spin_strength = 0.8   # ---------- Spin It ------------------------
 @export var die_sound_tray_velocity_factor : float = 1.5
 @export var die_sound_velocity_factor : float = 1.5
+
+
 @export var roll_vibe_length : int = 20 # time in milliseconds
 @export var roll_vibe_strength : float = 2.0 
 @export var roll_vibe_impact_die_length : int = 10 # time in milliseconds
