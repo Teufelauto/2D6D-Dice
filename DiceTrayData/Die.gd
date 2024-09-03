@@ -217,6 +217,7 @@ func _on_body_entered(body):
 	else:
 		if greatest_observed_velocity > die_sound_velocity_factor :
 			#print("======== Dice =========" + str(greatest_observed_velocity))
+			
 			Input.vibrate_handheld( roll_vibe_impact_die_length, roll_vibe_impact_die_strength )
 			%AudioStreamPlayerPlastic.play()
 		

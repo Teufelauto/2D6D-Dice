@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://dx5jaq5nccohx"]
+[gd_scene load_steps=50 format=3 uid="uid://dx5jaq5nccohx"]
 
 [ext_resource type="Script" path="res://DiceTrayData/DiceTray.gd" id="1_dw3jc"]
 [ext_resource type="Script" path="res://DiceTrayData/RoomRectangleLine2D.gd" id="2_dw6wt"]
@@ -28,6 +28,7 @@
 [ext_resource type="AudioStream" uid="uid://l7roshu74mw1" path="res://DiceTrayData/DiceSounds/f5.mp3" id="26_s05un"]
 [ext_resource type="AudioStream" uid="uid://donvynlu87mef" path="res://DiceTrayData/DiceSounds/f6.mp3" id="27_me0nb"]
 [ext_resource type="AudioStream" uid="uid://cofwok558uenj" path="res://DiceTrayData/DiceSounds/f7.mp3" id="28_qrvte"]
+[ext_resource type="Script" path="res://DiceTrayData/dice_audio_vibe_control.gd" id="29_icaqj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0vmny"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -824,7 +825,6 @@ action_mode = 0
 flat = true
 
 [node name="AudioStreamPlayerPlastic" type="AudioStreamPlayer" parent="DiceTray"]
-unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_sh0ll")
 volume_db = 20.0
 
@@ -833,6 +833,13 @@ unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_gov20")
 volume_db = 19.0
 max_polyphony = 2
+
+[node name="AudioVibeControl" type="Control" parent="DiceTray"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("29_icaqj")
 
 [node name="CamNLights" type="Node" parent="."]
 

@@ -1,21 +1,7 @@
 extends Control
 class_name DicePreferences
 
-# Vibration Settings
-@export var menu_click_vibe_length :int = 50   			# [ms] 500 default
-@export var menu_click_vibe_strength :float = 1.0    	# -1 default
 
-@export var menu_quit_vibe_length :int = 100   			# [ms] 500 default
-@export var menu_quit_vibe_strength :float = 1.0    	# -1 default
-
-@export var dice_throw_vibe_length : int = 20			# time in milliseconds
-@export var dice_throw_vibe_strength : float = 2.0 
-
-@export var dice_on_dice_vibe_length :int = 10   		# [ms] 500 default
-@export var dice_on_dice_vibe_strength :float = 3.0  	# -1 default
-
-@export var dice_on_felt_vibe_length :int = 50   		# [ms] 500 default
-@export var dice_on_felt_vibe_strength :float = 1.0    	# -1 default
 
 # Vibration and Sound
 static var d_dice_vibration_on : bool = true
@@ -741,29 +727,10 @@ func _on_d_style_fatigue_item_selected(index):
 
 #region ---------- Sound and Vibration Settings ------------------
 
-func menu_click_vibe() -> void:
-	Input.vibrate_handheld(menu_click_vibe_length,menu_click_vibe_strength)
-	
-func menu_quit_vibe() -> void:
-	Input.vibrate_handheld(menu_quit_vibe_length,menu_quit_vibe_strength)
-
-func dice_throw_vibe() -> void:
-	if d_dice_unmuted:
-		%AudioStreamPlayerPlastic.play()
-	if d_dice_vibration_on:
-		Input.vibrate_handheld(dice_throw_vibe_length,dice_throw_vibe_strength)
-
-func dice_on_dice_vibe() -> void:
-	if d_dice_unmuted:
-		%AudioStreamPlayerPlastic.play()
-	if d_dice_vibration_on:
-		Input.vibrate_handheld(dice_on_dice_vibe_length,dice_on_dice_vibe_strength)
-	
-func dice_on_felt_vibe() -> void:
-	if d_dice_unmuted:
-		%AudioStreamPlayerDiceTray.play()
-	if d_dice_vibration_on:
-		Input.vibrate_handheld(dice_on_felt_vibe_length,dice_on_felt_vibe_strength)
+#static var d_dice_vibration_on : bool = true
+#static var d_dice_unmuted : bool = true
+#static var d_dice_volume_felt : float
+#static var d_dice_volume_plastic : float
 
 
 #endregion
