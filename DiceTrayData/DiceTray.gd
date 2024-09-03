@@ -226,7 +226,7 @@ func _rehome_dice():
 	room_size_rolled_doubles_bool = false
 	%RoomSizeSmallLabel.visible = false
 	%RoomSizeLargeLabel.visible = false
-	
+	Input.vibrate_handheld(50,1)
 	if DicePreferences.d_vis_fatigue == true: # if fatigue die visible
 		fatigue_reset_button.visible = true
 	else:
@@ -503,4 +503,5 @@ func _on_die_d_3_roll_finished(die_value):
 #-----------------------------------------------------------------------------
 
 func _on_exit_button_pressed():
+	Input.vibrate_handheld(50,1)
 	get_tree().change_scene_to_file("res://DiceTrayData/dice_start_menu.tscn")

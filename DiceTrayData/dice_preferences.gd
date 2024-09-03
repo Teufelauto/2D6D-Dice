@@ -69,9 +69,12 @@ func _on_ready_fatigue_options_menu(): # called only by fatigue menu when opened
 func _update_displayed_style_buttons():
 	var index :int 
 	match d_style_x:
-		"die_num" : index = 0
-		"die_dot" : index = 1
-		"die_let" : index = 2
+		"die_num" : 
+			index = 0
+		"die_dot" : 
+			index = 1
+		"die_let" : 
+			index = 2
 	$MarginContainer/GridContainer/d_style_x.selected = index
 	
 	match d_style_y:
@@ -197,16 +200,19 @@ func _paint_buttons_and_text_in_menu(): # in color menu
 	
 	
 func _on_load_default_colors_pressed():
+	Input.vibrate_handheld(50,1)
 	DicePreferences.load_default_dice_colors()
 	_paint_buttons_and_text_in_menu()
 
 
 func _on_load_default_styles_pressed():
+	Input.vibrate_handheld(50,1)
 	DicePreferences.load_default_dice_styles()
 	_update_displayed_style_buttons()
 	
 	
 func _on_load_default_fatigue_pressed():
+	Input.vibrate_handheld(50,1)
 	DicePreferences.load_default_fatigue_die()
 	_paint_buttons_and_update_style_in_fatigue_menu()
 
@@ -216,6 +222,7 @@ static func load_dice_colors(): # from file
 	
 	if saved_dice == null:  ## ---------- RED Alert! -----------------
 		print("SaveDice.tres file was unsafe! Possible malicious code injection prevented.")
+		Input.vibrate_handheld(1000,1)
 		OS.alert( "SaveDice.tres file is unsafe! Possible malicious code injection prevented. Your save file is borked.",  "WARNING!")
 		return
 	
@@ -273,6 +280,7 @@ static func load_dice_styles(): # from file
 	
 	if saved_dice == null:
 		print("SaveDice.tres file was unsafe! Possible malicious code injection prevented.")
+		Input.vibrate_handheld(1000,1)
 		OS.alert( "SaveDice.tres file is unsafe! Possible malicious code injection prevented. Your save file is borked.",  "WARNING!")
 		return
 	
@@ -309,6 +317,7 @@ static func load_fatigue_die():
 	
 	if saved_dice == null:
 		print("SaveDice.tres file was unsafe! Possible malicious code injection prevented.")
+		Input.vibrate_handheld(1000,1)
 		OS.alert( "SaveDice.tres file is unsafe! Possible malicious code injection prevented. Your save file is borked.",  "WARNING!")
 		return
 	
@@ -337,6 +346,7 @@ static func load_default_fatigue_die():
 
 
 func _save_dice_preferences():
+	Input.vibrate_handheld(50,1)
 	var saved_dice:SavedDice = SavedDice.new()
 	
 	#colors
@@ -384,190 +394,282 @@ func _save_dice_preferences():
 
 
 func _on_back_pressed():
+	Input.vibrate_handheld(50,1)
 	get_tree().change_scene_to_file("res://DiceTrayData/dice_options_menu.tscn")
 
 #region ------- Color Menu Signals --------------------------------------------
 func _on_color_picker_button_xtext_color_changed(color):
+	Input.vibrate_handheld(50,1)
 	%LabelX.label_settings.font_color = color
 	d_text_color_x = color
 	
 	
 func _on_color_picker_button_x_color_changed(color):
+	Input.vibrate_handheld(50,1)
 	d_body_color_x = color
 
 
 func _on_color_picker_button_ytext_color_changed(color):
+	Input.vibrate_handheld(50,1)
 	%LabelY.label_settings.font_color = color
 	d_text_color_y = color
 
 
 func _on_color_picker_button_y_color_changed(color):
+	Input.vibrate_handheld(50,1)
 	d_body_color_y = color
 
 
 func _on_color_picker_button_d_66_ptext_color_changed(color):
+	Input.vibrate_handheld(50,1)
 	%LabelD66Prime.label_settings.font_color = color
 	d_text_color_d66_prime = color
 	
 
 func _on_color_picker_button_d_66_prime_color_changed(color):
+	Input.vibrate_handheld(50,1)
 	d_body_color_d66_prime = color
 	
 	
 func _on_color_picker_button_d_66_stext_color_changed(color):
+	Input.vibrate_handheld(50,1)
 	%LabelD66Secondary.label_settings.font_color = color
 	d_text_color_d66_secondary = color
 	
 func _on_color_picker_button_d_66_secondary_color_changed(color):
+	Input.vibrate_handheld(50,1)
 	d_body_color_d66_secondary = color
 	
 
 func _on_color_picker_button_prime_text_color_changed(color):
+	Input.vibrate_handheld(50,1)
 	%LabelD6Prime.label_settings.font_color = color
 	d_text_color_single_primary = color
 
 
 func _on_color_picker_button_primary_color_changed(color):
+	Input.vibrate_handheld(50,1)
 	d_body_color_single_primary = color
 	
 
 func _on_color_picker_button_secondary_text_color_changed(color):
+	Input.vibrate_handheld(50,1)
 	%LabelD6Secondary.label_settings.font_color = color
 	d_text_color_single_secondary = color
 
 
 func _on_color_picker_button_secondary_color_changed(color):
+	Input.vibrate_handheld(50,1)
 	d_body_color_single_secondary = color
 	
 
 func _on_color_picker_button_exit_num_text_color_changed(color):
+	Input.vibrate_handheld(50,1)
 	%LabelExitQty.label_settings.font_color = color
 	d_text_color_exit_numbers = color
 
 
 func _on_color_picker_button_exit_num_color_changed(color):
+	Input.vibrate_handheld(50,1)
 	d_body_color_exit_numbers = color
 
 
 func _on_color_picker_button_exit_dir_text_color_changed(color):
+	Input.vibrate_handheld(50,1)
 	%LabelExitDir.label_settings.font_color = color
 	d_text_color_exit_direction = color
 
 
 func _on_color_picker_button_exit_direction_color_changed(color):
+	Input.vibrate_handheld(50,1)
 	d_body_color_exit_direction = color
 	
 
 func _on_color_picker_button_exit_lock_text_color_changed(color):
+	Input.vibrate_handheld(50,1)
 	%LabelExitLock.label_settings.font_color = color
 	d_text_color_exit_lock = color
 	
 
 func _on_color_picker_button_exit_lock_color_changed(color):
+	Input.vibrate_handheld(50,1)
 	d_body_color_exit_lock = color
 	
 
 func _on_color_picker_button_d_3_text_color_changed(color):
+	Input.vibrate_handheld(50,1)
 	%LabelD3.label_settings.font_color = color
 	d_text_color_d3 = color
 
 
 func _on_color_picker_button_d_3_color_changed(color):
+	Input.vibrate_handheld(50,1)
 	d_body_color_d3 = color
 
 func _on_color_picker_button_tray_felt_color_changed(color):
+	Input.vibrate_handheld(50,1)
 	d_tray_felt_color = color
 	
 #endregion
 
 #region -------- Style Menu Signals -----------------------------------
 func _on_option_button_x_item_selected(index):
+	Input.vibrate_handheld(50,1)
 	var die_style : String
 	match index:
-		0: die_style = "die_num"
-		1: die_style = "die_dot"
-		2: die_style = "die_let"
+		0: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_num"
+		1: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_dot"
+		2: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_let"
 	d_style_x = die_style
 
 
 func _on_option_button_y_item_selected(index):
+	Input.vibrate_handheld(50,1)
 	var die_style : String
 	match index:
-		0: die_style = "die_num"
-		1: die_style = "die_dot"
-		2: die_style = "die_let"
+		0: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_num"
+		1: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_dot"
+		2: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_let"
 	d_style_y = die_style
 
 
 func _on_option_button_d_66_primary_item_selected(index):
+	Input.vibrate_handheld(50,1)
 	var die_style : String
 	match index:
-		0: die_style = "die_num"
-		1: die_style = "die_dot"
-		2: die_style = "die_let"
+		0: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_num"
+		1: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_dot"
+		2: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_let"
 	d_style_d66_prime = die_style
 
 
 func _on_option_button_d_66_secondary_item_selected(index):
+	Input.vibrate_handheld(50,1)
 	var die_style : String
 	match index:
-		0: die_style = "die_num"
-		1: die_style = "die_dot"
-		2: die_style = "die_let"
+		0: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_num"
+		1: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_dot"
+		2: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_let"
 	d_style_d66_secondary = die_style
 
 
 func _on_option_button_single_primary_item_selected(index):
+	Input.vibrate_handheld(50,1)
 	var die_style : String
 	match index:
-		0: die_style = "die_num"
-		1: die_style = "die_dot"
-		2: die_style = "die_let"
+		0: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_num"
+		1: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_dot"
+		2: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_let"
 	d_style_single_primary = die_style
 
 
 func _on_option_button_single_secondary_item_selected(index):
+	Input.vibrate_handheld(50,1)
 	var die_style : String
 	match index:
-		0: die_style = "die_num"
-		1: die_style = "die_dot"
-		2: die_style = "die_let"
+		0: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_num"
+		1: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_dot"
+		2: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_let"
 	d_style_single_secondary = die_style
 	
 
 func _on_option_button_exit_qty_item_selected(index):
+	Input.vibrate_handheld(50,1)
 	var die_style : String
 	match index:
-		0: die_style = "die_num"
-		1: die_style = "die_dot"
-		2: die_style = "die_let"
+		0: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_num"
+		1: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_dot"
+		2: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_let"
 	d_style_exit_qty = die_style
 
 
 func _on_option_button_exit_direction_item_selected(index):
+	Input.vibrate_handheld(50,1)
 	var die_style : String
 	match index:
-		0: die_style = "die_num"
-		1: die_style = "die_dot"
-		2: die_style = "die_let"
+		0: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_num"
+		1: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_dot"
+		2: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_let"
 	d_style_exit_direction = die_style
 
 
 func _on_option_button_lock_item_selected(index):
+	Input.vibrate_handheld(50,1)
 	var die_style : String
 	match index:
-		0: die_style = "die_num"
-		1: die_style = "die_dot"
-		2: die_style = "die_let"
+		0: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_num"
+		1: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_dot"
+		2: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_let"
 	d_style_exit_lock = die_style
 
 
 func _on_option_button_d_3_item_selected(index):
+	Input.vibrate_handheld(50,1)
 	var die_style : String
 	match index:
-		0: die_style = "die_num"
-		1: die_style = "die_dot"
-		2: die_style = "die_let"
+		0: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_num"
+		1: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_dot"
+		2: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_let"
 	d_style_d3 = die_style
 #endregion
 
@@ -575,25 +677,39 @@ func _on_option_button_d_3_item_selected(index):
 
 #region -----------  Fatigue Menu Signals ---------------------------------------
 func _on_fatigue_die_visiblity_item_selected(index):
+	Input.vibrate_handheld(50,1)
 	match index:
-		0: d_vis_fatigue = false
-		1: d_vis_fatigue = true
+		0: 
+			Input.vibrate_handheld(50,1)
+			d_vis_fatigue = false
+		1: 
+			Input.vibrate_handheld(50,1)
+			d_vis_fatigue = true
 
 func _on_color_picker_button_fatigue_text_color_changed(color):
+	Input.vibrate_handheld(50,1)
 	%LabelFatigue.label_settings.font_color = color
 	d_text_color_fatigue = color
 
 
 func _on_color_picker_button_fatigue_color_changed(color):
+	Input.vibrate_handheld(50,1)
 	d_body_color_fatigue = color
 
 
 func _on_d_style_fatigue_item_selected(index):
+	Input.vibrate_handheld(50,1)
 	var die_style : String
 	match index:
-		0: die_style = "die_1"
-		1: die_style = "die_2"
-		2: die_style = "die_3"
+		0: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_1"
+		1: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_2"
+		2: 
+			Input.vibrate_handheld(50,1)
+			die_style = "die_3"
 	d_style_fatigue = die_style
 
 #endregion

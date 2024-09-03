@@ -30,10 +30,10 @@ func increment_fatigue_die_to_next_round():
 		7: fatigue_die_angle = 3.590392
 	
 	rotation.z = fatigue_die_angle
+	Input.vibrate_handheld(50,1)
 	%AudioStreamPlayerDiceTray.play()
 	
 # when signalled to reset to 1
 func return_fatigue_die_to_one():
 	battle_round = 0
 	increment_fatigue_die_to_next_round()
-	%AudioStreamPlayerDiceTray.play()

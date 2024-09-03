@@ -17,6 +17,14 @@ extends RigidBody3D
 @export var spin_strength = 0.8   # ---------- Spin It ------------------------
 @export var die_sound_tray_velocity_factor : float = 1.5
 @export var die_sound_velocity_factor : float = 1.5
+@export var roll_vibe_length : int = 20 # time in milliseconds
+@export var roll_vibe_strength : float = 2.0 
+@export var roll_vibe_impact_die_length : int = 10 # time in milliseconds
+@export var roll_vibe_impact_die_strength : float = 3.0 
+@export var roll_vibe_impact_tray_length : int = 50 # time in milliseconds
+@export var roll_vibe_impact_tray_strength : float = 1.0 
+
+
 
 var start_pos
 var is_rolling = false
@@ -59,7 +67,8 @@ func _roll():
 	angular_velocity = throw_vector * roll_strength * spin_strength
 	apply_central_impulse(throw_vector * roll_strength)
 	is_rolling = true
-	%AudioStreamPlayerPlastic.play()
+	
+	#%AudioStreamPlayerPlastic.play()
 
 
 func _on_sleeping_state_changed():
@@ -109,6 +118,7 @@ func _on_pick_up_all_dice_button_pressed():
 	# commented out is not rolling to allow picking up frozen dice
 	#if not is_rolling:
 	#	_return_die()
+	Input.vibrate_handheld( roll_vibe_length, roll_vibe_strength )
 	%AudioStreamPlayerPlastic.play()
 	_return_die()
 
@@ -116,6 +126,7 @@ func _on_pick_up_all_dice_button_pressed():
 # ----------------- ReROLL Previously thrown DICE ------------------------------
 func _on_input_event(_camera, event, _position, _normal, _shape_idx):
 	if event.is_pressed() and not is_rolling:
+		Input.vibrate_handheld( roll_vibe_length, roll_vibe_strength )
 		%AudioStreamPlayerPlastic.play()
 		_roll()
 
@@ -125,6 +136,7 @@ func _on_xy_throw_button_pressed():
 	if not is_rolling:
 		button_throw_xy.visible = false # Main
 		button_throw_xy2.visible = false #  exit die location
+		Input.vibrate_handheld( roll_vibe_length, roll_vibe_strength )
 		%AudioStreamPlayerPlastic.play()
 		_roll()
 
@@ -132,6 +144,7 @@ func _on_xy_throw_button_pressed():
 func _on_double_throw_button_pressed():
 	if not is_rolling:
 		button_throw_doubles.visible = false
+		Input.vibrate_handheld( roll_vibe_length, roll_vibe_strength )
 		%AudioStreamPlayerPlastic.play()
 		_roll()
 
@@ -139,29 +152,34 @@ func _on_double_throw_button_pressed():
 func _on_lcr_throw_button_pressed():
 	if not is_rolling:
 		button_throw_exit_direction.visible = false
+		Input.vibrate_handheld( roll_vibe_length, roll_vibe_strength )
 		_roll()
 
 
 func _on_exit_lock_throw_button_pressed():
 	if not is_rolling:
 		button_throw_lock_check.visible = false
+		Input.vibrate_handheld( roll_vibe_length, roll_vibe_strength )
 		_roll()
 
 func _on_prime_throw_button_pressed():
 	if not is_rolling:
 		button_throw_primary.visible = false
+		Input.vibrate_handheld( roll_vibe_length, roll_vibe_strength )
 		_roll()
 
 
 func _on_secondary_throw_button_pressed():
 	if not is_rolling:
 		button_throw_secondary.visible = false
+		Input.vibrate_handheld( roll_vibe_length, roll_vibe_strength )
 		_roll()
 
 
 func _on_d_3_throw_button_pressed():
 	if not is_rolling:
 		button_throw_d3.visible = false
+		Input.vibrate_handheld( roll_vibe_length, roll_vibe_strength )
 		_roll()
 
 
@@ -185,16 +203,19 @@ func _on_body_entered(body):
 	if body == self:
 		if greatest_observed_velocity > die_sound_tray_velocity_factor :
 			#print("xxxxxxx Self Contact xxxxxxx" + str(greatest_observed_velocity))
+			Input.vibrate_handheld( roll_vibe_impact_tray_length, roll_vibe_impact_tray_strength )
 			%AudioStreamPlayerDiceTray.play()
 	
 	elif body.name == "StaticBody3D" :  # If hitting tray
 		if greatest_observed_velocity > die_sound_tray_velocity_factor :
 			#print("///////// Tray /////////" + str(greatest_observed_velocity))
+			Input.vibrate_handheld( roll_vibe_impact_tray_length, roll_vibe_impact_tray_strength )
 			%AudioStreamPlayerDiceTray.play()
 			
 	else:
 		if greatest_observed_velocity > die_sound_velocity_factor :
 			#print("======== Dice =========" + str(greatest_observed_velocity))
+			Input.vibrate_handheld( roll_vibe_impact_die_length, roll_vibe_impact_die_strength )
 			%AudioStreamPlayerPlastic.play()
 		
 		
