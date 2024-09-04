@@ -21,4 +21,9 @@ func _on_notes_pressed():
 
 func _on_quit_pressed():
 	Input.vibrate_handheld(100,1)
+	
 	get_tree().quit()
+
+func _notification(what):
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		get_tree().quit() # default behavior

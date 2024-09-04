@@ -1,6 +1,17 @@
 extends Control
 class_name DicePreferences
 
+
+
+# Vibration and Sound
+static var d_dice_vibration_on : bool = true
+static var d_dice_unmuted : bool = true
+static var d_dice_volume_felt : float
+static var d_dice_volume_plastic : float
+#static var d_music_unmuted : bool  # Future Feature?
+#static var d_music_volume : float
+#static var d_music_variant : int
+
 # Colors
 static var d_text_color_x : Color
 static var d_body_color_x : Color
@@ -396,6 +407,11 @@ func _save_dice_preferences():
 func _on_back_pressed():
 	Input.vibrate_handheld(50,1)
 	get_tree().change_scene_to_file("res://DiceTrayData/dice_options_menu.tscn")
+	
+func _notification(what):
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		Input.vibrate_handheld(50,1)
+		get_tree().change_scene_to_file("res://DiceTrayData/dice_options_menu.tscn")
 
 #region ------- Color Menu Signals --------------------------------------------
 func _on_color_picker_button_xtext_color_changed(color):
@@ -711,5 +727,15 @@ func _on_d_style_fatigue_item_selected(index):
 			Input.vibrate_handheld(50,1)
 			die_style = "die_3"
 	d_style_fatigue = die_style
+
+#endregion
+
+#region ---------- Sound and Vibration Settings ------------------
+
+#static var d_dice_vibration_on : bool = true
+#static var d_dice_unmuted : bool = true
+#static var d_dice_volume_felt : float
+#static var d_dice_volume_plastic : float
+
 
 #endregion
