@@ -33,7 +33,11 @@ var is_rolling = false
 
 # For displaying roll results
 signal roll_started() # Also used to clear results when picking up dice
-signal roll_finished(die_value) # Output the die result to another script
+signal roll_finished(die_value :int) # Output the die result to another script
+
+# For signalling sound and haptics
+signal dice_impact_sound(type_of_sound :String)
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -185,7 +189,7 @@ func _on_d_3_throw_button_pressed():
 		_roll()
 
 
-# ----------------   SOUND -----------------------------
+# ----------------   SOUND FROM IMPACTS   -----------------------------
 
 func _on_body_entered(body):
 	#print(body.name)
@@ -205,27 +209,24 @@ func _on_body_entered(body):
 	if body == self:
 		if greatest_observed_velocity > die_sound_tray_velocity_factor :
 			#print("xxxxxxx Self Contact xxxxxxx" + str(greatest_observed_velocity))
+			dice_impact_sound.emit("felt")
 			
-			
-			pass
 			#Input.vibrate_handheld( roll_vibe_impact_tray_length, roll_vibe_impact_tray_strength )
 			#%AudioStreamPlayerDiceTray.play()
 	
 	elif body.name == "StaticBody3D" :  # If hitting tray
 		if greatest_observed_velocity > die_sound_tray_velocity_factor :
 			#print("///////// Tray /////////" + str(greatest_observed_velocity))
+			dice_impact_sound.emit("felt")
 			
-			
-			pass
 			#Input.vibrate_handheld( roll_vibe_impact_tray_length, roll_vibe_impact_tray_strength )
 			#%AudioStreamPlayerDiceTray.play()
 			
 	else:
 		if greatest_observed_velocity > die_sound_velocity_factor :
-			#print("======== Dice =========" + str(greatest_observed_velocity))
-			
-			
-			pass
+			print("======== Dice =========" + str(greatest_observed_velocity))
+			dice_impact_sound.emit("plastic")
+
 			#Input.vibrate_handheld( roll_vibe_impact_die_length, roll_vibe_impact_die_strength )
 			#%AudioStreamPlayerPlastic.play()
 		

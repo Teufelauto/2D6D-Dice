@@ -43,6 +43,35 @@ sky = SubResource("Sky_8c6rn")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_sh0ll"]
+streams_count = 7
+stream_0/stream = ExtResource("15_j8146")
+stream_1/stream = ExtResource("16_gi5n6")
+stream_2/stream = ExtResource("17_lup6l")
+stream_3/stream = ExtResource("18_vkatu")
+stream_4/stream = ExtResource("19_8asi4")
+stream_5/stream = ExtResource("20_ivp1t")
+stream_6/stream = ExtResource("21_qdixd")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gov20"]
+random_pitch = 1.3
+random_volume_offset_db = 4.0
+streams_count = 7
+stream_0/stream = ExtResource("22_yu0k5")
+stream_0/weight = 0.0
+stream_1/stream = ExtResource("23_ghex4")
+stream_1/weight = 0.0
+stream_2/stream = ExtResource("24_ejgr1")
+stream_2/weight = 0.0
+stream_3/stream = ExtResource("25_ucsvk")
+stream_3/weight = 0.0
+stream_4/stream = ExtResource("26_s05un")
+stream_4/weight = 0.0
+stream_5/stream = ExtResource("27_me0nb")
+stream_5/weight = 0.0
+stream_6/stream = ExtResource("28_qrvte")
+stream_6/weight = 7.76927e-34
+
 [sub_resource type="LabelSettings" id="LabelSettings_gdq0w"]
 font_size = 80
 
@@ -86,43 +115,6 @@ friction = 0.32
 rough = true
 bounce = 0.12
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_sh0ll"]
-random_pitch = 1.5
-random_volume_offset_db = 3.0
-streams_count = 7
-stream_0/stream = ExtResource("15_j8146")
-stream_0/weight = 0.0
-stream_1/stream = ExtResource("16_gi5n6")
-stream_1/weight = 0.0
-stream_2/stream = ExtResource("17_lup6l")
-stream_2/weight = 0.0
-stream_3/stream = ExtResource("18_vkatu")
-stream_3/weight = 0.0
-stream_4/stream = ExtResource("19_8asi4")
-stream_4/weight = 0.0
-stream_5/stream = ExtResource("20_ivp1t")
-stream_5/weight = 0.0
-stream_6/stream = ExtResource("21_qdixd")
-stream_6/weight = 0.0
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gov20"]
-random_volume_offset_db = 3.0
-streams_count = 7
-stream_0/stream = ExtResource("22_yu0k5")
-stream_0/weight = 0.0
-stream_1/stream = ExtResource("23_ghex4")
-stream_1/weight = 0.0
-stream_2/stream = ExtResource("24_ejgr1")
-stream_2/weight = 0.0
-stream_3/stream = ExtResource("25_ucsvk")
-stream_3/weight = 0.0
-stream_4/stream = ExtResource("26_s05un")
-stream_4/weight = 0.0
-stream_5/stream = ExtResource("27_me0nb")
-stream_5/weight = 0.0
-stream_6/stream = ExtResource("28_qrvte")
-stream_6/weight = 7.76927e-34
-
 [sub_resource type="Environment" id="Environment_ospvs"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bmajt"]
@@ -140,6 +132,21 @@ environment = SubResource("Environment_ba38j")
 [node name="DiceTray" type="Node3D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("1_dw3jc")
+
+[node name="DiceAudioVibeNode" type="Node" parent="DiceTray"]
+script = ExtResource("29_icaqj")
+
+[node name="AudioStreamPlayerPlastic" type="AudioStreamPlayer" parent="DiceTray/DiceAudioVibeNode"]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_sh0ll")
+volume_db = 24.0
+max_polyphony = 2
+
+[node name="AudioStreamPlayerDiceTray" type="AudioStreamPlayer" parent="DiceTray/DiceAudioVibeNode"]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_gov20")
+volume_db = 24.0
+max_polyphony = 3
 
 [node name="DiceCanvas" type="CanvasLayer" parent="DiceTray"]
 unique_name_in_owner = true
@@ -824,20 +831,6 @@ theme_override_font_sizes/font_size = 50
 action_mode = 0
 flat = true
 
-[node name="AudioStreamPlayerPlastic" type="AudioStreamPlayer" parent="DiceTray"]
-unique_name_in_owner = true
-stream = SubResource("AudioStreamRandomizer_sh0ll")
-volume_db = 20.0
-
-[node name="AudioStreamPlayerDiceTray" type="AudioStreamPlayer" parent="DiceTray"]
-unique_name_in_owner = true
-stream = SubResource("AudioStreamRandomizer_gov20")
-volume_db = 19.0
-max_polyphony = 2
-
-[node name="AudioVibeNode" type="Node" parent="DiceTray"]
-script = ExtResource("29_icaqj")
-
 [node name="CamNLights" type="Node" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="CamNLights"]
@@ -881,18 +874,21 @@ light_energy = 7.72
 [connection signal="pressed" from="DiceTray/DiceCanvas/FatigueResetButton" to="DiceTray/FatigueDie/DieFatigue" method="return_fatigue_die_to_one"]
 [connection signal="pressed" from="DiceTray/DiceCanvas/ExitButton" to="DiceTray" method="_on_exit_button_pressed"]
 [connection signal="body_entered" from="DiceTray/RoomSizeDice/DieDXDim" to="DiceTray/RoomSizeDice/DieDXDim" method="_on_body_entered"]
+[connection signal="dice_impact_sound" from="DiceTray/RoomSizeDice/DieDXDim" to="DiceTray/DiceAudioVibeNode" method="dice_impact_sound"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDXDim" to="DiceTray/RoomSizeDice/DieDXDim" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDXDim" to="DiceTray/RoomSizeDice/DieDYDim" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDXDim" to="DiceTray/RoomSizeDice/DieDoorPics" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/RoomSizeDice/DieDXDim" to="DiceTray" method="_on_die_dx_dim_roll_finished"]
 [connection signal="roll_started" from="DiceTray/RoomSizeDice/DieDXDim" to="DiceTray" method="_on_room_dimension_roll_started"]
 [connection signal="body_entered" from="DiceTray/RoomSizeDice/DieDYDim" to="DiceTray/RoomSizeDice/DieDYDim" method="_on_body_entered"]
+[connection signal="dice_impact_sound" from="DiceTray/RoomSizeDice/DieDYDim" to="DiceTray/DiceAudioVibeNode" method="dice_impact_sound"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDYDim" to="DiceTray/RoomSizeDice/DieDXDim" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDYDim" to="DiceTray/RoomSizeDice/DieDYDim" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDYDim" to="DiceTray/RoomSizeDice/DieDoorPics" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/RoomSizeDice/DieDYDim" to="DiceTray" method="_on_die_dy_dim_roll_finished"]
 [connection signal="roll_started" from="DiceTray/RoomSizeDice/DieDYDim" to="DiceTray" method="_on_room_dimension_roll_started"]
 [connection signal="body_entered" from="DiceTray/RoomSizeDice/DieDoorPics" to="DiceTray/RoomSizeDice/DieDoorPics" method="_on_body_entered"]
+[connection signal="dice_impact_sound" from="DiceTray/RoomSizeDice/DieDoorPics" to="DiceTray/DiceAudioVibeNode" method="dice_impact_sound"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDoorPics" to="DiceTray/RoomSizeDice/DieDXDim" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDoorPics" to="DiceTray/RoomSizeDice/DieDYDim" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/RoomSizeDice/DieDoorPics" to="DiceTray/RoomSizeDice/DieDoorPics" method="_on_input_event"]
@@ -906,11 +902,13 @@ light_energy = 7.72
 [connection signal="pressed" from="DiceTray/RoomSizeDice/XYThrowButton2" to="DiceTray/RoomSizeDice/DieDYDim" method="_on_xy_throw_button_pressed"]
 [connection signal="pressed" from="DiceTray/RoomSizeDice/XYThrowButton2" to="DiceTray/RoomSizeDice/DieDoorPics" method="_on_xy_throw_button_pressed"]
 [connection signal="body_entered" from="DiceTray/DoublesDice/DieDoublePrimary" to="DiceTray/DoublesDice/DieDoublePrimary" method="_on_body_entered"]
+[connection signal="dice_impact_sound" from="DiceTray/DoublesDice/DieDoublePrimary" to="DiceTray/DiceAudioVibeNode" method="dice_impact_sound"]
 [connection signal="input_event" from="DiceTray/DoublesDice/DieDoublePrimary" to="DiceTray/DoublesDice/DieDoublePrimary" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/DoublesDice/DieDoublePrimary" to="DiceTray/DoublesDice/DieDoubleSecondary" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/DoublesDice/DieDoublePrimary" to="DiceTray" method="_on_die_double_primary_roll_finished"]
 [connection signal="roll_started" from="DiceTray/DoublesDice/DieDoublePrimary" to="DiceTray" method="_on_die_double_roll_started"]
 [connection signal="body_entered" from="DiceTray/DoublesDice/DieDoubleSecondary" to="DiceTray/DoublesDice/DieDoubleSecondary" method="_on_body_entered"]
+[connection signal="dice_impact_sound" from="DiceTray/DoublesDice/DieDoubleSecondary" to="DiceTray/DiceAudioVibeNode" method="dice_impact_sound"]
 [connection signal="input_event" from="DiceTray/DoublesDice/DieDoubleSecondary" to="DiceTray/DoublesDice/DieDoublePrimary" method="_on_input_event"]
 [connection signal="input_event" from="DiceTray/DoublesDice/DieDoubleSecondary" to="DiceTray/DoublesDice/DieDoubleSecondary" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/DoublesDice/DieDoubleSecondary" to="DiceTray" method="_on_die_double_secondary_roll_finished"]
@@ -918,25 +916,29 @@ light_energy = 7.72
 [connection signal="pressed" from="DiceTray/DoublesDice/DoubleThrowButton" to="DiceTray/DoublesDice/DieDoublePrimary" method="_on_double_throw_button_pressed"]
 [connection signal="pressed" from="DiceTray/DoublesDice/DoubleThrowButton" to="DiceTray/DoublesDice/DieDoubleSecondary" method="_on_double_throw_button_pressed"]
 [connection signal="body_entered" from="DiceTray/RoomExitDirectionDie/DieLCR" to="DiceTray/RoomExitDirectionDie/DieLCR" method="_on_body_entered"]
+[connection signal="dice_impact_sound" from="DiceTray/RoomExitDirectionDie/DieLCR" to="DiceTray/DiceAudioVibeNode" method="dice_impact_sound"]
 [connection signal="input_event" from="DiceTray/RoomExitDirectionDie/DieLCR" to="DiceTray/RoomExitDirectionDie/DieLCR" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/RoomExitDirectionDie/DieLCR" to="DiceTray" method="_on_die_lcr_roll_finished"]
 [connection signal="roll_started" from="DiceTray/RoomExitDirectionDie/DieLCR" to="DiceTray" method="_on_die_lcr_roll_started"]
 [connection signal="sleeping_state_changed" from="DiceTray/RoomExitDirectionDie/DieLCR" to="DiceTray/RoomExitDirectionDie/DieLCR" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/RoomExitDirectionDie/LCRThrowButton" to="DiceTray/RoomExitDirectionDie/DieLCR" method="_on_lcr_throw_button_pressed"]
 [connection signal="body_entered" from="DiceTray/ExitLockCheckDie/DieLocked" to="DiceTray/ExitLockCheckDie/DieLocked" method="_on_body_entered"]
+[connection signal="dice_impact_sound" from="DiceTray/ExitLockCheckDie/DieLocked" to="DiceTray/DiceAudioVibeNode" method="dice_impact_sound"]
 [connection signal="input_event" from="DiceTray/ExitLockCheckDie/DieLocked" to="DiceTray/ExitLockCheckDie/DieLocked" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/ExitLockCheckDie/DieLocked" to="DiceTray" method="_on_die_locked_roll_finished"]
 [connection signal="roll_started" from="DiceTray/ExitLockCheckDie/DieLocked" to="DiceTray" method="_on_die_locked_roll_started"]
 [connection signal="sleeping_state_changed" from="DiceTray/ExitLockCheckDie/DieLocked" to="DiceTray/ExitLockCheckDie/DieLocked" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/ExitLockCheckDie/ExitLockThrowButton" to="DiceTray/ExitLockCheckDie/DieLocked" method="_on_exit_lock_throw_button_pressed"]
 [connection signal="body_entered" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_body_entered"]
+[connection signal="dice_impact_sound" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray/DiceAudioVibeNode" method="dice_impact_sound"]
 [connection signal="input_event" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_on_die_primary_numbered_roll_finished"]
-[connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_remove_right_primary_die_scoreboard"]
 [connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_on_die_primary_numbered_roll_started"]
+[connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_remove_right_primary_die_scoreboard"]
 [connection signal="sleeping_state_changed" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/PrimaryDie/PrimeThrowButton" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_prime_throw_button_pressed"]
 [connection signal="body_entered" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray/SecondaryDie/DieSecondaryD6" method="_on_body_entered"]
+[connection signal="dice_impact_sound" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray/DiceAudioVibeNode" method="dice_impact_sound"]
 [connection signal="input_event" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray/SecondaryDie/DieSecondaryD6" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray" method="_on_die_secondary_numbered_roll_finished"]
 [connection signal="roll_started" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray" method="_remove_right_secondary_die_scoreboard"]
@@ -944,6 +946,7 @@ light_energy = 7.72
 [connection signal="sleeping_state_changed" from="DiceTray/SecondaryDie/DieSecondaryD6" to="DiceTray/SecondaryDie/DieSecondaryD6" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/SecondaryDie/SecondaryThrowButton" to="DiceTray/SecondaryDie/DieSecondaryD6" method="_on_secondary_throw_button_pressed"]
 [connection signal="body_entered" from="DiceTray/D3Die/DieD3" to="DiceTray/D3Die/DieD3" method="_on_body_entered"]
+[connection signal="dice_impact_sound" from="DiceTray/D3Die/DieD3" to="DiceTray/DiceAudioVibeNode" method="dice_impact_sound"]
 [connection signal="input_event" from="DiceTray/D3Die/DieD3" to="DiceTray/D3Die/DieD3" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/D3Die/DieD3" to="DiceTray" method="_on_die_d_3_roll_finished"]
 [connection signal="roll_started" from="DiceTray/D3Die/DieD3" to="DiceTray" method="_on_die_d_3_roll_started"]

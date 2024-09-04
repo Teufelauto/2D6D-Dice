@@ -27,19 +27,22 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
+func dice_impact_sound(type_of_sound :String) -> void:
+	match type_of_sound:
+		"plastic":
+			dice_on_dice_vibe()
+		"felt":
+			dice_on_felt_vibe()
+		_:
+			print(type_of_sound + " -This Dice impact sound not defined in dice audio vibe control.")
+
+
 func menu_click_vibe() -> void:
 	Input.vibrate_handheld(menu_click_vibe_length,menu_click_vibe_strength)
 	
 	
 func menu_quit_vibe() -> void:
 	Input.vibrate_handheld(menu_quit_vibe_length,menu_quit_vibe_strength)
-
-
-func dice_throw_vibe() -> void:
-	if dice_unmuted:
-		%AudioStreamPlayerPlastic.play()
-	if dice_vibrate:
-		Input.vibrate_handheld(dice_throw_vibe_length,dice_throw_vibe_strength)
 
 
 func dice_on_dice_vibe() -> void:
