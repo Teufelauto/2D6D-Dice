@@ -139,7 +139,7 @@ func _on_xy_throw_button_pressed():
 		button_throw_xy.visible = false # Main
 		button_throw_xy2.visible = false #  exit die location
 		Input.vibrate_handheld( roll_vibe_length, roll_vibe_strength )
-		%AudioStreamPlayerPlastic.play()
+		
 		_roll()
 
 
@@ -147,7 +147,7 @@ func _on_double_throw_button_pressed():
 	if not is_rolling:
 		button_throw_doubles.visible = false
 		Input.vibrate_handheld( roll_vibe_length, roll_vibe_strength )
-		%AudioStreamPlayerPlastic.play()
+		
 		_roll()
 
 
@@ -205,21 +205,29 @@ func _on_body_entered(body):
 	if body == self:
 		if greatest_observed_velocity > die_sound_tray_velocity_factor :
 			#print("xxxxxxx Self Contact xxxxxxx" + str(greatest_observed_velocity))
-			Input.vibrate_handheld( roll_vibe_impact_tray_length, roll_vibe_impact_tray_strength )
-			%AudioStreamPlayerDiceTray.play()
+			
+			
+			pass
+			#Input.vibrate_handheld( roll_vibe_impact_tray_length, roll_vibe_impact_tray_strength )
+			#%AudioStreamPlayerDiceTray.play()
 	
 	elif body.name == "StaticBody3D" :  # If hitting tray
 		if greatest_observed_velocity > die_sound_tray_velocity_factor :
 			#print("///////// Tray /////////" + str(greatest_observed_velocity))
-			Input.vibrate_handheld( roll_vibe_impact_tray_length, roll_vibe_impact_tray_strength )
-			%AudioStreamPlayerDiceTray.play()
+			
+			
+			pass
+			#Input.vibrate_handheld( roll_vibe_impact_tray_length, roll_vibe_impact_tray_strength )
+			#%AudioStreamPlayerDiceTray.play()
 			
 	else:
 		if greatest_observed_velocity > die_sound_velocity_factor :
 			#print("======== Dice =========" + str(greatest_observed_velocity))
 			
-			Input.vibrate_handheld( roll_vibe_impact_die_length, roll_vibe_impact_die_strength )
-			%AudioStreamPlayerPlastic.play()
+			
+			pass
+			#Input.vibrate_handheld( roll_vibe_impact_die_length, roll_vibe_impact_die_strength )
+			#%AudioStreamPlayerPlastic.play()
 		
 		
 		
