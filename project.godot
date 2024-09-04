@@ -15,6 +15,7 @@ config/description="A Digital Dice app for the Solo Player Dungeon Crawler \"2D6
 config/version="0.9.1"
 config/tags=PackedStringArray("3d", "dice", "mobile", "rpg")
 run/main_scene="res://DiceTrayData/dice_start_menu.tscn"
+config/quit_on_go_back=false
 config/features=PackedStringArray("4.3", "Mobile")
 run/max_fps=60
 boot_splash/bg_color=Color(0, 0, 0, 1)
@@ -63,7 +64,7 @@ common/physics_ticks_per_second=120
 3d/default_gravity=10.0
 3d/default_angular_damp=1.0
 3d/sleep_threshold_angular=0.1
-3d/time_before_sleep=0.1
+3d/time_before_sleep=0.2
 
 [rendering]
 

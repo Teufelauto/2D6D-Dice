@@ -43,7 +43,7 @@ func menu_click_vibe() -> void:
 	
 func menu_quit_vibe() -> void:
 	Input.vibrate_handheld(menu_quit_vibe_length,menu_quit_vibe_strength)
-
+	
 
 func dice_on_dice_vibe() -> void:
 	if dice_unmuted:

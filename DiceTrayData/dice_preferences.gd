@@ -407,6 +407,11 @@ func _save_dice_preferences():
 func _on_back_pressed():
 	Input.vibrate_handheld(50,1)
 	get_tree().change_scene_to_file("res://DiceTrayData/dice_options_menu.tscn")
+	
+func _notification(what):
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		Input.vibrate_handheld(50,1)
+		get_tree().change_scene_to_file("res://DiceTrayData/dice_options_menu.tscn")
 
 #region ------- Color Menu Signals --------------------------------------------
 func _on_color_picker_button_xtext_color_changed(color):
