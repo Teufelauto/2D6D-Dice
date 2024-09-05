@@ -77,6 +77,7 @@ text = "Dice Sounds"
 
 [node name="dice_unmute" type="OptionButton" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
+tooltip_text = "Play in secret!"
 theme = SubResource("Theme_6bui5")
 selected = 1
 allow_reselect = true
@@ -91,26 +92,51 @@ layout_mode = 2
 [node name="Spacer6" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 
-[node name="LoadDefaultSound" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
+[node name="DicePlasticVolume" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_flbc3")
+theme_override_font_sizes/font_size = 40
+text = "Dice on Dice Volume"
+
+[node name="PlasticSoundHSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+tick_count = 11
+ticks_on_borders = true
+
+[node name="DiceFeltVolume" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_flbc3")
+theme_override_font_sizes/font_size = 40
+text = "Dice on Felt Volume"
+
+[node name="FeltSoundHSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+tick_count = 11
+ticks_on_borders = true
+
+[node name="Spacer" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Spacer4" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LoadDefaultSound" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_tg4dw")
 theme_override_font_sizes/font_size = 40
 text = " Load Default "
 
-[node name="Spacer4" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
-layout_mode = 2
-
-[node name="SaveSounds" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
+[node name="SaveSounds" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_flbc3")
 theme_override_font_sizes/font_size = 40
 text = " Save Current "
-
-[node name="Spacer" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
-layout_mode = 2
-
-[node name="Spacer2" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
-layout_mode = 2
 
 [node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -121,6 +147,8 @@ text = "Back"
 [connection signal="ready" from="." to="." method="_on_ready_sound_options_menu"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/GridContainer/dice_vibe_on" to="." method="_on_dice_vibe_on_item_selected"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/GridContainer/dice_unmute" to="." method="_on_dice_unmute_item_selected"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/LoadDefaultSound" to="." method="_on_load_default_sound_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/SaveSounds" to="." method="_save_dice_preferences"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/PlasticSoundHSlider" to="." method="_on_plastic_sound_h_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/FeltSoundHSlider" to="." method="_on_felt_sound_h_slider_value_changed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/LoadDefaultSound" to="." method="_on_load_default_sound_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/SaveSounds" to="." method="_save_dice_preferences"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

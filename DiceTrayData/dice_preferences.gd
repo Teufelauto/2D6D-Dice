@@ -4,10 +4,10 @@ class_name DicePreferences
 
 
 # Vibration and Sound
-static var d_vibration_on : bool = true
-static var d_unmuted : bool = true
-static var d_volume_felt : float
-static var d_volume_plastic : float
+static var d_vibration_on : bool
+static var d_unmuted : bool
+static var d_volume_felt : float # 0 to 1
+static var d_volume_plastic : float # 0 to 1
 static var d_music_unmuted : bool	# Future Feature?
 static var d_music_volume : float   # Future Feature?
 static var d_music_variant : int	# Future Feature?
@@ -52,6 +52,9 @@ static var d_text_color_fatigue :Color
 static var d_body_color_fatigue :Color
 static var d_style_fatigue : String
 static var d_vis_fatigue : bool
+
+
+signal dice_impact_sound(type_of_sound :String)
 
 
 func _ready():
@@ -241,6 +244,9 @@ func _update_selections_in_sound_menu() -> void:
 		true : index = 1
 	$MarginContainer/VBoxContainer/GridContainer/dice_unmute.selected = index
 	
+	# Volume Sliders
+	$MarginContainer/VBoxContainer/PlasticSoundHSlider.value = d_volume_plastic
+	$MarginContainer/VBoxContainer/FeltSoundHSlider.value = d_volume_felt
 	
 	
 
@@ -271,8 +277,8 @@ static func load_default_sounds() -> void:
 	#Dice Sounds
 	d_vibration_on = true
 	d_unmuted = true
-	d_volume_felt = 0
-	d_volume_plastic = 0
+	d_volume_felt = 0.5
+	d_volume_plastic = 0.5
 	
 
 static func load_sounds() -> void:
@@ -715,7 +721,26 @@ func _on_dice_unmute_item_selected(index: int) -> void:
 			d_unmuted = true
 
 
-#static var d_volume_felt : float
-#static var d_volume_plastic : float
+func _on_plastic_sound_h_slider_value_changed(value: float) -> void:
+	
+		# "Slider" refers to a node that inherits Range such as HSlider or VSlider.
+		# Its range must be configured to go from 0 to 1.
+		# Change the bus name if you'd like to change the volume of a specific bus only.
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Dice On Dice"), linear_to_db($MarginContainer/VBoxContainer/PlasticSoundHSlider.value))
+	d_volume_plastic = $MarginContainer/VBoxContainer/PlasticSoundHSlider.value
+	dice_impact_sound.emit("plastic")
+	
+
+func _on_felt_sound_h_slider_value_changed(value: float) -> void:
+	
+	# "Slider" refers to a node that inherits Range such as HSlider or VSlider.
+	# Its range must be configured to go from 0 to 1.
+	# Change the bus name if you'd like to change the volume of a specific bus only.
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Dice On Felt"), linear_to_db($MarginContainer/VBoxContainer/FeltSoundHSlider.value))
+	d_volume_felt = $MarginContainer/VBoxContainer/FeltSoundHSlider.value
+	dice_impact_sound.emit("felt")
+	
+	
+
 
 #endregion

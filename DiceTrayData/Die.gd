@@ -122,15 +122,12 @@ func _on_pick_up_all_dice_button_pressed():
 	# commented out is not rolling to allow picking up frozen dice
 	#if not is_rolling:
 	#	_return_die()
-
-
 	_return_die()
 
 
 # ----------------- ReROLL Previously thrown DICE ------------------------------
 func _on_input_event(_camera, event, _position, _normal, _shape_idx):
 	if event.is_pressed() and not is_rolling:
-		
 		
 		_roll()
 
@@ -140,41 +137,34 @@ func _on_xy_throw_button_pressed():
 	if not is_rolling:
 		button_throw_xy.visible = false # Main
 		button_throw_xy2.visible = false #  exit die location
-		
-		
-		
+
 		_roll()
 
 
 func _on_double_throw_button_pressed():
 	if not is_rolling:
 		button_throw_doubles.visible = false
-		
-		
-		
+
 		_roll()
 
 
 func _on_lcr_throw_button_pressed():
 	if not is_rolling:
 		button_throw_exit_direction.visible = false
-		
-		
+
 		_roll()
 
 
 func _on_exit_lock_throw_button_pressed():
 	if not is_rolling:
 		button_throw_lock_check.visible = false
-		
-		
+
 		_roll()
 
 func _on_prime_throw_button_pressed():
 	if not is_rolling:
 		button_throw_primary.visible = false
-		
-		
+
 		_roll()
 
 
