@@ -139,14 +139,14 @@ script = ExtResource("29_icaqj")
 [node name="AudioStreamPlayerPlastic" type="AudioStreamPlayer" parent="DiceTray/DiceAudioVibeNode"]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_sh0ll")
-volume_db = 15.0
+volume_db = 24.0
 max_polyphony = 2
 bus = &"Dice On Dice"
 
 [node name="AudioStreamPlayerDiceTray" type="AudioStreamPlayer" parent="DiceTray/DiceAudioVibeNode"]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_gov20")
-volume_db = 15.0
+volume_db = 24.0
 max_polyphony = 3
 bus = &"Dice On Felt"
 
@@ -456,7 +456,6 @@ text = "X"
 [node name="RoomSizeDice" type="Node3D" parent="DiceTray"]
 
 [node name="DieDXDim" parent="DiceTray/RoomSizeDice" groups=["Dice", "RoomSizeDice"] instance=ExtResource("3_nj75j")]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.8, 0.2)
 collision_layer = 0
 collision_mask = 5
@@ -859,7 +858,7 @@ transform = Transform3D(-0.196745, 0.834484, -0.514712, 0.0923927, 0.538417, 0.8
 light_energy = 2.152
 light_bake_mode = 1
 shadow_enabled = true
-shadow_bias = 0.001
+shadow_bias = 0.002
 spot_range = 13.1452
 spot_attenuation = 0.450625
 spot_angle = 19.4366
@@ -943,8 +942,8 @@ light_energy = 7.72
 [connection signal="dice_impact_sound" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray/DiceAudioVibeNode" method="dice_impact_sound"]
 [connection signal="input_event" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_input_event"]
 [connection signal="roll_finished" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_on_die_primary_numbered_roll_finished"]
-[connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_on_die_primary_numbered_roll_started"]
 [connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_remove_right_primary_die_scoreboard"]
+[connection signal="roll_started" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray" method="_on_die_primary_numbered_roll_started"]
 [connection signal="sleeping_state_changed" from="DiceTray/PrimaryDie/DiePrimaryD6" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_sleeping_state_changed"]
 [connection signal="pressed" from="DiceTray/PrimaryDie/PrimeThrowButton" to="DiceTray/DiceAudioVibeNode" method="dice_on_dice_vibe"]
 [connection signal="pressed" from="DiceTray/PrimaryDie/PrimeThrowButton" to="DiceTray/PrimaryDie/DiePrimaryD6" method="_on_prime_throw_button_pressed"]

@@ -41,11 +41,12 @@ signal dice_impact_sound(type_of_sound :String)
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	start_pos = global_position
 
 
-func _roll():
+func _roll() -> void:
+	
 	#print("_______________________________ New Roll ___________________")
 	# Reset State
 	
@@ -75,7 +76,7 @@ func _roll():
 	is_rolling = true
 	
 
-func _on_sleeping_state_changed():
+func _on_sleeping_state_changed() -> void:
 	if sleeping:
 		var landed_on_side = false
 		for raycast in raycasts:
@@ -93,7 +94,7 @@ func _on_sleeping_state_changed():
 
 
 # Put the dice back in the home position.
-func _return_die():
+func _return_die() -> void:
 	
 	is_rolling = false
 	# Return the dice to home
@@ -112,12 +113,10 @@ func _return_die():
 	# Clear Roll Results
 	roll_started.emit()
 	
-	
-	
 
 # -------------------------- PICK UP DICE --------------------------------------
 # Pick up ALL Dice
-func _on_pick_up_all_dice_button_pressed():
+func _on_pick_up_all_dice_button_pressed() -> void:
 	
 	# commented out is not rolling to allow picking up frozen dice
 	#if not is_rolling:
@@ -126,14 +125,14 @@ func _on_pick_up_all_dice_button_pressed():
 
 
 # ----------------- ReROLL Previously thrown DICE ------------------------------
-func _on_input_event(_camera, event, _position, _normal, _shape_idx):
+func _on_input_event(_camera, event, _position, _normal, _shape_idx) -> void:
 	if event.is_pressed() and not is_rolling:
 		
 		_roll()
 
 
 #---------------------------- ROLL DICE FROM HOME ------------------------------
-func _on_xy_throw_button_pressed():
+func _on_xy_throw_button_pressed() -> void:
 	if not is_rolling:
 		button_throw_xy.visible = false # Main
 		button_throw_xy2.visible = false #  exit die location
@@ -141,41 +140,41 @@ func _on_xy_throw_button_pressed():
 		_roll()
 
 
-func _on_double_throw_button_pressed():
+func _on_double_throw_button_pressed() -> void:
 	if not is_rolling:
 		button_throw_doubles.visible = false
 
 		_roll()
 
 
-func _on_lcr_throw_button_pressed():
+func _on_lcr_throw_button_pressed() -> void:
 	if not is_rolling:
 		button_throw_exit_direction.visible = false
 
 		_roll()
 
 
-func _on_exit_lock_throw_button_pressed():
+func _on_exit_lock_throw_button_pressed() -> void:
 	if not is_rolling:
 		button_throw_lock_check.visible = false
 
 		_roll()
 
-func _on_prime_throw_button_pressed():
+func _on_prime_throw_button_pressed() -> void:
 	if not is_rolling:
 		button_throw_primary.visible = false
 
 		_roll()
 
 
-func _on_secondary_throw_button_pressed():
+func _on_secondary_throw_button_pressed() -> void:
 	if not is_rolling:
 		button_throw_secondary.visible = false
 		
 		_roll()
 
 
-func _on_d_3_throw_button_pressed():
+func _on_d_3_throw_button_pressed() -> void:
 	if not is_rolling:
 		button_throw_d3.visible = false
 		
@@ -184,7 +183,7 @@ func _on_d_3_throw_button_pressed():
 
 # ----------------   SOUND FROM IMPACTS   -----------------------------
 
-func _on_body_entered(body):
+func _on_body_entered(body) -> void:
 	#print(body.name)
 	var greatest_observed_velocity
 	

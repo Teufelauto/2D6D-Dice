@@ -7,7 +7,7 @@ extends Line2D
 
 
 # resize the drawing for the room dice dimensioned rectangle
-func resize_room_rectangle(x_size,y_size):
+func resize_room_rectangle(x_size :int,y_size :int) -> void:
 	x_size = x_size * rectangle_size_factor
 	y_size = rectangle_max_size - ( y_size * rectangle_size_factor ) # 0,0 is upper left, but we need lower left
 	set_point_position(0,Vector2( 0, rectangle_max_size )) # Lower Left corner
@@ -17,5 +17,5 @@ func resize_room_rectangle(x_size,y_size):
 	visible = true
 
 
-func _on_dice_tray_clear_room_rectangle():
+func _on_dice_tray_clear_room_rectangle() -> void:
 	visible = false

@@ -7,13 +7,13 @@ class_name FatigueDie
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	
 	return_fatigue_die_to_one()
 	
 
 # when signaled to increment 1
-func increment_fatigue_die_to_next_round():
+func increment_fatigue_die_to_next_round() -> void:
 	
 	if battle_round == 7 :
 		battle_round = 0
@@ -33,6 +33,6 @@ func increment_fatigue_die_to_next_round():
 	
 	
 # when signalled to reset to 1
-func return_fatigue_die_to_one():
+func return_fatigue_die_to_one() -> void:
 	battle_round = 0
 	increment_fatigue_die_to_next_round()

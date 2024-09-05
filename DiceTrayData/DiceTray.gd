@@ -59,7 +59,7 @@ signal clear_room_rectangle() # report to make room rectangle invisible
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	#clear scoreboard
 	_remove_left_dice_scoreboard()
 	_remove_right_dice_scoreboard()
@@ -67,20 +67,29 @@ func _ready():
 	# load the dice colors and styles
 	if ResourceLoader.exists("user://savedice.tres") : 
 		DicePreferences.load_dice_colors() #from file if exists
-		DicePreferences.load_dice_styles() #from file if exists
+		DicePreferences.load_dice_styles()
 		DicePreferences.load_fatigue_die()
+		DicePreferences.load_sounds()
 		
 	else: # load standard colors chosen by the developer!
 		DicePreferences.load_default_dice_colors()
 		DicePreferences.load_default_dice_styles()
 		DicePreferences.load_default_fatigue_die()
+		DicePreferences.load_default_sounds()
 
 	_assign_die_styles()
 	_assign_colors()
 	_fatigue_die_visibility()
+	_assign_sound_volumes()
+
+
+func _assign_sound_volumes() -> void:
 	
-	
-func _assign_die_styles():
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Dice On Dice"), linear_to_db(DicePreferences.d_volume_plastic))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Dice On Felt"), linear_to_db(DicePreferences.d_volume_felt))
+
+
+func _assign_die_styles() -> void:
 	# Room X die
 	for member in get_tree().get_nodes_in_group("mesh_die_x") :
 		if member.is_in_group(DicePreferences.d_style_x) : member.visible = true
@@ -123,7 +132,7 @@ func _assign_die_styles():
 		else : member.visible = false
 	
 	
-func _assign_colors():
+func _assign_colors() -> void:
 	# D66 Scoreboard
 	%D66PrimaryLabel.label_settings.font_color = DicePreferences.d_text_color_d66_prime
 	%D66PrimaryPolygon2D.self_modulate = DicePreferences.d_body_color_d66_prime
@@ -213,7 +222,7 @@ func _assign_colors():
 		DieMeshMat.albedo_color = DicePreferences.d_tray_felt_color
 
 
-func _rehome_dice():
+func _rehome_dice() -> void:
 	button_throw_xy.visible = true
 	button_throw_xy2.visible = true
 	button_throw_doubles.visible = true
@@ -232,34 +241,34 @@ func _rehome_dice():
 		fatigue_reset_button.visible = false
 	
 
-func _remove_left_dice_scoreboard():
+func _remove_left_dice_scoreboard() -> void:
 	%D66PrimaryPolygon2D.visible = false
 	d_66_primary_label.text = ""
 	%D66SecondaryPolygon2D.visible = false
 	d_66_secondary_label.text = ""
 
 
-func _remove_right_dice_scoreboard():
+func _remove_right_dice_scoreboard() -> void:
 	_remove_right_primary_die_scoreboard()
 	_remove_right_secondary_die_scoreboard()
 
 
-func _remove_right_primary_die_scoreboard():
+func _remove_right_primary_die_scoreboard() -> void:
 	%TwoD6PrimaryPolygon2D.visible = false
 	primary_label.text = ""
 
 
-func _remove_right_secondary_die_scoreboard():
+func _remove_right_secondary_die_scoreboard() -> void:
 	%TwoD6SecondaryPolygon2D.visible = false
 	secondary_label.text = ""
 
 
-func _remove_small_or_large_room_labels():
+func _remove_small_or_large_room_labels() -> void:
 	%RoomSizeSmallLabel.visible = false
 	%RoomSizeLargeLabel.visible = false
 	
 
-func _fatigue_die_visibility():
+func _fatigue_die_visibility() -> void:
 	
 	# make VISIBLE or invisible
 	if DicePreferences.d_vis_fatigue == true:
@@ -289,10 +298,9 @@ func _fatigue_die_visibility():
 		DieMeshMat.albedo_color = DicePreferences.d_body_color_fatigue
 
 
-
 #region -------------------------ROLL STARTED-----------------------------
 
-func _on_room_dimension_roll_started():
+func _on_room_dimension_roll_started() -> void:
 	center_result_label.text = ""
 	x_result_label.text = ""
 	y_result_label.text = ""
@@ -316,7 +324,7 @@ func _on_room_dimension_roll_started():
 	_remove_small_or_large_room_labels()
 
 
-func _on_die_double_roll_started():
+func _on_die_double_roll_started() -> void:
 	
 	_remove_left_dice_scoreboard() # clear the old results
 	if room_size_rolled_doubles_bool:
@@ -328,29 +336,29 @@ func _on_die_double_roll_started():
 		doubles_secondary_int = 0
 	
 
-func _on_die_lcr_roll_started():
+func _on_die_lcr_roll_started() -> void:
 	center_result_label.text = ""
 	exit_direction_label.text = ""
 	
 
 
-func _on_die_locked_roll_started():
+func _on_die_locked_roll_started() -> void:
 	center_result_label.text = ""
 	exit_lock_label.text = ""
 	
 
 
-func _on_die_primary_numbered_roll_started():
+func _on_die_primary_numbered_roll_started() -> void:
 	center_result_label.text = ""
 	
 
 
-func _on_die_secondary_numbered_roll_started():
+func _on_die_secondary_numbered_roll_started() -> void:
 	center_result_label.text = ""
 	
 
 
-func _on_die_d_3_roll_started():
+func _on_die_d_3_roll_started() -> void:
 	center_result_label.text = ""
 	d_3_result_label.text = ""
 	
@@ -359,7 +367,7 @@ func _on_die_d_3_roll_started():
 
 
 #region ---------------------- ROLL FINISHED -----------------------------
-func _add_small_or_large_room_labels( _room_x , _room_y ):
+func _add_small_or_large_room_labels( _room_x :int , _room_y :int) -> void:
 	
 	var _room_area :int = _room_x * _room_y
 	if _room_x > 1 and _room_y > 1 : 
@@ -371,7 +379,7 @@ func _add_small_or_large_room_labels( _room_x , _room_y ):
 			
 	
 
-func _determine_room_doubles():
+func _determine_room_doubles() -> void:
 	
 	# Determine if valid or need more rolls
 	if room_size_x_roll_int == room_size_y_roll_int \
@@ -385,7 +393,7 @@ func _determine_room_doubles():
 	
 	
 	
-func _room_doubles_done():
+func _room_doubles_done() -> void:
 	if room_size_x_add_int > 0 and room_size_y_add_int > 0 :
 		center_result_label.text = ""
 		room_size_rolled_doubles_bool = false
@@ -398,7 +406,7 @@ func _room_doubles_done():
 		pick_up_all_dice_button_huge.visible = true # All dice must be picked up!
 		
 
-func _on_die_dx_dim_roll_finished(die_value):
+func _on_die_dx_dim_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
 	if not room_size_rolled_doubles_bool : # prevent flipped die from changing room size
 		room_size_x_roll_int = die_value
@@ -408,7 +416,7 @@ func _on_die_dx_dim_roll_finished(die_value):
 			_determine_room_doubles()
 
 
-func _on_die_dy_dim_roll_finished(die_value):
+func _on_die_dy_dim_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
 	if not room_size_rolled_doubles_bool : # prevent flipped die from changing room size
 		room_size_y_roll_int = die_value
@@ -418,7 +426,7 @@ func _on_die_dy_dim_roll_finished(die_value):
 			_determine_room_doubles()
 
 
-func _on_die_double_primary_roll_finished(die_value):
+func _on_die_double_primary_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
 	#room size rolling not done
 	if room_size_rolled_doubles_bool and room_size_y_add_int == 0 :
@@ -434,7 +442,7 @@ func _on_die_double_primary_roll_finished(die_value):
 		d_66_primary_label.text = str(doubles_primary_int)
 
 
-func _on_die_double_secondary_roll_finished(die_value):
+func _on_die_double_secondary_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
 	#room size rolling not done
 	if room_size_rolled_doubles_bool and room_size_x_add_int == 0:
@@ -450,7 +458,7 @@ func _on_die_double_secondary_roll_finished(die_value):
 		d_66_secondary_label.text = str(doubles_secondary_int)
 
 
-func _on_die_door_pics_roll_finished(die_value):
+func _on_die_door_pics_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
 	room_number_of_exits_int = die_value
 	if room_number_of_exits_int == 1:
@@ -459,7 +467,7 @@ func _on_die_door_pics_roll_finished(die_value):
 		exit_number_label.text = str(room_number_of_exits_int) + " Exits"
 	
 	
-func _on_die_lcr_roll_finished(die_value):
+func _on_die_lcr_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
 	room_exit_direction_int = die_value
 	if room_exit_direction_int == 1 : exit_direction_label.text = "Left"
@@ -468,7 +476,7 @@ func _on_die_lcr_roll_finished(die_value):
 	#exit_direction_label.text = str(room_exit_direction_int)
 
 
-func _on_die_locked_roll_finished(die_value):
+func _on_die_locked_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
 	door_lock_status_int = die_value
 	if door_lock_status_int == 1 : exit_lock_label.text = "Metal Locked"
@@ -478,21 +486,21 @@ func _on_die_locked_roll_finished(die_value):
 	#exit_lock_label.text = str(door_lock_status_int)
 	
 
-func _on_die_primary_numbered_roll_finished(die_value):
+func _on_die_primary_numbered_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
 	primary_die_int = die_value
 	%TwoD6PrimaryPolygon2D.visible = true
 	primary_label.text = str(primary_die_int)
 
 
-func _on_die_secondary_numbered_roll_finished(die_value):
+func _on_die_secondary_numbered_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
 	secondary_die_int = die_value
 	%TwoD6SecondaryPolygon2D.visible = true
 	secondary_label.text = str(secondary_die_int)
 
 
-func _on_die_d_3_roll_finished(die_value):
+func _on_die_d_3_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
 	d3_die_int = die_value
 	d_3_result_label.text = str(d3_die_int)
@@ -501,9 +509,9 @@ func _on_die_d_3_roll_finished(die_value):
 
 #-----------------------------------------------------------------------------
 
-func _on_exit_button_pressed():
+func _on_exit_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://DiceTrayData/dice_start_menu.tscn")
 
-func _notification(what):
+func _notification(what) -> void:
 	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
 		get_tree().change_scene_to_file("res://DiceTrayData/dice_start_menu.tscn")

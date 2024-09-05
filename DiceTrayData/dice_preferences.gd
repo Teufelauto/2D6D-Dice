@@ -57,7 +57,7 @@ static var d_vis_fatigue : bool
 signal dice_impact_sound(type_of_sound :String)
 
 
-func _ready():
+func _ready() -> void:
 	if ResourceLoader.exists("user://savedice.tres") : #Load custom saved colors
 		DicePreferences.load_dice_colors()
 		DicePreferences.load_dice_styles()
@@ -71,34 +71,34 @@ func _ready():
 		DicePreferences.load_default_sounds()
 		
 	
-func _on_ready_color_menu(): # called only by Color menu when opened
+func _on_ready_color_menu() -> void: # called only by Color menu when opened
 	_paint_buttons_and_text_in_menu()
 
 
-func _on_ready_set_style_popups(): # called only by Style menu when opened
+func _on_ready_set_style_popups() -> void: # called only by Style menu when opened
 	_update_displayed_style_buttons()
 
 
-func _on_ready_fatigue_options_menu(): # called only by fatigue menu when opened
+func _on_ready_fatigue_options_menu() -> void: # called only by fatigue menu when opened
 	_paint_buttons_and_update_style_in_fatigue_menu()
 
 
-func _on_ready_sound_options_menu(): # called only by Sounds and Vibration menu when opened
+func _on_ready_sound_options_menu() -> void: # called only by Sounds and Vibration menu when opened
 	_update_selections_in_sound_menu()
 
 
-func _on_back_pressed():
+func _on_back_pressed() -> void:
 	Input.vibrate_handheld(50,1)
 	get_tree().change_scene_to_file("res://DiceTrayData/dice_options_menu.tscn")
 
 
-func _notification(what):
+func _notification(what) -> void:
 	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
 		Input.vibrate_handheld(50,1)
 		get_tree().change_scene_to_file("res://DiceTrayData/dice_options_menu.tscn")
 
 
-func _update_displayed_style_buttons():
+func _update_displayed_style_buttons() -> void:
 	var index :int 
 	
 	match d_style_x:
@@ -162,7 +162,7 @@ func _update_displayed_style_buttons():
 	$MarginContainer/GridContainer/d_style_d3.selected = index
 
 
-func _paint_buttons_and_update_style_in_fatigue_menu():
+func _paint_buttons_and_update_style_in_fatigue_menu() -> void:
 	
 	# Fatigue die visibility
 	if d_vis_fatigue == true:
@@ -184,7 +184,7 @@ func _paint_buttons_and_update_style_in_fatigue_menu():
 	$MarginContainer/VBoxContainer/GridContainer/d_style_fatigue.selected = index
 
 
-func _paint_buttons_and_text_in_menu(): # in color menu
+func _paint_buttons_and_text_in_menu() -> void: # in color menu
 	# X
 	%ColorPickerButton_Xtext.color = d_text_color_x
 	%ColorPickerButton_X.color = d_body_color_x
@@ -248,21 +248,20 @@ func _update_selections_in_sound_menu() -> void:
 	$MarginContainer/VBoxContainer/PlasticSoundHSlider.value = d_volume_plastic
 	$MarginContainer/VBoxContainer/FeltSoundHSlider.value = d_volume_felt
 	
-	
 
-func _on_load_default_colors_pressed():
+func _on_load_default_colors_pressed() -> void:
 	Input.vibrate_handheld(50,1)
 	DicePreferences.load_default_dice_colors()
 	_paint_buttons_and_text_in_menu()
 
 
-func _on_load_default_styles_pressed():
+func _on_load_default_styles_pressed() -> void:
 	Input.vibrate_handheld(50,1)
 	DicePreferences.load_default_dice_styles()
 	_update_displayed_style_buttons()
 	
 	
-func _on_load_default_fatigue_pressed():
+func _on_load_default_fatigue_pressed() -> void:
 	Input.vibrate_handheld(50,1)
 	DicePreferences.load_default_fatigue_die()
 	_paint_buttons_and_update_style_in_fatigue_menu()
@@ -299,10 +298,9 @@ static func load_sounds() -> void:
 	d_music_unmuted = saved_dice.die_music_unmuted  
 	d_music_volume = saved_dice.die_music_volume
 	d_music_variant = saved_dice.die_music_variant
+	
 
-
-
-static func load_dice_colors(): # from file
+static func load_dice_colors() -> void: # from file
 	var saved_dice:SavedDice = SafeResourceLoader.load("user://savedice.tres") as SavedDice
 	
 	if saved_dice == null:  ## ---------- RED Alert! -----------------
@@ -334,7 +332,7 @@ static func load_dice_colors(): # from file
 	d_tray_felt_color = saved_dice.die_tray_felt_color
 
 
-static func load_default_dice_colors():
+static func load_default_dice_colors() -> void:
 	# Dice Colors
 	d_text_color_x = Color.ANTIQUE_WHITE
 	d_body_color_x = Color.ROYAL_BLUE
@@ -359,7 +357,7 @@ static func load_default_dice_colors():
 	d_tray_felt_color = Color.DARK_GREEN
 	
 
-static func load_dice_styles(): # from file
+static func load_dice_styles() -> void: # from file
 	
 	var saved_dice:SavedDice = SafeResourceLoader.load("user://savedice.tres") as SavedDice
 	
@@ -382,7 +380,7 @@ static func load_dice_styles(): # from file
 	d_style_d3 = saved_dice.die_style_d3
 
 
-static func load_default_dice_styles():
+static func load_default_dice_styles() -> void:
 	# dice styles
 	d_style_x = "die_let"
 	d_style_y = "die_let"
@@ -396,7 +394,7 @@ static func load_default_dice_styles():
 	d_style_d3 = "die_dot"
 	
 
-static func load_fatigue_die():
+static func load_fatigue_die() -> void:
 	
 	var saved_dice:SavedDice = SafeResourceLoader.load("user://savedice.tres") as SavedDice
 	
@@ -417,7 +415,7 @@ static func load_fatigue_die():
 	d_vis_fatigue = saved_dice.die_vis_fatigue
 
 
-static func load_default_fatigue_die():
+static func load_default_fatigue_die() -> void:
 	
 	# color
 	d_text_color_fatigue = Color.ANTIQUE_WHITE
@@ -430,7 +428,7 @@ static func load_default_fatigue_die():
 	d_vis_fatigue = true
 
 
-func _save_dice_preferences():
+func _save_dice_preferences() -> void:
 	Input.vibrate_handheld(50,1)
 	var saved_dice:SavedDice = SavedDice.new()
 	
@@ -490,115 +488,115 @@ func _save_dice_preferences():
 
 
 #region ------- Color Menu Signals --------------------------------------------
-func _on_color_picker_button_xtext_color_changed(color):
+func _on_color_picker_button_xtext_color_changed(color :Color) -> void:
 	Input.vibrate_handheld(50,1)
 	%LabelX.label_settings.font_color = color
 	d_text_color_x = color
 	
 	
-func _on_color_picker_button_x_color_changed(color):
+func _on_color_picker_button_x_color_changed(color :Color) -> void:
 	Input.vibrate_handheld(50,1)
 	d_body_color_x = color
 
 
-func _on_color_picker_button_ytext_color_changed(color):
+func _on_color_picker_button_ytext_color_changed(color :Color) -> void:
 	Input.vibrate_handheld(50,1)
 	%LabelY.label_settings.font_color = color
 	d_text_color_y = color
 
 
-func _on_color_picker_button_y_color_changed(color):
+func _on_color_picker_button_y_color_changed(color :Color) -> void:
 	Input.vibrate_handheld(50,1)
 	d_body_color_y = color
 
 
-func _on_color_picker_button_d_66_ptext_color_changed(color):
+func _on_color_picker_button_d_66_ptext_color_changed(color :Color) -> void:
 	Input.vibrate_handheld(50,1)
 	%LabelD66Prime.label_settings.font_color = color
 	d_text_color_d66_prime = color
 	
 
-func _on_color_picker_button_d_66_prime_color_changed(color):
+func _on_color_picker_button_d_66_prime_color_changed(color :Color) -> void:
 	Input.vibrate_handheld(50,1)
 	d_body_color_d66_prime = color
 	
 	
-func _on_color_picker_button_d_66_stext_color_changed(color):
+func _on_color_picker_button_d_66_stext_color_changed(color :Color) -> void:
 	Input.vibrate_handheld(50,1)
 	%LabelD66Secondary.label_settings.font_color = color
 	d_text_color_d66_secondary = color
 	
-func _on_color_picker_button_d_66_secondary_color_changed(color):
+func _on_color_picker_button_d_66_secondary_color_changed(color :Color) -> void:
 	Input.vibrate_handheld(50,1)
 	d_body_color_d66_secondary = color
 	
 
-func _on_color_picker_button_prime_text_color_changed(color):
+func _on_color_picker_button_prime_text_color_changed(color :Color) -> void:
 	Input.vibrate_handheld(50,1)
 	%LabelD6Prime.label_settings.font_color = color
 	d_text_color_single_primary = color
 
 
-func _on_color_picker_button_primary_color_changed(color):
+func _on_color_picker_button_primary_color_changed(color :Color) -> void:
 	Input.vibrate_handheld(50,1)
 	d_body_color_single_primary = color
 	
 
-func _on_color_picker_button_secondary_text_color_changed(color):
+func _on_color_picker_button_secondary_text_color_changed(color :Color) -> void:
 	Input.vibrate_handheld(50,1)
 	%LabelD6Secondary.label_settings.font_color = color
 	d_text_color_single_secondary = color
 
 
-func _on_color_picker_button_secondary_color_changed(color):
+func _on_color_picker_button_secondary_color_changed(color :Color) -> void:
 	Input.vibrate_handheld(50,1)
 	d_body_color_single_secondary = color
 	
 
-func _on_color_picker_button_exit_num_text_color_changed(color):
+func _on_color_picker_button_exit_num_text_color_changed(color :Color) -> void:
 	Input.vibrate_handheld(50,1)
 	%LabelExitQty.label_settings.font_color = color
 	d_text_color_exit_numbers = color
 
 
-func _on_color_picker_button_exit_num_color_changed(color):
+func _on_color_picker_button_exit_num_color_changed(color :Color) -> void:
 	Input.vibrate_handheld(50,1)
 	d_body_color_exit_numbers = color
 
 
-func _on_color_picker_button_exit_dir_text_color_changed(color):
+func _on_color_picker_button_exit_dir_text_color_changed(color :Color) -> void:
 	Input.vibrate_handheld(50,1)
 	%LabelExitDir.label_settings.font_color = color
 	d_text_color_exit_direction = color
 
 
-func _on_color_picker_button_exit_direction_color_changed(color):
+func _on_color_picker_button_exit_direction_color_changed(color :Color) -> void:
 	Input.vibrate_handheld(50,1)
 	d_body_color_exit_direction = color
 	
 
-func _on_color_picker_button_exit_lock_text_color_changed(color):
+func _on_color_picker_button_exit_lock_text_color_changed(color :Color) -> void:
 	Input.vibrate_handheld(50,1)
 	%LabelExitLock.label_settings.font_color = color
 	d_text_color_exit_lock = color
 	
 
-func _on_color_picker_button_exit_lock_color_changed(color):
+func _on_color_picker_button_exit_lock_color_changed(color :Color) -> void:
 	Input.vibrate_handheld(50,1)
 	d_body_color_exit_lock = color
 	
 
-func _on_color_picker_button_d_3_text_color_changed(color):
+func _on_color_picker_button_d_3_text_color_changed(color :Color) -> void:
 	Input.vibrate_handheld(50,1)
 	%LabelD3.label_settings.font_color = color
 	d_text_color_d3 = color
 
 
-func _on_color_picker_button_d_3_color_changed(color):
+func _on_color_picker_button_d_3_color_changed(color :Color) -> void:
 	Input.vibrate_handheld(50,1)
 	d_body_color_d3 = color
 
-func _on_color_picker_button_tray_felt_color_changed(color):
+func _on_color_picker_button_tray_felt_color_changed(color :Color) -> void:
 	Input.vibrate_handheld(50,1)
 	d_tray_felt_color = color
 	
@@ -607,7 +605,7 @@ func _on_color_picker_button_tray_felt_color_changed(color):
 #region -------- Style Menu Signals -----------------------------------
 
 # This function is used in the ones that follow it.
-func _dice_style_matching(index) -> String:
+func _dice_style_matching(index :int) -> String:
 	Input.vibrate_handheld(50,1)
 	var die_style : String
 	match index:
@@ -619,43 +617,43 @@ func _dice_style_matching(index) -> String:
 			die_style = "die_let"
 	return die_style
 
-func _on_option_button_x_item_selected(index):
+func _on_option_button_x_item_selected(index :int) -> void:
 	d_style_x = _dice_style_matching(index)
 
 
-func _on_option_button_y_item_selected(index):
+func _on_option_button_y_item_selected(index :int) -> void:
 	d_style_y = _dice_style_matching(index)
 
 
-func _on_option_button_d_66_primary_item_selected(index):
+func _on_option_button_d_66_primary_item_selected(index :int) -> void:
 	d_style_d66_prime = _dice_style_matching(index)
 
 
-func _on_option_button_d_66_secondary_item_selected(index):
+func _on_option_button_d_66_secondary_item_selected(index :int) -> void:
 	d_style_d66_secondary = _dice_style_matching(index)
 
 
-func _on_option_button_single_primary_item_selected(index):
+func _on_option_button_single_primary_item_selected(index :int) -> void:
 	d_style_single_primary = _dice_style_matching(index)
 
 
-func _on_option_button_single_secondary_item_selected(index):
+func _on_option_button_single_secondary_item_selected(index :int) -> void:
 	d_style_single_secondary = _dice_style_matching(index)
 	
 
-func _on_option_button_exit_qty_item_selected(index):
+func _on_option_button_exit_qty_item_selected(index :int) -> void:
 	d_style_exit_qty = _dice_style_matching(index)
 
 
-func _on_option_button_exit_direction_item_selected(index):
+func _on_option_button_exit_direction_item_selected(index :int) -> void:
 	d_style_exit_direction = _dice_style_matching(index)
 
 
-func _on_option_button_lock_item_selected(index):
+func _on_option_button_lock_item_selected(index :int) -> void:
 	d_style_exit_lock = _dice_style_matching(index)
 
 
-func _on_option_button_d_3_item_selected(index):
+func _on_option_button_d_3_item_selected(index :int) -> void:
 	d_style_d3 = _dice_style_matching(index)
 	
 	
@@ -663,7 +661,7 @@ func _on_option_button_d_3_item_selected(index):
 
 
 #region -----------  Fatigue Menu Signals ---------------------------------------
-func _on_fatigue_die_visiblity_item_selected(index):
+func _on_fatigue_die_visiblity_item_selected(index :int) -> void:
 	Input.vibrate_handheld(50,1)
 	match index:
 		0: 
@@ -671,18 +669,18 @@ func _on_fatigue_die_visiblity_item_selected(index):
 		1: 
 			d_vis_fatigue = true
 
-func _on_color_picker_button_fatigue_text_color_changed(color):
+func _on_color_picker_button_fatigue_text_color_changed(color :Color) -> void:
 	Input.vibrate_handheld(50,1)
 	%LabelFatigue.label_settings.font_color = color
 	d_text_color_fatigue = color
 
 
-func _on_color_picker_button_fatigue_color_changed(color):
+func _on_color_picker_button_fatigue_color_changed(color :Color) -> void:
 	Input.vibrate_handheld(50,1)
 	d_body_color_fatigue = color
 
 
-func _on_d_style_fatigue_item_selected(index):
+func _on_d_style_fatigue_item_selected(index :int) -> void:
 	Input.vibrate_handheld(50,1)
 	var die_style : String
 	match index:
@@ -728,6 +726,8 @@ func _on_plastic_sound_h_slider_value_changed(value: float) -> void:
 		# Change the bus name if you'd like to change the volume of a specific bus only.
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Dice On Dice"), linear_to_db($MarginContainer/VBoxContainer/PlasticSoundHSlider.value))
 	d_volume_plastic = $MarginContainer/VBoxContainer/PlasticSoundHSlider.value
+	
+	#in future, maybe link to sound
 	dice_impact_sound.emit("plastic")
 	
 
@@ -738,6 +738,7 @@ func _on_felt_sound_h_slider_value_changed(value: float) -> void:
 	# Change the bus name if you'd like to change the volume of a specific bus only.
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Dice On Felt"), linear_to_db($MarginContainer/VBoxContainer/FeltSoundHSlider.value))
 	d_volume_felt = $MarginContainer/VBoxContainer/FeltSoundHSlider.value
+	
 	dice_impact_sound.emit("felt")
 	
 	
