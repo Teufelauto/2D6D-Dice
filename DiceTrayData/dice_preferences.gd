@@ -81,7 +81,7 @@ func _on_ready_fatigue_options_menu(): # called only by fatigue menu when opened
 
 
 func _on_ready_sound_options_menu(): # called only by Sounds and Vibration menu when opened
-	pass
+	_update_selections_in_sound_menu()
 
 
 func _on_back_pressed():
@@ -225,7 +225,25 @@ func _paint_buttons_and_text_in_menu(): # in color menu
 	# Tray Felt color
 	%ColorPickerButton_TrayFelt.color = d_tray_felt_color
 	
+
+func _update_selections_in_sound_menu() -> void:
+	var index :int 
 	
+	# Dice Vibration on
+	match d_vibration_on:
+		false : index = 0
+		true : index = 1
+	$MarginContainer/VBoxContainer/GridContainer/dice_vibe_on.selected = index
+	
+	# Dice unmute
+	match d_unmuted:
+		false : index = 0
+		true : index = 1
+	$MarginContainer/VBoxContainer/GridContainer/dice_unmute.selected = index
+	
+	
+	
+
 func _on_load_default_colors_pressed():
 	Input.vibrate_handheld(50,1)
 	DicePreferences.load_default_dice_colors()
@@ -247,6 +265,7 @@ func _on_load_default_fatigue_pressed():
 func _on_load_default_sound_pressed() -> void:
 	Input.vibrate_handheld(50,1)
 	DicePreferences.load_default_sounds()
+	_update_selections_in_sound_menu()
 
 static func load_default_sounds() -> void:
 	#Dice Sounds
@@ -677,14 +696,26 @@ func _on_d_style_fatigue_item_selected(index):
 #region ---------- Sound and Vibration Menu Signals ------------------
 
 func _on_dice_vibe_on_item_selected(index: int) -> void:
-	
-	pass # Replace with function body.
+	match index:
+		0: 
+			Input.vibrate_handheld(50,1)
+			d_vibration_on = false
+		1: 
+			Input.vibrate_handheld(50,1)
+			d_vibration_on = true
 
 
 func _on_dice_unmute_item_selected(index: int) -> void:
-	
-	pass # Replace with function body.
+	match index:
+		0: 
+			Input.vibrate_handheld(50,1)
+			d_unmuted = false
+		1: 
+			Input.vibrate_handheld(50,1)
+			d_unmuted = true
 
 
+#static var d_volume_felt : float
+#static var d_volume_plastic : float
 
 #endregion

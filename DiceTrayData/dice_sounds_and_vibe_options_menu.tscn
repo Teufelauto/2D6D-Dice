@@ -100,7 +100,7 @@ text = " Load Default "
 [node name="Spacer4" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 
-[node name="SaveFatigue" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
+[node name="SaveSounds" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme = SubResource("Theme_flbc3")
 theme_override_font_sizes/font_size = 40
@@ -122,5 +122,5 @@ text = "Back"
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/GridContainer/dice_vibe_on" to="." method="_on_dice_vibe_on_item_selected"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/GridContainer/dice_unmute" to="." method="_on_dice_unmute_item_selected"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/LoadDefaultSound" to="." method="_on_load_default_sound_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/SaveFatigue" to="." method="_save_dice_preferences"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/SaveSounds" to="." method="_save_dice_preferences"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
