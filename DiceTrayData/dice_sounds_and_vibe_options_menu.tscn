@@ -1,0 +1,126 @@
+[gd_scene load_steps=6 format=3 uid="uid://kvwicrlnceye"]
+
+[ext_resource type="Script" path="res://DiceTrayData/dice_preferences.gd" id="1_8vvkg"]
+
+[sub_resource type="Theme" id="Theme_flbc3"]
+
+[sub_resource type="Theme" id="Theme_6bui5"]
+default_font_size = 40
+PopupMenu/font_sizes/font_size = 60
+
+[sub_resource type="Theme" id="Theme_tg4dw"]
+
+[sub_resource type="Theme" id="Theme_1glhj"]
+PopupMenu/font_sizes/font_size = 60
+
+[node name="DiceSoundsAndVibeMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8vvkg")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -279.0
+offset_right = 200.0
+offset_bottom = 279.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Sounds and Vibration
+
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="DiceVibration" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme = SubResource("Theme_flbc3")
+theme_override_font_sizes/font_size = 40
+text = "Dice Vibration  "
+
+[node name="dice_vibe_on" type="OptionButton" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme = SubResource("Theme_6bui5")
+selected = 1
+allow_reselect = true
+item_count = 2
+popup/item_0/text = "OFF"
+popup/item_1/text = "ON"
+popup/item_1/id = 1
+
+[node name="DiceMuting" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme = SubResource("Theme_flbc3")
+theme_override_font_sizes/font_size = 40
+text = "Dice Sounds"
+
+[node name="dice_unmute" type="OptionButton" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme = SubResource("Theme_6bui5")
+selected = 1
+allow_reselect = true
+item_count = 2
+popup/item_0/text = "OFF"
+popup/item_1/text = "ON"
+popup/item_1/id = 1
+
+[node name="Spacer5" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Spacer6" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="LoadDefaultSound" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme = SubResource("Theme_tg4dw")
+theme_override_font_sizes/font_size = 40
+text = " Load Default "
+
+[node name="Spacer4" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="SaveFatigue" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme = SubResource("Theme_flbc3")
+theme_override_font_sizes/font_size = 40
+text = " Save Current "
+
+[node name="Spacer" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Spacer2" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1glhj")
+theme_override_font_sizes/font_size = 60
+text = "Back"
+
+[connection signal="ready" from="." to="." method="_on_ready_sound_options_menu"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/GridContainer/dice_vibe_on" to="." method="_on_dice_vibe_on_item_selected"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/GridContainer/dice_unmute" to="." method="_on_dice_unmute_item_selected"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/LoadDefaultSound" to="." method="_on_load_default_sound_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/SaveFatigue" to="." method="_save_dice_preferences"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

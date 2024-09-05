@@ -48,6 +48,18 @@ theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 60
 text = "Fatigue Die"
 
+[node name="SoundAndVibe" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1glhj")
+theme_override_font_sizes/font_size = 60
+text = "Sounds & Vibe"
+
+[node name="Legal" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1glhj")
+theme_override_font_sizes/font_size = 60
+text = "Legal"
+
 [node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
@@ -57,4 +69,6 @@ text = "Back"
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ChangeColors" to="." method="_on_change_colors_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/DiceStyles" to="." method="_on_dice_styles_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/FatigueDie" to="." method="_on_fatigue_die_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/SoundAndVibe" to="." method="_on_sound_and_vibe_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Legal" to="." method="_on_legal_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

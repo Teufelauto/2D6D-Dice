@@ -4,13 +4,13 @@ class_name DicePreferences
 
 
 # Vibration and Sound
-static var d_dice_vibration_on : bool = true
-static var d_dice_unmuted : bool = true
-static var d_dice_volume_felt : float
-static var d_dice_volume_plastic : float
-#static var d_music_unmuted : bool  # Future Feature?
-#static var d_music_volume : float
-#static var d_music_variant : int
+static var d_vibration_on : bool = true
+static var d_unmuted : bool = true
+static var d_volume_felt : float
+static var d_volume_plastic : float
+static var d_music_unmuted : bool	# Future Feature?
+static var d_music_volume : float   # Future Feature?
+static var d_music_variant : int	# Future Feature?
 
 # Colors
 static var d_text_color_x : Color
@@ -55,15 +55,18 @@ static var d_vis_fatigue : bool
 
 
 func _ready():
-	if ResourceLoader.exists("user://savedice.tres") : #Load custom colors
+	if ResourceLoader.exists("user://savedice.tres") : #Load custom saved colors
 		DicePreferences.load_dice_colors()
 		DicePreferences.load_dice_styles()
 		DicePreferences.load_fatigue_die()
+		DicePreferences.load_sounds()
 		
 	else: # load standard colors chosen by the developer!
 		DicePreferences.load_default_dice_colors()
 		DicePreferences.load_default_dice_styles()
 		DicePreferences.load_default_fatigue_die()
+		DicePreferences.load_default_sounds()
+		
 	
 func _on_ready_color_menu(): # called only by Color menu when opened
 	_paint_buttons_and_text_in_menu()
@@ -77,15 +80,28 @@ func _on_ready_fatigue_options_menu(): # called only by fatigue menu when opened
 	_paint_buttons_and_update_style_in_fatigue_menu()
 
 
+func _on_ready_sound_options_menu(): # called only by Sounds and Vibration menu when opened
+	pass
+
+
+func _on_back_pressed():
+	Input.vibrate_handheld(50,1)
+	get_tree().change_scene_to_file("res://DiceTrayData/dice_options_menu.tscn")
+
+
+func _notification(what):
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		Input.vibrate_handheld(50,1)
+		get_tree().change_scene_to_file("res://DiceTrayData/dice_options_menu.tscn")
+
+
 func _update_displayed_style_buttons():
 	var index :int 
+	
 	match d_style_x:
-		"die_num" : 
-			index = 0
-		"die_dot" : 
-			index = 1
-		"die_let" : 
-			index = 2
+		"die_num" : index = 0
+		"die_dot" : index = 1
+		"die_let" : index = 2
 	$MarginContainer/GridContainer/d_style_x.selected = index
 	
 	match d_style_y:
@@ -228,6 +244,39 @@ func _on_load_default_fatigue_pressed():
 	_paint_buttons_and_update_style_in_fatigue_menu()
 
 
+func _on_load_default_sound_pressed() -> void:
+	Input.vibrate_handheld(50,1)
+	DicePreferences.load_default_sounds()
+
+static func load_default_sounds() -> void:
+	#Dice Sounds
+	d_vibration_on = true
+	d_unmuted = true
+	d_volume_felt = 0
+	d_volume_plastic = 0
+	
+
+static func load_sounds() -> void:
+	var saved_dice:SavedDice = SafeResourceLoader.load("user://savedice.tres") as SavedDice
+	
+	if saved_dice == null:  ## ---------- RED Alert! -----------------
+		print("SaveDice.tres file was unsafe! Possible malicious code injection prevented.")
+		Input.vibrate_handheld(1000,1)
+		OS.alert( "SaveDice.tres file is unsafe! Possible malicious code injection prevented. Your save file is borked.",  "WARNING!")
+		return
+	
+	d_vibration_on = saved_dice.die_vibration_on
+	d_unmuted = saved_dice.die_unmuted
+	d_volume_felt = saved_dice.die_volume_felt
+	d_volume_plastic = saved_dice.die_volume_plastic
+	
+	# Future Feature?
+	d_music_unmuted = saved_dice.die_music_unmuted  
+	d_music_volume = saved_dice.die_music_volume
+	d_music_variant = saved_dice.die_music_variant
+
+
+
 static func load_dice_colors(): # from file
 	var saved_dice:SavedDice = SafeResourceLoader.load("user://savedice.tres") as SavedDice
 	
@@ -360,7 +409,7 @@ func _save_dice_preferences():
 	Input.vibrate_handheld(50,1)
 	var saved_dice:SavedDice = SavedDice.new()
 	
-	#colors
+	# colors
 	saved_dice.die_text_color_x = d_text_color_x 
 	saved_dice.die_body_color_x = d_body_color_x 
 	saved_dice.die_text_color_y = d_text_color_y
@@ -385,7 +434,7 @@ func _save_dice_preferences():
 	saved_dice.die_text_color_fatigue = d_text_color_fatigue
 	saved_dice.die_body_color_fatigue = d_body_color_fatigue
 	
-	#styles
+	# styles
 	saved_dice.die_style_x = d_style_x
 	saved_dice.die_style_y = d_style_y
 	saved_dice.die_style_d66_prime = d_style_d66_prime
@@ -398,20 +447,22 @@ func _save_dice_preferences():
 	saved_dice.die_style_d3 = d_style_d3
 	saved_dice.die_style_fatigue = d_style_fatigue
 	
-	#option
+	# fatigue die viewable option
 	saved_dice.die_vis_fatigue = d_vis_fatigue
+	
+	# dice vibration and sound
+	saved_dice.die_vibration_on = d_vibration_on
+	saved_dice.die_unmuted = d_unmuted
+	saved_dice.die_volume_felt = d_volume_felt
+	saved_dice.die_volume_plastic = d_volume_plastic
+	
+	# dice music Future Feature?
+	saved_dice.die_music_unmuted = d_music_unmuted
+	saved_dice.die_music_volume = d_music_volume
+	saved_dice.die_music_variant = d_music_variant
 	
 	ResourceSaver.save(saved_dice, "user://savedice.tres")
 
-
-func _on_back_pressed():
-	Input.vibrate_handheld(50,1)
-	get_tree().change_scene_to_file("res://DiceTrayData/dice_options_menu.tscn")
-	
-func _notification(what):
-	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
-		Input.vibrate_handheld(50,1)
-		get_tree().change_scene_to_file("res://DiceTrayData/dice_options_menu.tscn")
 
 #region ------- Color Menu Signals --------------------------------------------
 func _on_color_picker_button_xtext_color_changed(color):
@@ -529,166 +580,61 @@ func _on_color_picker_button_tray_felt_color_changed(color):
 #endregion
 
 #region -------- Style Menu Signals -----------------------------------
-func _on_option_button_x_item_selected(index):
+
+# This function is used in the ones that follow it.
+func _dice_style_matching(index) -> String:
 	Input.vibrate_handheld(50,1)
 	var die_style : String
 	match index:
 		0: 
-			Input.vibrate_handheld(50,1)
 			die_style = "die_num"
 		1: 
-			Input.vibrate_handheld(50,1)
 			die_style = "die_dot"
 		2: 
-			Input.vibrate_handheld(50,1)
 			die_style = "die_let"
-	d_style_x = die_style
+	return die_style
+
+func _on_option_button_x_item_selected(index):
+	d_style_x = _dice_style_matching(index)
 
 
 func _on_option_button_y_item_selected(index):
-	Input.vibrate_handheld(50,1)
-	var die_style : String
-	match index:
-		0: 
-			Input.vibrate_handheld(50,1)
-			die_style = "die_num"
-		1: 
-			Input.vibrate_handheld(50,1)
-			die_style = "die_dot"
-		2: 
-			Input.vibrate_handheld(50,1)
-			die_style = "die_let"
-	d_style_y = die_style
+	d_style_y = _dice_style_matching(index)
 
 
 func _on_option_button_d_66_primary_item_selected(index):
-	Input.vibrate_handheld(50,1)
-	var die_style : String
-	match index:
-		0: 
-			Input.vibrate_handheld(50,1)
-			die_style = "die_num"
-		1: 
-			Input.vibrate_handheld(50,1)
-			die_style = "die_dot"
-		2: 
-			Input.vibrate_handheld(50,1)
-			die_style = "die_let"
-	d_style_d66_prime = die_style
+	d_style_d66_prime = _dice_style_matching(index)
 
 
 func _on_option_button_d_66_secondary_item_selected(index):
-	Input.vibrate_handheld(50,1)
-	var die_style : String
-	match index:
-		0: 
-			Input.vibrate_handheld(50,1)
-			die_style = "die_num"
-		1: 
-			Input.vibrate_handheld(50,1)
-			die_style = "die_dot"
-		2: 
-			Input.vibrate_handheld(50,1)
-			die_style = "die_let"
-	d_style_d66_secondary = die_style
+	d_style_d66_secondary = _dice_style_matching(index)
 
 
 func _on_option_button_single_primary_item_selected(index):
-	Input.vibrate_handheld(50,1)
-	var die_style : String
-	match index:
-		0: 
-			Input.vibrate_handheld(50,1)
-			die_style = "die_num"
-		1: 
-			Input.vibrate_handheld(50,1)
-			die_style = "die_dot"
-		2: 
-			Input.vibrate_handheld(50,1)
-			die_style = "die_let"
-	d_style_single_primary = die_style
+	d_style_single_primary = _dice_style_matching(index)
 
 
 func _on_option_button_single_secondary_item_selected(index):
-	Input.vibrate_handheld(50,1)
-	var die_style : String
-	match index:
-		0: 
-			Input.vibrate_handheld(50,1)
-			die_style = "die_num"
-		1: 
-			Input.vibrate_handheld(50,1)
-			die_style = "die_dot"
-		2: 
-			Input.vibrate_handheld(50,1)
-			die_style = "die_let"
-	d_style_single_secondary = die_style
+	d_style_single_secondary = _dice_style_matching(index)
 	
 
 func _on_option_button_exit_qty_item_selected(index):
-	Input.vibrate_handheld(50,1)
-	var die_style : String
-	match index:
-		0: 
-			Input.vibrate_handheld(50,1)
-			die_style = "die_num"
-		1: 
-			Input.vibrate_handheld(50,1)
-			die_style = "die_dot"
-		2: 
-			Input.vibrate_handheld(50,1)
-			die_style = "die_let"
-	d_style_exit_qty = die_style
+	d_style_exit_qty = _dice_style_matching(index)
 
 
 func _on_option_button_exit_direction_item_selected(index):
-	Input.vibrate_handheld(50,1)
-	var die_style : String
-	match index:
-		0: 
-			Input.vibrate_handheld(50,1)
-			die_style = "die_num"
-		1: 
-			Input.vibrate_handheld(50,1)
-			die_style = "die_dot"
-		2: 
-			Input.vibrate_handheld(50,1)
-			die_style = "die_let"
-	d_style_exit_direction = die_style
+	d_style_exit_direction = _dice_style_matching(index)
 
 
 func _on_option_button_lock_item_selected(index):
-	Input.vibrate_handheld(50,1)
-	var die_style : String
-	match index:
-		0: 
-			Input.vibrate_handheld(50,1)
-			die_style = "die_num"
-		1: 
-			Input.vibrate_handheld(50,1)
-			die_style = "die_dot"
-		2: 
-			Input.vibrate_handheld(50,1)
-			die_style = "die_let"
-	d_style_exit_lock = die_style
+	d_style_exit_lock = _dice_style_matching(index)
 
 
 func _on_option_button_d_3_item_selected(index):
-	Input.vibrate_handheld(50,1)
-	var die_style : String
-	match index:
-		0: 
-			Input.vibrate_handheld(50,1)
-			die_style = "die_num"
-		1: 
-			Input.vibrate_handheld(50,1)
-			die_style = "die_dot"
-		2: 
-			Input.vibrate_handheld(50,1)
-			die_style = "die_let"
-	d_style_d3 = die_style
+	d_style_d3 = _dice_style_matching(index)
+	
+	
 #endregion
-
 
 
 #region -----------  Fatigue Menu Signals ---------------------------------------
@@ -696,10 +642,8 @@ func _on_fatigue_die_visiblity_item_selected(index):
 	Input.vibrate_handheld(50,1)
 	match index:
 		0: 
-			Input.vibrate_handheld(50,1)
 			d_vis_fatigue = false
 		1: 
-			Input.vibrate_handheld(50,1)
 			d_vis_fatigue = true
 
 func _on_color_picker_button_fatigue_text_color_changed(color):
@@ -730,12 +674,17 @@ func _on_d_style_fatigue_item_selected(index):
 
 #endregion
 
-#region ---------- Sound and Vibration Settings ------------------
+#region ---------- Sound and Vibration Menu Signals ------------------
 
-#static var d_dice_vibration_on : bool = true
-#static var d_dice_unmuted : bool = true
-#static var d_dice_volume_felt : float
-#static var d_dice_volume_plastic : float
+func _on_dice_vibe_on_item_selected(index: int) -> void:
+	
+	pass # Replace with function body.
+
+
+func _on_dice_unmute_item_selected(index: int) -> void:
+	
+	pass # Replace with function body.
+
 
 
 #endregion

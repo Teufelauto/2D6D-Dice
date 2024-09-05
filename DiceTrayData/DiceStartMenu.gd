@@ -14,11 +14,6 @@ func _on_options_pressed():
 	get_tree().change_scene_to_file("res://DiceTrayData/dice_options_menu.tscn")
 
 
-func _on_notes_pressed():
-	Input.vibrate_handheld(50,1)
-	get_tree().change_scene_to_file("res://DiceTrayData/notes_menu.tscn")
-
-
 func _on_quit_pressed():
 	Input.vibrate_handheld(100,1)
 	
