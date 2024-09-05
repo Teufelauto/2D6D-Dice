@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://DiceTrayData/notes_menu.gd" id="1_l34cr"]
 
 [sub_resource type="Theme" id="Theme_1glhj"]
-default_font_size = 30
+default_font_size = 25
 
 [node name="NotesMenu" type="Control"]
 layout_mode = 3

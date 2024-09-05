@@ -743,7 +743,7 @@ visible = false
 shape = SubResource("BoxShape3D_a2wnj")
 
 [node name="TableRight" type="MeshInstance3D" parent="DiceTray/TrayModel" groups=["mesh_die_tray_felt"]]
-transform = Transform3D(0.001, 0, 0, 0, 1, 0, 0, 0, 3, 0.473461, 0.496143, -0.0349791)
+transform = Transform3D(0.001, 0, 0, 0, 1, 0, 0, 0, 3, 0.473461, 0.469585, -0.0349791)
 cast_shadow = 0
 mesh = SubResource("BoxMesh_dtie3")
 skeleton = NodePath("../../..")
@@ -758,7 +758,7 @@ visible = false
 shape = SubResource("BoxShape3D_a2wnj")
 
 [node name="TableLeft" type="MeshInstance3D" parent="DiceTray/TrayModel" groups=["mesh_die_tray_felt"]]
-transform = Transform3D(0.001, 0, 0, 0, 1, 0, 0, 0, 3, -0.508575, 0.4, -0.0343166)
+transform = Transform3D(0.001, 0, 0, 0, 1, 0, 0, 0, 3, -0.508575, 0.479732, -0.0343166)
 cast_shadow = 0
 mesh = SubResource("BoxMesh_dtie3")
 skeleton = NodePath("../../..")
