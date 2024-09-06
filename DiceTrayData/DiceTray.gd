@@ -377,7 +377,6 @@ func _add_small_or_large_room_labels( _room_x :int , _room_y :int) -> void:
 		elif _room_area >= 32 : # 4x8 5x7 6x6, or larger
 			%RoomSizeLargeLabel.visible = true
 			
-	
 
 func _determine_room_doubles() -> void:
 	
@@ -396,13 +395,13 @@ func _determine_room_doubles() -> void:
 func _room_doubles_done() -> void:
 	if room_size_x_add_int > 0 and room_size_y_add_int > 0 :
 		center_result_label.text = ""
-		room_size_rolled_doubles_bool = false
 		room_size_x_int = room_size_x_int + room_size_x_add_int
 		room_size_y_int = room_size_y_int + room_size_y_add_int
 		x_result_label.text = str(room_size_x_int)
 		y_result_label.text = str(room_size_y_int)
 		resize_room_rectangle.emit(room_size_x_int,room_size_y_int)
 		_add_small_or_large_room_labels(room_size_x_int,room_size_y_int)
+		room_size_rolled_doubles_bool = false
 		pick_up_all_dice_button_huge.visible = true # All dice must be picked up!
 		
 
@@ -428,13 +427,16 @@ func _on_die_dy_dim_roll_finished(die_value :int) -> void:
 
 func _on_die_double_primary_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
+	
 	#room size rolling not done
 	if room_size_rolled_doubles_bool and room_size_y_add_int == 0 :
 		room_size_x_add_int = die_value
+		
 	#room size rolling IS done
 	elif room_size_rolled_doubles_bool and room_size_y_add_int > 0 :
 		room_size_x_add_int = die_value
 		_room_doubles_done()
+		
 	#roll 2 dice for d66 or 2d6
 	else:
 		doubles_primary_int = die_value
@@ -444,13 +446,16 @@ func _on_die_double_primary_roll_finished(die_value :int) -> void:
 
 func _on_die_double_secondary_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
+	
 	#room size rolling not done
 	if room_size_rolled_doubles_bool and room_size_x_add_int == 0:
 		room_size_y_add_int = die_value
+		
 	#room size rolling IS done
 	elif room_size_rolled_doubles_bool and room_size_x_add_int > 0 :
 		room_size_y_add_int = die_value
 		_room_doubles_done()
+		
 	#roll 2 dice for d66 or 2d6
 	else:
 		doubles_secondary_int = die_value
@@ -473,7 +478,7 @@ func _on_die_lcr_roll_finished(die_value :int) -> void:
 	if room_exit_direction_int == 1 : exit_direction_label.text = "Left"
 	elif room_exit_direction_int == 2 : exit_direction_label.text = "Center"
 	else : exit_direction_label.text = "Right"
-	#exit_direction_label.text = str(room_exit_direction_int)
+	
 
 
 func _on_die_locked_roll_finished(die_value :int) -> void:
@@ -483,7 +488,7 @@ func _on_die_locked_roll_finished(die_value :int) -> void:
 	elif door_lock_status_int == 2 : exit_lock_label.text = "Metal / Reinforced Locked"
 	elif door_lock_status_int == 3 : exit_lock_label.text = "Locked"
 	else : exit_lock_label.text = "Not Locked"
-	#exit_lock_label.text = str(door_lock_status_int)
+	
 	
 
 func _on_die_primary_numbered_roll_finished(die_value :int) -> void:
