@@ -86,7 +86,7 @@ func _on_sleeping_state_changed() -> void:
 				is_rolling = false
 				landed_on_side = true
 				#freeze = true #Works to keep dice from flipping, but they can't slide around
-				#lock_rotation = true # This line breaks ability to unlock, even though value un checks
+				#lock_rotation = true # This line breaks ability to unlock, even though value un checks - BUG reported
 				axis_lock_linear_y = true
 				
 		if not landed_on_side: # Auto reroll if rests at angle
