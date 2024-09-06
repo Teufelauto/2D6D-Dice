@@ -2,12 +2,10 @@
 
 [ext_resource type="Script" path="res://DiceTrayData/DiceStartMenu.gd" id="1_n4ex5"]
 [ext_resource type="Texture2D" uid="uid://cui16rtfhryd0" path="res://2D6_Dungeon_Compatible_Logo.png" id="2_nh2tl"]
+[ext_resource type="Texture2D" uid="uid://bddy10ar4c4w4" path="res://DigitalDice.png" id="2_wb8ut"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tviu5"]
-bg_color = Color(0.147672, 0.147672, 0.147672, 1)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ysgnk"]
-load_path = "res://.godot/imported/Dice.png-882c6eafe4e41c1ad8b5d2d9c8d260aa.ctex"
+bg_color = Color(0.0292885, 0.282763, 0.0223674, 1)
 
 [sub_resource type="Theme" id="Theme_1glhj"]
 
@@ -29,17 +27,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tviu5")
 
-[node name="VersionLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 25
-text = "version"
-vertical_alignment = 2
-
 [node name="DiceTitle" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -48,17 +35,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect2" type="TextureRect" parent="DiceTitle"]
-custom_minimum_size = Vector2(500, 200)
-layout_mode = 2
-texture = ExtResource("2_nh2tl")
-expand_mode = 2
-stretch_mode = 5
-
 [node name="TextureRect3" type="TextureRect" parent="DiceTitle"]
-custom_minimum_size = Vector2(500, 175)
+custom_minimum_size = Vector2(500, 400)
 layout_mode = 2
-texture = SubResource("CompressedTexture2D_ysgnk")
+texture = ExtResource("2_wb8ut")
 expand_mode = 2
 stretch_mode = 5
 
@@ -70,7 +50,7 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -118.0
-offset_top = -346.0
+offset_top = -270.0
 offset_right = 119.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -91,12 +71,18 @@ theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 60
 text = "Options"
 
-[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Compatible" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 150)
 layout_mode = 2
-theme = SubResource("Theme_1glhj")
-theme_override_font_sizes/font_size = 60
-text = "Quit"
+texture = ExtResource("2_nh2tl")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="VersionLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "version"
+vertical_alignment = 2
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

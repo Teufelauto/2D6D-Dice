@@ -35,7 +35,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(460, 0)
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
-text = "2D6D Dice is an independent production by Jamie Halford and is not affiliated with DR Games or Toby Lancaster. It is published under the 2D6 Dungeon Third Party License.
+text = "2D6 Digital Dice is an independent production by Jamie Halford and is not affiliated with DR Games or Toby Lancaster. It is published under the 2D6 Dungeon Third Party License.
 2D6 Dungeon is copyright of DR Games and Toby Lancaster.
 
 MIT License

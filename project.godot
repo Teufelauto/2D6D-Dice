@@ -10,9 +10,9 @@ config_version=5
 
 [application]
 
-config/name="2D6D_Dice"
+config/name="2D6 Digital Dice"
 config/description="A Digital Dice app for the Solo Player Dungeon Crawler \"2D6 Dungeon\" by Toby Lancaster.  This app was created by Jamie Halford, and is not an official product of DR Games or Toby Lancaster. More information on 2D6 Dungeon, including how to get it, may be found at www.drgames.co.uk"
-config/version="0.9.1"
+config/version="0.9.1-alpha"
 config/tags=PackedStringArray("3d", "dice", "mobile", "rpg")
 run/main_scene="res://DiceTrayData/dice_start_menu.tscn"
 config/quit_on_go_back=false
