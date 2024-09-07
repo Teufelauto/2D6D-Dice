@@ -42,6 +42,7 @@ signal dice_impact_sound(type_of_sound :String)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	freeze = true
 	start_pos = global_position
 
 
@@ -50,7 +51,6 @@ func _roll() -> void:
 	#print("_______________________________ New Roll ___________________")
 	# Reset State
 	
-	#lock_rotation = false
 	axis_lock_linear_y = false
 	
 	sleeping = false

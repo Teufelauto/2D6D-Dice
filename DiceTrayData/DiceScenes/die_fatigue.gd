@@ -8,7 +8,7 @@ class_name FatigueDie
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
+	freeze = true
 	return_fatigue_die_to_one()
 	
 
