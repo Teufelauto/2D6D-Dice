@@ -14,6 +14,8 @@ extends Node3D
 @onready var button_throw_secondary = $SecondaryDie/SecondaryThrowButton
 @onready var button_throw_d3 = $D3Die/D3ThrowButton
 
+
+
 @onready var center_result_label = %DiceCanvas/CenterResultLabel
 @onready var x_result_label = %DiceCanvas/XResultLabel
 @onready var y_result_label = %DiceCanvas/YResultLabel
@@ -223,6 +225,7 @@ func _assign_colors() -> void:
 
 
 func _rehome_dice() -> void:
+	
 	button_throw_xy.visible = true
 	button_throw_xy2.visible = true
 	button_throw_doubles.visible = true

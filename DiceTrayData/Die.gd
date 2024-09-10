@@ -14,7 +14,7 @@ extends RigidBody3D
 @onready var dice_tray = %DiceTray
 
 @export var roll_strength = 50    # -------- Toss Strength ------------------
-@export var spin_strength = 0.8   # ---------- Spin It ------------------------
+@export var spin_strength = 50   # ---------- Spin It ------------------------
 @export var die_sound_tray_velocity_factor : float = 1.5
 @export var die_sound_velocity_factor : float = 1.5
 
@@ -50,14 +50,21 @@ func _roll() -> void:
 	
 	#print("_______________________________ New Roll ___________________")
 	# Reset State
-	
 	axis_lock_linear_y = false
-	
 	sleeping = false
 	freeze = false
 	transform.origin = start_pos
 	linear_velocity = Vector3.ZERO
 	angular_velocity = Vector3.ZERO
+	
+	
+	
+	
+	#inertia = Vector3(0, 0, 0) # experiment to stop spin accumulation (nope)
+	#constant_torque = Vector3(0, 0, 0) # experiment to stop spin accumulation (nope)
+	#inertia = Vector3.ZERO # experiment to stop spin accumulation (nope)
+	#constant_torque = Vector3.ZERO # experiment to stop spin accumulation (nope)
+	
 	self.set_collision_layer_value( 2, true)
 	self.set_collision_mask_value( 2, true)
 	
@@ -71,7 +78,7 @@ func _roll() -> void:
 	
 	# Random Throw Impulse  --- Change vector for direction
 	var throw_vector = Vector3(randf_range(-.4, .4), 0, randf_range(-1, -.8)).normalized()
-	angular_velocity = throw_vector * roll_strength * spin_strength
+	angular_velocity = throw_vector * spin_strength
 	apply_central_impulse(throw_vector * roll_strength)
 	is_rolling = true
 	
