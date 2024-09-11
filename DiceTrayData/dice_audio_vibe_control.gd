@@ -25,8 +25,10 @@ class_name DiceAudio
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
+	SignalBusDiceTray.dice_impact_sound.connect(dice_impact_sound)
 	
-	pass # Replace with function body.
+	
+	
 
 
 func dice_impact_sound(type_of_sound :String) -> void:

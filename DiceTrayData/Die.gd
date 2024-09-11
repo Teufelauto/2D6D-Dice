@@ -31,12 +31,8 @@ extends RigidBody3D
 var start_pos
 var is_rolling = false
 
-# For displaying roll results
-signal roll_started() # Also used to clear results when picking up dice
-signal roll_finished(die_value :int) # Output the die result to another script
 
-# For signalling sound and haptics
-signal dice_impact_sound(type_of_sound :String)
+
 
 
 
@@ -69,7 +65,7 @@ func _roll() -> void:
 	self.set_collision_mask_value( 2, true)
 	
 	# Clear Roll Results
-	roll_started.emit()
+	SignalBusDiceTray.roll_started.emit()
 	
 	# Random Rotation
 	transform.basis = Basis(Vector3.RIGHT, randf_range(0, 2* PI)) * transform.basis
@@ -89,7 +85,7 @@ func _on_sleeping_state_changed() -> void:
 		for raycast in raycasts:
 			if raycast.is_colliding():
 				
-				roll_finished.emit(raycast.opposite_side) # INT   Send out the data!
+				SignalBusDiceTray.roll_finished.emit(raycast.opposite_side) # INT   Send out the data!
 				is_rolling = false
 				landed_on_side = true
 				#freeze = true #Works to keep dice from flipping, but they can't slide around
@@ -118,7 +114,7 @@ func _return_die() -> void:
 	sleeping = true
 	
 	# Clear Roll Results
-	roll_started.emit()
+	SignalBusDiceTray.roll_started.emit()
 	
 
 # -------------------------- PICK UP DICE --------------------------------------
@@ -208,14 +204,14 @@ func _on_body_entered(body) -> void:
 	if body == self:
 		if greatest_observed_velocity > die_sound_tray_velocity_factor :
 			#print("xxxxxxx Self Contact xxxxxxx" + str(greatest_observed_velocity))
-			dice_impact_sound.emit("felt")
+			SignalBusDiceTray.dice_impact_sound.emit("felt")
 
 	elif body.name == "StaticBody3D" :  # If hitting tray
 		if greatest_observed_velocity > die_sound_tray_velocity_factor :
 			#print("///////// Tray /////////" + str(greatest_observed_velocity))
-			dice_impact_sound.emit("felt")
+			SignalBusDiceTray.dice_impact_sound.emit("felt")
 			
 	else:
 		if greatest_observed_velocity > die_sound_velocity_factor :
 			#print("======== Dice =========" + str(greatest_observed_velocity))
-			dice_impact_sound.emit("plastic")
+			SignalBusDiceTray.dice_impact_sound.emit("plastic")
