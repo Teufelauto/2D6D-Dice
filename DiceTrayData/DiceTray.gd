@@ -275,6 +275,58 @@ func _rehome_dice() -> void:
 	else:
 		fatigue_reset_button.visible = false
 	
+	## Reset the dice (to eliminate momentum bug in Rapier 0.7.x)
+	remove_child(die_x_dimension)
+	die_x_dimension.queue_free()
+	die_x_dimension = DIE_X_DIMENSION.instantiate()
+	add_child(die_x_dimension)
+	
+	remove_child(die_y_dimension)
+	die_y_dimension.queue_free()
+	die_y_dimension = DIE_Y_DIMENSION.instantiate()
+	add_child(die_y_dimension)
+	
+	remove_child(die_door_qty)
+	die_door_qty.queue_free()
+	die_door_qty = DIE_DOOR_QTY.instantiate()
+	add_child(die_door_qty)
+	
+	remove_child(die_double_primary)
+	die_double_primary.queue_free()
+	die_double_primary = DIE_DOUBLE_PRIMARY.instantiate()
+	add_child(die_double_primary)
+	
+	remove_child(die_double_secondary)
+	die_double_secondary.queue_free()
+	die_double_secondary = DIE_DOUBLE_SECONDARY.instantiate()
+	add_child(die_double_secondary)
+	
+	remove_child(die_door_direction)
+	die_door_direction.queue_free()
+	die_door_direction = DIE_DOOR_DIRECTION.instantiate()
+	add_child(die_door_direction)
+	
+	remove_child(die_door_locks)
+	die_door_locks.queue_free()
+	die_door_locks = DIE_DOOR_LOCKS.instantiate()
+	add_child(die_door_locks)
+	
+	remove_child(die_single_primary)
+	die_single_primary.queue_free()
+	die_single_primary = DIE_SINGLE_PRIMARY.instantiate()
+	add_child(die_single_primary)
+	
+	remove_child(die_single_secondary)
+	die_single_secondary.queue_free()
+	die_single_secondary = DIE_SINGLE_SECONDARY.instantiate()
+	add_child(die_single_secondary)
+	
+	remove_child(die_d_3)
+	die_d_3.queue_free()
+	die_d_3 = DIE_D_3.instantiate()
+	add_child(die_d_3)
+	
+	
 
 func _remove_left_dice_scoreboard() -> void:
 	%D66PrimaryPolygon2D.visible = false

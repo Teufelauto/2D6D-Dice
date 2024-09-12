@@ -4,7 +4,7 @@ extends RigidBody3D
 @onready var raycasts = $Raycasts.get_children()
 
 @export var roll_strength = 50    ## -------- Toss Strength ------------------
-@export var spin_strength = 50   ## ---------- Spin Speed ------------------------
+@export var spin_strength = -50   ##  Spin Speed  Negative for CCW spin (Right Handed)
 @export var die_sound_tray_velocity_factor : float = 1.5 ## cutoff under which no sound emitted
 @export var die_sound_velocity_factor : float = 1.5 ## cutoff under which no sound emitted
 
@@ -20,23 +20,27 @@ func _ready() -> void:
 
 
 func roll() -> void:
-	##print("_______________________________ New Roll ________________________________")
-	freeze = false
-	self.set_collision_layer_value( 2, true)
-	self.set_collision_mask_value( 2, true)
+	#print("_______________________________ New Roll ________________________________")
+	freeze = false ## Allow forces to act upon die.
+	set_collision_layer_value( 2, true) ## Is a collidable die.
+	set_collision_mask_value( 2, true)  ## Will collide with other dice.
 	
-	## Clear Roll Results
-	SignalBusDiceTray.roll_started.emit()
-	
-	## Random Rotation : starts different every throw
+	## Random Rotation : Die starts different every throw.
 	transform.basis = Basis(Vector3.RIGHT, randf_range(0, 2* PI)) * transform.basis
 	transform.basis = Basis(Vector3.UP, randf_range(0, 2* PI)) * transform.basis
 	transform.basis = Basis(Vector3.FORWARD, randf_range(0, 2* PI)) * transform.basis
 	
-	## Random Throw Impulse  --- Change vector for direction (the last position is positive for CCW)
+	## Random Throw  --- Change vector for direction. 
+	## First position is for left-right spread of throw.
+	## The last position is negative for throwing away from player.
 	var throw_vector = Vector3(randf_range(-.4, .4), 0, randf_range(-1, -.8)).normalized()
-	angular_velocity = throw_vector * spin_strength
-	apply_central_impulse(throw_vector * roll_strength)
+	
+	## CCW spin (right handed throw) by defining spin_strength negative applied
+	##     to angular_velocity.  Is this the Right-Hand-Rule of Physics
+	##     where a thumbs-up's thumb points direction of travel and fingers point
+	##     in positive direction? Or is that just for electricity in a wire?
+	angular_velocity = throw_vector * spin_strength 
+	apply_central_impulse(throw_vector * roll_strength) ## Actual Throw
 	is_rolling = true
 
 
@@ -79,7 +83,7 @@ func _return_die() -> void:
 	sleeping = true
 	
 	## Clear Roll Results
-	SignalBusDiceTray.roll_started.emit()
+
 	
 
 ## -------------------------- PICK UP DICE --------------------------------------
@@ -93,10 +97,9 @@ func _on_pick_up_all_dice_button_pressed() -> void:
 
 
 ## ----------------- ReROLL Previously thrown DICE ------------------------------
-func _on_input_event(_camera, event, _position, _normal, _shape_idx) -> void:
-	if event.is_pressed() and not is_rolling:
-		
-		roll()
+#func _input(event) -> void:
+	#if event.is_pressed() and not is_rolling:
+		#self.roll()
 
 
 ## ----------------   SOUND FROM IMPACTS   -----------------------------
