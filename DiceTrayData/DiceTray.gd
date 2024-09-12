@@ -83,6 +83,9 @@ signal clear_room_rectangle() #### report to make room rectangle invisible
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
+	## Signal Bus connections (receptions)
+	SignalBusDiceTray.dice_to_reroll.connect(_roll_from_table)
+	
 	## Instantiate all 10 dice and add as child of DiceTray.
 	die_door_direction = DIE_DOOR_DIRECTION.instantiate()
 	add_child(die_door_direction)
@@ -325,8 +328,16 @@ func _rehome_dice() -> void:
 	die_d_3.queue_free()
 	die_d_3 = DIE_D_3.instantiate()
 	add_child(die_d_3)
+
+
+## This funcion is called from clicking on a die in the tray through a signal.
+## It will determine if any additional dice should be thrown with.
+func _roll_from_table(die_clicked: String) -> void:
 	
 	
+	
+	pass
+
 
 func _remove_left_dice_scoreboard() -> void:
 	%D66PrimaryPolygon2D.visible = false

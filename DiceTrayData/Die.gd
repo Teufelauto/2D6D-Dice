@@ -18,7 +18,6 @@ func _ready() -> void:
 	start_pos = global_position
 	
 
-
 func roll() -> void:
 	#print("_______________________________ New Roll ________________________________")
 	freeze = false ## Allow forces to act upon die.
@@ -66,27 +65,17 @@ func _on_sleeping_state_changed() -> void:
 			roll()
 
 
-
-
-
-## ----------------- ReROLL Previously thrown DICE ------------------------------
+## ----------------- ReROLL Previously thrown DICE when clicked  --------------
 func _input_event(_camera: Camera3D, event: InputEvent, _event_position: Vector3, \
 					_normal: Vector3, _shape_idx: int) -> void:
 	if event.is_pressed() and not is_rolling:
 		
 		## We need to get this die back in the hand, along with any of its friends.
-		## We'll create signal that ID's what we clicked and do the ressetting in DiceTray.
-		
-		
-		
-		pass
-
-
-
-
-
-
-
+		## We'll create signal that sends name of die we clicked and do the 
+		## resetting, then rerolling in DiceTray.
+		var _die_clicked: String = self.name
+		#print(_die_clicked)
+		SignalBusDiceTray.dice_to_reroll.emit(_die_clicked)
 
 
 ## ----------------   SOUND FROM IMPACTS   -----------------------------
