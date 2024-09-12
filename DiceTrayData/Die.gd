@@ -74,7 +74,7 @@ func _input_event(_camera: Camera3D, event: InputEvent, _event_position: Vector3
 		## We'll create signal that sends name of die we clicked and do the 
 		## resetting, then rerolling in DiceTray.
 		var _die_clicked: String = self.name
-		#print(_die_clicked)
+		#print(_die_clicked + " is the clicked die")
 		SignalBusDiceTray.dice_to_reroll.emit(_die_clicked)
 
 

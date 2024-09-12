@@ -81,7 +81,7 @@ albedo_color = Color(0.74978, 0.74978, 0.74978, 1)
 roughness = 0.1
 clearcoat_enabled = true
 
-[node name="DieLocked" type="RigidBody3D"]
+[node name="DieDoorLocks" type="RigidBody3D"]
 transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 0.1, 0.8, 0.6)
 collision_layer = 0
 collision_mask = 5

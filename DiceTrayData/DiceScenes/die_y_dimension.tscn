@@ -237,7 +237,7 @@ albedo_color = Color(0.999973, 0.67504, 0.627941, 1)
 roughness = 0.1
 clearcoat_enabled = true
 
-[node name="DYDim" type="RigidBody3D"]
+[node name="DieYDimension" type="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.8, 0.4)
 collision_layer = 0
 collision_mask = 5

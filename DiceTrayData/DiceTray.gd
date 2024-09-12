@@ -331,12 +331,25 @@ func _rehome_dice() -> void:
 
 
 ## This funcion is called from clicking on a die in the tray through a signal.
-## It will determine if any additional dice should be thrown with.
+## It will determine if any additional dice should be thrown with it and calls throw function.
 func _roll_from_table(die_clicked: String) -> void:
-	
-	
-	
-	pass
+	#print("roll from table function called with " + die_clicked)
+	match die_clicked:
+		"DieDoublePrimary", "DieDoubleSecondary":
+			_on_double_throw_button_pressed()
+		"DieSinglePrimary":
+			#print("prime matched")
+			_on_prime_throw_button_pressed()
+		"DieSingleSecondary":
+			_on_secondary_throw_button_pressed()
+		"DieXDimension", "DieYDimension", "DieDoorQty":
+			_on_x_y_throw_button_pressed()
+		"DieDoorDirection":
+			_on_lcr_throw_button_pressed()
+		"DieDoorLocks":
+			_on_exit_lock_throw_button_pressed()
+		"DieD3":
+			_on_d_3_throw_button_pressed()
 
 
 func _remove_left_dice_scoreboard() -> void:
@@ -399,8 +412,8 @@ func _fatigue_die_visibility() -> void:
 func _on_x_y_throw_button_pressed() -> void:
 	
 	## Remove buttons for launching dice
-	#button_throw_xy.visible = false ## Main
-	#button_throw_xy2.visible = false ##  exit die location
+	button_throw_xy.visible = false ## Main
+	button_throw_xy2.visible = false ##  exit die location
 		
 	##  Remove ScoreBoards because it's beginning of new section
 	_remove_left_dice_scoreboard()
@@ -452,7 +465,7 @@ func _on_x_y_throw_button_pressed() -> void:
 func _on_double_throw_button_pressed() -> void:
 	
 	## Remove button for launching dice
-	#button_throw_doubles.visible = false
+	button_throw_doubles.visible = false
 	
 	_remove_left_dice_scoreboard() ## clear the old results
 	
@@ -482,7 +495,7 @@ func _on_double_throw_button_pressed() -> void:
 func _on_lcr_throw_button_pressed() -> void:
 	
 	## Remove button for launching dice
-	#button_throw_exit_direction.visible = false 
+	button_throw_exit_direction.visible = false 
 	
 	## Reset Variables
 	room_doubles_alert_label.text = ""
@@ -501,7 +514,7 @@ func _on_lcr_throw_button_pressed() -> void:
 func _on_exit_lock_throw_button_pressed() -> void:
 	
 	## Remove button for launching dice
-	#button_throw_lock_check.visible = false
+	button_throw_lock_check.visible = false
 	
 	## Reset Variables
 	room_doubles_alert_label.text = ""
@@ -520,7 +533,7 @@ func _on_exit_lock_throw_button_pressed() -> void:
 func _on_prime_throw_button_pressed() -> void:
 	
 	## Remove button for launching dice
-	#button_throw_primary.visible = false
+	button_throw_primary.visible = false
 	
 	## Reset Variables
 	room_doubles_alert_label.text = ""
@@ -538,7 +551,7 @@ func _on_prime_throw_button_pressed() -> void:
 func _on_secondary_throw_button_pressed() -> void:
 	
 	## Remove button for launching dice
-	#button_throw_secondary.visible = false
+	button_throw_secondary.visible = false
 	
 	## Reset Variables
 	room_doubles_alert_label.text = ""
@@ -556,7 +569,7 @@ func _on_secondary_throw_button_pressed() -> void:
 func _on_d_3_throw_button_pressed() -> void:
 	
 	## Remove button for launching dice
-	#button_throw_d3.visible = false
+	button_throw_d3.visible = false
 	
 	## Reset Variables
 	room_doubles_alert_label.text = ""
