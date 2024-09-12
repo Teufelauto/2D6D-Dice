@@ -19,7 +19,7 @@ func _ready() -> void:
 	
 
 
-func _roll() -> void:
+func roll() -> void:
 	##print("_______________________________ New Roll ________________________________")
 	freeze = false
 	self.set_collision_layer_value( 2, true)
@@ -58,7 +58,7 @@ func _on_sleeping_state_changed() -> void:
 			transform.origin = start_pos
 			linear_velocity = Vector3.ZERO
 			angular_velocity = Vector3.ZERO
-			_roll()
+			roll()
 
 
 ## Put the dice back in the home position.
@@ -96,45 +96,7 @@ func _on_pick_up_all_dice_button_pressed() -> void:
 func _on_input_event(_camera, event, _position, _normal, _shape_idx) -> void:
 	if event.is_pressed() and not is_rolling:
 		
-		_roll()
-
-
-##---------------------------- ROLL DICE FROM HOME ------------------------------
-
-
-
-func _on_lcr_throw_button_pressed() -> void:
-	if not is_rolling:
-		#button_throw_exit_direction.visible = false
-
-		_roll()
-
-
-func _on_exit_lock_throw_button_pressed() -> void:
-	if not is_rolling:
-		#button_throw_lock_check.visible = false
-
-		_roll()
-
-func _on_prime_throw_button_pressed() -> void:
-	if not is_rolling:
-		#button_throw_primary.visible = false
-
-		_roll()
-
-
-func _on_secondary_throw_button_pressed() -> void:
-	if not is_rolling:
-		#button_throw_secondary.visible = false
-		
-		_roll()
-
-
-func _on_d_3_throw_button_pressed() -> void:
-	if not is_rolling:
-		#button_throw_d3.visible = false
-		
-		_roll()
+		roll()
 
 
 ## ----------------   SOUND FROM IMPACTS   -----------------------------

@@ -381,13 +381,15 @@ func _on_x_y_throw_button_pressed() -> void:
 	add_child(die_door_qty)
 
 	## Throw the dice in their own instances.
-	die_x_dimension._roll()
-	die_y_dimension._roll()
-	die_door_qty._roll()
-	
-func _on_double_throw_button_pressed() -> void:
+	die_x_dimension.roll()
+	die_y_dimension.roll()
+	die_door_qty.roll()
 
-	#button_throw_doubles.visible = false ## Remove button for launching dice
+
+func _on_double_throw_button_pressed() -> void:
+	
+	## Remove button for launching dice
+	#button_throw_doubles.visible = false
 	
 	_remove_left_dice_scoreboard() ## clear the old results
 	
@@ -410,36 +412,101 @@ func _on_double_throw_button_pressed() -> void:
 	add_child(die_double_secondary)
 	
 	## Throw the dice in their own instances.
-	die_double_primary._roll()
-	die_double_secondary._roll()
+	die_double_primary.roll()
+	die_double_secondary.roll()
 
 
-func _on_die_lcr_roll_started() -> void:
+func _on_lcr_throw_button_pressed() -> void:
+	
+	## Remove button for launching dice
+	#button_throw_exit_direction.visible = false 
+	
+	## Reset Variables
 	room_doubles_alert_label.text = ""
 	exit_direction_label.text = ""
 	
+	## Reset the dice (to eliminate momentum bug in Rapier 0.7.x)
+	remove_child(die_door_direction)
+	die_door_direction.queue_free()
+	die_door_direction = DIE_DOOR_DIRECTION.instantiate()
+	add_child(die_door_direction)
+	
+	## Throw the dice in their own instances.
+	die_door_direction.roll()
 
 
-func _on_die_locked_roll_started() -> void:
+func _on_exit_lock_throw_button_pressed() -> void:
+	
+	## Remove button for launching dice
+	#button_throw_lock_check.visible = false
+	
+	## Reset Variables
 	room_doubles_alert_label.text = ""
 	exit_lock_label.text = ""
 	
+	## Reset the dice (to eliminate momentum bug in Rapier 0.7.x)
+	remove_child(die_door_locks)
+	die_door_locks.queue_free()
+	die_door_locks = DIE_DOOR_LOCKS.instantiate()
+	add_child(die_door_locks)
+	
+	## Throw the dice in their own instances.
+	die_door_locks.roll()
 
 
-func _on_die_primary_numbered_roll_started() -> void:
+func _on_prime_throw_button_pressed() -> void:
+	
+	## Remove button for launching dice
+	#button_throw_primary.visible = false
+	
+	## Reset Variables
 	room_doubles_alert_label.text = ""
 	
+	## Reset the dice (to eliminate momentum bug in Rapier 0.7.x)
+	remove_child(die_single_primary)
+	die_single_primary.queue_free()
+	die_single_primary = DIE_SINGLE_PRIMARY.instantiate()
+	add_child(die_single_primary)
+	
+	## Throw the dice in their own instances.
+	die_single_primary.roll()
 
 
-func _on_die_secondary_numbered_roll_started() -> void:
+func _on_secondary_throw_button_pressed() -> void:
+	
+	## Remove button for launching dice
+	#button_throw_secondary.visible = false
+	
+	## Reset Variables
 	room_doubles_alert_label.text = ""
 	
+	## Reset the dice (to eliminate momentum bug in Rapier 0.7.x)
+	remove_child(die_single_secondary)
+	die_single_secondary.queue_free()
+	die_single_secondary = DIE_SINGLE_SECONDARY.instantiate()
+	add_child(die_single_secondary)
+	
+	## Throw the dice in their own instances.
+	die_single_secondary.roll()
 
 
-func _on_die_d_3_roll_started() -> void:
+func _on_d_3_throw_button_pressed() -> void:
+	
+	## Remove button for launching dice
+	#button_throw_d3.visible = false
+	
+	## Reset Variables
 	room_doubles_alert_label.text = ""
 	d_3_result_label.text = ""
 	
+	## Reset the dice (to eliminate momentum bug in Rapier 0.7.x)
+	remove_child(die_d_3)
+	die_d_3.queue_free()
+	die_d_3 = DIE_D_3.instantiate()
+	add_child(die_d_3)
+	
+	## Throw the dice in their own instances.
+	die_d_3.roll()
 
 ##endregion
 
