@@ -100,16 +100,7 @@ func _on_input_event(_camera, event, _position, _normal, _shape_idx) -> void:
 
 
 ##---------------------------- ROLL DICE FROM HOME ------------------------------
-func _on_xy_throw_button_pressed() -> void:
-	if not is_rolling:
-		_roll()
 
-
-func _on_double_throw_button_pressed() -> void:
-	if not is_rolling:
-		#button_throw_doubles.visible = false
-
-		_roll()
 
 
 func _on_lcr_throw_button_pressed() -> void:

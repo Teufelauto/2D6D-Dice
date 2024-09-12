@@ -746,9 +746,11 @@ light_energy = 7.72
 
 [connection signal="clear_room_rectangle" from="DiceTray" to="DiceTray/DiceCanvas/RoomRectangleLine2D" method="_on_dice_tray_clear_room_rectangle"]
 [connection signal="resize_room_rectangle" from="DiceTray" to="DiceTray/DiceCanvas/RoomRectangleLine2D" method="resize_room_rectangle"]
-[connection signal="pressed" from="DiceTray/DiceCanvas/ThrowButtons/XYThrowButton" to="DiceTray" method="_on_room_dimension_roll_started"]
+[connection signal="pressed" from="DiceTray/DiceCanvas/ThrowButtons/XYThrowButton" to="DiceTray" method="_on_x_y_throw_button_pressed"]
 [connection signal="pressed" from="DiceTray/DiceCanvas/ThrowButtons/XYThrowButton" to="DiceTray/DiceAudioVibeNode" method="dice_on_dice_vibe"]
+[connection signal="pressed" from="DiceTray/DiceCanvas/ThrowButtons/XYThrowButton2" to="DiceTray" method="_on_x_y_throw_button_pressed"]
 [connection signal="pressed" from="DiceTray/DiceCanvas/ThrowButtons/XYThrowButton2" to="DiceTray/DiceAudioVibeNode" method="dice_on_dice_vibe"]
+[connection signal="pressed" from="DiceTray/DiceCanvas/ThrowButtons/DoubleThrowButton" to="DiceTray" method="_on_double_throw_button_pressed"]
 [connection signal="pressed" from="DiceTray/DiceCanvas/ThrowButtons/DoubleThrowButton" to="DiceTray/DiceAudioVibeNode" method="dice_on_dice_vibe"]
 [connection signal="pressed" from="DiceTray/DiceCanvas/ThrowButtons/LCRThrowButton" to="DiceTray/DiceAudioVibeNode" method="dice_on_dice_vibe"]
 [connection signal="pressed" from="DiceTray/DiceCanvas/ThrowButtons/ExitLockThrowButton" to="DiceTray/DiceAudioVibeNode" method="dice_on_dice_vibe"]
