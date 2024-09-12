@@ -119,55 +119,131 @@ func _ready() -> void:
 	_assign_sound_volumes()
 
 
+## Currently has color, style, vis... 
+func _fatigue_die_visibility() -> void:
+	
+	## make VISIBLE or invisible
+	if DicePreferences.d_vis_fatigue == true:
+		## to put in scene:
+		%StaticBody3DFatigue.set_collision_layer_value( 3, true)
+		%DieFatigue.visible = true
+		%FatigueIncrementButton.visible = true
+	else:
+		## to remove:
+		%StaticBody3DFatigue.set_collision_layer_value( 3, false)
+		%DieFatigue.visible = false
+		%FatigueIncrementButton.visible = false
+	
+	## Fatigue die STYLE
+	for member in get_tree().get_nodes_in_group("mesh_die_fatigue") :
+		if member.is_in_group(DicePreferences.d_style_fatigue) : member.visible = true
+		else : member.visible = false
+	
+	## Fatigue die COLOR
+	var DieMeshMat :StandardMaterial3D
+	for member in get_tree().get_nodes_in_group("mesh_die_fatigue"):
+		DieMeshMat = member.get_surface_override_material(0)
+		DieMeshMat.albedo_color = DicePreferences.d_text_color_fatigue
+		DieMeshMat = member.get_surface_override_material(1)
+		DieMeshMat.albedo_color = DicePreferences.d_body_color_fatigue
+
+
 func _assign_sound_volumes() -> void:
 	
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Dice On Dice"), linear_to_db(DicePreferences.d_volume_plastic))
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Dice On Felt"), linear_to_db(DicePreferences.d_volume_felt))
 
 
+#region ########## Styles Assignment ##########################################
+## The First function does them all, for when tray scene first comes in.
+## Individul functions will be used when picking up dice and reinstancing them.
+###############################################################################
+
 func _assign_die_styles() -> void:
-	## Room X die
+	_assign_die_styles_x()
+	_assign_die_styles_y()
+	_assign_die_styles_exit_qty()
+	_assign_die_styles_dub_prime()
+	_assign_die_styles_dub_secondary()
+	_assign_die_styles_lcr()
+	_assign_die_styles_lock()
+	_assign_die_styles_single_prime()
+	_assign_die_styles_single_secondary()
+	_assign_die_styles_d3()
+
+
+func _assign_die_styles_x() -> void:
 	for member in get_tree().get_nodes_in_group("mesh_die_x") :
-		if member.is_in_group(DicePreferences.d_style_x) : member.visible = true
+		if member.is_in_group(DicePreferences.d_style_x) : 
+			member.visible = true
 		else : member.visible = false
-	## Room Y die
+
+
+func _assign_die_styles_y() -> void:
 	for member in get_tree().get_nodes_in_group("mesh_die_y") :
-		if member.is_in_group(DicePreferences.d_style_y) : member.visible = true
+		if member.is_in_group(DicePreferences.d_style_y) : 
+			member.visible = true
 		else : member.visible = false
-	## Room exit qty
+
+
+func _assign_die_styles_exit_qty() -> void:
 	for member in get_tree().get_nodes_in_group("mesh_die_exit_qty") :
-		if member.is_in_group(DicePreferences.d_style_exit_qty) : member.visible = true
+		if member.is_in_group(DicePreferences.d_style_exit_qty) : 
+			member.visible = true
 		else : member.visible = false
-	
+
+
+func _assign_die_styles_dub_prime() -> void:
 	for member in get_tree().get_nodes_in_group("mesh_die_d66_primary") :
-		if member.is_in_group(DicePreferences.d_style_d66_prime) : member.visible = true
+		if member.is_in_group(DicePreferences.d_style_d66_prime) :
+			member.visible = true
 		else : member.visible = false
-	
+
+
+func _assign_die_styles_dub_secondary() -> void:
 	for member in get_tree().get_nodes_in_group("mesh_die_d66_secondary") :
-		if member.is_in_group(DicePreferences.d_style_d66_secondary) : member.visible = true
+		if member.is_in_group(DicePreferences.d_style_d66_secondary) : 
+			member.visible = true
 		else : member.visible = false
-		
+
+
+func _assign_die_styles_lcr() -> void:
 	for member in get_tree().get_nodes_in_group("mesh_die_lcr") :
-		if member.is_in_group(DicePreferences.d_style_exit_direction) : member.visible = true
+		if member.is_in_group(DicePreferences.d_style_exit_direction) : 
+			member.visible = true
 		else : member.visible = false
-		
+
+
+func _assign_die_styles_lock() -> void:
 	for member in get_tree().get_nodes_in_group("mesh_die_door_lock") :
-		if member.is_in_group(DicePreferences.d_style_exit_lock) : member.visible = true
+		if member.is_in_group(DicePreferences.d_style_exit_lock) : 
+			member.visible = true
 		else : member.visible = false
-		
+
+
+func _assign_die_styles_single_prime() -> void:
 	for member in get_tree().get_nodes_in_group("mesh_die_single_primary") :
-		if member.is_in_group(DicePreferences.d_style_single_primary) : member.visible = true
+		if member.is_in_group(DicePreferences.d_style_single_primary) : 
+			member.visible = true
 		else : member.visible = false
-		
+
+
+func _assign_die_styles_single_secondary() -> void:
 	for member in get_tree().get_nodes_in_group("mesh_die_single_secondary") :
-		if member.is_in_group(DicePreferences.d_style_single_secondary) : member.visible = true
+		if member.is_in_group(DicePreferences.d_style_single_secondary) : 
+			member.visible = true
 		else : member.visible = false
-		
+
+
+func _assign_die_styles_d3() -> void:
 	for member in get_tree().get_nodes_in_group("mesh_die_d3") :
-		if member.is_in_group(DicePreferences.d_style_d3) : member.visible = true
+		if member.is_in_group(DicePreferences.d_style_d3) : 
+			member.visible = true
 		else : member.visible = false
-	
-	
+#endregion
+
+#region .........  Color Assignment  ..............................
+
 func _assign_colors() -> void:
 	## D66 Scoreboard
 	%D66PrimaryLabel.label_settings.font_color = DicePreferences.d_text_color_d66_prime
@@ -180,83 +256,126 @@ func _assign_colors() -> void:
 	%SecondaryLabel.label_settings.font_color = DicePreferences.d_text_color_single_secondary
 	%TwoD6SecondaryPolygon2D.self_modulate = DicePreferences.d_body_color_single_secondary
 	
+	_assign_colors_x()
+	_assign_colors_y()
+	_assign_colors_door_qty()
+	_assign_colors_dub_primary()
+	_assign_colors_dub_secondary()
+	_assign_colors_lcr()
+	_assign_colors_lock()
+	_assign_colors_single_primary() 
+	_assign_colors_single_secondary()
+	_assign_colors_d3()
+	_assign_colors_felt()
 	
+	
+## Door X Die
+func _assign_colors_x() -> void:
 	var DieMeshMat :StandardMaterial3D
-	## Door X Die
 	for member in get_tree().get_nodes_in_group("mesh_die_x"):
 		DieMeshMat = member.get_surface_override_material(0)
 		DieMeshMat.albedo_color = DicePreferences.d_text_color_x
 		DieMeshMat = member.get_surface_override_material(1)
 		DieMeshMat.albedo_color = DicePreferences.d_body_color_x
 		
-	## Door Y Die
+		
+## Door Y Die
+func _assign_colors_y() -> void:
+	var DieMeshMat :StandardMaterial3D
 	for member in get_tree().get_nodes_in_group("mesh_die_y"):
 		DieMeshMat = member.get_surface_override_material(0)
 		DieMeshMat.albedo_color = DicePreferences.d_text_color_y
 		DieMeshMat = member.get_surface_override_material(1)
 		DieMeshMat.albedo_color = DicePreferences.d_body_color_y
 		
-	## Door Exit Qty
+## Door Exit Qty
+func _assign_colors_door_qty() -> void:
+	var DieMeshMat :StandardMaterial3D
 	for member in get_tree().get_nodes_in_group("mesh_die_exit_qty"):
 		DieMeshMat = member.get_surface_override_material(0)
 		DieMeshMat.albedo_color = DicePreferences.d_text_color_exit_numbers
 		DieMeshMat = member.get_surface_override_material(1)
 		DieMeshMat.albedo_color = DicePreferences.d_body_color_exit_numbers
 	
-	## D66 Primary
+## D66 Primary
+func _assign_colors_dub_primary() -> void:
+	var DieMeshMat :StandardMaterial3D
 	for member in get_tree().get_nodes_in_group("mesh_die_d66_primary"):
 		DieMeshMat = member.get_surface_override_material(0)
 		DieMeshMat.albedo_color = DicePreferences.d_text_color_d66_prime
 		DieMeshMat = member.get_surface_override_material(1)
 		DieMeshMat.albedo_color = DicePreferences.d_body_color_d66_prime
 	
-	## D66 Secondary
+## D66 Secondary
+func _assign_colors_dub_secondary() -> void:
+	var DieMeshMat :StandardMaterial3D
 	for member in get_tree().get_nodes_in_group("mesh_die_d66_secondary"):
 		DieMeshMat = member.get_surface_override_material(0)
 		DieMeshMat.albedo_color = DicePreferences.d_text_color_d66_secondary
 		DieMeshMat = member.get_surface_override_material(1)
 		DieMeshMat.albedo_color = DicePreferences.d_body_color_d66_secondary
 	
-	## die LCR
+## die LCR
+func _assign_colors_lcr() -> void:
+	var DieMeshMat :StandardMaterial3D
 	for member in get_tree().get_nodes_in_group("mesh_die_lcr"):
 		DieMeshMat = member.get_surface_override_material(0)
 		DieMeshMat.albedo_color = DicePreferences.d_text_color_exit_direction
 		DieMeshMat = member.get_surface_override_material(1)
 		DieMeshMat.albedo_color = DicePreferences.d_body_color_exit_direction
 	
-	## Lock check
+	
+## Lock check
+func _assign_colors_lock() -> void:
+	var DieMeshMat :StandardMaterial3D
 	for member in get_tree().get_nodes_in_group("mesh_die_door_lock"):
 		DieMeshMat = member.get_surface_override_material(0)
 		DieMeshMat.albedo_color = DicePreferences.d_text_color_exit_lock
 		DieMeshMat = member.get_surface_override_material(1)
 		DieMeshMat.albedo_color = DicePreferences.d_body_color_exit_lock
 	
-	## single Primary
+	
+## single Primary
+func _assign_colors_single_primary() -> void:
+	var DieMeshMat :StandardMaterial3D
 	for member in get_tree().get_nodes_in_group("mesh_die_single_primary"):
 		DieMeshMat = member.get_surface_override_material(0)
 		DieMeshMat.albedo_color = DicePreferences.d_text_color_single_primary
 		DieMeshMat = member.get_surface_override_material(1)
 		DieMeshMat.albedo_color = DicePreferences.d_body_color_single_primary
 		
-	## single secondary
+		
+## single secondary
+func _assign_colors_single_secondary() -> void:
+	var DieMeshMat :StandardMaterial3D
 	for member in get_tree().get_nodes_in_group("mesh_die_single_secondary"):
 		DieMeshMat = member.get_surface_override_material(0)
 		DieMeshMat.albedo_color = DicePreferences.d_text_color_single_secondary
 		DieMeshMat = member.get_surface_override_material(1)
 		DieMeshMat.albedo_color = DicePreferences.d_body_color_single_secondary
 		
-	## d3 die
+		
+## d3 die
+func _assign_colors_d3() -> void:
+	var DieMeshMat :StandardMaterial3D
 	for member in get_tree().get_nodes_in_group("mesh_die_d3"):
 		DieMeshMat = member.get_surface_override_material(0)
 		DieMeshMat.albedo_color = DicePreferences.d_text_color_d3
 		DieMeshMat = member.get_surface_override_material(1)
 		DieMeshMat.albedo_color = DicePreferences.d_body_color_d3
 	
-	## Dice Tray Felt Color assignment
+	
+## Dice Tray Felt Color assignment
+func _assign_colors_felt() -> void:
+	var DieMeshMat :StandardMaterial3D
 	for member in get_tree().get_nodes_in_group("mesh_die_tray_felt"):
 		DieMeshMat = member.get_surface_override_material(0)
 		DieMeshMat.albedo_color = DicePreferences.d_tray_felt_color
 
+
+#endregion
+
+#region ---------   rehome / Reset the dice ------------------------------------
 
 func _rehome_dice() -> void:
 	
@@ -278,78 +397,115 @@ func _rehome_dice() -> void:
 	else:
 		fatigue_reset_button.visible = false
 	
+	_reset_all_dice()
+
+
+## Remove, add, and apply preferences to dice going back to home position.
+func _reset_all_dice() -> void:
 	## Reset the dice (to eliminate momentum bug in Rapier 0.7.x)
+	_reset_die_x_dimension()
+	_reset_die_y_dimension()
+	_reset_die_door_qty()
+	_reset_die_double_primary()
+	_reset_die_double_secondary()
+	_reset_die_door_direction()
+	_reset_die_door_locks()
+	_reset_die_single_primary()
+	_reset_die_single_secondary()
+	_reset_die_d_3()
+
+
+func _reset_die_x_dimension() -> void:
 	remove_child(die_x_dimension)
 	die_x_dimension.queue_free()
 	die_x_dimension = DIE_X_DIMENSION.instantiate()
 	add_child(die_x_dimension)
+	_assign_die_styles_x()
+	_assign_colors_x()
 	
+	
+func _reset_die_y_dimension() -> void:
 	remove_child(die_y_dimension)
 	die_y_dimension.queue_free()
 	die_y_dimension = DIE_Y_DIMENSION.instantiate()
 	add_child(die_y_dimension)
+	_assign_die_styles_y()
+	_assign_colors_y()
 	
+	
+func _reset_die_door_qty() -> void:
 	remove_child(die_door_qty)
 	die_door_qty.queue_free()
 	die_door_qty = DIE_DOOR_QTY.instantiate()
 	add_child(die_door_qty)
+	_assign_die_styles_exit_qty()
+	_assign_colors_door_qty()
 	
+	
+func _reset_die_double_primary() -> void:
 	remove_child(die_double_primary)
 	die_double_primary.queue_free()
 	die_double_primary = DIE_DOUBLE_PRIMARY.instantiate()
 	add_child(die_double_primary)
+	_assign_die_styles_dub_prime()
+	_assign_colors_dub_primary()
 	
+	
+func _reset_die_double_secondary() -> void:
 	remove_child(die_double_secondary)
 	die_double_secondary.queue_free()
 	die_double_secondary = DIE_DOUBLE_SECONDARY.instantiate()
 	add_child(die_double_secondary)
+	_assign_die_styles_dub_secondary()
+	_assign_colors_dub_secondary()
 	
+	
+func _reset_die_door_direction() -> void:
 	remove_child(die_door_direction)
 	die_door_direction.queue_free()
 	die_door_direction = DIE_DOOR_DIRECTION.instantiate()
 	add_child(die_door_direction)
+	_assign_die_styles_lcr()
+	_assign_colors_lcr()
 	
+	
+func _reset_die_door_locks() -> void:
 	remove_child(die_door_locks)
 	die_door_locks.queue_free()
 	die_door_locks = DIE_DOOR_LOCKS.instantiate()
 	add_child(die_door_locks)
+	_assign_die_styles_lock()
+	_assign_colors_lock()
 	
+	
+func _reset_die_single_primary() -> void:
 	remove_child(die_single_primary)
 	die_single_primary.queue_free()
 	die_single_primary = DIE_SINGLE_PRIMARY.instantiate()
 	add_child(die_single_primary)
+	_assign_die_styles_single_prime()
+	_assign_colors_single_primary()
 	
+	
+func _reset_die_single_secondary() -> void:
 	remove_child(die_single_secondary)
 	die_single_secondary.queue_free()
 	die_single_secondary = DIE_SINGLE_SECONDARY.instantiate()
 	add_child(die_single_secondary)
+	_assign_die_styles_single_secondary()
+	_assign_colors_single_secondary()
 	
+	
+func _reset_die_d_3() -> void:
 	remove_child(die_d_3)
 	die_d_3.queue_free()
 	die_d_3 = DIE_D_3.instantiate()
 	add_child(die_d_3)
-
-
-## This funcion is called from clicking on a die in the tray through a signal.
-## It will determine if any additional dice should be thrown with it and calls throw function.
-func _roll_from_table(die_clicked: String) -> void:
-	#print("roll from table function called with " + die_clicked)
-	match die_clicked:
-		"DieDoublePrimary", "DieDoubleSecondary":
-			_on_double_throw_button_pressed()
-		"DieSinglePrimary":
-			#print("prime matched")
-			_on_prime_throw_button_pressed()
-		"DieSingleSecondary":
-			_on_secondary_throw_button_pressed()
-		"DieXDimension", "DieYDimension", "DieDoorQty":
-			_on_x_y_throw_button_pressed()
-		"DieDoorDirection":
-			_on_lcr_throw_button_pressed()
-		"DieDoorLocks":
-			_on_exit_lock_throw_button_pressed()
-		"DieD3":
-			_on_d_3_throw_button_pressed()
+	_assign_die_styles_d3()
+	_assign_colors_d3()
+	
+	
+#endregion
 
 
 func _remove_left_dice_scoreboard() -> void:
@@ -379,35 +535,31 @@ func _remove_small_or_large_room_labels() -> void:
 	%RoomSizeLargeLabel.visible = false
 	
 
-func _fatigue_die_visibility() -> void:
-	
-	## make VISIBLE or invisible
-	if DicePreferences.d_vis_fatigue == true:
-		## to put in scene:
-		%StaticBody3DFatigue.set_collision_layer_value( 3, true)
-		%DieFatigue.visible = true
-		%FatigueIncrementButton.visible = true
-	else:
-		## to remove:
-		%StaticBody3DFatigue.set_collision_layer_value( 3, false)
-		%DieFatigue.visible = false
-		%FatigueIncrementButton.visible = false
-	
-	## Fatigue die STYLE
-	for member in get_tree().get_nodes_in_group("mesh_die_fatigue") :
-		if member.is_in_group(DicePreferences.d_style_fatigue) : member.visible = true
-		else : member.visible = false
-	
-	## Fatigue die COLOR
-	var DieMeshMat :StandardMaterial3D
-	for member in get_tree().get_nodes_in_group("mesh_die_fatigue"):
-		DieMeshMat = member.get_surface_override_material(0)
-		DieMeshMat.albedo_color = DicePreferences.d_text_color_fatigue
-		DieMeshMat = member.get_surface_override_material(1)
-		DieMeshMat.albedo_color = DicePreferences.d_body_color_fatigue
 
 
-##region -------------------------ROLL STARTED-----------------------------
+#region ------ ROLL DICE --------------------------------------------------
+
+## This funcion is called from clicking on a die in the tray through a signal.
+## It will determine if any additional dice should be thrown with it and calls throw function.
+func _roll_from_table(die_clicked: String) -> void:
+	#print("roll from table function called with " + die_clicked)
+	match die_clicked:
+		"DieDoublePrimary", "DieDoubleSecondary":
+			_on_double_throw_button_pressed()
+		"DieSinglePrimary":
+			#print("prime matched")
+			_on_prime_throw_button_pressed()
+		"DieSingleSecondary":
+			_on_secondary_throw_button_pressed()
+		"DieXDimension", "DieYDimension", "DieDoorQty":
+			_on_x_y_throw_button_pressed()
+		"DieDoorDirection":
+			_on_lcr_throw_button_pressed()
+		"DieDoorLocks":
+			_on_exit_lock_throw_button_pressed()
+		"DieD3":
+			_on_d_3_throw_button_pressed()
+
 
 func _on_x_y_throw_button_pressed() -> void:
 	
@@ -441,20 +593,9 @@ func _on_x_y_throw_button_pressed() -> void:
 	_remove_small_or_large_room_labels()
 	
 	## Reset the dice (to eliminate momentum bug in Rapier 0.7.x)
-	remove_child(die_x_dimension)
-	die_x_dimension.queue_free()
-	die_x_dimension = DIE_X_DIMENSION.instantiate()
-	add_child(die_x_dimension)
-	
-	remove_child(die_y_dimension)
-	die_y_dimension.queue_free()
-	die_y_dimension = DIE_Y_DIMENSION.instantiate()
-	add_child(die_y_dimension)
-	
-	remove_child(die_door_qty)
-	die_door_qty.queue_free()
-	die_door_qty = DIE_DOOR_QTY.instantiate()
-	add_child(die_door_qty)
+	_reset_die_x_dimension()
+	_reset_die_y_dimension()
+	_reset_die_door_qty()
 
 	## Throw the dice in their own instances.
 	die_x_dimension.roll()
@@ -477,15 +618,8 @@ func _on_double_throw_button_pressed() -> void:
 	doubles_secondary_int = 0
 	
 	## Reset the dice (to eliminate momentum bug in Rapier 0.7.x)
-	remove_child(die_double_primary)
-	die_double_primary.queue_free()
-	die_double_primary = DIE_DOUBLE_PRIMARY.instantiate()
-	add_child(die_double_primary)
-	
-	remove_child(die_double_secondary)
-	die_double_secondary.queue_free()
-	die_double_secondary = DIE_DOUBLE_SECONDARY.instantiate()
-	add_child(die_double_secondary)
+	_reset_die_double_primary()
+	_reset_die_double_secondary()
 	
 	## Throw the dice in their own instances.
 	die_double_primary.roll()
@@ -502,10 +636,7 @@ func _on_lcr_throw_button_pressed() -> void:
 	exit_direction_label.text = ""
 	
 	## Reset the dice (to eliminate momentum bug in Rapier 0.7.x)
-	remove_child(die_door_direction)
-	die_door_direction.queue_free()
-	die_door_direction = DIE_DOOR_DIRECTION.instantiate()
-	add_child(die_door_direction)
+	_reset_die_door_direction()
 	
 	## Throw the dice in their own instances.
 	die_door_direction.roll()
@@ -521,10 +652,7 @@ func _on_exit_lock_throw_button_pressed() -> void:
 	exit_lock_label.text = ""
 	
 	## Reset the dice (to eliminate momentum bug in Rapier 0.7.x)
-	remove_child(die_door_locks)
-	die_door_locks.queue_free()
-	die_door_locks = DIE_DOOR_LOCKS.instantiate()
-	add_child(die_door_locks)
+	_reset_die_door_locks()
 	
 	## Throw the dice in their own instances.
 	die_door_locks.roll()
@@ -539,10 +667,7 @@ func _on_prime_throw_button_pressed() -> void:
 	room_doubles_alert_label.text = ""
 	
 	## Reset the dice (to eliminate momentum bug in Rapier 0.7.x)
-	remove_child(die_single_primary)
-	die_single_primary.queue_free()
-	die_single_primary = DIE_SINGLE_PRIMARY.instantiate()
-	add_child(die_single_primary)
+	_reset_die_single_primary()
 	
 	## Throw the dice in their own instances.
 	die_single_primary.roll()
@@ -557,10 +682,7 @@ func _on_secondary_throw_button_pressed() -> void:
 	room_doubles_alert_label.text = ""
 	
 	## Reset the dice (to eliminate momentum bug in Rapier 0.7.x)
-	remove_child(die_single_secondary)
-	die_single_secondary.queue_free()
-	die_single_secondary = DIE_SINGLE_SECONDARY.instantiate()
-	add_child(die_single_secondary)
+	_reset_die_single_secondary()
 	
 	## Throw the dice in their own instances.
 	die_single_secondary.roll()
@@ -576,18 +698,15 @@ func _on_d_3_throw_button_pressed() -> void:
 	d_3_result_label.text = ""
 	
 	## Reset the dice (to eliminate momentum bug in Rapier 0.7.x)
-	remove_child(die_d_3)
-	die_d_3.queue_free()
-	die_d_3 = DIE_D_3.instantiate()
-	add_child(die_d_3)
+	_reset_die_d_3()
 	
 	## Throw the dice in their own instances.
 	die_d_3.roll()
 
-##endregion
+#endregion
 
 
-##region ---------------------- ROLL FINISHED -----------------------------
+#region ---------------------- ROLL FINISHED Do math and display results-----
 func _add_small_or_large_room_labels( _room_x :int , _room_y :int) -> void:
 	
 	var _room_area :int = _room_x * _room_y
@@ -740,10 +859,11 @@ func _on_die_d_3_roll_finished(die_value :int) -> void:
 	d3_die_int = die_value
 	d_3_result_label.text = str(d3_die_int)
 
-##endregion
+#endregion
 
 ##-----------------------------------------------------------------------------
 
+## This is for the X button that is used during development. Back-Button is used in Android.
 func _on_exit_button_pressed() -> void:
 	print("exit!!!")
 	get_tree().change_scene_to_file("res://DiceTrayData/dice_start_menu.tscn")
