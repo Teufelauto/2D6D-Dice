@@ -56,7 +56,8 @@ func _on_sleeping_state_changed() -> void:
 				axis_lock_linear_y = true
 				
 		if not landed_on_side: ## Auto reroll if rests at angle
-			## Reset State for reRoll.
+			## Reset State for reRoll. This will not be called more than once or twice,
+			##   so should be fine not reinstating dice.
 			axis_lock_linear_y = false
 			sleeping = false
 			transform.origin = start_pos
@@ -65,41 +66,27 @@ func _on_sleeping_state_changed() -> void:
 			roll()
 
 
-## Put the dice back in the home position.
-func _return_die() -> void:
-	
-	is_rolling = false
-	## Return the dice to home
-	freeze = false
-	sleeping = true
-	axis_lock_linear_y = false
-	set_collision_layer_value( 2, false)
-	set_collision_mask_value( 2, false)
-	linear_velocity = Vector3.ZERO
-	angular_velocity = Vector3.ZERO
-	
-	transform.origin = start_pos
-	freeze = true
-	sleeping = true
-	
-	## Clear Roll Results
 
-	
-
-## -------------------------- PICK UP DICE --------------------------------------
-## Pick up ALL Dice
-func _on_pick_up_all_dice_button_pressed() -> void:
-	
-	## commented out is not rolling to allow picking up frozen dice
-	#if not is_rolling:
-	#	_return_die()
-	_return_die()
 
 
 ## ----------------- ReROLL Previously thrown DICE ------------------------------
-#func _input(event) -> void:
-	#if event.is_pressed() and not is_rolling:
-		#self.roll()
+func _input_event(_camera: Camera3D, event: InputEvent, _event_position: Vector3, \
+					_normal: Vector3, _shape_idx: int) -> void:
+	if event.is_pressed() and not is_rolling:
+		
+		## We need to get this die back in the hand, along with any of its friends.
+		## We'll create signal that ID's what we clicked and do the ressetting in DiceTray.
+		
+		
+		
+		pass
+
+
+
+
+
+
+
 
 
 ## ----------------   SOUND FROM IMPACTS   -----------------------------

@@ -242,18 +242,11 @@ unique_name_in_owner = true
 layer = 2
 follow_viewport_enabled = true
 
-[node name="ThrowButtons" type="Control" parent="DiceTray/DiceCanvas"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ThrowButtons" type="Node" parent="DiceTray/DiceCanvas"]
 
 [node name="XYThrowButton" type="Button" parent="DiceTray/DiceCanvas/ThrowButtons"]
 light_mask = 8
 visibility_layer = 8
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -272,7 +265,6 @@ flat = true
 [node name="XYThrowButton2" type="Button" parent="DiceTray/DiceCanvas/ThrowButtons"]
 light_mask = 8
 visibility_layer = 8
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -291,7 +283,6 @@ flat = true
 [node name="DoubleThrowButton" type="Button" parent="DiceTray/DiceCanvas/ThrowButtons"]
 light_mask = 16
 visibility_layer = 16
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -307,7 +298,6 @@ flat = true
 
 [node name="LCRThrowButton" type="Button" parent="DiceTray/DiceCanvas/ThrowButtons"]
 visibility_layer = 32
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -323,7 +313,6 @@ flat = true
 
 [node name="ExitLockThrowButton" type="Button" parent="DiceTray/DiceCanvas/ThrowButtons"]
 visibility_layer = 64
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -338,7 +327,6 @@ action_mode = 0
 flat = true
 
 [node name="PrimeThrowButton" type="Button" parent="DiceTray/DiceCanvas/ThrowButtons"]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -353,7 +341,6 @@ action_mode = 0
 flat = true
 
 [node name="SecondaryThrowButton" type="Button" parent="DiceTray/DiceCanvas/ThrowButtons"]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -368,7 +355,6 @@ action_mode = 0
 flat = true
 
 [node name="D3ThrowButton" type="Button" parent="DiceTray/DiceCanvas/ThrowButtons"]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -382,15 +368,8 @@ mouse_default_cursor_shape = 2
 action_mode = 0
 flat = true
 
-[node name="D66ScoreBoard" type="Control" parent="DiceTray/DiceCanvas"]
+[node name="D66ScoreBoard" type="Node" parent="DiceTray/DiceCanvas"]
 unique_name_in_owner = true
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -730.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="D66PrimaryPolygon2D" type="Polygon2D" parent="DiceTray/DiceCanvas/D66ScoreBoard"]
 unique_name_in_owner = true
@@ -410,7 +389,6 @@ polygon = PackedVector2Array(0, 0, 0, 10, 10, 10, 10, 0)
 
 [node name="D66PrimaryLabel" type="Label" parent="DiceTray/DiceCanvas/D66ScoreBoard"]
 unique_name_in_owner = true
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -426,7 +404,6 @@ horizontal_alignment = 1
 
 [node name="D66SecondaryLabel" type="Label" parent="DiceTray/DiceCanvas/D66ScoreBoard"]
 unique_name_in_owner = true
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -441,15 +418,8 @@ text = "0"
 label_settings = SubResource("LabelSettings_wcw80")
 horizontal_alignment = 1
 
-[node name="TwoD6ScoreBoard" type="Control" parent="DiceTray/DiceCanvas"]
+[node name="TwoD6ScoreBoard" type="Node" parent="DiceTray/DiceCanvas"]
 unique_name_in_owner = true
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -730.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="TwoD6PrimaryPolygon2D" type="Polygon2D" parent="DiceTray/DiceCanvas/TwoD6ScoreBoard"]
 unique_name_in_owner = true
@@ -469,7 +439,6 @@ polygon = PackedVector2Array(0, 0, 0, 10, 10, 10, 10, 0)
 
 [node name="PrimaryLabel" type="Label" parent="DiceTray/DiceCanvas/TwoD6ScoreBoard"]
 unique_name_in_owner = true
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -486,7 +455,6 @@ horizontal_alignment = 1
 
 [node name="SecondaryLabel" type="Label" parent="DiceTray/DiceCanvas/TwoD6ScoreBoard"]
 unique_name_in_owner = true
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
