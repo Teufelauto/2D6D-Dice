@@ -1,6 +1,8 @@
 class_name SavedDice
 extends Resource
 
+## This file lists all variables saved in the dice preferences
+
 ## Dice Colors
 @export var die_text_color_x : Color
 @export var die_body_color_x : Color
@@ -36,19 +38,19 @@ extends Resource
 @export var die_style_exit_lock : String
 @export var die_style_d3 : String
 
-# Fatigue Die
+## Fatigue Die
 @export var die_text_color_fatigue : Color
 @export var die_body_color_fatigue : Color
 @export var die_style_fatigue : String
-@export var die_vis_fatigue : bool # Dice Option
+@export var die_vis_fatigue : bool ## Dice Option
 
-# Dice Vibration and sound
+## Dice Vibration and sound
 @export var die_vibration_on : bool
 @export var die_unmuted : bool
 @export var die_volume_felt : float
 @export var die_volume_plastic : float
 
-# Future music Feature?
+## Future music Feature?
 @export var die_music_unmuted  : bool
 @export var die_music_volume : float
 @export var die_music_variant : int

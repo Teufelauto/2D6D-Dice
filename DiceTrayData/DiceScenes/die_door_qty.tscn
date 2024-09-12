@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=4 uid="uid://dwlkevdio50dl"]
+[gd_scene load_steps=17 format=4 uid="uid://dwlkevdio50dl"]
 
 [ext_resource type="Shape3D" uid="uid://cfyl03tbplsu" path="res://DiceTrayData/Rounded_Die_Collision_Geometry.tres" id="1_cs02s"]
 [ext_resource type="PhysicsMaterial" uid="uid://d1euamslrd3qy" path="res://DiceTrayData/DiePhysMaterial.tres" id="1_khf0n"]
 [ext_resource type="PackedScene" uid="uid://cn2gw4ss76tcu" path="res://DiceTrayData/DiceScenes/SixSidedRayCast.tscn" id="2_iy53e"]
+[ext_resource type="Script" path="res://DiceTrayData/Die.gd" id="2_nr4aq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hlixo"]
 resource_name = "Material.001"
@@ -157,13 +158,15 @@ roughness = 0.1
 clearcoat_enabled = true
 
 [node name="DieDoorQty" type="RigidBody3D"]
-collision_layer = 2
-collision_mask = 255
+transform = Transform3D(1.31134e-07, 1, -4.37114e-08, 3.82137e-15, 4.37114e-08, 1, 1, -1.31134e-07, 1.91069e-15, -0.3, 0.8, 0.6)
+collision_layer = 0
+collision_mask = 5
 mass = 20.0
 physics_material_override = ExtResource("1_khf0n")
 center_of_mass_mode = 1
 continuous_cd = true
 contact_monitor = true
+script = ExtResource("2_nr4aq")
 
 [node name="Die_Body_Door_Pics" type="MeshInstance3D" parent="." groups=["die_dot", "mesh_die_exit_qty"]]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
@@ -232,3 +235,7 @@ target_position = Vector3(0, 0, 0.1)
 collision_mask = 256
 hit_from_inside = true
 opposite_side = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="sleeping_state_changed" from="." to="." method="_on_sleeping_state_changed"]

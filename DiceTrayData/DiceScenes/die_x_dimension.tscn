@@ -236,7 +236,7 @@ roughness = 0.1
 clearcoat_enabled = true
 
 [node name="DXDim" type="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.8, 0.2)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.2, 0.8, 0.2)
 collision_layer = 0
 collision_mask = 5
 mass = 20.0
