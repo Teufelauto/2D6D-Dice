@@ -897,8 +897,8 @@ func _room_doubles_done() -> void:
 		%D66SecondaryPolygon2D.visible = true
 		d_66_secondary_label.text = str(room_size_y_add_int)
 		
-		room_size_x_int = room_size_x_int + room_size_x_add_int
-		room_size_y_int = room_size_y_int + room_size_y_add_int
+		room_size_x_int = room_size_x_roll_int + room_size_x_add_int
+		room_size_y_int = room_size_y_roll_int + room_size_y_add_int
 		
 		x_result_label.text = str(room_size_x_int)
 		y_result_label.text = str(room_size_y_int)
