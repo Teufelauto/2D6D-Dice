@@ -3,7 +3,9 @@ extends RigidBody3D
 
 @onready var raycasts = $Raycasts.get_children()
 
-@export var roll_strength = 50    ## -------- Toss Strength ------------------
+@export var rotation_of_die_at_rest :Vector3 ## record before picking up die 
+
+@export var roll_strength = 80    ## -------- Toss Strength ------------------
 @export var spin_strength = -50   ##  Spin Speed  Negative for CCW spin (Right Handed)
 @export var die_sound_tray_velocity_factor : float = 1.5 ## cutoff under which no sound emitted
 @export var die_sound_velocity_factor : float = 1.5 ## cutoff under which no sound emitted
@@ -25,6 +27,7 @@ func roll() -> void:
 	set_collision_mask_value( 2, true)  ## Will collide with other dice.
 	
 	## Random Rotation : Die starts different every throw.
+	## OR DOES IT? may only get last entry. 
 	transform.basis = Basis(Vector3.RIGHT, randf_range(0, 2* PI)) * transform.basis
 	transform.basis = Basis(Vector3.UP, randf_range(0, 2* PI)) * transform.basis
 	transform.basis = Basis(Vector3.FORWARD, randf_range(0, 2* PI)) * transform.basis
@@ -48,11 +51,18 @@ func _on_sleeping_state_changed() -> void:
 		var landed_on_side = false
 		for raycast in raycasts:
 			if raycast.is_colliding():
-				
-				SignalBusDiceTray.roll_finished.emit(raycast.opposite_side) ## INT   Send out the data!
 				is_rolling = false
 				landed_on_side = true
 				axis_lock_linear_y = true
+				
+				## Rotation is recorded as ( (-1to2)*90 -> -90to180, 0to359, (-1to2)*90 ) 
+				## but we'll just use it raw because it doesnt matter.
+				rotation_of_die_at_rest = get_rotation_degrees()
+				#print(rotation_of_die_at_rest)
+				
+				## Send value of roll 
+				SignalBusDiceTray.roll_finished.emit(raycast.opposite_side)
+				
 				
 		if not landed_on_side: ## Auto reroll if rests at angle
 			## Reset State for reRoll. This will not be called more than once or twice,

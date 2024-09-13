@@ -54,6 +54,8 @@ static var primary_die_int : int = 0
 static var secondary_die_int : int = 0
 static var d3_die_int : int = 0
 
+
+
 ## Dice Instance scene preloads (for d6 dice)
 const DIE_DOOR_DIRECTION : PackedScene = preload("res://DiceTrayData/DiceScenes/die_door_direction.tscn")
 @export var die_door_direction : DiceControl
@@ -416,6 +418,12 @@ func _reset_all_dice() -> void:
 
 
 func _reset_die_x_dimension() -> void:
+	## Don't reset if die is already picked up.
+	if die_x_dimension.position.y > 0.7:
+		return
+	## Get the rotation info on die.
+	var _die_rotation = die_x_dimension.rotation_of_die_at_rest
+	
 	remove_child(die_x_dimension)
 	die_x_dimension.queue_free()
 	die_x_dimension = DIE_X_DIMENSION.instantiate()
@@ -423,8 +431,17 @@ func _reset_die_x_dimension() -> void:
 	_assign_die_styles_x()
 	_assign_colors_x()
 	
+	#print("the rotation is " + str(_die_rotation))
+	die_x_dimension.rotation_degrees = _die_rotation
+	
 	
 func _reset_die_y_dimension() -> void:
+	## Don't reset if die is already picked up.
+	if die_y_dimension.position.y > 0.7:
+		return
+	## Get the rotation info on die.
+	var _die_rotation = die_y_dimension.rotation_of_die_at_rest
+	
 	remove_child(die_y_dimension)
 	die_y_dimension.queue_free()
 	die_y_dimension = DIE_Y_DIMENSION.instantiate()
@@ -432,8 +449,17 @@ func _reset_die_y_dimension() -> void:
 	_assign_die_styles_y()
 	_assign_colors_y()
 	
+	#print("the rotation is " + str(_die_rotation))
+	die_y_dimension.rotation_degrees = _die_rotation
+	
 	
 func _reset_die_door_qty() -> void:
+	## Don't reset if die is already picked up.
+	if die_door_qty.position.y > 0.7:
+		return
+	## Get the rotation info on die.
+	var _die_rotation = die_door_qty.rotation_of_die_at_rest
+	
 	remove_child(die_door_qty)
 	die_door_qty.queue_free()
 	die_door_qty = DIE_DOOR_QTY.instantiate()
@@ -441,8 +467,17 @@ func _reset_die_door_qty() -> void:
 	_assign_die_styles_exit_qty()
 	_assign_colors_door_qty()
 	
+	#print("the rotation is " + str(_die_rotation))
+	die_door_qty.rotation_degrees = _die_rotation
+	
 	
 func _reset_die_double_primary() -> void:
+	## Don't reset if die is already picked up.
+	if die_double_primary.position.y > 0.7:
+		return
+	## Get the rotation info on die.
+	var _die_rotation = die_double_primary.rotation_of_die_at_rest
+	
 	remove_child(die_double_primary)
 	die_double_primary.queue_free()
 	die_double_primary = DIE_DOUBLE_PRIMARY.instantiate()
@@ -450,8 +485,17 @@ func _reset_die_double_primary() -> void:
 	_assign_die_styles_dub_prime()
 	_assign_colors_dub_primary()
 	
+	#print("the rotation is " + str(_die_rotation))
+	die_double_primary.rotation_degrees = _die_rotation
+	
 	
 func _reset_die_double_secondary() -> void:
+	## Don't reset if die is already picked up.
+	if die_double_secondary.position.y > 0.7:
+		return
+	## Get the rotation info on die.
+	var _die_rotation = die_double_secondary.rotation_of_die_at_rest
+	
 	remove_child(die_double_secondary)
 	die_double_secondary.queue_free()
 	die_double_secondary = DIE_DOUBLE_SECONDARY.instantiate()
@@ -459,8 +503,17 @@ func _reset_die_double_secondary() -> void:
 	_assign_die_styles_dub_secondary()
 	_assign_colors_dub_secondary()
 	
+	#print("the rotation is " + str(_die_rotation))
+	die_double_secondary.rotation_degrees = _die_rotation
+	
 	
 func _reset_die_door_direction() -> void:
+	## Don't reset if die is already picked up.
+	if die_door_direction.position.y > 0.7:
+		return
+	## Get the rotation info on die.
+	var _die_rotation = die_door_direction.rotation_of_die_at_rest
+	
 	remove_child(die_door_direction)
 	die_door_direction.queue_free()
 	die_door_direction = DIE_DOOR_DIRECTION.instantiate()
@@ -468,8 +521,17 @@ func _reset_die_door_direction() -> void:
 	_assign_die_styles_lcr()
 	_assign_colors_lcr()
 	
+	#print("the rotation is " + str(_die_rotation))
+	die_door_direction.rotation_degrees = _die_rotation
+	
 	
 func _reset_die_door_locks() -> void:
+	## Don't reset if die is already picked up.
+	if die_door_locks.position.y > 0.7:
+		return
+	## Get the rotation info on die.
+	var _die_rotation = die_door_locks.rotation_of_die_at_rest
+	
 	remove_child(die_door_locks)
 	die_door_locks.queue_free()
 	die_door_locks = DIE_DOOR_LOCKS.instantiate()
@@ -477,8 +539,18 @@ func _reset_die_door_locks() -> void:
 	_assign_die_styles_lock()
 	_assign_colors_lock()
 	
+	#print("the rotation is " + str(_die_rotation))
+	die_door_locks.rotation_degrees = _die_rotation
+	
 	
 func _reset_die_single_primary() -> void:
+	
+	## Don't reset if die is already picked up.
+	if die_single_primary.position.y > 0.7:
+		return
+	## Get the rotation info on die.
+	var _die_rotation = die_single_primary.rotation_of_die_at_rest
+	
 	remove_child(die_single_primary)
 	die_single_primary.queue_free()
 	die_single_primary = DIE_SINGLE_PRIMARY.instantiate()
@@ -486,8 +558,18 @@ func _reset_die_single_primary() -> void:
 	_assign_die_styles_single_prime()
 	_assign_colors_single_primary()
 	
+	#print("the rotation is " + str(_die_rotation))
+	die_single_primary.rotation_degrees = _die_rotation
+	
+	
 	
 func _reset_die_single_secondary() -> void:
+	## Don't reset if die is already picked up.
+	if die_single_secondary.position.y > 0.7:
+		return
+	## Get the rotation info on die.
+	var _die_rotation = die_single_secondary.rotation_of_die_at_rest
+	
 	remove_child(die_single_secondary)
 	die_single_secondary.queue_free()
 	die_single_secondary = DIE_SINGLE_SECONDARY.instantiate()
@@ -495,14 +577,26 @@ func _reset_die_single_secondary() -> void:
 	_assign_die_styles_single_secondary()
 	_assign_colors_single_secondary()
 	
+	#print("the rotation is " + str(_die_rotation))
+	die_single_secondary.rotation_degrees = _die_rotation
+	
 	
 func _reset_die_d_3() -> void:
+	## Don't reset if die is already picked up.
+	if die_d_3.position.y > 0.7:
+		return
+	## Get the rotation info on die.
+	var _die_rotation = die_d_3.rotation_of_die_at_rest
+	
 	remove_child(die_d_3)
 	die_d_3.queue_free()
 	die_d_3 = DIE_D_3.instantiate()
 	add_child(die_d_3)
 	_assign_die_styles_d3()
 	_assign_colors_d3()
+	
+	#print("the rotation is " + str(_die_rotation))
+	die_d_3.rotation_degrees = _die_rotation
 	
 	
 #endregion
