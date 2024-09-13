@@ -418,6 +418,26 @@ func _reset_all_dice() -> void:
 	_reset_die_d_3()
 
 
+## X, Y, and Door Qty Shared Labels reset
+func _reset_die_x_y_qty_labels() -> void:
+	
+	room_size_rolled_doubles_bool = false ## belt and suspenders
+	
+	##  Remove ScoreBoards because it's beginning of new section
+	#_remove_left_dice_scoreboard()
+	#_remove_right_dice_scoreboard()
+	
+	## Reset labels related to room size
+	room_doubles_alert_label.text = ""
+	x_result_label.text = ""
+	y_result_label.text = ""
+	exit_number_label.text = ""
+	
+	## Remove rectangle Drawing and size labels
+	clear_room_rectangle.emit()
+	_remove_small_or_large_room_labels()
+
+
 func _reset_die_x_dimension() -> void:
 	## Don't reset if die is already picked up.
 	if die_x_dimension.position.y > 0.7:
@@ -435,29 +455,9 @@ func _reset_die_x_dimension() -> void:
 	#print("the rotation is " + str(_die_rotation))
 	die_x_dimension.rotation_degrees = _die_rotation
 	
-	_reset_die_x_y_qty_labels()
+	_reset_die_x_y_qty_labels() ## Only needs to be called in one of the three dice resets.
 
 
-##### X, Y, and Door Qty Labels reset
-func _reset_die_x_y_qty_labels() -> void:
-	
-	room_size_rolled_doubles_bool = false ## belt and suspenders
-	
-	##  Remove ScoreBoards because it's beginning of new section
-	_remove_left_dice_scoreboard()
-	_remove_right_dice_scoreboard()
-	
-	## Reset labels related to room size
-	room_doubles_alert_label.text = ""
-	x_result_label.text = ""
-	y_result_label.text = ""
-	exit_number_label.text = ""
-	
-	## Remove rectangle Drawing and size labels
-	clear_room_rectangle.emit()
-	_remove_small_or_large_room_labels()
-	
-	
 func _reset_die_y_dimension() -> void:
 	## Don't reset if die is already picked up.
 	if die_y_dimension.position.y > 0.7:
@@ -494,6 +494,11 @@ func _reset_die_door_qty() -> void:
 	die_door_qty.rotation_degrees = _die_rotation
 	
 	
+## Double dice shared labels reset
+func _reset_die_doubles_labels() -> void:
+	_remove_left_dice_scoreboard() ## clear the old results
+	room_doubles_alert_label.text = ""
+
 func _reset_die_double_primary() -> void:
 	## Don't reset if die is already picked up.
 	if die_double_primary.position.y > 0.7:
@@ -510,6 +515,8 @@ func _reset_die_double_primary() -> void:
 	
 	#print("the rotation is " + str(_die_rotation))
 	die_double_primary.rotation_degrees = _die_rotation
+	
+	_reset_die_doubles_labels()
 	
 	
 func _reset_die_double_secondary() -> void:
@@ -547,6 +554,10 @@ func _reset_die_door_direction() -> void:
 	#print("the rotation is " + str(_die_rotation))
 	die_door_direction.rotation_degrees = _die_rotation
 	
+	## Reset Variables
+	room_doubles_alert_label.text = ""
+	exit_direction_label.text = ""
+	
 	
 func _reset_die_door_locks() -> void:
 	## Don't reset if die is already picked up.
@@ -564,6 +575,10 @@ func _reset_die_door_locks() -> void:
 	
 	#print("the rotation is " + str(_die_rotation))
 	die_door_locks.rotation_degrees = _die_rotation
+	
+	## Reset Variables
+	room_doubles_alert_label.text = ""
+	exit_lock_label.text = ""
 	
 	
 func _reset_die_single_primary() -> void:
@@ -584,6 +599,10 @@ func _reset_die_single_primary() -> void:
 	#print("the rotation is " + str(_die_rotation))
 	die_single_primary.rotation_degrees = _die_rotation
 	
+	## Reset Variables
+	room_doubles_alert_label.text = ""
+	_remove_right_primary_die_scoreboard()
+	
 	
 func _reset_die_single_secondary() -> void:
 	## Don't reset if die is already picked up.
@@ -602,6 +621,10 @@ func _reset_die_single_secondary() -> void:
 	#print("the rotation is " + str(_die_rotation))
 	die_single_secondary.rotation_degrees = _die_rotation
 	
+	## Reset Variables
+	room_doubles_alert_label.text = ""
+	_remove_right_secondary_die_scoreboard()
+	
 	
 func _reset_die_d_3() -> void:
 	## Don't reset if die is already picked up.
@@ -619,6 +642,10 @@ func _reset_die_d_3() -> void:
 	
 	#print("the rotation is " + str(_die_rotation))
 	die_d_3.rotation_degrees = _die_rotation
+	
+	## Reset Variables
+	room_doubles_alert_label.text = ""
+	d_3_result_label.text = ""
 	
 	
 #endregion
@@ -694,10 +721,6 @@ func _on_x_y_throw_button_pressed() -> void:
 	doubles_primary_int = 0
 	doubles_secondary_int = 0
 	
-	## Remove rectangle Drawing and size labels
-	clear_room_rectangle.emit()
-	_remove_small_or_large_room_labels()
-	
 	## Reset the dice (to eliminate momentum bug in Rapier 0.7.x)
 	_reset_die_x_dimension()
 	_reset_die_y_dimension()
@@ -714,10 +737,9 @@ func _on_double_throw_button_pressed() -> void:
 	## Remove button for launching dice
 	button_throw_doubles.visible = false
 	
-	_remove_left_dice_scoreboard() ## clear the old results
+	_reset_die_doubles_labels()
 	
 	## Reset Variables
-	room_doubles_alert_label.text = ""
 	room_size_x_add_int = 0
 	room_size_y_add_int = 0
 	doubles_primary_int = 0
