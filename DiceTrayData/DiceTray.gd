@@ -87,6 +87,7 @@ func _ready() -> void:
 	
 	## Signal Bus connections (receptions)
 	SignalBusDiceTray.dice_to_reroll.connect(_roll_from_table)
+	SignalBusDiceTray.roll_finished.connect(_sort_roll_finished_result)
 	
 	## Instantiate all 10 dice and add as child of DiceTray.
 	die_door_direction = DIE_DOOR_DIRECTION.instantiate()
@@ -434,6 +435,28 @@ func _reset_die_x_dimension() -> void:
 	#print("the rotation is " + str(_die_rotation))
 	die_x_dimension.rotation_degrees = _die_rotation
 	
+	_reset_die_x_y_qty_labels()
+
+
+##### X, Y, and Door Qty Labels reset
+func _reset_die_x_y_qty_labels() -> void:
+	
+	room_size_rolled_doubles_bool = false ## belt and suspenders
+	
+	##  Remove ScoreBoards because it's beginning of new section
+	_remove_left_dice_scoreboard()
+	_remove_right_dice_scoreboard()
+	
+	## Reset labels related to room size
+	room_doubles_alert_label.text = ""
+	x_result_label.text = ""
+	y_result_label.text = ""
+	exit_number_label.text = ""
+	
+	## Remove rectangle Drawing and size labels
+	clear_room_rectangle.emit()
+	_remove_small_or_large_room_labels()
+	
 	
 func _reset_die_y_dimension() -> void:
 	## Don't reset if die is already picked up.
@@ -562,7 +585,6 @@ func _reset_die_single_primary() -> void:
 	die_single_primary.rotation_degrees = _die_rotation
 	
 	
-	
 func _reset_die_single_secondary() -> void:
 	## Don't reset if die is already picked up.
 	if die_single_secondary.position.y > 0.7:
@@ -629,8 +651,6 @@ func _remove_small_or_large_room_labels() -> void:
 	%RoomSizeLargeLabel.visible = false
 	
 
-
-
 #region ------ ROLL DICE --------------------------------------------------
 
 ## This funcion is called from clicking on a die in the tray through a signal.
@@ -660,18 +680,10 @@ func _on_x_y_throw_button_pressed() -> void:
 	## Remove buttons for launching dice
 	button_throw_xy.visible = false ## Main
 	button_throw_xy2.visible = false ##  exit die location
-		
-	##  Remove ScoreBoards because it's beginning of new section
-	_remove_left_dice_scoreboard()
-	_remove_right_dice_scoreboard()
 	
-	## Reset labels related to room size
-	room_doubles_alert_label.text = ""
-	x_result_label.text = ""
-	y_result_label.text = ""
+	_reset_die_x_y_qty_labels()
 	
 	## Reset variables related to room size
-	exit_number_label.text = ""
 	room_size_x_roll_int = 0
 	room_size_y_roll_int = 0
 	room_size_x_add_int = 0
@@ -801,6 +813,34 @@ func _on_d_3_throw_button_pressed() -> void:
 
 
 #region ---------------------- ROLL FINISHED Do math and display results-----
+
+########################################################################
+## First, we need to collect and parse the roll results from the signal
+########################################################################
+func _sort_roll_finished_result(die_value, die_name) -> void:
+	match die_name:
+		"DieDoublePrimary":
+			_on_die_double_primary_roll_finished(die_value)
+		"DieDoubleSecondary":
+			_on_die_double_secondary_roll_finished(die_value)
+		"DieSinglePrimary":
+			_on_die_single_primary_roll_finished(die_value)
+		"DieSingleSecondary":
+			_on_die_single_secondary_roll_finished(die_value)
+		"DieXDimension":
+			_on_die_dx_dim_roll_finished(die_value)
+		"DieYDimension":
+			_on_die_dy_dim_roll_finished(die_value)
+		"DieDoorQty":
+			_on_die_door_exit_qty_roll_finished(die_value)
+		"DieDoorDirection":
+			_on_die_lcr_roll_finished(die_value)
+		"DieDoorLocks":
+			_on_die_locked_roll_finished(die_value)
+		"DieD3":
+			_on_die_d_3_roll_finished(die_value)
+
+
 func _add_small_or_large_room_labels( _room_x :int , _room_y :int) -> void:
 	
 	var _room_area :int = _room_x * _room_y
@@ -906,7 +946,7 @@ func _on_die_double_secondary_roll_finished(die_value :int) -> void:
 		d_66_secondary_label.text = str(doubles_secondary_int)
 
 
-func _on_die_door_pics_roll_finished(die_value :int) -> void:
+func _on_die_door_exit_qty_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
 	room_number_of_exits_int = die_value
 	if room_number_of_exits_int == 1:
@@ -934,14 +974,14 @@ func _on_die_locked_roll_finished(die_value :int) -> void:
 	
 	
 
-func _on_die_primary_numbered_roll_finished(die_value :int) -> void:
+func _on_die_single_primary_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
 	primary_die_int = die_value
 	%TwoD6PrimaryPolygon2D.visible = true
 	primary_label.text = str(primary_die_int)
 
 
-func _on_die_secondary_numbered_roll_finished(die_value :int) -> void:
+func _on_die_single_secondary_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
 	secondary_die_int = die_value
 	%TwoD6SecondaryPolygon2D.visible = true

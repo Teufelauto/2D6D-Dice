@@ -60,8 +60,9 @@ func _on_sleeping_state_changed() -> void:
 				rotation_of_die_at_rest = get_rotation_degrees()
 				#print(rotation_of_die_at_rest)
 				
-				## Send value of roll 
-				SignalBusDiceTray.roll_finished.emit(raycast.opposite_side)
+				## Send value of roll , which die was rolled
+				var _die_name: String = self.name
+				SignalBusDiceTray.roll_finished.emit(raycast.opposite_side, _die_name)
 				
 				
 		if not landed_on_side: ## Auto reroll if rests at angle

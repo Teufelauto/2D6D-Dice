@@ -20,12 +20,17 @@ config/features=PackedStringArray("4.3", "Mobile")
 run/max_fps=60
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://ic_launcher.png"
+boot_splash/fullsize=false
 config/icon="res://DOORICON.svg"
-boot_splash/minimum_display_time=1
+boot_splash/minimum_display_time=250
 
 [autoload]
 
 SignalBusDiceTray="*res://DiceTrayData/SignalBusDiceTray.gd"
+
+[debug]
+
+gdscript/warnings/unused_signal=0
 
 [display]
 
