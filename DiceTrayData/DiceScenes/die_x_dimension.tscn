@@ -235,13 +235,16 @@ clearcoat_enabled = true
 roughness = 0.1
 clearcoat_enabled = true
 
-[node name="DXDim" type="RigidBody3D"]
-collision_layer = 2
-collision_mask = 255
-mass = 5.0
+[node name="DieXDimension" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.2, 0.8, 0.2)
+collision_layer = 0
+collision_mask = 5
+mass = 20.0
 physics_material_override = ExtResource("1_jowh7")
-gravity_scale = 5.0
-freeze = true
+center_of_mass_mode = 1
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_aasm6")
 
 [node name="Die_Body_X" type="MeshInstance3D" parent="." groups=["die_let", "mesh_die_x"]]
@@ -274,6 +277,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_qb8uy")
 surface_material_override/1 = SubResource("StandardMaterial3D_g8puy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+visible = false
 shape = ExtResource("3_u3let")
 
 [node name="Raycasts" type="Node3D" parent="."]
@@ -322,4 +326,6 @@ collision_mask = 256
 hit_from_inside = true
 opposite_side = 1
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="sleeping_state_changed" from="." to="." method="_on_sleeping_state_changed"]

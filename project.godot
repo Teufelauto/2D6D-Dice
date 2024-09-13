@@ -12,7 +12,7 @@ config_version=5
 
 config/name="2D6_Digital_Dice"
 config/description="A Digital Dice app for the Solo Player Dungeon Crawler \"2D6 Dungeon\" by Toby Lancaster.  This app was created by Jamie Halford, and is not an official product of DR Games or Toby Lancaster. More information on 2D6 Dungeon, including how to get it, may be found at www.drgames.co.uk"
-config/version="0.9.3"
+config/version="0.10.0"
 config/tags=PackedStringArray("3d", "dice", "mobile", "rpg")
 run/main_scene="res://DiceTrayData/dice_start_menu.tscn"
 config/quit_on_go_back=false
@@ -20,8 +20,17 @@ config/features=PackedStringArray("4.3", "Mobile")
 run/max_fps=60
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://ic_launcher.png"
+boot_splash/fullsize=false
 config/icon="res://DOORICON.svg"
-boot_splash/minimum_display_time=1
+boot_splash/minimum_display_time=250
+
+[autoload]
+
+SignalBusDiceTray="*res://DiceTrayData/SignalBusDiceTray.gd"
+
+[debug]
+
+gdscript/warnings/unused_signal=0
 
 [display]
 
@@ -60,9 +69,9 @@ enabled=PackedStringArray("res://addons/safe_resource_loader/plugin.cfg")
 [physics]
 
 3d/physics_engine="Rapier3D"
-3d/default_gravity=10.0
+3d/default_gravity=30.0
 3d/sleep_threshold_angular=0.1
-3d/time_before_sleep=0.2
+3d/time_before_sleep=0.25
 
 [rendering]
 

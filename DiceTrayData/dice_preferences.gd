@@ -2,88 +2,92 @@ extends Control
 class_name DicePreferences
 
 
+## Set static vars to default in case updates happen, where defaults will be loaded
+## if entries in save file don't exist yet. Defaults will be saved to new entries in old save file.
 
-# Vibration and Sound
-static var d_vibration_on : bool
-static var d_unmuted : bool
-static var d_volume_felt : float # 0 to 1
-static var d_volume_plastic : float # 0 to 1
-static var d_music_unmuted : bool	# Future Feature?
-static var d_music_volume : float   # Future Feature?
-static var d_music_variant : int	# Future Feature?
+## Vibration and Sound
+static var d_vibration_on : bool = false
+static var d_unmuted : bool = true
+static var d_volume_felt : float = 0.5
+static var d_volume_plastic : float = 0.5
+static var d_music_unmuted : bool	## Future Feature?
+static var d_music_volume : float   ## Future Feature?
+static var d_music_variant : int	## Future Feature?
 
-# Colors
-static var d_text_color_x : Color
-static var d_body_color_x : Color
-static var d_text_color_y : Color
-static var d_body_color_y : Color
-static var d_text_color_d66_prime : Color
-static var d_body_color_d66_prime : Color
-static var d_text_color_d66_secondary : Color
-static var d_body_color_d66_secondary : Color
-static var d_text_color_single_primary : Color
-static var d_body_color_single_primary : Color
-static var d_text_color_single_secondary : Color
-static var d_body_color_single_secondary : Color
-static var d_text_color_exit_numbers : Color
-static var d_body_color_exit_numbers : Color
-static var d_text_color_exit_direction : Color
-static var d_body_color_exit_direction : Color
-static var d_text_color_exit_lock : Color
-static var d_body_color_exit_lock : Color
-static var d_text_color_d3 : Color
-static var d_body_color_d3 : Color
-static var d_tray_felt_color : Color
+## Colors
+static var d_text_color_x : Color = Color.ANTIQUE_WHITE
+static var d_body_color_x : Color = Color.ROYAL_BLUE
+static var d_text_color_y : Color = Color.ANTIQUE_WHITE
+static var d_body_color_y : Color = Color.FIREBRICK
+static var d_text_color_d66_prime : Color = Color("7f6e19")
+static var d_body_color_d66_prime : Color = Color.DEEP_SKY_BLUE
+static var d_text_color_d66_secondary : Color = Color.ANTIQUE_WHITE
+static var d_body_color_d66_secondary : Color = Color.DARK_ORANGE
+static var d_text_color_single_primary : Color = Color.ANTIQUE_WHITE
+static var d_body_color_single_primary : Color = Color.MEDIUM_BLUE
+static var d_text_color_single_secondary : Color = Color.ANTIQUE_WHITE
+static var d_body_color_single_secondary : Color = Color.ORANGE_RED
+static var d_text_color_exit_numbers : Color = Color.BLACK
+static var d_body_color_exit_numbers : Color = Color.BURLYWOOD
+static var d_text_color_exit_direction : Color = Color.ANTIQUE_WHITE
+static var d_body_color_exit_direction : Color = Color.WEB_MAROON
+static var d_text_color_exit_lock : Color = Color.BLACK
+static var d_body_color_exit_lock : Color = Color.ANTIQUE_WHITE
+static var d_text_color_d3 : Color = Color.ANTIQUE_WHITE
+static var d_body_color_d3 : Color = Color.REBECCA_PURPLE
+static var d_tray_felt_color : Color = Color.DARK_GREEN
 
-# Styles
-static var d_style_x : String
-static var d_style_y : String
-static var d_style_d66_prime : String
-static var d_style_d66_secondary : String
-static var d_style_single_primary : String
-static var d_style_single_secondary : String
-static var d_style_exit_qty : String
-static var d_style_exit_direction : String
-static var d_style_exit_lock : String
-static var d_style_d3 : String
+## Styles
+static var d_style_x : String = "die_let"
+static var d_style_y : String = "die_let"
+static var d_style_d66_prime : String = "die_dot"
+static var d_style_d66_secondary : String = "die_dot"
+static var d_style_single_primary : String = "die_num"
+static var d_style_single_secondary : String = "die_num"
+static var d_style_exit_qty : String = "die_dot"
+static var d_style_exit_direction : String = "die_let"
+static var d_style_exit_lock : String = "die_dot"
+static var d_style_d3 : String = "die_dot"
 
-# Fatigue die
-static var d_text_color_fatigue :Color
-static var d_body_color_fatigue :Color
-static var d_style_fatigue : String
-static var d_vis_fatigue : bool
+## Fatigue die
+static var d_text_color_fatigue : Color = Color.ANTIQUE_WHITE
+static var d_body_color_fatigue : Color = Color.DIM_GRAY
+static var d_style_fatigue : String = "die_1"
+static var d_vis_fatigue : bool = true
 
 
 signal dice_impact_sound(type_of_sound :String)
 
 
 func _ready() -> void:
-	if ResourceLoader.exists("user://savedice.tres") : #Load custom saved colors
-		DicePreferences.load_dice_colors()
-		DicePreferences.load_dice_styles()
-		DicePreferences.load_fatigue_die()
-		DicePreferences.load_sounds()
-		
-	else: # load standard colors chosen by the developer!
-		DicePreferences.load_default_dice_colors()
-		DicePreferences.load_default_dice_styles()
-		DicePreferences.load_default_fatigue_die()
-		DicePreferences.load_default_sounds()
-		
 	
-func _on_ready_color_menu() -> void: # called only by Color menu when opened
+	##  This is redundant, because it was added to Start menu.
+	#if ResourceLoader.exists("user://playerdicepreferences.tres") : ##Load custom saved colors
+		#DicePreferences.load_dice_colors()
+		#DicePreferences.load_dice_styles()
+		#DicePreferences.load_fatigue_die()
+		#DicePreferences.load_sounds()
+	#else: ## load standard colors chosen by the developer!
+		#DicePreferences.load_default_dice_colors()
+		#DicePreferences.load_default_dice_styles()
+		#DicePreferences.load_default_fatigue_die()
+		#DicePreferences.load_default_sounds()
+	pass
+	
+	
+func _on_ready_color_menu() -> void: ## called only by Color menu when opened
 	_paint_buttons_and_text_in_menu()
 
 
-func _on_ready_set_style_popups() -> void: # called only by Style menu when opened
+func _on_ready_set_style_popups() -> void: ## called only by Style menu when opened
 	_update_displayed_style_buttons()
 
 
-func _on_ready_fatigue_options_menu() -> void: # called only by fatigue menu when opened
+func _on_ready_fatigue_options_menu() -> void: ## called only by fatigue menu when opened
 	_paint_buttons_and_update_style_in_fatigue_menu()
 
 
-func _on_ready_sound_options_menu() -> void: # called only by Sounds and Vibration menu when opened
+func _on_ready_sound_options_menu() -> void: ## called only by Sounds and Vibration menu when opened
 	_update_selections_in_sound_menu()
 
 
@@ -164,18 +168,18 @@ func _update_displayed_style_buttons() -> void:
 
 func _paint_buttons_and_update_style_in_fatigue_menu() -> void:
 	
-	# Fatigue die visibility
+	## Fatigue die visibility
 	if d_vis_fatigue == true:
 		%FatigueDieVisiblity.selected = 1
 	else:
 		%FatigueDieVisiblity.selected = 0
 	
-	# Fatigue Color
+	## Fatigue Color
 	%ColorPickerButton_FatigueText.color = d_text_color_fatigue
 	%ColorPickerButton_Fatigue.color = d_body_color_fatigue
 	%LabelFatigue.label_settings.font_color = d_text_color_fatigue
 	
-	# Fatigue Style
+	## Fatigue Style
 	var index :int 
 	match d_style_fatigue:
 		"die_1" : index = 0
@@ -184,67 +188,67 @@ func _paint_buttons_and_update_style_in_fatigue_menu() -> void:
 	$MarginContainer/VBoxContainer/GridContainer/d_style_fatigue.selected = index
 
 
-func _paint_buttons_and_text_in_menu() -> void: # in color menu
-	# X
+func _paint_buttons_and_text_in_menu() -> void: ## in color menu
+	## X
 	%ColorPickerButton_Xtext.color = d_text_color_x
 	%ColorPickerButton_X.color = d_body_color_x
 	%LabelX.label_settings.font_color = d_text_color_x
-	# Y
+	## Y
 	%ColorPickerButton_Ytext.color = d_text_color_y
 	%ColorPickerButton_Y.color = d_body_color_y
 	%LabelY.label_settings.font_color = d_text_color_y
-	# D66 Prime
+	## D66 Prime
 	%ColorPickerButton_D66Ptext.color = d_text_color_d66_prime
 	%ColorPickerButton_D66Prime.color = d_body_color_d66_prime
 	%LabelD66Prime.label_settings.font_color = d_text_color_d66_prime
-	# D66 Secondary
+	## D66 Secondary
 	%ColorPickerButton_D66Stext.color = d_text_color_d66_secondary
 	%ColorPickerButton_D66Secondary.color = d_body_color_d66_secondary
 	%LabelD66Secondary.label_settings.font_color = d_text_color_d66_secondary
-	# D6 Primary
+	## D6 Primary
 	%ColorPickerButton_PrimeText.color = d_text_color_single_primary
 	%ColorPickerButton_Primary.color = d_body_color_single_primary
 	%LabelD6Prime.label_settings.font_color = d_text_color_single_primary
-	# D6 Secondary
+	## D6 Secondary
 	%ColorPickerButton_secondaryText.color = d_text_color_single_secondary
 	%ColorPickerButton_Secondary.color = d_body_color_single_secondary
 	%LabelD6Secondary.label_settings.font_color = d_text_color_single_secondary
-	# Exit Number / Qty
+	## Exit Number / Qty
 	%ColorPickerButton_ExitNumText.color = d_text_color_exit_numbers
 	%ColorPickerButton_ExitNum.color = d_body_color_exit_numbers
 	%LabelExitQty.label_settings.font_color = d_text_color_exit_numbers
-	# Exit Direction
+	## Exit Direction
 	%ColorPickerButton_ExitDirText.color = d_text_color_exit_direction
 	%ColorPickerButton_ExitDirection.color = d_body_color_exit_direction
 	%LabelExitDir.label_settings.font_color = d_text_color_exit_direction
-	# Exit Lock
+	## Exit Lock
 	%ColorPickerButton_ExitLockText.color = d_text_color_exit_lock
 	%ColorPickerButton_ExitLock.color = d_body_color_exit_lock
 	%LabelExitLock.label_settings.font_color = d_text_color_exit_lock
-	# D3 Die
+	## D3 Die
 	%ColorPickerButton_D3Text.color = d_text_color_d3
 	%ColorPickerButton_D3.color = d_body_color_d3
 	%LabelD3.label_settings.font_color = d_text_color_d3
-	# Tray Felt color
+	## Tray Felt color
 	%ColorPickerButton_TrayFelt.color = d_tray_felt_color
 	
 
 func _update_selections_in_sound_menu() -> void:
 	var index :int 
 	
-	# Dice Vibration on
+	## Dice Vibration on
 	match d_vibration_on:
 		false : index = 0
 		true : index = 1
 	$MarginContainer/VBoxContainer/GridContainer/dice_vibe_on.selected = index
 	
-	# Dice unmute
+	## Dice unmute
 	match d_unmuted:
 		false : index = 0
 		true : index = 1
 	$MarginContainer/VBoxContainer/GridContainer/dice_unmute.selected = index
 	
-	# Volume Sliders
+	## Volume Sliders
 	$MarginContainer/VBoxContainer/PlasticSoundHSlider.value = d_volume_plastic
 	$MarginContainer/VBoxContainer/FeltSoundHSlider.value = d_volume_felt
 	
@@ -273,20 +277,20 @@ func _on_load_default_sound_pressed() -> void:
 	_update_selections_in_sound_menu()
 
 static func load_default_sounds() -> void:
-	#Dice Sounds
-	d_vibration_on = true
+	##Dice Sounds
+	d_vibration_on = false
 	d_unmuted = true
 	d_volume_felt = 0.5
 	d_volume_plastic = 0.5
 	
 
 static func load_sounds() -> void:
-	var saved_dice:SavedDice = SafeResourceLoader.load("user://savedice.tres") as SavedDice
+	var saved_dice:SavedDice = SafeResourceLoader.load("user://playerdicepreferences.tres") as SavedDice
 	
-	if saved_dice == null:  ## ---------- RED Alert! -----------------
-		print("SaveDice.tres file was unsafe! Possible malicious code injection prevented.")
+	if saved_dice == null:  #### ---------- RED Alert! -----------------
+		print("playerdicepreferences.tres file was unsafe! Possible malicious code injection prevented.")
 		Input.vibrate_handheld(1000,1)
-		OS.alert( "SaveDice.tres file is unsafe! Possible malicious code injection prevented. Your save file is borked.",  "WARNING!")
+		OS.alert( "playerdicepreferences.tres file is unsafe! Possible malicious code injection prevented. Your save file is borked.",  "WARNING!")
 		return
 	
 	d_vibration_on = saved_dice.die_vibration_on
@@ -294,19 +298,19 @@ static func load_sounds() -> void:
 	d_volume_felt = saved_dice.die_volume_felt
 	d_volume_plastic = saved_dice.die_volume_plastic
 	
-	# Future Feature?
+	## Future Feature?
 	d_music_unmuted = saved_dice.die_music_unmuted  
 	d_music_volume = saved_dice.die_music_volume
 	d_music_variant = saved_dice.die_music_variant
 	
 
-static func load_dice_colors() -> void: # from file
-	var saved_dice:SavedDice = SafeResourceLoader.load("user://savedice.tres") as SavedDice
+static func load_dice_colors() -> void: ## from file
+	var saved_dice:SavedDice = SafeResourceLoader.load("user://playerdicepreferences.tres") as SavedDice
 	
-	if saved_dice == null:  ## ---------- RED Alert! -----------------
-		print("SaveDice.tres file was unsafe! Possible malicious code injection prevented.")
+	if saved_dice == null:  #### ---------- RED Alert! -----------------
+		print("playerdicepreferences.tres file was unsafe! Possible malicious code injection prevented.")
 		Input.vibrate_handheld(1000,1)
-		OS.alert( "SaveDice.tres file is unsafe! Possible malicious code injection prevented. Your save file is borked.",  "WARNING!")
+		OS.alert( "playerdicepreferences.tres file is unsafe! Possible malicious code injection prevented. Your save file is borked.",  "WARNING!")
 		return
 	
 	d_text_color_x = saved_dice.die_text_color_x
@@ -333,7 +337,7 @@ static func load_dice_colors() -> void: # from file
 
 
 static func load_default_dice_colors() -> void:
-	# Dice Colors
+	## Dice Colors
 	d_text_color_x = Color.ANTIQUE_WHITE
 	d_body_color_x = Color.ROYAL_BLUE
 	d_text_color_y = Color.ANTIQUE_WHITE
@@ -357,17 +361,17 @@ static func load_default_dice_colors() -> void:
 	d_tray_felt_color = Color.DARK_GREEN
 	
 
-static func load_dice_styles() -> void: # from file
+static func load_dice_styles() -> void: ## from file
 	
-	var saved_dice:SavedDice = SafeResourceLoader.load("user://savedice.tres") as SavedDice
+	var saved_dice:SavedDice = SafeResourceLoader.load("user://playerdicepreferences.tres") as SavedDice
 	
 	if saved_dice == null:
-		print("SaveDice.tres file was unsafe! Possible malicious code injection prevented.")
+		print("playerdicepreferences.tres file was unsafe! Possible malicious code injection prevented.")
 		Input.vibrate_handheld(1000,1)
-		OS.alert( "SaveDice.tres file is unsafe! Possible malicious code injection prevented. Your save file is borked.",  "WARNING!")
+		OS.alert( "playerdicepreferences.tres file is unsafe! Possible malicious code injection prevented. Your save file is borked.",  "WARNING!")
 		return
 	
-	#styles
+	##styles
 	d_style_x = saved_dice.die_style_x
 	d_style_y = saved_dice.die_style_y
 	d_style_d66_prime = saved_dice.die_style_d66_prime
@@ -381,7 +385,7 @@ static func load_dice_styles() -> void: # from file
 
 
 static func load_default_dice_styles() -> void:
-	# dice styles
+	## dice styles
 	d_style_x = "die_let"
 	d_style_y = "die_let"
 	d_style_d66_prime = "die_dot"
@@ -396,43 +400,43 @@ static func load_default_dice_styles() -> void:
 
 static func load_fatigue_die() -> void:
 	
-	var saved_dice:SavedDice = SafeResourceLoader.load("user://savedice.tres") as SavedDice
+	var saved_dice:SavedDice = SafeResourceLoader.load("user://playerdicepreferences.tres") as SavedDice
 	
 	if saved_dice == null:
-		print("SaveDice.tres file was unsafe! Possible malicious code injection prevented.")
+		print("playerdicepreferences.tres file was unsafe! Possible malicious code injection prevented.")
 		Input.vibrate_handheld(1000,1)
-		OS.alert( "SaveDice.tres file is unsafe! Possible malicious code injection prevented. Your save file is borked.",  "WARNING!")
+		OS.alert( "playerdicepreferences.tres file is unsafe! Possible malicious code injection prevented. Your save file is borked.",  "WARNING!")
 		return
 	
-	# color
+	## color
 	d_text_color_fatigue = saved_dice.die_text_color_fatigue
 	d_body_color_fatigue = saved_dice.die_body_color_fatigue
 	
-	# style
+	## style
 	d_style_fatigue = saved_dice.die_style_fatigue
 	
-	# option
+	## option
 	d_vis_fatigue = saved_dice.die_vis_fatigue
 
 
 static func load_default_fatigue_die() -> void:
 	
-	# color
+	## color
 	d_text_color_fatigue = Color.ANTIQUE_WHITE
 	d_body_color_fatigue = Color.DIM_GRAY
 	
-	# style
+	## style
 	d_style_fatigue = "die_1"
 	
-	# option
+	## option
 	d_vis_fatigue = true
 
 
-func _save_dice_preferences() -> void:
+static func _save_dice_preferences() -> void:
 	Input.vibrate_handheld(50,1)
 	var saved_dice:SavedDice = SavedDice.new()
 	
-	# colors
+	## colors
 	saved_dice.die_text_color_x = d_text_color_x 
 	saved_dice.die_body_color_x = d_body_color_x 
 	saved_dice.die_text_color_y = d_text_color_y
@@ -457,7 +461,7 @@ func _save_dice_preferences() -> void:
 	saved_dice.die_text_color_fatigue = d_text_color_fatigue
 	saved_dice.die_body_color_fatigue = d_body_color_fatigue
 	
-	# styles
+	## styles
 	saved_dice.die_style_x = d_style_x
 	saved_dice.die_style_y = d_style_y
 	saved_dice.die_style_d66_prime = d_style_d66_prime
@@ -470,24 +474,24 @@ func _save_dice_preferences() -> void:
 	saved_dice.die_style_d3 = d_style_d3
 	saved_dice.die_style_fatigue = d_style_fatigue
 	
-	# fatigue die viewable option
+	## fatigue die viewable option
 	saved_dice.die_vis_fatigue = d_vis_fatigue
 	
-	# dice vibration and sound
+	## dice vibration and sound
 	saved_dice.die_vibration_on = d_vibration_on
 	saved_dice.die_unmuted = d_unmuted
 	saved_dice.die_volume_felt = d_volume_felt
 	saved_dice.die_volume_plastic = d_volume_plastic
 	
-	# dice music Future Feature?
+	## dice music Future Feature?
 	saved_dice.die_music_unmuted = d_music_unmuted
 	saved_dice.die_music_volume = d_music_volume
 	saved_dice.die_music_variant = d_music_variant
 	
-	ResourceSaver.save(saved_dice, "user://savedice.tres")
+	ResourceSaver.save(saved_dice, "user://playerdicepreferences.tres")
 
 
-#region ------- Color Menu Signals --------------------------------------------
+##region ------- Color Menu Signals --------------------------------------------
 func _on_color_picker_button_xtext_color_changed(color :Color) -> void:
 	Input.vibrate_handheld(50,1)
 	%LabelX.label_settings.font_color = color
@@ -600,11 +604,11 @@ func _on_color_picker_button_tray_felt_color_changed(color :Color) -> void:
 	Input.vibrate_handheld(50,1)
 	d_tray_felt_color = color
 	
-#endregion
+##endregion
 
-#region -------- Style Menu Signals -----------------------------------
+##region -------- Style Menu Signals -----------------------------------
 
-# This function is used in the ones that follow it.
+## This function is used in the ones that follow it.
 func _dice_style_matching(index :int) -> String:
 	Input.vibrate_handheld(50,1)
 	var die_style : String
@@ -657,10 +661,10 @@ func _on_option_button_d_3_item_selected(index :int) -> void:
 	d_style_d3 = _dice_style_matching(index)
 	
 	
-#endregion
+##endregion
 
 
-#region -----------  Fatigue Menu Signals ---------------------------------------
+##region -----------  Fatigue Menu Signals ---------------------------------------
 func _on_fatigue_die_visiblity_item_selected(index :int) -> void:
 	Input.vibrate_handheld(50,1)
 	match index:
@@ -695,9 +699,9 @@ func _on_d_style_fatigue_item_selected(index :int) -> void:
 			die_style = "die_3"
 	d_style_fatigue = die_style
 
-#endregion
+##endregion
 
-#region ---------- Sound and Vibration Menu Signals ------------------
+##region ---------- Sound and Vibration Menu Signals ------------------
 
 func _on_dice_vibe_on_item_selected(index: int) -> void:
 	match index:
@@ -721,21 +725,21 @@ func _on_dice_unmute_item_selected(index: int) -> void:
 
 func _on_plastic_sound_h_slider_value_changed(value: float) -> void:
 	
-		# "Slider" refers to a node that inherits Range such as HSlider or VSlider.
-		# Its range must be configured to go from 0 to 1.
-		# Change the bus name if you'd like to change the volume of a specific bus only.
+		## "Slider" refers to a node that inherits Range such as HSlider or VSlider.
+		## Its range must be configured to go from 0 to 1.
+		## Change the bus name if you'd like to change the volume of a specific bus only.
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Dice On Dice"), linear_to_db($MarginContainer/VBoxContainer/PlasticSoundHSlider.value))
 	d_volume_plastic = $MarginContainer/VBoxContainer/PlasticSoundHSlider.value
 	
-	#in future, maybe link to sound
+	##in future, maybe link to sound
 	dice_impact_sound.emit("plastic")
 	
 
 func _on_felt_sound_h_slider_value_changed(value: float) -> void:
 	
-	# "Slider" refers to a node that inherits Range such as HSlider or VSlider.
-	# Its range must be configured to go from 0 to 1.
-	# Change the bus name if you'd like to change the volume of a specific bus only.
+	## "Slider" refers to a node that inherits Range such as HSlider or VSlider.
+	## Its range must be configured to go from 0 to 1.
+	## Change the bus name if you'd like to change the volume of a specific bus only.
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Dice On Felt"), linear_to_db($MarginContainer/VBoxContainer/FeltSoundHSlider.value))
 	d_volume_felt = $MarginContainer/VBoxContainer/FeltSoundHSlider.value
 	
@@ -744,4 +748,4 @@ func _on_felt_sound_h_slider_value_changed(value: float) -> void:
 	
 
 
-#endregion
+##endregion

@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://jvqclpsffs6c"]
-
-[ext_resource type="PackedScene" uid="uid://d2or5iw313p5i" path="res://DiceTrayData/DiceModels/DieDoorNumbered.glb" id="1_0732r"]
-
-[node name="DieDoorNumbered" instance=ExtResource("1_0732r")]
