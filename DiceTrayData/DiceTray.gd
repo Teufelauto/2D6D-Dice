@@ -38,6 +38,8 @@ static var room_size_rolled_doubles_bool : bool = false
 ## Room second throw (if doubles) die results
 static var room_size_x_add_int : int = 0
 static var room_size_y_add_int : int = 0
+static var die_doubles_primary_done : bool = false
+static var die_doubles_secondary_done : bool = false
 
 ## room size results
 static var room_size_x_int : int = 0
@@ -421,8 +423,6 @@ func _reset_all_dice() -> void:
 ## X, Y, and Door Qty Shared Labels reset
 func _reset_die_x_y_qty_labels() -> void:
 	
-	room_size_rolled_doubles_bool = false ## belt and suspenders
-	
 	##  Remove ScoreBoards because it's beginning of new section
 	#_remove_left_dice_scoreboard()
 	#_remove_right_dice_scoreboard()
@@ -750,6 +750,8 @@ func _on_double_throw_button_pressed() -> void:
 	room_size_y_add_int = 0
 	doubles_primary_int = 0
 	doubles_secondary_int = 0
+	die_doubles_primary_done = false
+	die_doubles_secondary_done = false
 	
 	## Reset the dice (to eliminate momentum bug in Rapier 0.7.x)
 	_reset_die_double_primary()
@@ -892,8 +894,6 @@ func _determine_room_doubles() -> void:
 		_add_small_or_large_room_labels(room_size_x_int,room_size_y_int)
 	
 	
-	
-	
 func _room_doubles_done() -> void:
 	if room_size_x_add_int > 0 and room_size_y_add_int > 0 :
 		
@@ -919,25 +919,53 @@ func _room_doubles_done() -> void:
 
 func _on_die_dx_dim_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
-	if not room_size_rolled_doubles_bool : ## prevent flipped die from changing room size
-		room_size_x_roll_int = die_value
-		room_size_x_int = room_size_x_roll_int
-		x_result_label.text = str(room_size_x_int)
-		if room_size_x_roll_int > 0 and room_size_y_roll_int > 0 :
-			_determine_room_doubles()
+	
+	## Trial code to fix room doubles math.
+	## Roll should be zero after thrown until this function changes it.
+	## If it's not zero, that means it got nudged or something. Running it twice
+	## would call determine room doubles after the doubles dice have already been thrown.
+	if room_size_x_roll_int > 0: 
+		return
+	room_size_x_roll_int = die_value
+	room_size_x_int = room_size_x_roll_int
+	x_result_label.text = str(room_size_x_int)
+	if room_size_x_roll_int > 0 and room_size_y_roll_int > 0 :
+		_determine_room_doubles()
+	
+	#if not room_size_rolled_doubles_bool : ## prevent flipped die from changing room size
+		#room_size_x_roll_int = die_value
+		#room_size_x_int = room_size_x_roll_int
+		#x_result_label.text = str(room_size_x_int)
+		#if room_size_x_roll_int > 0 and room_size_y_roll_int > 0 :
+			#_determine_room_doubles()
 
 
 func _on_die_dy_dim_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
-	if not room_size_rolled_doubles_bool : ## prevent flipped die from changing room size
-		room_size_y_roll_int = die_value
-		room_size_y_int = room_size_y_roll_int
-		y_result_label.text = str(room_size_y_int)
-		if room_size_x_roll_int > 0 and room_size_y_roll_int > 0 :
-			_determine_room_doubles()
+	
+	## Trial code to fix room doubles math
+	if room_size_y_roll_int > 0: 
+		return
+	room_size_y_roll_int = die_value
+	room_size_y_int = room_size_y_roll_int
+	y_result_label.text = str(room_size_y_int)
+	if room_size_x_roll_int > 0 and room_size_y_roll_int > 0 :
+		_determine_room_doubles()
+	
+	#if not room_size_rolled_doubles_bool : ## prevent flipped die from changing room size
+		#room_size_y_roll_int = die_value
+		#room_size_y_int = room_size_y_roll_int
+		#y_result_label.text = str(room_size_y_int)
+		#if room_size_x_roll_int > 0 and room_size_y_roll_int > 0 :
+			#_determine_room_doubles()
 
 
 func _on_die_double_primary_roll_finished(die_value :int) -> void:
+	## Following ensures this function can only happen once per throw.
+	if die_doubles_primary_done:
+		return
+	die_doubles_primary_done = true
+	
 	fatigue_reset_button.visible = false
 	
 	##room size rolling not done
@@ -957,6 +985,11 @@ func _on_die_double_primary_roll_finished(die_value :int) -> void:
 
 
 func _on_die_double_secondary_roll_finished(die_value :int) -> void:
+	## Following ensures this function can only happen once per throw.
+	if die_doubles_secondary_done:
+		return
+	die_doubles_secondary_done = true
+	
 	fatigue_reset_button.visible = false
 	
 	##room size rolling not done
@@ -992,7 +1025,6 @@ func _on_die_lcr_roll_finished(die_value :int) -> void:
 	else : exit_direction_label.text = "Right"
 	
 
-
 func _on_die_locked_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
 	door_lock_status_int = die_value
@@ -1002,7 +1034,6 @@ func _on_die_locked_roll_finished(die_value :int) -> void:
 	else : exit_lock_label.text = "Not Locked"
 	
 	
-
 func _on_die_single_primary_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
 	primary_die_int = die_value
