@@ -920,24 +920,18 @@ func _room_doubles_done() -> void:
 func _on_die_dx_dim_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
 	
-	## Trial code to fix room doubles math.
+
 	## Roll should be zero after thrown until this function changes it.
 	## If it's not zero, that means it got nudged or something. Running it twice
 	## would call determine room doubles after the doubles dice have already been thrown.
 	if room_size_x_roll_int > 0: 
+		#print("X Error Save!") ## Illustrates importance of this check
 		return
 	room_size_x_roll_int = die_value
 	room_size_x_int = room_size_x_roll_int
 	x_result_label.text = str(room_size_x_int)
 	if room_size_x_roll_int > 0 and room_size_y_roll_int > 0 :
 		_determine_room_doubles()
-	
-	#if not room_size_rolled_doubles_bool : ## prevent flipped die from changing room size
-		#room_size_x_roll_int = die_value
-		#room_size_x_int = room_size_x_roll_int
-		#x_result_label.text = str(room_size_x_int)
-		#if room_size_x_roll_int > 0 and room_size_y_roll_int > 0 :
-			#_determine_room_doubles()
 
 
 func _on_die_dy_dim_roll_finished(die_value :int) -> void:
@@ -945,24 +939,19 @@ func _on_die_dy_dim_roll_finished(die_value :int) -> void:
 	
 	## Trial code to fix room doubles math
 	if room_size_y_roll_int > 0: 
+		#print("Y Error Saved! ") ## Illustrates importance of this check
 		return
 	room_size_y_roll_int = die_value
 	room_size_y_int = room_size_y_roll_int
 	y_result_label.text = str(room_size_y_int)
 	if room_size_x_roll_int > 0 and room_size_y_roll_int > 0 :
 		_determine_room_doubles()
-	
-	#if not room_size_rolled_doubles_bool : ## prevent flipped die from changing room size
-		#room_size_y_roll_int = die_value
-		#room_size_y_int = room_size_y_roll_int
-		#y_result_label.text = str(room_size_y_int)
-		#if room_size_x_roll_int > 0 and room_size_y_roll_int > 0 :
-			#_determine_room_doubles()
 
 
 func _on_die_double_primary_roll_finished(die_value :int) -> void:
 	## Following ensures this function can only happen once per throw.
 	if die_doubles_primary_done:
+		#print("Room Doubles Dice Save!") ## Illustrates importance of this check
 		return
 	die_doubles_primary_done = true
 	
