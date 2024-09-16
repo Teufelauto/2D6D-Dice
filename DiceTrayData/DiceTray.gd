@@ -890,18 +890,19 @@ func _determine_room_doubles() -> void:
 	
 func _room_doubles_done() -> void:
 	if room_size_x_add_int > 0 and room_size_y_add_int > 0 :
-		room_doubles_alert_label.text = ""
-		
-		%D66PrimaryPolygon2D.visible = true
-		d_66_primary_label.text = str(room_size_x_add_int)
-		%D66SecondaryPolygon2D.visible = true
-		d_66_secondary_label.text = str(room_size_y_add_int)
 		
 		room_size_x_int = room_size_x_roll_int + room_size_x_add_int
 		room_size_y_int = room_size_y_roll_int + room_size_y_add_int
 		
 		x_result_label.text = str(room_size_x_int)
 		y_result_label.text = str(room_size_y_int)
+		
+		room_doubles_alert_label.text = ""
+		
+		%D66PrimaryPolygon2D.visible = true
+		d_66_primary_label.text = str(room_size_x_add_int)
+		%D66SecondaryPolygon2D.visible = true
+		d_66_secondary_label.text = str(room_size_y_add_int)
 		
 		## Rectangle drawing
 		resize_room_rectangle.emit(room_size_x_int,room_size_y_int)

@@ -3,15 +3,15 @@ extends RigidBody3D
 
 @onready var raycasts = $Raycasts.get_children()
 
-@export var rotation_of_die_at_rest :Vector3 ## record before picking up die 
-
-@export var roll_strength = 80    ## -------- Toss Strength ------------------
+@export var roll_strength = 70    ## -------- Toss Strength (70 instead of 80 because android roll strength more when clicked.
 @export var spin_strength = -50   ##  Spin Speed  Negative for CCW spin (Right Handed)
 @export var die_sound_tray_velocity_factor : float = 1.5 ## cutoff under which no sound emitted
 @export var die_sound_velocity_factor : float = 1.5 ## cutoff under which no sound emitted
+@export var rotation_of_die_at_rest :Vector3 ## record before picking up die 
 
-var start_pos ## Home position where the die gets returned to. May not be as important with instance killing...
-var is_rolling = false
+
+var start_pos :Vector3 ## Home position where the die gets returned to. Used when auto rerolling.
+var is_rolling :bool= false
 
 
 ## Called when the node enters the scene tree for the first time.
@@ -40,7 +40,7 @@ func roll() -> void:
 	## CCW spin (right handed throw) by defining spin_strength negative applied
 	##     to angular_velocity.  Is this the Right-Hand-Rule of Physics
 	##     where a thumbs-up's thumb points direction of travel and fingers point
-	##     in positive direction? Or is that just for electricity in a wire?
+	##     in positive direction? Or is that just for electro-magnatism in a wire?
 	angular_velocity = throw_vector * spin_strength 
 	apply_central_impulse(throw_vector * roll_strength) ## Actual Throw
 	is_rolling = true
@@ -48,7 +48,7 @@ func roll() -> void:
 
 func _on_sleeping_state_changed() -> void:
 	if sleeping:
-		var landed_on_side = false
+		var landed_on_side :bool= false
 		for raycast in raycasts:
 			if raycast.is_colliding():
 				is_rolling = false
@@ -60,7 +60,7 @@ func _on_sleeping_state_changed() -> void:
 				rotation_of_die_at_rest = get_rotation_degrees()
 				#print(rotation_of_die_at_rest)
 				
-				## Send value of roll , which die was rolled
+				## Send value of roll , and which die was rolled to the Tray Script
 				var _die_name: String = self.name
 				SignalBusDiceTray.roll_finished.emit(raycast.opposite_side, _die_name)
 				
