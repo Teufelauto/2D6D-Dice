@@ -1,0 +1,168 @@
+[gd_scene load_steps=4 format=3 uid="uid://bw2f48kibv1bj"]
+
+[ext_resource type="Script" path="res://DiceTrayData/instructions_2_menu.gd" id="1_r0qdn"]
+[ext_resource type="Texture2D" uid="uid://swxtk8251twl" path="res://DiceTrayData/SmallDiceCapture.JPG" id="2_7ivq6"]
+
+[sub_resource type="Theme" id="Theme_1glhj"]
+default_font_size = 25
+
+[node name="DiagramMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r0qdn")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -238.5
+offset_top = -410.5
+offset_right = 238.5
+offset_bottom = 410.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Notes" type="Label" parent="MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(460, 0)
+layout_mode = 2
+theme = SubResource("Theme_1glhj")
+text = "Room Dice and Exit Qty roll together.
+D66 Dice roll together."
+autowrap_mode = 3
+
+[node name="Spacer" type="Label" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/GridContainer"]
+self_modulate = Color(0.47, 0.47, 0.47, 1)
+layout_mode = 2
+texture = ExtResource("2_7ivq6")
+
+[node name="DieTags10" type="Label" parent="MarginContainer/GridContainer/TextureRect"]
+layout_mode = 0
+offset_left = 94.5
+offset_top = 121.5
+offset_right = 194.5
+offset_bottom = 194.5
+theme = SubResource("Theme_1glhj")
+text = "Room 
+Die  Y"
+autowrap_mode = 3
+
+[node name="DieTags2" type="Label" parent="MarginContainer/GridContainer/TextureRect"]
+layout_mode = 0
+offset_left = 327.5
+offset_top = 22.5
+offset_right = 427.5
+offset_bottom = 95.5
+theme = SubResource("Theme_1glhj")
+text = "Primary
+D6"
+autowrap_mode = 3
+
+[node name="DieTags3" type="Label" parent="MarginContainer/GridContainer/TextureRect"]
+layout_mode = 0
+offset_left = 330.5
+offset_top = 132.5
+offset_right = 468.5
+offset_bottom = 205.5
+theme = SubResource("Theme_1glhj")
+text = "Secondary
+D6"
+autowrap_mode = 3
+
+[node name="DieTags5" type="Label" parent="MarginContainer/GridContainer/TextureRect"]
+layout_mode = 0
+offset_left = 207.5
+offset_top = 22.5
+offset_right = 307.5
+offset_bottom = 95.5
+theme = SubResource("Theme_1glhj")
+text = "Primary
+D66"
+autowrap_mode = 3
+
+[node name="DieTags6" type="Label" parent="MarginContainer/GridContainer/TextureRect"]
+layout_mode = 0
+offset_left = 135.5
+offset_top = 229.5
+offset_right = 273.5
+offset_bottom = 340.5
+theme = SubResource("Theme_1glhj")
+text = "Optional Exit Direction"
+autowrap_mode = 3
+
+[node name="DieTags7" type="Label" parent="MarginContainer/GridContainer/TextureRect"]
+layout_mode = 0
+offset_left = 269.5
+offset_top = 247.5
+offset_right = 407.5
+offset_bottom = 320.5
+theme = SubResource("Theme_1glhj")
+text = "Door
+Locks"
+autowrap_mode = 3
+
+[node name="DieTags8" type="Label" parent="MarginContainer/GridContainer/TextureRect"]
+layout_mode = 0
+offset_left = 403.5
+offset_top = 256.5
+offset_right = 457.5
+offset_bottom = 329.5
+theme = SubResource("Theme_1glhj")
+text = "D3"
+autowrap_mode = 3
+
+[node name="DieTags9" type="Label" parent="MarginContainer/GridContainer/TextureRect"]
+layout_mode = 0
+offset_left = 49.5
+offset_top = 235.5
+offset_right = 108.5
+offset_bottom = 308.5
+theme = SubResource("Theme_1glhj")
+text = "Exit
+Qty"
+autowrap_mode = 3
+
+[node name="DieTags4" type="Label" parent="MarginContainer/GridContainer/TextureRect"]
+layout_mode = 0
+offset_left = 189.5
+offset_top = 134.5
+offset_right = 327.5
+offset_bottom = 207.5
+theme = SubResource("Theme_1glhj")
+text = "Secondary
+D66"
+autowrap_mode = 3
+
+[node name="DieTags" type="Label" parent="MarginContainer/GridContainer/TextureRect"]
+layout_mode = 0
+offset_left = 99.5
+offset_top = 26.5
+offset_right = 199.5
+offset_bottom = 99.5
+theme = SubResource("Theme_1glhj")
+text = "Room 
+Die  X"
+autowrap_mode = 3
+
+[node name="Spacer2" type="Label" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Back" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1glhj")
+theme_override_font_sizes/font_size = 40
+text = "Back"
+
+[connection signal="pressed" from="MarginContainer/GridContainer/Back" to="." method="_on_back_pressed"]

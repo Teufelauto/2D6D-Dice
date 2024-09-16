@@ -22,7 +22,7 @@ boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://ic_launcher.png"
 boot_splash/fullsize=false
 config/icon="res://DOORICON.svg"
-boot_splash/minimum_display_time=250
+boot_splash/minimum_display_time=1000
 
 [autoload]
 

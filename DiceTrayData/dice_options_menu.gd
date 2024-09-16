@@ -21,9 +21,14 @@ func _on_sound_and_vibe_pressed() -> void:
 	get_tree().change_scene_to_file("res://DiceTrayData/dice_sounds_and_vibe_options_menu.tscn")
 
 
+func _on_instructions_pressed() -> void:
+	Input.vibrate_handheld(50,1)
+	get_tree().change_scene_to_file("res://DiceTrayData/instructions_menu.tscn")
+
+
 func _on_legal_pressed() -> void:
 	Input.vibrate_handheld(50,1)
-	get_tree().change_scene_to_file("res://DiceTrayData/notes_menu.tscn")
+	get_tree().change_scene_to_file("res://DiceTrayData/legal_menu.tscn")
 
 
 func _on_back_pressed() -> void:

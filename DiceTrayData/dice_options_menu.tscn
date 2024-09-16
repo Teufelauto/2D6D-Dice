@@ -54,6 +54,12 @@ theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 60
 text = "Sounds & Vibe"
 
+[node name="Instructions" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1glhj")
+theme_override_font_sizes/font_size = 60
+text = "Instructions"
+
 [node name="Legal" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1glhj")
@@ -70,5 +76,6 @@ text = "Back"
 [connection signal="pressed" from="MarginContainer/VBoxContainer/DiceStyles" to="." method="_on_dice_styles_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/FatigueDie" to="." method="_on_fatigue_die_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/SoundAndVibe" to="." method="_on_sound_and_vibe_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Instructions" to="." method="_on_instructions_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Legal" to="." method="_on_legal_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

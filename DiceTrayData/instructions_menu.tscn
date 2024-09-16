@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpulhnndf5t2v"]
+
+[ext_resource type="Script" path="res://DiceTrayData/notes_menu.gd" id="1_krtnt"]
+
+[sub_resource type="Theme" id="Theme_1glhj"]
+default_font_size = 25
+
+[node name="NotesMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_krtnt")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -207.5
+offset_top = -410.5
+offset_right = 207.5
+offset_bottom = 410.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Notes" type="Label" parent="MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(460, 0)
+layout_mode = 2
+theme = SubResource("Theme_1glhj")
+text = "- Room Dice roll together with the die for number of exits.
+- If the Room Dice are double 1-5, roll the D66 dice to determine room size.
+- Optional Room Exit Direction Die, Core Rules p.14, 
+  L = (Left) Exit is on wall left of entry. (Clockwise)
+  C = (Center) Exit across from entry.
+  R = (Right) Exit is on wall to right of entry. (Anti-clockwise) 
+  -If wall is blocked, select next clockwise available wall.
+- Door Lock Die; If the glyph on the die matches the type of door, it is locked."
+autowrap_mode = 3
+
+[node name="Spacer" type="Label" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Diagram" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1glhj")
+theme_override_font_sizes/font_size = 40
+text = "Diagram"
+
+[node name="Spacer2" type="Label" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Back" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1glhj")
+theme_override_font_sizes/font_size = 40
+text = "Back"
+
+[connection signal="pressed" from="MarginContainer/GridContainer/Diagram" to="." method="_on_diagram_pressed"]
+[connection signal="pressed" from="MarginContainer/GridContainer/Back" to="." method="_on_back_pressed"]
