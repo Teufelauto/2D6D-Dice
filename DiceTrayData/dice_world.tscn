@@ -149,7 +149,6 @@ freeze = false
 
 [node name="StaticBody3DFatigue" type="StaticBody3D" parent="DiceTray/FatigueDie"]
 unique_name_in_owner = true
-visible = false
 collision_layer = 0
 collision_mask = 0
 input_ray_pickable = false
@@ -157,7 +156,6 @@ physics_material_override = SubResource("PhysicsMaterial_bhmng")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DiceTray/FatigueDie/StaticBody3DFatigue"]
 transform = Transform3D(1, 0, -7.45058e-09, 0, 1, 0, 7.45058e-09, 0, 1, 0, 0, 0)
-visible = false
 shape = SubResource("ConvexPolygonShape3D_ja2eq")
 
 [node name="TrayModel" type="Node3D" parent="DiceTray"]
@@ -189,7 +187,6 @@ collision_mask = 4
 physics_material_override = SubResource("PhysicsMaterial_4piwt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DiceTray/TrayModel/TableRight/StaticBody3D"]
-visible = false
 shape = SubResource("BoxShape3D_a2wnj")
 
 [node name="TableLeft" type="MeshInstance3D" parent="DiceTray/TrayModel" groups=["mesh_die_tray_felt"]]

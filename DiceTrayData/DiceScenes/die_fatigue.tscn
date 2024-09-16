@@ -80,8 +80,8 @@ clearcoat_enabled = true
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_7ynhg"]
 resource_local_to_scene = true
-height = 0.1
-radius = 0.05
+height = 0.5
+radius = 0.11
 
 [node name="DieFatigue" type="RigidBody3D"]
 collision_layer = 0
@@ -102,6 +102,4 @@ surface_material_override/1 = SubResource("StandardMaterial3D_ycugi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-visible = false
 shape = SubResource("CylinderShape3D_7ynhg")
-disabled = true
