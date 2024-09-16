@@ -723,6 +723,16 @@ func _on_dice_unmute_item_selected(index: int) -> void:
 			d_unmuted = true
 
 
+func _on_dice_plastic_volume_pressed() -> void:
+	SignalBusDiceTray.dice_impact_sound.emit("plastic")
+	print("plastic")
+
+
+func _on_dice_felt_volume_pressed() -> void:
+	SignalBusDiceTray.dice_impact_sound.emit("felt")
+	print("felt")
+
+
 func _on_plastic_sound_h_slider_value_changed(value: float) -> void:
 	
 		## "Slider" refers to a node that inherits Range such as HSlider or VSlider.
@@ -731,9 +741,8 @@ func _on_plastic_sound_h_slider_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Dice On Dice"), linear_to_db($MarginContainer/VBoxContainer/PlasticSoundHSlider.value))
 	d_volume_plastic = $MarginContainer/VBoxContainer/PlasticSoundHSlider.value
 	
-	##in future, maybe link to sound
-	dice_impact_sound.emit("plastic")
-	
+	SignalBusDiceTray.dice_impact_sound.emit("plastic")
+
 
 func _on_felt_sound_h_slider_value_changed(value: float) -> void:
 	
@@ -743,9 +752,6 @@ func _on_felt_sound_h_slider_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Dice On Felt"), linear_to_db($MarginContainer/VBoxContainer/FeltSoundHSlider.value))
 	d_volume_felt = $MarginContainer/VBoxContainer/FeltSoundHSlider.value
 	
-	dice_impact_sound.emit("felt")
-	
-	
-
+	SignalBusDiceTray.dice_impact_sound.emit("felt")
 
 ##endregion

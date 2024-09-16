@@ -1,6 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://kvwicrlnceye"]
+[gd_scene load_steps=23 format=3 uid="uid://kvwicrlnceye"]
 
 [ext_resource type="Script" path="res://DiceTrayData/dice_preferences.gd" id="1_8vvkg"]
+[ext_resource type="Script" path="res://DiceTrayData/dice_audio_vibe_control.gd" id="2_v5qos"]
+[ext_resource type="AudioStream" uid="uid://bxsphdlbjqrqd" path="res://DiceTrayData/DiceSounds/d1.mp3" id="3_yrx7u"]
+[ext_resource type="AudioStream" uid="uid://c2abbhaxh6uds" path="res://DiceTrayData/DiceSounds/d2.mp3" id="4_ff0n0"]
+[ext_resource type="AudioStream" uid="uid://cqjvhwif784nk" path="res://DiceTrayData/DiceSounds/d3.mp3" id="5_xh421"]
+[ext_resource type="AudioStream" uid="uid://b8qx62m15l2lg" path="res://DiceTrayData/DiceSounds/d4.mp3" id="6_g2jqy"]
+[ext_resource type="AudioStream" uid="uid://hmxaj22fwawp" path="res://DiceTrayData/DiceSounds/d5.mp3" id="7_8wnnn"]
+[ext_resource type="AudioStream" uid="uid://fkmxwxhxd6ii" path="res://DiceTrayData/DiceSounds/d6.mp3" id="8_himvf"]
+[ext_resource type="AudioStream" uid="uid://ctn7xcvn36lgk" path="res://DiceTrayData/DiceSounds/d7.mp3" id="9_rx3qf"]
+[ext_resource type="AudioStream" uid="uid://j8w7obdit0ym" path="res://DiceTrayData/DiceSounds/f1.mp3" id="10_6ntsm"]
+[ext_resource type="AudioStream" uid="uid://bnobf6ngqu1ci" path="res://DiceTrayData/DiceSounds/f2.mp3" id="11_vcho6"]
+[ext_resource type="AudioStream" uid="uid://c0owtjuddmmvd" path="res://DiceTrayData/DiceSounds/f3.mp3" id="12_q0f8n"]
+[ext_resource type="AudioStream" uid="uid://bcingdtxpr57o" path="res://DiceTrayData/DiceSounds/f4.mp3" id="13_baubw"]
+[ext_resource type="AudioStream" uid="uid://l7roshu74mw1" path="res://DiceTrayData/DiceSounds/f5.mp3" id="14_sdyxj"]
+[ext_resource type="AudioStream" uid="uid://donvynlu87mef" path="res://DiceTrayData/DiceSounds/f6.mp3" id="15_jufdh"]
+[ext_resource type="AudioStream" uid="uid://cofwok558uenj" path="res://DiceTrayData/DiceSounds/f7.mp3" id="16_tia3u"]
 
 [sub_resource type="Theme" id="Theme_flbc3"]
 
@@ -12,6 +27,35 @@ PopupMenu/font_sizes/font_size = 60
 
 [sub_resource type="Theme" id="Theme_1glhj"]
 PopupMenu/font_sizes/font_size = 60
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wpavo"]
+streams_count = 7
+stream_0/stream = ExtResource("3_yrx7u")
+stream_1/stream = ExtResource("4_ff0n0")
+stream_2/stream = ExtResource("5_xh421")
+stream_3/stream = ExtResource("6_g2jqy")
+stream_4/stream = ExtResource("7_8wnnn")
+stream_5/stream = ExtResource("8_himvf")
+stream_6/stream = ExtResource("9_rx3qf")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_iwd5d"]
+random_pitch = 1.3
+random_volume_offset_db = 4.0
+streams_count = 7
+stream_0/stream = ExtResource("10_6ntsm")
+stream_0/weight = 0.0
+stream_1/stream = ExtResource("11_vcho6")
+stream_1/weight = 0.0
+stream_2/stream = ExtResource("12_q0f8n")
+stream_2/weight = 0.0
+stream_3/stream = ExtResource("13_baubw")
+stream_3/weight = 0.0
+stream_4/stream = ExtResource("14_sdyxj")
+stream_4/weight = 0.0
+stream_5/stream = ExtResource("15_jufdh")
+stream_5/weight = 0.0
+stream_6/stream = ExtResource("16_tia3u")
+stream_6/weight = 7.76927e-34
 
 [node name="DiceSoundsAndVibeMenu" type="Control"]
 layout_mode = 3
@@ -92,7 +136,7 @@ layout_mode = 2
 [node name="Spacer6" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 
-[node name="DicePlasticVolume" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="DicePlasticVolume" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_flbc3")
 theme_override_font_sizes/font_size = 40
@@ -106,7 +150,7 @@ step = 0.05
 tick_count = 11
 ticks_on_borders = true
 
-[node name="DiceFeltVolume" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="DiceFeltVolume" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_flbc3")
 theme_override_font_sizes/font_size = 40
@@ -144,10 +188,29 @@ theme = SubResource("Theme_1glhj")
 theme_override_font_sizes/font_size = 60
 text = "Back"
 
+[node name="DiceAudioVibeNode" type="Node" parent="."]
+script = ExtResource("2_v5qos")
+
+[node name="AudioStreamPlayerPlastic" type="AudioStreamPlayer" parent="DiceAudioVibeNode"]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_wpavo")
+volume_db = 24.0
+max_polyphony = 2
+bus = &"Dice On Dice"
+
+[node name="AudioStreamPlayerDiceTray" type="AudioStreamPlayer" parent="DiceAudioVibeNode"]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_iwd5d")
+volume_db = 24.0
+max_polyphony = 3
+bus = &"Dice On Felt"
+
 [connection signal="ready" from="." to="." method="_on_ready_sound_options_menu"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/GridContainer/dice_vibe_on" to="." method="_on_dice_vibe_on_item_selected"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/GridContainer/dice_unmute" to="." method="_on_dice_unmute_item_selected"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/DicePlasticVolume" to="." method="_on_dice_plastic_volume_pressed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/PlasticSoundHSlider" to="." method="_on_plastic_sound_h_slider_value_changed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/DiceFeltVolume" to="." method="_on_dice_felt_volume_pressed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/FeltSoundHSlider" to="." method="_on_felt_sound_h_slider_value_changed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/LoadDefaultSound" to="." method="_on_load_default_sound_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/SaveSounds" to="." method="_save_dice_preferences"]

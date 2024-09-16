@@ -51,6 +51,7 @@ func menu_quit_vibe() -> void:
 
 func dice_on_dice_vibe() -> void:
 	if dice_unmuted:
+		
 		%AudioStreamPlayerPlastic.play()
 	if dice_vibrate:
 		Input.vibrate_handheld(dice_on_dice_vibe_length,dice_on_dice_vibe_strength)
