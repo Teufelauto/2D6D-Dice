@@ -682,24 +682,30 @@ func _remove_small_or_large_room_labels() -> void:
 
 ## This funcion is called from clicking on a die in the tray through a signal.
 ## It will determine if any additional dice should be thrown with it and calls throw function.
+## Match items are in optimised order for efficiency
 func _roll_from_table(die_clicked: String) -> void:
 	#print("roll from table function called with " + die_clicked)
 	match die_clicked:
 		"DieDoublePrimary", "DieDoubleSecondary":
 			_on_double_throw_button_pressed()
 		"DieSinglePrimary":
-			#print("prime matched")
 			_on_prime_throw_button_pressed()
 		"DieSingleSecondary":
 			_on_secondary_throw_button_pressed()
-		"DieXDimension", "DieYDimension", "DieDoorQty":
-			_on_x_y_throw_button_pressed()
 		"DieDoorDirection":
 			_on_lcr_throw_button_pressed()
 		"DieDoorLocks":
 			_on_exit_lock_throw_button_pressed()
 		"DieD3":
 			_on_d_3_throw_button_pressed()
+		
+		"DieXDimension", "DieYDimension", "DieDoorQty":
+			## Do not reroll if doubles were rolled. 
+			## It's a small convenience tweak for repetative bug-busting-rolling.
+			## And prevent accidents during play, I guess.
+			if room_size_rolled_doubles_bool:
+				return
+			_on_x_y_throw_button_pressed()
 
 
 func _on_x_y_throw_button_pressed() -> void:

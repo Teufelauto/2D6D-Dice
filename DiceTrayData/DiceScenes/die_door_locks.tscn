@@ -103,49 +103,47 @@ surface_material_override/0 = SubResource("StandardMaterial3D_i1nbb")
 surface_material_override/1 = SubResource("StandardMaterial3D_6pbad")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-visible = false
 shape = ExtResource("1_wwc4o")
 
 [node name="Raycasts" type="Node3D" parent="."]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
-visible = false
 
 [node name="SixSidedRayCast1" parent="Raycasts" instance=ExtResource("2_8lcbg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
-target_position = Vector3(0, 0, -0.1)
+target_position = Vector3(0, 0, -0.2)
 collision_mask = 256
 hit_from_inside = true
 
 [node name="SixSidedRayCast2" parent="Raycasts" instance=ExtResource("2_8lcbg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-target_position = Vector3(0, 0.1, 0)
+target_position = Vector3(0, 0.2, 0)
 collision_mask = 256
 hit_from_inside = true
 
 [node name="SixSidedRayCast3" parent="Raycasts" instance=ExtResource("2_8lcbg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
-target_position = Vector3(-0.1, 0, 0)
+target_position = Vector3(-0.2, 0, 0)
 collision_mask = 256
 hit_from_inside = true
 opposite_side = 2
 
 [node name="SixSidedRayCast4" parent="Raycasts" instance=ExtResource("2_8lcbg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
-target_position = Vector3(0.1, 0, 0)
+target_position = Vector3(0.2, 0, 0)
 collision_mask = 256
 hit_from_inside = true
 opposite_side = 3
 
 [node name="SixSidedRayCast5" parent="Raycasts" instance=ExtResource("2_8lcbg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-target_position = Vector3(0, -0.1, 0)
+target_position = Vector3(0, -0.2, 0)
 collision_mask = 256
 hit_from_inside = true
 opposite_side = 1
 
 [node name="SixSidedRayCast6" parent="Raycasts" instance=ExtResource("2_8lcbg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
-target_position = Vector3(0, 0, 0.1)
+target_position = Vector3(0, 0, 0.2)
 collision_mask = 256
 hit_from_inside = true
 
