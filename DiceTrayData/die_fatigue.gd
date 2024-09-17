@@ -36,3 +36,26 @@ func increment_fatigue_die_to_next_round() -> void:
 func return_fatigue_die_to_one() -> void:
 	battle_round = 0
 	increment_fatigue_die_to_next_round()
+
+
+## Tip up the roller on its end.
+func position_for_exploration() -> void:
+	
+	rotation_degrees.x = -90
+	position.x = -0.03
+	position.y = 0.145
+	position.z = -0.14
+	
+	print("Rotated for Exploration")
+	
+
+
+## Lay the roller down on its side.
+func position_for_combat() -> void:
+	
+	rotation_degrees.x = 0
+	position.x = 0
+	position.y = 0
+	position.z = 0
+	
+	print("Rotated for Combat")
