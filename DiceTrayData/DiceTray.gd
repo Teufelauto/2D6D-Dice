@@ -6,29 +6,32 @@ extends Node3D
 
 
 ## Buttons
-@onready var button_throw_xy = $DiceCanvas/ThrowButtons/XYThrowButton
-@onready var button_throw_xy2 = $DiceCanvas/ThrowButtons/XYThrowButton2
-@onready var button_throw_doubles = $DiceCanvas/ThrowButtons/DoubleThrowButton
-@onready var button_throw_exit_direction = $DiceCanvas/ThrowButtons/LCRThrowButton
-@onready var button_throw_lock_check = $DiceCanvas/ThrowButtons/ExitLockThrowButton
-@onready var button_throw_primary = $DiceCanvas/ThrowButtons/PrimeThrowButton
-@onready var button_throw_secondary = $DiceCanvas/ThrowButtons/SecondaryThrowButton
-@onready var button_throw_d3 = $DiceCanvas/ThrowButtons/D3ThrowButton
-@onready var pick_up_all_dice_button_huge = $DiceCanvas/PickUpAllDiceButtonHuge
-@onready var fatigue_reset_button = $DiceCanvas/FatigueResetButton
+@onready var button_throw_xy : Button= $DiceCanvas/ThrowButtons/XYThrowButton
+@onready var button_throw_xy2 : Button= $DiceCanvas/ThrowButtons/XYThrowButton2
+@onready var button_throw_doubles: Button = $DiceCanvas/ThrowButtons/DoubleThrowButton
+@onready var button_throw_exit_direction: Button = $DiceCanvas/ThrowButtons/LCRThrowButton
+@onready var button_throw_lock_check: Button = $DiceCanvas/ThrowButtons/ExitLockThrowButton
+@onready var button_throw_primary : Button= $DiceCanvas/ThrowButtons/PrimeThrowButton
+@onready var button_throw_secondary : Button= $DiceCanvas/ThrowButtons/SecondaryThrowButton
+@onready var button_throw_d3 : Button= $DiceCanvas/ThrowButtons/D3ThrowButton
+@onready var pick_up_all_dice_button_huge: Button = $DiceCanvas/PickUpAllDiceButtonHuge
+@onready var fatigue_reset_button: Button = $DiceCanvas/FatigueResetButton
+@onready var fatigue_increment_button: Button = $DiceCanvas/FatigueIncrementButton
+@onready var combat_select_button: Button = $DiceCanvas/CombatSelectButton
+
 
 ## Labels
-@onready var room_doubles_alert_label = %DiceCanvas/RoomDoublesAlertLabel
-@onready var x_result_label = %DiceCanvas/XResultLabel
-@onready var y_result_label = %DiceCanvas/YResultLabel
-@onready var exit_number_label = $DiceCanvas/ExitNumberLabel
-@onready var d_66_primary_label = $DiceCanvas/D66ScoreBoard/D66PrimaryLabel
-@onready var d_66_secondary_label = $DiceCanvas/D66ScoreBoard/D66SecondaryLabel
-@onready var primary_label = $DiceCanvas/TwoD6ScoreBoard/PrimaryLabel
-@onready var secondary_label = $DiceCanvas/TwoD6ScoreBoard/SecondaryLabel
-@onready var exit_direction_label = $DiceCanvas/ExitDirectionLabel
-@onready var exit_lock_label = $DiceCanvas/ExitLockLabel
-@onready var d_3_result_label = $DiceCanvas/D3ResultLabel
+@onready var room_doubles_alert_label : Label= %DiceCanvas/RoomDoublesAlertLabel
+@onready var x_result_label : Label= %DiceCanvas/XResultLabel
+@onready var y_result_label: Label = %DiceCanvas/YResultLabel
+@onready var exit_number_label: Label = $DiceCanvas/ExitNumberLabel
+@onready var d_66_primary_label: Label = $DiceCanvas/D66ScoreBoard/D66PrimaryLabel
+@onready var d_66_secondary_label: Label = $DiceCanvas/D66ScoreBoard/D66SecondaryLabel
+@onready var primary_label: Label = $DiceCanvas/TwoD6ScoreBoard/PrimaryLabel
+@onready var secondary_label: Label = $DiceCanvas/TwoD6ScoreBoard/SecondaryLabel
+@onready var exit_direction_label: Label = $DiceCanvas/ExitDirectionLabel
+@onready var exit_lock_label: Label = $DiceCanvas/ExitLockLabel
+@onready var d_3_result_label : Label= $DiceCanvas/D3ResultLabel
 
 ## Room first throw die results
 static var room_size_x_roll_int : int = 0
@@ -130,14 +133,14 @@ func _fatigue_die_visibility() -> void:
 	## make VISIBLE or invisible
 	if DicePreferences.d_vis_fatigue == true:
 		## to put in scene:
-		%StaticBody3DFatigue.set_collision_layer_value( 3, true)
-		%DieFatigue.visible = true
-		%FatigueIncrementButton.visible = true
+		$FatigueDie/DieFatigue.visible = true  ## The roller die
+		fatigue_increment_button.visible = true
 	else:
 		## to remove:
-		%StaticBody3DFatigue.set_collision_layer_value( 3, false)
-		%DieFatigue.visible = false
-		%FatigueIncrementButton.visible = false
+		$FatigueDie/StaticBody3DFatigue.set_collision_layer_value( 3, false) # the big collision box
+		$FatigueDie/DieFatigue.visible = false ## The roller die
+		fatigue_increment_button.visible = false
+		
 	
 	## Fatigue die STYLE
 	for member in get_tree().get_nodes_in_group("mesh_die_fatigue") :
@@ -397,10 +400,13 @@ func _rehome_dice() -> void:
 	%RoomSizeSmallLabel.visible = false
 	%RoomSizeLargeLabel.visible = false
 	
-	if DicePreferences.d_vis_fatigue == true: ## if fatigue die visible
-		fatigue_reset_button.visible = true
+	if DicePreferences.d_vis_fatigue == true: ## if fatigue die visible, show buttons
+		#fatigue_reset_button.visible = true ## Buttun unneeded when resetting with 'CombatSelect'
+		combat_select_button.visible = true
+		
 	else:
 		fatigue_reset_button.visible = false
+		combat_select_button.visible = false
 	
 	_reset_all_dice()
 
@@ -705,7 +711,8 @@ func _roll_from_table(die_clicked: String) -> void:
 			## And prevent accidents during play, I guess.
 			if room_size_rolled_doubles_bool:
 				return
-			_on_x_y_throw_button_pressed()
+			else:
+				_on_x_y_throw_button_pressed()
 
 
 func _on_x_y_throw_button_pressed() -> void:
@@ -919,7 +926,7 @@ func _room_doubles_done() -> void:
 
 func _on_die_dx_dim_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
-	
+	combat_select_button.visible = false
 
 	## Roll should be zero after thrown until this function changes it.
 	## If it's not zero, that means it got nudged or something. Running it twice
@@ -936,6 +943,7 @@ func _on_die_dx_dim_roll_finished(die_value :int) -> void:
 
 func _on_die_dy_dim_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
+	combat_select_button.visible = false
 	
 	## Trial code to fix room doubles math
 	if room_size_y_roll_int > 0: 
@@ -956,6 +964,7 @@ func _on_die_double_primary_roll_finished(die_value :int) -> void:
 	die_doubles_primary_done = true
 	
 	fatigue_reset_button.visible = false
+	combat_select_button.visible = false
 	
 	##room size rolling not done
 	if room_size_rolled_doubles_bool and room_size_y_add_int == 0 :
@@ -980,6 +989,7 @@ func _on_die_double_secondary_roll_finished(die_value :int) -> void:
 	die_doubles_secondary_done = true
 	
 	fatigue_reset_button.visible = false
+	combat_select_button.visible = false
 	
 	##room size rolling not done
 	if room_size_rolled_doubles_bool and room_size_x_add_int == 0:
@@ -999,6 +1009,8 @@ func _on_die_double_secondary_roll_finished(die_value :int) -> void:
 
 func _on_die_door_exit_qty_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
+	combat_select_button.visible = false
+	
 	room_number_of_exits_int = die_value
 	if room_number_of_exits_int == 1:
 		exit_number_label.text = str(room_number_of_exits_int) + " Exit"
@@ -1008,6 +1020,8 @@ func _on_die_door_exit_qty_roll_finished(die_value :int) -> void:
 	
 func _on_die_lcr_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
+	combat_select_button.visible = false
+	
 	room_exit_direction_int = die_value
 	if room_exit_direction_int == 1 : exit_direction_label.text = "Left"
 	elif room_exit_direction_int == 2 : exit_direction_label.text = "Center"
@@ -1016,6 +1030,8 @@ func _on_die_lcr_roll_finished(die_value :int) -> void:
 
 func _on_die_locked_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
+	combat_select_button.visible = false
+	
 	door_lock_status_int = die_value
 	if door_lock_status_int == 1 : exit_lock_label.text = "Metal Locked"
 	elif door_lock_status_int == 2 : exit_lock_label.text = "Metal / Reinforced Locked"
@@ -1025,6 +1041,8 @@ func _on_die_locked_roll_finished(die_value :int) -> void:
 	
 func _on_die_single_primary_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
+	combat_select_button.visible = false
+	
 	primary_die_int = die_value
 	%TwoD6PrimaryPolygon2D.visible = true
 	primary_label.text = str(primary_die_int)
@@ -1032,6 +1050,8 @@ func _on_die_single_primary_roll_finished(die_value :int) -> void:
 
 func _on_die_single_secondary_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
+	combat_select_button.visible = false
+	
 	secondary_die_int = die_value
 	%TwoD6SecondaryPolygon2D.visible = true
 	secondary_label.text = str(secondary_die_int)
@@ -1039,6 +1059,8 @@ func _on_die_single_secondary_roll_finished(die_value :int) -> void:
 
 func _on_die_d_3_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
+	combat_select_button.visible = false
+	
 	d3_die_int = die_value
 	d_3_result_label.text = str(d3_die_int)
 
@@ -1051,6 +1073,26 @@ func _on_exit_button_pressed() -> void:
 	print("exit!!!")
 	get_tree().change_scene_to_file("res://DiceTrayData/dice_start_menu.tscn")
 
+
 func _notification(what) -> void:
 	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
 		get_tree().change_scene_to_file("res://DiceTrayData/dice_start_menu.tscn")
+
+
+
+var fatigue_die_in_combat_state: bool = false #prevent spamming
+## Inputs for experimenting
+func _process(_delta: float) -> void:
+	
+	if Input.is_action_pressed("ui_up"):
+		if not fatigue_die_in_combat_state: #prevent spamming
+			return
+		print("explore button")
+		fatigue_die_in_combat_state = false
+
+	
+	if Input.is_action_pressed("ui_down"):
+		if fatigue_die_in_combat_state: #prevent spamming
+			return
+		print("Mortal Combat!")
+		fatigue_die_in_combat_state = true

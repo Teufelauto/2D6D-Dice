@@ -102,7 +102,7 @@ font_size = 80
 
 [sub_resource type="Theme" id="Theme_3xk1n"]
 default_font_size = 30
-Button/font_sizes/font_size = 25
+Button/font_sizes/font_size = 40
 
 [sub_resource type="Environment" id="Environment_ospvs"]
 
@@ -143,12 +143,11 @@ bus = &"Dice On Felt"
 transform = Transform3D(-0.104112, 0, -0.994566, 0, 1, 0, 0.994566, 0, -0.104112, 0.210638, 0.105, -1.10817)
 
 [node name="DieFatigue" parent="DiceTray/FatigueDie" instance=ExtResource("14_nh5cq")]
-unique_name_in_owner = true
+collision_layer = 4
 collision_mask = 0
 freeze = false
 
 [node name="StaticBody3DFatigue" type="StaticBody3D" parent="DiceTray/FatigueDie"]
-unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 0
 input_ray_pickable = false
@@ -603,7 +602,6 @@ theme_override_font_sizes/font_size = 60
 horizontal_alignment = 1
 
 [node name="FatigueIncrementButton" type="Button" parent="DiceTray/DiceCanvas"]
-unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -624,25 +622,34 @@ visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 227.0
-offset_top = 2.0
-offset_right = -69.0
-offset_bottom = -820.0
+offset_left = 98.0
+offset_right = -232.0
+offset_bottom = -822.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
 theme = SubResource("Theme_3xk1n")
 text = "Reset Combat
-Round"
+Round to 1"
+
+[node name="CombatSelectButton" type="Button" parent="DiceTray/DiceCanvas"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 200.0
+offset_top = -1.0
+offset_right = -2.0
+offset_bottom = -820.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme = SubResource("Theme_3xk1n")
+text = "Begin Combat"
 
 [node name="ExitButton" type="Button" parent="DiceTray/DiceCanvas"]
 editor_description = "Make invisible for Android Export!"
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -50.0
+offset_right = 50.0
 offset_bottom = 50.0
-grow_horizontal = 0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 30
 text = "X"
@@ -733,6 +740,9 @@ light_energy = 7.72
 [connection signal="pressed" from="DiceTray/DiceCanvas/FatigueIncrementButton" to="DiceTray/FatigueDie/DieFatigue" method="increment_fatigue_die_to_next_round"]
 [connection signal="pressed" from="DiceTray/DiceCanvas/FatigueResetButton" to="DiceTray/DiceAudioVibeNode" method="dice_on_felt_vibe"]
 [connection signal="pressed" from="DiceTray/DiceCanvas/FatigueResetButton" to="DiceTray/FatigueDie/DieFatigue" method="return_fatigue_die_to_one"]
+[connection signal="pressed" from="DiceTray/DiceCanvas/CombatSelectButton" to="DiceTray/DiceAudioVibeNode" method="dice_on_felt_vibe"]
+[connection signal="pressed" from="DiceTray/DiceCanvas/CombatSelectButton" to="DiceTray/FatigueDie/DieFatigue" method="position_determination_on_click"]
+[connection signal="pressed" from="DiceTray/DiceCanvas/CombatSelectButton" to="DiceTray/FatigueDie/DieFatigue" method="return_fatigue_die_to_one"]
 [connection signal="pressed" from="DiceTray/DiceCanvas/ExitButton" to="DiceTray" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="DiceTray/DiceCanvas/ExitButton" to="DiceTray/DiceAudioVibeNode" method="menu_quit_vibe"]
 [connection signal="pressed" from="DiceTray/DiceCanvas/PickUpAllDiceButton" to="DiceTray" method="_rehome_dice"]
