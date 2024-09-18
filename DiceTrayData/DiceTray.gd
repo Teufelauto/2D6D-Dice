@@ -134,7 +134,9 @@ func _fatigue_die_visibility() -> void:
 	if DicePreferences.d_vis_fatigue == true:
 		## to put in scene:
 		$FatigueDie/DieFatigue.visible = true  ## The roller die
-		fatigue_increment_button.visible = true
+		#fatigue_increment_button.visible = true
+		$FatigueDie/DieFatigue._ready()
+		
 	else:
 		## to remove:
 		$FatigueDie/StaticBody3DFatigue.set_collision_layer_value( 3, false) # the big collision box
