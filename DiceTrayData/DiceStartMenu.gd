@@ -4,7 +4,7 @@ func _ready() -> void:
 	## add version number to start menu
 	$MarginContainer/VBoxContainer/VersionLabel.text = " v" \
 			+ ProjectSettings.get_setting("application/config/version") \
-			+ "-alpha"
+			+ "-beta"
 	
 	if ResourceLoader.exists("user://playerdicepreferences.tres") : 
 		
