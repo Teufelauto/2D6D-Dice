@@ -36,6 +36,7 @@ func _on_options_pressed() -> void:
 	get_tree().change_scene_to_file("res://DiceTrayData/dice_options_menu.tscn")
 
 
+@warning_ignore("untyped_declaration")
 func _notification(what) -> void:
 	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
 		get_tree().quit() ## default behavior

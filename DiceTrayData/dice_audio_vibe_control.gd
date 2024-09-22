@@ -18,8 +18,8 @@ class_name DiceAudio
 @export var dice_on_felt_vibe_length :int = 50   		## [ms] 500 default
 @export var dice_on_felt_vibe_strength :float = 1.0    	## -1 default
 
-@onready var dice_unmuted = DicePreferences.d_unmuted
-@onready var dice_vibrate = DicePreferences.d_vibration_on
+@onready var dice_unmuted :bool = DicePreferences.d_unmuted
+@onready var dice_vibrate :bool = DicePreferences.d_vibration_on
 
 
 ## Called when the node enters the scene tree for the first time.

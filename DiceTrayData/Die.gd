@@ -1,10 +1,10 @@
 class_name DiceControl
 extends RigidBody3D
 
-@onready var raycasts = $Raycasts.get_children()
+@onready var raycasts:Array  = $Raycasts.get_children()
 
-@export var roll_strength = 70    ## -------- Toss Strength (70 instead of 80 because android roll strength more when clicked.
-@export var spin_strength = -50   ##  Spin Speed  Negative for CCW spin (Right Handed)
+@export var roll_strength :int= 70    ## -------- Toss Strength (70 instead of 80 because android roll strength more when clicked.
+@export var spin_strength :int= -50   ##  Spin Speed  Negative for CCW spin (Right Handed)
 @export var die_sound_tray_velocity_factor : float = 1.5 ## cutoff under which no sound emitted
 @export var die_sound_velocity_factor : float = 1.5 ## cutoff under which no sound emitted
 @export var rotation_of_die_at_rest :Vector3 ## record before picking up die 
@@ -35,7 +35,7 @@ func roll() -> void:
 	## Random Throw  --- Change vector for direction. 
 	## First position is for left-right spread of throw.
 	## The last position is negative for throwing away from player.
-	var throw_vector = Vector3(randf_range(-.4, .4), 0, randf_range(-1, -.8)).normalized()
+	var throw_vector :Vector3= Vector3(randf_range(-.4, .4), 0, randf_range(-1, -.8)).normalized()
 	
 	## CCW spin (right handed throw) by defining spin_strength negative applied
 	##     to angular_velocity.  Is this the Right-Hand-Rule of Physics
@@ -49,7 +49,7 @@ func roll() -> void:
 func _on_sleeping_state_changed() -> void:
 	if sleeping:
 		var landed_on_side :bool= false
-		for raycast in raycasts:
+		for raycast:RayCast3D in raycasts:
 			if raycast.is_colliding():
 				is_rolling = false
 				landed_on_side = true
@@ -90,9 +90,11 @@ func _input_event(_camera: Camera3D, event: InputEvent, _event_position: Vector3
 
 
 ## ----------------   SOUND FROM IMPACTS   -----------------------------
+
+@warning_ignore("untyped_declaration")
 func _on_body_entered(body) -> void:
 	#print(body.name)
-	var greatest_observed_velocity
+	var greatest_observed_velocity:float
 	
 	if abs(linear_velocity.x) > abs(linear_velocity.y):
 		greatest_observed_velocity = abs(linear_velocity.x)

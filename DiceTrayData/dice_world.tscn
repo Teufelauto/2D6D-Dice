@@ -696,26 +696,29 @@ near = 3.0
 far = 50.0
 
 [node name="SpotLight3D" type="SpotLight3D" parent="CamNLights"]
-transform = Transform3D(0.781528, -0.213039, 0.586368, -0.294329, 0.702809, 0.647634, -0.550076, -0.678729, 0.486562, 3.57244, 3.56264, 2.61793)
-light_energy = 1.891
+transform = Transform3D(0.781528, -0.213039, 0.586369, -0.294329, 0.702809, 0.647634, -0.550076, -0.67873, 0.486562, 2.10116, 2.81915, 1.56699)
+light_energy = 2.359
 light_bake_mode = 1
 shadow_enabled = true
-shadow_bias = 0.01
-spot_range = 10.0
-spot_attenuation = 0.203064
-spot_angle = 23.4
-spot_angle_attenuation = 0.176777
+shadow_bias = 0.1
+shadow_normal_bias = 0.005
+spot_range = 6.777
+spot_attenuation = 2.3
+spot_angle = 64.46
+spot_angle_attenuation = 0.450626
 
 [node name="SpotLight3D_Side" type="SpotLight3D" parent="CamNLights"]
 transform = Transform3D(-0.196745, 0.834484, -0.514712, 0.0923927, 0.538417, 0.837598, 0.976092, 0.117238, -0.183031, -2.32477, 3.50071, -1.2354)
-light_energy = 2.152
+light_energy = 2.246
 light_bake_mode = 1
 shadow_enabled = true
-shadow_bias = 0.002
+shadow_bias = 0.05
+shadow_normal_bias = 0.001
+shadow_opacity = 0.9
 spot_range = 13.1452
 spot_attenuation = 0.450625
-spot_angle = 19.4366
-spot_angle_attenuation = 0.25
+spot_angle = 41.55
+spot_angle_attenuation = 1.51572
 
 [node name="OmniLight3D" type="OmniLight3D" parent="CamNLights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13718, 4.67024, -1.29338)
@@ -745,8 +748,8 @@ light_energy = 7.72
 [connection signal="pressed" from="DiceTray/DiceCanvas/FatigueResetButton" to="DiceTray/DiceAudioVibeNode" method="dice_on_felt_vibe"]
 [connection signal="pressed" from="DiceTray/DiceCanvas/FatigueResetButton" to="DiceTray/FatigueDie/DieFatigue" method="return_fatigue_die_to_one"]
 [connection signal="pressed" from="DiceTray/DiceCanvas/CombatSelectButton" to="DiceTray/DiceAudioVibeNode" method="dice_on_felt_vibe"]
-[connection signal="pressed" from="DiceTray/DiceCanvas/CombatSelectButton" to="DiceTray/FatigueDie/DieFatigue" method="return_fatigue_die_to_one"]
 [connection signal="pressed" from="DiceTray/DiceCanvas/CombatSelectButton" to="DiceTray/FatigueDie/DieFatigue" method="position_determination_on_click"]
+[connection signal="pressed" from="DiceTray/DiceCanvas/CombatSelectButton" to="DiceTray/FatigueDie/DieFatigue" method="return_fatigue_die_to_one"]
 [connection signal="pressed" from="DiceTray/DiceCanvas/ExitButton" to="DiceTray" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="DiceTray/DiceCanvas/ExitButton" to="DiceTray/DiceAudioVibeNode" method="menu_quit_vibe"]
 [connection signal="pressed" from="DiceTray/DiceCanvas/PickUpAllDiceButton" to="DiceTray" method="_rehome_dice"]

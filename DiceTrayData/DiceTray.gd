@@ -83,7 +83,7 @@ const DIE_X_DIMENSION: PackedScene = preload("res://DiceTrayData/DiceScenes/die_
 const DIE_Y_DIMENSION : PackedScene = preload("res://DiceTrayData/DiceScenes/die_y_dimension.tscn")
 @export var die_y_dimension: DiceControl
 
-signal resize_room_rectangle(x_size,y_size) #### report room dimensions to drawing funcion
+signal resize_room_rectangle(x_size:int,y_size:int) #### report room dimensions to drawing funcion
 signal clear_room_rectangle() #### report to make room rectangle invisible
 
 
@@ -145,13 +145,13 @@ func _fatigue_die_visibility() -> void:
 		
 	
 	## Fatigue die STYLE
-	for member in get_tree().get_nodes_in_group("mesh_die_fatigue") :
+	for member:MeshInstance3D in get_tree().get_nodes_in_group("mesh_die_fatigue") :
 		if member.is_in_group(DicePreferences.d_style_fatigue) : member.visible = true
 		else : member.visible = false
 	
 	## Fatigue die COLOR
 	var DieMeshMat :StandardMaterial3D
-	for member in get_tree().get_nodes_in_group("mesh_die_fatigue"):
+	for member:MeshInstance3D in get_tree().get_nodes_in_group("mesh_die_fatigue"):
 		DieMeshMat = member.get_surface_override_material(0)
 		DieMeshMat.albedo_color = DicePreferences.d_text_color_fatigue
 		DieMeshMat = member.get_surface_override_material(1)
@@ -183,70 +183,70 @@ func _assign_die_styles() -> void:
 
 
 func _assign_die_styles_x() -> void:
-	for member in get_tree().get_nodes_in_group("mesh_die_x") :
+	for member:MeshInstance3D in get_tree().get_nodes_in_group("mesh_die_x") :
 		if member.is_in_group(DicePreferences.d_style_x) : 
 			member.visible = true
 		else : member.visible = false
 
 
 func _assign_die_styles_y() -> void:
-	for member in get_tree().get_nodes_in_group("mesh_die_y") :
+	for member:MeshInstance3D in get_tree().get_nodes_in_group("mesh_die_y") :
 		if member.is_in_group(DicePreferences.d_style_y) : 
 			member.visible = true
 		else : member.visible = false
 
 
 func _assign_die_styles_exit_qty() -> void:
-	for member in get_tree().get_nodes_in_group("mesh_die_exit_qty") :
+	for member:MeshInstance3D in get_tree().get_nodes_in_group("mesh_die_exit_qty") :
 		if member.is_in_group(DicePreferences.d_style_exit_qty) : 
 			member.visible = true
 		else : member.visible = false
 
 
 func _assign_die_styles_dub_prime() -> void:
-	for member in get_tree().get_nodes_in_group("mesh_die_d66_primary") :
+	for member:MeshInstance3D in get_tree().get_nodes_in_group("mesh_die_d66_primary") :
 		if member.is_in_group(DicePreferences.d_style_d66_prime) :
 			member.visible = true
 		else : member.visible = false
 
 
 func _assign_die_styles_dub_secondary() -> void:
-	for member in get_tree().get_nodes_in_group("mesh_die_d66_secondary") :
+	for member:MeshInstance3D in get_tree().get_nodes_in_group("mesh_die_d66_secondary") :
 		if member.is_in_group(DicePreferences.d_style_d66_secondary) : 
 			member.visible = true
 		else : member.visible = false
 
 
 func _assign_die_styles_lcr() -> void:
-	for member in get_tree().get_nodes_in_group("mesh_die_lcr") :
+	for member:MeshInstance3D in get_tree().get_nodes_in_group("mesh_die_lcr") :
 		if member.is_in_group(DicePreferences.d_style_exit_direction) : 
 			member.visible = true
 		else : member.visible = false
 
 
 func _assign_die_styles_lock() -> void:
-	for member in get_tree().get_nodes_in_group("mesh_die_door_lock") :
+	for member:MeshInstance3D in get_tree().get_nodes_in_group("mesh_die_door_lock") :
 		if member.is_in_group(DicePreferences.d_style_exit_lock) : 
 			member.visible = true
 		else : member.visible = false
 
 
 func _assign_die_styles_single_prime() -> void:
-	for member in get_tree().get_nodes_in_group("mesh_die_single_primary") :
+	for member:MeshInstance3D in get_tree().get_nodes_in_group("mesh_die_single_primary") :
 		if member.is_in_group(DicePreferences.d_style_single_primary) : 
 			member.visible = true
 		else : member.visible = false
 
 
 func _assign_die_styles_single_secondary() -> void:
-	for member in get_tree().get_nodes_in_group("mesh_die_single_secondary") :
+	for member:MeshInstance3D in get_tree().get_nodes_in_group("mesh_die_single_secondary") :
 		if member.is_in_group(DicePreferences.d_style_single_secondary) : 
 			member.visible = true
 		else : member.visible = false
 
 
 func _assign_die_styles_d3() -> void:
-	for member in get_tree().get_nodes_in_group("mesh_die_d3") :
+	for member:MeshInstance3D in get_tree().get_nodes_in_group("mesh_die_d3") :
 		if member.is_in_group(DicePreferences.d_style_d3) : 
 			member.visible = true
 		else : member.visible = false
@@ -282,7 +282,7 @@ func _assign_colors() -> void:
 ## Door X Die
 func _assign_colors_x() -> void:
 	var DieMeshMat :StandardMaterial3D
-	for member in get_tree().get_nodes_in_group("mesh_die_x"):
+	for member:MeshInstance3D in get_tree().get_nodes_in_group("mesh_die_x"):
 		DieMeshMat = member.get_surface_override_material(0)
 		DieMeshMat.albedo_color = DicePreferences.d_text_color_x
 		DieMeshMat = member.get_surface_override_material(1)
@@ -292,7 +292,7 @@ func _assign_colors_x() -> void:
 ## Door Y Die
 func _assign_colors_y() -> void:
 	var DieMeshMat :StandardMaterial3D
-	for member in get_tree().get_nodes_in_group("mesh_die_y"):
+	for member:MeshInstance3D in get_tree().get_nodes_in_group("mesh_die_y"):
 		DieMeshMat = member.get_surface_override_material(0)
 		DieMeshMat.albedo_color = DicePreferences.d_text_color_y
 		DieMeshMat = member.get_surface_override_material(1)
@@ -301,7 +301,7 @@ func _assign_colors_y() -> void:
 ## Door Exit Qty
 func _assign_colors_door_qty() -> void:
 	var DieMeshMat :StandardMaterial3D
-	for member in get_tree().get_nodes_in_group("mesh_die_exit_qty"):
+	for member:MeshInstance3D in get_tree().get_nodes_in_group("mesh_die_exit_qty"):
 		DieMeshMat = member.get_surface_override_material(0)
 		DieMeshMat.albedo_color = DicePreferences.d_text_color_exit_numbers
 		DieMeshMat = member.get_surface_override_material(1)
@@ -310,7 +310,7 @@ func _assign_colors_door_qty() -> void:
 ## D66 Primary
 func _assign_colors_dub_primary() -> void:
 	var DieMeshMat :StandardMaterial3D
-	for member in get_tree().get_nodes_in_group("mesh_die_d66_primary"):
+	for member:MeshInstance3D in get_tree().get_nodes_in_group("mesh_die_d66_primary"):
 		DieMeshMat = member.get_surface_override_material(0)
 		DieMeshMat.albedo_color = DicePreferences.d_text_color_d66_prime
 		DieMeshMat = member.get_surface_override_material(1)
@@ -319,7 +319,7 @@ func _assign_colors_dub_primary() -> void:
 ## D66 Secondary
 func _assign_colors_dub_secondary() -> void:
 	var DieMeshMat :StandardMaterial3D
-	for member in get_tree().get_nodes_in_group("mesh_die_d66_secondary"):
+	for member:MeshInstance3D in get_tree().get_nodes_in_group("mesh_die_d66_secondary"):
 		DieMeshMat = member.get_surface_override_material(0)
 		DieMeshMat.albedo_color = DicePreferences.d_text_color_d66_secondary
 		DieMeshMat = member.get_surface_override_material(1)
@@ -328,7 +328,7 @@ func _assign_colors_dub_secondary() -> void:
 ## die LCR
 func _assign_colors_lcr() -> void:
 	var DieMeshMat :StandardMaterial3D
-	for member in get_tree().get_nodes_in_group("mesh_die_lcr"):
+	for member:MeshInstance3D in get_tree().get_nodes_in_group("mesh_die_lcr"):
 		DieMeshMat = member.get_surface_override_material(0)
 		DieMeshMat.albedo_color = DicePreferences.d_text_color_exit_direction
 		DieMeshMat = member.get_surface_override_material(1)
@@ -338,7 +338,7 @@ func _assign_colors_lcr() -> void:
 ## Lock check
 func _assign_colors_lock() -> void:
 	var DieMeshMat :StandardMaterial3D
-	for member in get_tree().get_nodes_in_group("mesh_die_door_lock"):
+	for member:MeshInstance3D in get_tree().get_nodes_in_group("mesh_die_door_lock"):
 		DieMeshMat = member.get_surface_override_material(0)
 		DieMeshMat.albedo_color = DicePreferences.d_text_color_exit_lock
 		DieMeshMat = member.get_surface_override_material(1)
@@ -348,7 +348,7 @@ func _assign_colors_lock() -> void:
 ## single Primary
 func _assign_colors_single_primary() -> void:
 	var DieMeshMat :StandardMaterial3D
-	for member in get_tree().get_nodes_in_group("mesh_die_single_primary"):
+	for member:MeshInstance3D in get_tree().get_nodes_in_group("mesh_die_single_primary"):
 		DieMeshMat = member.get_surface_override_material(0)
 		DieMeshMat.albedo_color = DicePreferences.d_text_color_single_primary
 		DieMeshMat = member.get_surface_override_material(1)
@@ -358,7 +358,7 @@ func _assign_colors_single_primary() -> void:
 ## single secondary
 func _assign_colors_single_secondary() -> void:
 	var DieMeshMat :StandardMaterial3D
-	for member in get_tree().get_nodes_in_group("mesh_die_single_secondary"):
+	for member:MeshInstance3D in get_tree().get_nodes_in_group("mesh_die_single_secondary"):
 		DieMeshMat = member.get_surface_override_material(0)
 		DieMeshMat.albedo_color = DicePreferences.d_text_color_single_secondary
 		DieMeshMat = member.get_surface_override_material(1)
@@ -368,7 +368,7 @@ func _assign_colors_single_secondary() -> void:
 ## d3 die
 func _assign_colors_d3() -> void:
 	var DieMeshMat :StandardMaterial3D
-	for member in get_tree().get_nodes_in_group("mesh_die_d3"):
+	for member:MeshInstance3D in get_tree().get_nodes_in_group("mesh_die_d3"):
 		DieMeshMat = member.get_surface_override_material(0)
 		DieMeshMat.albedo_color = DicePreferences.d_text_color_d3
 		DieMeshMat = member.get_surface_override_material(1)
@@ -378,7 +378,7 @@ func _assign_colors_d3() -> void:
 ## Dice Tray Felt Color assignment
 func _assign_colors_felt() -> void:
 	var DieMeshMat :StandardMaterial3D
-	for member in get_tree().get_nodes_in_group("mesh_die_tray_felt"):
+	for member:MeshInstance3D in get_tree().get_nodes_in_group("mesh_die_tray_felt"):
 		DieMeshMat = member.get_surface_override_material(0)
 		DieMeshMat.albedo_color = DicePreferences.d_tray_felt_color
 
@@ -451,7 +451,7 @@ func _reset_die_x_dimension() -> void:
 	if die_x_dimension.position.y > 0.7:
 		return
 	## Get the rotation info on die.
-	var _die_rotation = die_x_dimension.rotation_of_die_at_rest
+	var _die_rotation:Vector3 = die_x_dimension.rotation_of_die_at_rest
 	
 	remove_child(die_x_dimension)
 	die_x_dimension.queue_free()
@@ -471,7 +471,7 @@ func _reset_die_y_dimension() -> void:
 	if die_y_dimension.position.y > 0.7:
 		return
 	## Get the rotation info on die.
-	var _die_rotation = die_y_dimension.rotation_of_die_at_rest
+	var _die_rotation:Vector3 = die_y_dimension.rotation_of_die_at_rest
 	
 	remove_child(die_y_dimension)
 	die_y_dimension.queue_free()
@@ -489,7 +489,7 @@ func _reset_die_door_qty() -> void:
 	if die_door_qty.position.y > 0.7:
 		return
 	## Get the rotation info on die.
-	var _die_rotation = die_door_qty.rotation_of_die_at_rest
+	var _die_rotation:Vector3 = die_door_qty.rotation_of_die_at_rest
 	
 	remove_child(die_door_qty)
 	die_door_qty.queue_free()
@@ -512,7 +512,7 @@ func _reset_die_double_primary() -> void:
 	if die_double_primary.position.y > 0.7:
 		return
 	## Get the rotation info on die.
-	var _die_rotation = die_double_primary.rotation_of_die_at_rest
+	var _die_rotation:Vector3 = die_double_primary.rotation_of_die_at_rest
 	
 	remove_child(die_double_primary)
 	die_double_primary.queue_free()
@@ -532,7 +532,7 @@ func _reset_die_double_secondary() -> void:
 	if die_double_secondary.position.y > 0.7:
 		return
 	## Get the rotation info on die.
-	var _die_rotation = die_double_secondary.rotation_of_die_at_rest
+	var _die_rotation:Vector3 = die_double_secondary.rotation_of_die_at_rest
 	
 	remove_child(die_double_secondary)
 	die_double_secondary.queue_free()
@@ -550,7 +550,7 @@ func _reset_die_door_direction() -> void:
 	if die_door_direction.position.y > 0.7:
 		return
 	## Get the rotation info on die.
-	var _die_rotation = die_door_direction.rotation_of_die_at_rest
+	var _die_rotation:Vector3 = die_door_direction.rotation_of_die_at_rest
 	
 	remove_child(die_door_direction)
 	die_door_direction.queue_free()
@@ -572,7 +572,7 @@ func _reset_die_door_locks() -> void:
 	if die_door_locks.position.y > 0.7:
 		return
 	## Get the rotation info on die.
-	var _die_rotation = die_door_locks.rotation_of_die_at_rest
+	var _die_rotation:Vector3 = die_door_locks.rotation_of_die_at_rest
 	
 	remove_child(die_door_locks)
 	die_door_locks.queue_free()
@@ -595,7 +595,7 @@ func _reset_die_single_primary() -> void:
 	if die_single_primary.position.y > 0.7:
 		return
 	## Get the rotation info on die.
-	var _die_rotation = die_single_primary.rotation_of_die_at_rest
+	var _die_rotation:Vector3 = die_single_primary.rotation_of_die_at_rest
 	
 	remove_child(die_single_primary)
 	die_single_primary.queue_free()
@@ -617,7 +617,7 @@ func _reset_die_single_secondary() -> void:
 	if die_single_secondary.position.y > 0.7:
 		return
 	## Get the rotation info on die.
-	var _die_rotation = die_single_secondary.rotation_of_die_at_rest
+	var _die_rotation:Vector3 = die_single_secondary.rotation_of_die_at_rest
 	
 	remove_child(die_single_secondary)
 	die_single_secondary.queue_free()
@@ -639,7 +639,7 @@ func _reset_die_d_3() -> void:
 	if die_d_3.position.y > 0.7:
 		return
 	## Get the rotation info on die.
-	var _die_rotation = die_d_3.rotation_of_die_at_rest
+	var _die_rotation:Vector3 = die_d_3.rotation_of_die_at_rest
 	
 	remove_child(die_d_3)
 	die_d_3.queue_free()
@@ -856,7 +856,7 @@ func _on_d_3_throw_button_pressed() -> void:
 ########################################################################
 ## First, we need to collect and parse the roll results from the signal
 ########################################################################
-func _sort_roll_finished_result(die_value, die_name) -> void:
+func _sort_roll_finished_result(die_value:int, die_name:String) -> void:
 	match die_name:
 		"DieDoublePrimary":
 			_on_die_double_primary_roll_finished(die_value)
@@ -1076,6 +1076,7 @@ func _on_exit_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://DiceTrayData/dice_start_menu.tscn")
 
 
+@warning_ignore("untyped_declaration")
 func _notification(what) -> void:
 	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
 		get_tree().change_scene_to_file("res://DiceTrayData/dice_start_menu.tscn")
