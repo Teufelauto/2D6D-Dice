@@ -16,7 +16,7 @@ The compiled zip files found here on GitHub in Releases to the right do not requ
 - Creates a small drawing of the room rolled for quick orientation.
 - 'Scoreboard' for normal rolls indicate when physics is done and the dice can be interacted with. - Rerolling before values come up could cause dice to get locked, and require picking the dice up twice.
 - Dice style selector, and dice colors (text and bodies) can be changed and saved to disk.
-- Combat Round tracking roller die (Fatigue die) can be removed from scene.
+- Combat Round tracking roller die (Fatigue die) can be removed from scene, or tipped on end during exploration.
 - Sound of plastic hitting faux-velvet covered cardstock and each other can be muted or amped up.
 
 ## Game Engine:
