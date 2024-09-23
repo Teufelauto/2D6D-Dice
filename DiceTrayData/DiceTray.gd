@@ -4,7 +4,6 @@ extends Node3D
 ## This is the main script of the tray of dice.
 ###########################################################################
 
-
 ## Buttons
 @onready var button_throw_xy : Button= $DiceCanvas/ThrowButtons/XYThrowButton
 @onready var button_throw_xy2 : Button= $DiceCanvas/ThrowButtons/XYThrowButton2
@@ -19,7 +18,6 @@ extends Node3D
 @onready var fatigue_increment_button: Button = $DiceCanvas/FatigueIncrementButton
 @onready var combat_select_button: Button = $DiceCanvas/CombatSelectButton
 
-
 ## Labels
 @onready var room_doubles_alert_label : Label= %DiceCanvas/RoomDoublesAlertLabel
 @onready var x_result_label : Label= %DiceCanvas/XResultLabel
@@ -32,6 +30,8 @@ extends Node3D
 @onready var exit_direction_label: Label = $DiceCanvas/ExitDirectionLabel
 @onready var exit_lock_label: Label = $DiceCanvas/ExitLockLabel
 @onready var d_3_result_label : Label= $DiceCanvas/D3ResultLabel
+@onready var d_66_sum_label: Label = $DiceCanvas/D66SumLabel
+@onready var singles_sum_label: Label = $DiceCanvas/SinglesSumLabel
 
 ## Room first throw die results
 static var room_size_x_roll_int : int = 0
@@ -59,7 +59,8 @@ static var primary_die_int : int = 0
 static var secondary_die_int : int = 0
 static var d3_die_int : int = 0
 
-
+static var doubles_die_sum :int = 0
+static var singles_die_sum :int = 0
 
 ## Dice Instance scene preloads (for d6 dice)
 const DIE_DOOR_DIRECTION : PackedScene = preload("res://DiceTrayData/DiceScenes/die_door_direction.tscn")
@@ -504,6 +505,10 @@ func _reset_die_door_qty() -> void:
 	
 ## Double dice shared labels reset
 func _reset_die_doubles_labels() -> void:
+	doubles_primary_int = 0
+	doubles_secondary_int = 0
+	doubles_die_sum = 0
+	d_66_sum_label.text = ""
 	_remove_left_dice_scoreboard() ## clear the old results
 	room_doubles_alert_label.text = ""
 
@@ -588,6 +593,10 @@ func _reset_die_door_locks() -> void:
 	room_doubles_alert_label.text = ""
 	exit_lock_label.text = ""
 	
+func _reset_die_singles_shared() -> void:
+	singles_die_sum = 0
+	singles_sum_label.text = ""
+	room_doubles_alert_label.text = ""
 	
 func _reset_die_single_primary() -> void:
 	
@@ -608,7 +617,8 @@ func _reset_die_single_primary() -> void:
 	die_single_primary.rotation_degrees = _die_rotation
 	
 	## Reset Variables
-	room_doubles_alert_label.text = ""
+	primary_die_int = 0
+	_reset_die_singles_shared()
 	_remove_right_primary_die_scoreboard()
 	
 	
@@ -630,7 +640,8 @@ func _reset_die_single_secondary() -> void:
 	die_single_secondary.rotation_degrees = _die_rotation
 	
 	## Reset Variables
-	room_doubles_alert_label.text = ""
+	secondary_die_int = 0
+	_reset_die_singles_shared()
 	_remove_right_secondary_die_scoreboard()
 	
 	
@@ -761,6 +772,7 @@ func _on_double_throw_button_pressed() -> void:
 	doubles_secondary_int = 0
 	die_doubles_primary_done = false
 	die_doubles_secondary_done = false
+	doubles_die_sum = 0
 	
 	## Reset the dice (to eliminate momentum bug in Rapier 0.7.x)
 	_reset_die_double_primary()
@@ -810,6 +822,7 @@ func _on_prime_throw_button_pressed() -> void:
 	
 	## Reset Variables
 	room_doubles_alert_label.text = ""
+	singles_die_sum = 0
 	
 	## Reset the dice (to eliminate momentum bug in Rapier 0.7.x)
 	_reset_die_single_primary()
@@ -825,6 +838,7 @@ func _on_secondary_throw_button_pressed() -> void:
 	
 	## Reset Variables
 	room_doubles_alert_label.text = ""
+	singles_die_sum = 0
 	
 	## Reset the dice (to eliminate momentum bug in Rapier 0.7.x)
 	_reset_die_single_secondary()
@@ -968,20 +982,21 @@ func _on_die_double_primary_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
 	combat_select_button.visible = false
 	
-	##room size rolling not done
+	## room size rolling not done
 	if room_size_rolled_doubles_bool and room_size_y_add_int == 0 :
 		room_size_x_add_int = die_value
 		
-	##room size rolling IS done
+	## room size rolling IS done
 	elif room_size_rolled_doubles_bool and room_size_y_add_int > 0 :
 		room_size_x_add_int = die_value
 		_room_doubles_done()
 		
-	##roll 2 dice for d66 or 2d6
+	## roll 2 dice for d66 or 2d6
 	else:
 		doubles_primary_int = die_value
 		%D66PrimaryPolygon2D.visible = true
 		d_66_primary_label.text = str(doubles_primary_int)
+		_determine_doubles_dice_summing() ## For 2D6 math
 
 
 func _on_die_double_secondary_roll_finished(die_value :int) -> void:
@@ -993,20 +1008,29 @@ func _on_die_double_secondary_roll_finished(die_value :int) -> void:
 	fatigue_reset_button.visible = false
 	combat_select_button.visible = false
 	
-	##room size rolling not done
+	## room size rolling not done
 	if room_size_rolled_doubles_bool and room_size_x_add_int == 0:
 		room_size_y_add_int = die_value
 		
-	##room size rolling IS done
+	## room size rolling IS done
 	elif room_size_rolled_doubles_bool and room_size_x_add_int > 0 :
 		room_size_y_add_int = die_value
 		_room_doubles_done()
 		
-	##roll 2 dice for d66 or 2d6
+	## roll 2 dice for d66 or 2d6
 	else:
 		doubles_secondary_int = die_value
 		%D66SecondaryPolygon2D.visible = true
 		d_66_secondary_label.text = str(doubles_secondary_int)
+		_determine_doubles_dice_summing() ## For 2D6 math
+
+
+func _determine_doubles_dice_summing() -> void:
+	if doubles_secondary_int == 0 or doubles_primary_int == 0:
+		return
+	else:
+		doubles_die_sum = doubles_primary_int + doubles_secondary_int
+		d_66_sum_label.text = str(doubles_die_sum)
 
 
 func _on_die_door_exit_qty_roll_finished(die_value :int) -> void:
@@ -1048,6 +1072,7 @@ func _on_die_single_primary_roll_finished(die_value :int) -> void:
 	primary_die_int = die_value
 	%TwoD6PrimaryPolygon2D.visible = true
 	primary_label.text = str(primary_die_int)
+	_determine_singles_dice_sum()
 
 
 func _on_die_single_secondary_roll_finished(die_value :int) -> void:
@@ -1057,6 +1082,17 @@ func _on_die_single_secondary_roll_finished(die_value :int) -> void:
 	secondary_die_int = die_value
 	%TwoD6SecondaryPolygon2D.visible = true
 	secondary_label.text = str(secondary_die_int)
+	_determine_singles_dice_sum()
+
+
+func _determine_singles_dice_sum() -> void:
+	if primary_die_int == 0 or secondary_die_int == 0:
+		return
+	else:
+		singles_die_sum = primary_die_int + secondary_die_int
+		singles_sum_label.text = str(singles_die_sum)
+		
+
 
 
 func _on_die_d_3_roll_finished(die_value :int) -> void:

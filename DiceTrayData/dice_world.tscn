@@ -581,7 +581,7 @@ anchor_bottom = 1.0
 offset_left = 292.0
 offset_top = 725.0
 offset_right = -176.0
-offset_bottom = -68.0
+offset_bottom = -79.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/line_spacing = -13
@@ -601,6 +601,35 @@ offset_bottom = -68.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 60
+horizontal_alignment = 1
+
+[node name="D66SumLabel" type="Label" parent="DiceTray/DiceCanvas"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 220.0
+offset_top = 550.0
+offset_right = -217.0
+offset_bottom = -243.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = "
+"
+horizontal_alignment = 1
+
+[node name="SinglesSumLabel" type="Label" parent="DiceTray/DiceCanvas"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 335.0
+offset_top = 550.0
+offset_right = -102.0
+offset_bottom = -243.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = "8"
 horizontal_alignment = 1
 
 [node name="FatigueIncrementButton" type="Button" parent="DiceTray/DiceCanvas"]
@@ -748,8 +777,8 @@ light_energy = 7.72
 [connection signal="pressed" from="DiceTray/DiceCanvas/FatigueResetButton" to="DiceTray/DiceAudioVibeNode" method="dice_on_felt_vibe"]
 [connection signal="pressed" from="DiceTray/DiceCanvas/FatigueResetButton" to="DiceTray/FatigueDie/DieFatigue" method="return_fatigue_die_to_one"]
 [connection signal="pressed" from="DiceTray/DiceCanvas/CombatSelectButton" to="DiceTray/DiceAudioVibeNode" method="dice_on_felt_vibe"]
-[connection signal="pressed" from="DiceTray/DiceCanvas/CombatSelectButton" to="DiceTray/FatigueDie/DieFatigue" method="return_fatigue_die_to_one"]
 [connection signal="pressed" from="DiceTray/DiceCanvas/CombatSelectButton" to="DiceTray/FatigueDie/DieFatigue" method="position_determination_on_click"]
+[connection signal="pressed" from="DiceTray/DiceCanvas/CombatSelectButton" to="DiceTray/FatigueDie/DieFatigue" method="return_fatigue_die_to_one"]
 [connection signal="pressed" from="DiceTray/DiceCanvas/ExitButton" to="DiceTray" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="DiceTray/DiceCanvas/ExitButton" to="DiceTray/DiceAudioVibeNode" method="menu_quit_vibe"]
 [connection signal="pressed" from="DiceTray/DiceCanvas/PickUpAllDiceButton" to="DiceTray" method="_rehome_dice"]
