@@ -25,6 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "2D6 Digital Dice"
 theme_override_styles/panel = SubResource("StyleBoxFlat_tviu5")
 
 [node name="DiceTitle" type="VBoxContainer" parent="."]
@@ -38,6 +39,7 @@ grow_vertical = 2
 [node name="TextureRect3" type="TextureRect" parent="DiceTitle"]
 custom_minimum_size = Vector2(500, 400)
 layout_mode = 2
+tooltip_text = "2D6 Digital Dice"
 texture = ExtResource("2_wb8ut")
 expand_mode = 2
 stretch_mode = 5
